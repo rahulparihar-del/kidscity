@@ -1,5 +1,4 @@
 import './index.css'
-import AnnouncementBar from './components/AnnouncementBar'
 import Navbar from './components/Navbar'
 import HeroBanner from './components/HeroBanner'
 import TrustBar from './components/TrustBar'
@@ -15,7 +14,6 @@ import WhatsAppFAB from './components/WhatsAppFAB'
 export default function App() {
   return (
     <>
-      <AnnouncementBar />
       <Navbar />
       <main>
         <HeroBanner />
