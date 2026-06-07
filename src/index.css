@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --navy-950: #050d1f;
+  --navy-900: #0a1628;
+  --navy-800: #0d2040;
+  --navy-700: #112a55;
+  --navy-600: #1a3a72;
+  --navy-500: #1e4494;
+  --navy-400: #2a5bbf;
+  --navy-300: #4a7dd4;
+  --navy-200: #8aaee8;
+  --navy-100: #c5d8f5;
+  --navy-50:  #eef4fd;
+
+  --white: #ffffff;
+  --off-white: #f7f9fc;
+  --gold: #f5a623;
+  --gold-light: #ffd166;
+  --rose: #e84393;
+  --text-dark: #0a1628;
+  --text-mid: #334e7a;
+  --text-muted: #6b85ad;
+  --border: #dce6f5;
+
+  --font-head: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --radius-sm: 8px;
+  --radius:    14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+
+  --shadow-sm: 0 2px 8px rgba(10,22,40,0.06);
+  --shadow:    0 6px 24px rgba(10,22,40,0.1);
+  --shadow-lg: 0 16px 48px rgba(10,22,40,0.14);
+  --shadow-xl: 0 24px 72px rgba(10,22,40,0.18);
+
+  --transition: 0.2s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+ul  { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--off-white); }
+::-webkit-scrollbar-thumb { background: var(--navy-400); border-radius: 4px; }
+
+/* ── Container ── */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Section label ── */
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* ── Section heading ── */
+.section-heading {
+  font-family: var(--font-head);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--navy-900);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  white-space: nowrap;
+  min-height: 48px;
+}
+.btn:hover    { transform: translateY(-2px); }
+.btn:active   { transform: scale(0.97); }
+
+.btn-navy {
+  background: var(--navy-800);
+  color: var(--white);
+  box-shadow: 0 6px 20px rgba(13,32,64,0.35);
+}
+.btn-navy:hover { background: var(--navy-700); box-shadow: 0 8px 28px rgba(13,32,64,0.45); }
+
+.btn-white {
+  background: var(--white);
+  color: var(--navy-800);
+  box-shadow: 0 6px 20px rgba(255,255,255,0.2);
+}
+.btn-white:hover { background: var(--off-white); }
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--navy-900);
+  box-shadow: 0 6px 20px rgba(245,166,35,0.35);
+  font-weight: 900;
+}
+.btn-gold:hover { box-shadow: 0 8px 28px rgba(245,166,35,0.5); }
+
+.btn-outline-white {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255,255,255,0.5);
+}
+.btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+.btn-outline-navy {
+  background: transparent;
+  color: var(--navy-800);
+  border: 2px solid var(--navy-200);
+}
+.btn-outline-navy:hover { border-color: var(--navy-800); background: var(--navy-50); }
+
+.btn-wa {
+  background: #25D366;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+}
+.btn-wa:hover { box-shadow: 0 8px 28px rgba(37,211,102,0.55); }
+
+/* ── Badge ── */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.badge-navy  { background: var(--navy-800); color: #fff; }
+.badge-gold  { background: var(--gold); color: var(--navy-900); }
+.badge-rose  { background: var(--rose); color: #fff; }
+.badge-white { background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.4); }
+
+/* ── Star Rating ── */
+.stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 1px; }
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes pulseRing {
+  0%   { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(2); opacity: 0; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes wiggle {
+  0%,100% { transform: rotate(0deg); }
+  20% { transform: rotate(-10deg); }
+  40% { transform: rotate(10deg); }
+  60% { transform: rotate(-6deg); }
+  80% { transform: rotate(6deg); }
+}
+
+.animate-fadeUp    { animation: fadeUp 0.7s ease forwards; }
+.animate-fadeIn    { animation: fadeIn 0.5s ease forwards; }
+.animate-slideRight{ animation: slideRight 0.7s ease forwards; }
+.animate-slideLeft { animation: slideLeft 0.7s ease forwards; }
+.animate-float     { animation: float 4s ease-in-out infinite; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .container { padding: 0 16px; }
+  .btn { padding: 12px 22px; font-size: 0.87rem; }
+}
