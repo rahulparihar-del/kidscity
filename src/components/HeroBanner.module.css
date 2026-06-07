@@ -328,8 +328,8 @@
     max-width: 440px;
   }
   .subtitle { font-size: 0.93rem; line-height: 1.6; margin-bottom: 26px; max-width: 440px; }
-  .ctas { flex-direction: column; align-items: center; gap: 10px; margin-bottom: 40px; }
-  .ctaBtn, .ctaBtnOutline { width: 100%; max-width: 340px; }
+  .ctas { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 40px; }
+  .ctaBtn, .ctaBtnOutline { min-width: 0; flex: 0 1 auto; }
   .floatLeft, .floatRight { display: none; }
   .addressStrip { flex-direction: column; gap: 8px; padding: 12px 18px; }
   .addressDot { display: none; }
