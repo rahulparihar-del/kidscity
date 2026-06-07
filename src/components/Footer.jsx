@@ -1,20 +1,57 @@
-import { MapPin, Phone, MessageCircle, Camera, Clock } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { MapPin, Phone, MessageCircle, Camera, Clock, Navigation, Heart } from 'lucide-react'
 import styles from './Footer.module.css'
 
 const COLLECTIONS = ['Festival Wear', 'Traditional Dress', 'Casual Everyday', 'Birthday Special', 'Girls Collection', 'Boys Collection']
-const LINKS       = [
+const LINKS = [
   { label: 'Home', href: '#hero' },
   { label: 'Collections', href: '#categories' },
   { label: 'About Us', href: '#why' },
-  { label: 'Reviews', href: '#' },
+  { label: 'Reviews', href: '#contact' },
   { label: 'Visit Store', href: '#contact' },
   { label: 'Instagram', href: 'https://instagram.com/kidscity____', external: true },
 ]
+
+const CONTACT = [
+  { icon: MapPin, text: 'Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Rd, Wakad, Pimpri-Chinchwad 411057' },
+  { icon: Phone, text: '078916 72762', href: 'tel:+917891672762' },
+  { icon: MessageCircle, text: '+91 78916 72762 (WhatsApp)', href: 'https://wa.me/917891672762' },
+  { icon: Camera, text: '@kidscity____', href: 'https://instagram.com/kidscity____', external: true },
+  { icon: Clock, text: 'Open Daily — Come Anytime!' },
+]
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+}
 
 export default function Footer() {
   return (
     <footer id="footer" className={styles.footer}>
       <div className="container">
+        {/* Conversion CTA band */}
+        <motion.div
+          className={styles.ctaBand}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <div className={styles.ctaText}>
+            <h3 className={styles.ctaTitle}>Visit Kids City in Wakad Today</h3>
+            <p className={styles.ctaSub}>500+ premium styles for your little ones. Drop by the store or message us — we'd love to help!</p>
+          </div>
+          <div className={styles.ctaBtns}>
+            <a href="https://www.google.com/maps/dir//Kids+City+Wakad" className="btn btn-gold">
+              <Navigation size={16} strokeWidth={2.4} /> Get Directions
+            </a>
+            <a href="https://wa.me/917891672762?text=Hi%20Kids%20City!%20I'd%20like%20to%20visit%20your%20store." className="btn btn-wa">
+              <MessageCircle size={16} strokeWidth={2.4} /> WhatsApp Us
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Main grid */}
         <div className={styles.grid}>
           {/* Brand */}
           <div className={styles.brand}>
@@ -48,7 +85,7 @@ export default function Footer() {
           </div>
 
           {/* Collections */}
-          <div>
+          <div className={styles.col}>
             <h4 className={styles.colHeading}>Collections</h4>
             <ul className={styles.linkList}>
               {COLLECTIONS.map(c => (
@@ -58,7 +95,7 @@ export default function Footer() {
           </div>
 
           {/* Quick links */}
-          <div>
+          <div className={styles.col}>
             <h4 className={styles.colHeading}>Quick Links</h4>
             <ul className={styles.linkList}>
               {LINKS.map(l => (
@@ -66,7 +103,7 @@ export default function Footer() {
                   <a
                     href={l.href}
                     className={styles.footLink}
-                    {...(l.external ? { target:'_blank', rel:'noopener noreferrer' } : {})}
+                    {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                   >
                     {l.label}
                   </a>
@@ -76,38 +113,41 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className={styles.col}>
             <h4 className={styles.colHeading}>Contact Us</h4>
             <div className={styles.contactList}>
-              <div className={styles.contactItem}>
-                <span className={styles.contactIcon}><MapPin size={16} strokeWidth={2} /></span>
-                <p>Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Rd, Wakad, Pimpri-Chinchwad 411057</p>
-              </div>
-              <div className={styles.contactItem}>
-                <span className={styles.contactIcon}><Phone size={16} strokeWidth={2} /></span>
-                <a href="tel:+917891672762">078916 72762</a>
-              </div>
-              <div className={styles.contactItem}>
-                <span className={styles.contactIcon}><MessageCircle size={16} strokeWidth={2} /></span>
-                <a href="https://wa.me/917891672762">+91 78916 72762 (WhatsApp)</a>
-              </div>
-              <div className={styles.contactItem}>
-                <span className={styles.contactIcon}><Camera size={16} strokeWidth={2} /></span>
-                <a href="https://instagram.com/kidscity____" target="_blank" rel="noopener noreferrer">@kidscity____</a>
-              </div>
-              <div className={styles.contactItem}>
-                <span className={styles.contactIcon}><Clock size={16} strokeWidth={2} /></span>
-                <p>Open Daily — Come Anytime!</p>
-              </div>
+              {CONTACT.map((item, i) => {
+                const Icon = item.icon
+                const content = (
+                  <>
+                    <span className={styles.contactIcon}><Icon size={16} strokeWidth={2} /></span>
+                    <span>{item.text}</span>
+                  </>
+                )
+                return item.href ? (
+                  <a
+                    key={i}
+                    href={item.href}
+                    className={styles.contactItem}
+                    {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <div key={i} className={styles.contactItem}>{content}</div>
+                )
+              })}
             </div>
           </div>
         </div>
 
+        {/* Bottom bar */}
         <div className={styles.bottom}>
-          <p className={styles.copy}>© 2025 Kids City. All rights reserved. Made with care in Wakad, Pune.</p>
-          <p className={styles.copy2}>
-            <a href="https://www.google.com/maps/dir//Kids+City" className={styles.mapsLink}>View on Google Maps</a>
+          <p className={styles.copy}>© 2025 Kids City. All rights reserved.</p>
+          <p className={styles.madeWith}>
+            Made with <Heart size={13} fill="currentColor" strokeWidth={0} className={styles.heart} /> in Wakad, Pune
           </p>
+          <a href="https://www.google.com/maps/dir//Kids+City+Wakad" className={styles.mapsLink}>View on Google Maps</a>
         </div>
       </div>
     </footer>
