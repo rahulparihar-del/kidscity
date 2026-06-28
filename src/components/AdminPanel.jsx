@@ -34,7 +34,7 @@ export default function AdminPanel({ onBack }) {
   // Passcode verification
   const handleLogin = (e) => {
     e.preventDefault()
-    if (passcode === 'kidscity2026') {
+    if (passcode === 'Kids@1999') {
       setIsAuthenticated(true)
       setLoginError('')
     } else {
