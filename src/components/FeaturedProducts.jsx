@@ -32,6 +32,13 @@ function ProductCard({ product, onSelectProduct }) {
     setWishlist(!wishlist)
   }
 
+  const handleInquire = (e) => {
+    e.stopPropagation()
+    const phone = '917891672762'
+    const text = `Hi Kids City! I saw "${product.name}" on your website. Is it available in store?`
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank')
+  }
+
   const getGlowColor = (cat) => {
     switch (cat) {
       case 'Birthday': return 'var(--brand-pink-glow)'
