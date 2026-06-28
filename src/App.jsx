@@ -153,7 +153,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <Footer />
+      <Footer onViewChange={setCurrentView} />
       <WhatsAppFAB />
     </>
   )
