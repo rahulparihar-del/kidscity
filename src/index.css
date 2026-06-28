@@ -160,7 +160,7 @@ button {
 
 .section-heading {
   font-family: var(--font-head);
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(1.5rem, 4vw, 2.75rem);
   font-weight: 800;
   color: var(--brand-navy);
   line-height: 1.2;
@@ -396,4 +396,29 @@ button {
 @keyframes pulse-message {
   0%, 100% { opacity: 0.55; }
   50% { opacity: 1; }
+}
+
+/* ── Global Mobile Overrides (≤480px) ─────────────────────────── */
+@media (max-width: 480px) {
+  .section-heading {
+    font-size: 1.35rem !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  .section-label {
+    font-size: 0.65rem !important;
+    letter-spacing: 1.4px !important;
+  }
+
+  .serif-accent {
+    font-size: inherit;
+  }
+
+  /* All full-width buttons on mobile */
+  .btn {
+    font-size: 0.85rem !important;
+    min-height: 46px !important;
+    padding: 10px 22px !important;
+  }
 }
