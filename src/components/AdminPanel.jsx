@@ -200,6 +200,7 @@ const sha256 = async (text) => {
         setMessage({ text: `Image conversion failed: ${err.message}`, type: 'error' })
       }
     }
+    e.target.value = ''
   }
 
   // Remove image from preview list
@@ -378,6 +379,7 @@ const sha256 = async (text) => {
       setMessage({ text: `Failed to update image: ${err.message}`, type: 'error' })
     } finally {
       setImageUploading(prev => ({ ...prev, [key]: false }))
+      e.target.value = ''
     }
   }
 
