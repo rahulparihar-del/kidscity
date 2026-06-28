@@ -90,7 +90,7 @@ export default function App() {
             transition={{ duration: 0.3 }}
           >
             <main>
-              <HeroBanner />
+              <HeroBanner onViewChange={setCurrentView} />
               <TrustBar />
               <CategoryGrid />
               <ShopByCategory />

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   /* Premium 5-Color Organic Palette */
@@ -21,7 +21,9 @@
   --text-mid: #5C5F80;
   --text-muted: #8E91B3;
 
-  --font-head: 'Plus Jakarta Sans', sans-serif;
+  --font-head: 'Outfit', sans-serif;
+  --font-kids: 'Fredoka', sans-serif;
+  --font-serif: 'Playfair Display', serif;
   --font-body: 'Inter', sans-serif;
 
   --radius-sm: 8px;
