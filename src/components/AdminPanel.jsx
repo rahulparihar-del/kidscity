@@ -561,74 +561,124 @@ export default function AdminPanel({ onBack }) {
                   <p>Create a product on the left. Changes will sync in real-time on the client store.</p>
                 </div>
               ) : (
-                <div className={styles.tableWrap}>
-                  <table className={styles.table}>
-                    <thead>
-                      <tr>
-                        <th>Cover</th>
-                        <th>Product Info</th>
-                        <th>Category</th>
-                        <th>Price (Final)</th>
-                        <th>Tag</th>
-                        <th style={{ textAlign: 'right' }}>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {products.map(p => (
-                        <tr key={p.id}>
-                          <td>
-                            {p.img ? (
-                              <img src={p.img} alt={p.name} className={styles.tableImg} />
-                            ) : (
-                              <div className={styles.tableImgPlaceholder}>No Img</div>
-                            )}
-                          </td>
-                          <td>
-                            <div className={styles.tableProductInfo}>
-                              <strong>{p.name}</strong>
-                              <span>Sizes: {p.sizes ? p.sizes.join(', ') : 'None'}</span>
-                            </div>
-                          </td>
-                          <td><span className={styles.tableCat}>{p.category}</span></td>
-                          <td>
-                            <div className={styles.tablePriceRow}>
-                              <strong>{p.price}</strong>
-                              {p.discount > 0 && (
-                                <span className={styles.discountTag}>-{p.discount}%</span>
+                <div className={styles.inventoryList}>
+                  {/* Desktop Table View */}
+                  <div className={styles.tableWrap}>
+                    <table className={styles.table}>
+                      <thead>
+                        <tr>
+                          <th>Cover</th>
+                          <th>Product Info</th>
+                          <th>Category</th>
+                          <th>Price (Final)</th>
+                          <th>Tag</th>
+                          <th style={{ textAlign: 'right' }}>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {products.map(p => (
+                          <tr key={p.id}>
+                            <td>
+                              {p.img ? (
+                                <img src={p.img} alt={p.name} className={styles.tableImg} />
+                              ) : (
+                                <div className={styles.tableImgPlaceholder}>No Img</div>
                               )}
-                            </div>
-                          </td>
-                          <td>
-                            {p.tag ? (
-                              <span className={styles.tableTag} style={{ background: p.tag_color }}>
+                            </td>
+                            <td>
+                              <div className={styles.tableProductInfo}>
+                                <strong>{p.name}</strong>
+                                <span>Sizes: {p.sizes ? p.sizes.join(', ') : 'None'}</span>
+                              </div>
+                            </td>
+                            <td><span className={styles.tableCat}>{p.category}</span></td>
+                            <td>
+                              <div className={styles.tablePriceRow}>
+                                <strong>{p.price}</strong>
+                                {p.discount > 0 && (
+                                  <span className={styles.discountTag}>-{p.discount}%</span>
+                                )}
+                              </div>
+                            </td>
+                            <td>
+                              {p.tag ? (
+                                <span className={styles.tableTag} style={{ background: p.tag_color }}>
+                                  {p.tag}
+                                </span>
+                              ) : (
+                                '-'
+                              )}
+                            </td>
+                            <td style={{ textAlign: 'right' }}>
+                              <div className={styles.tableActions}>
+                                <button
+                                  className={styles.actionEdit}
+                                  onClick={() => handleEditSelect(p)}
+                                  aria-label={`Edit ${p.name}`}
+                                >
+                                  <Edit2 size={14} />
+                                </button>
+                                <button
+                                  className={styles.actionDelete}
+                                  onClick={() => handleDelete(p.id)}
+                                  aria-label={`Delete ${p.name}`}
+                                >
+                                  <Trash2 size={14} />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Mobile Product Cards View */}
+                  <div className={styles.mobileCardsList}>
+                    {products.map(p => (
+                      <div key={p.id} className={styles.mobileProductCard}>
+                        <div className={styles.cardCover}>
+                          {p.img ? (
+                            <img src={p.img} alt={p.name} />
+                          ) : (
+                            <div className={styles.imgPlaceholder}>No Img</div>
+                          )}
+                          {p.discount > 0 && (
+                            <span className={styles.cardDiscount}>-{p.discount}%</span>
+                          )}
+                        </div>
+                        <div className={styles.cardDetails}>
+                          <span className={styles.cardCategory}>{p.category}</span>
+                          <h4 className={styles.cardName}>{p.name}</h4>
+                          <div className={styles.cardPriceRow}>
+                            <strong className={styles.cardPrice}>{p.price}</strong>
+                            {p.tag && (
+                              <span className={styles.cardTag} style={{ background: p.tag_color }}>
                                 {p.tag}
                               </span>
-                            ) : (
-                              '-'
                             )}
-                          </td>
-                          <td style={{ textAlign: 'right' }}>
-                            <div className={styles.tableActions}>
-                              <button
-                                className={styles.actionEdit}
-                                onClick={() => handleEditSelect(p)}
-                                aria-label={`Edit ${p.name}`}
-                              >
-                                <Edit2 size={14} />
-                              </button>
-                              <button
-                                className={styles.actionDelete}
-                                onClick={() => handleDelete(p.id)}
-                                aria-label={`Delete ${p.name}`}
-                              >
-                                <Trash2 size={14} />
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                          </div>
+                          <span className={styles.cardSizes}>Sizes: {p.sizes ? p.sizes.join(', ') : 'None'}</span>
+                        </div>
+                        <div className={styles.cardActions}>
+                          <button
+                            onClick={() => handleEditSelect(p)}
+                            className={styles.actionEdit}
+                            aria-label={`Edit ${p.name}`}
+                          >
+                            <Edit2 size={16} />
+                          </button>
+                          <button
+                            onClick={() => handleDelete(p.id)}
+                            className={styles.actionDelete}
+                            aria-label={`Delete ${p.name}`}
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
