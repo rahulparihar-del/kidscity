@@ -11,7 +11,7 @@ const CATEGORIES = [
     span: 'large',
     badge: 'New Arrivals',
     badgeColor: 'var(--brand-orange)',
-    overlay: 'linear-gradient(to top, rgba(40, 15, 10, 0.9) 0%, rgba(224, 122, 95, 0.45) 50%, transparent 100%)',
+    overlay: 'linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%)',
     glowColor: 'var(--brand-orange-glow)',
     borderColor: 'var(--brand-orange)'
   },
@@ -23,7 +23,7 @@ const CATEGORIES = [
     span: 'normal',
     badge: 'Trending',
     badgeColor: 'var(--brand-pink)',
-    overlay: 'linear-gradient(to top, rgba(50, 10, 25, 0.9) 0%, rgba(255, 75, 114, 0.45) 50%, transparent 100%)',
+    overlay: 'linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%)',
     glowColor: 'var(--brand-pink-glow)',
     borderColor: 'var(--brand-pink)'
   },
@@ -35,7 +35,7 @@ const CATEGORIES = [
     span: 'normal',
     badge: 'Best Seller',
     badgeColor: 'var(--brand-blue)',
-    overlay: 'linear-gradient(to top, rgba(10, 25, 50, 0.9) 0%, rgba(0, 168, 232, 0.45) 50%, transparent 100%)',
+    overlay: 'linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%)',
     glowColor: 'var(--brand-blue-glow)',
     borderColor: 'var(--brand-blue)'
   },
