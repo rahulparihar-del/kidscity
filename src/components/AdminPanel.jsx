@@ -8,10 +8,11 @@ const CATEGORIES = ['Festival Wear', 'Birthday', 'Casual', 'Traditional', 'Baby'
 const AVAILABLE_SIZES = ['0-3m', '3-6m', '6-12m', '18-24m', '2-4y', '4-6y', '6-8y', '8-10y', 'S', 'M', 'L', 'XL']
 
 /**
- * Converts a file to WebP format and compresses it to keep database size lightweight.
- * Limits max dimensions to 1000px width/height.
+ * Converts a file to WebP format with aggressive compression to keep
+ * base64 strings small enough to store reliably in Supabase text columns.
+ * Max 600px × 600px, quality 0.65
  */
-const convertToWebP = (file, maxWidth = 1000, maxHeight = 1000) => {
+const convertToWebP = (file, maxWidth = 600, maxHeight = 600, quality = 0.65) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
     reader.readAsDataURL(file)
@@ -23,7 +24,7 @@ const convertToWebP = (file, maxWidth = 1000, maxHeight = 1000) => {
         let width = img.width
         let height = img.height
 
-        // Downscale image if it exceeds max constraints
+        // Downscale image to fit within max constraints
         if (width > maxWidth || height > maxHeight) {
           if (width > height) {
             height = Math.round((height * maxWidth) / width)
@@ -40,9 +41,14 @@ const convertToWebP = (file, maxWidth = 1000, maxHeight = 1000) => {
         const ctx = canvas.getContext('2d')
         ctx.drawImage(img, 0, 0, width, height)
 
-        // Convert to WebP with 0.8 quality
-        const webpDataUrl = canvas.toDataURL('image/webp', 0.8)
-        resolve(webpDataUrl)
+        // Try WebP first, fallback to JPEG if WebP not supported
+        const webpDataUrl = canvas.toDataURL('image/webp', quality)
+        // If browser doesn't support WebP, toDataURL returns PNG — fallback to JPEG
+        if (webpDataUrl.startsWith('data:image/webp')) {
+          resolve(webpDataUrl)
+        } else {
+          resolve(canvas.toDataURL('image/jpeg', quality))
+        }
       }
       img.onerror = (err) => reject(err)
     }
@@ -182,9 +188,16 @@ const sha256 = async (text) => {
     for (const file of files) {
       try {
         const webpDataUrl = await convertToWebP(file)
+        // Log compressed size for debugging
+        const sizeKB = Math.round(webpDataUrl.length * 0.75 / 1024)
+        console.log(`Compressed image: ${sizeKB}KB (base64 length: ${webpDataUrl.length})`)
+        if (sizeKB > 300) {
+          console.warn(`Image is still large (${sizeKB}KB). Consider using a smaller source image.`)
+        }
         setImages(prev => [...prev, webpDataUrl])
       } catch (err) {
         console.error("Failed to convert product image to WebP:", err)
+        setMessage({ text: `Image conversion failed: ${err.message}`, type: 'error' })
       }
     }
   }

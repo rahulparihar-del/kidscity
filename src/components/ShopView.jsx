@@ -483,7 +483,19 @@ export default function ShopView({ products, onSelectProduct }) {
                         onClick={() => onSelectProduct(p)}
                       >
                         <div className={styles.imgWrap}>
-                          <img src={p.img} alt={p.name} className={styles.cardImg} loading="lazy" />
+                          {p.img ? (
+                            <img
+                              src={p.img}
+                              alt={p.name}
+                              className={styles.cardImg}
+                              loading="lazy"
+                              onError={(e) => { e.target.style.display = 'none' }}
+                            />
+                          ) : (
+                            <div className={styles.imgPlaceholder}>
+                              <span>No Image</span>
+                            </div>
+                          )}
                           {p.tag && (
                             <span
                               className={styles.tag}
