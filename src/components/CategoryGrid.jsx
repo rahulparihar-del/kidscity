@@ -9,8 +9,8 @@ const CATEGORIES = [
     img: '/images/festival_wear.png',
     span: 'large',
     badge: 'New Arrivals',
-    badgeColor: '#f5a623',
-    overlay: 'linear-gradient(to top, rgba(13,32,64,0.85) 0%, rgba(13,32,64,0.2) 60%, transparent 100%)',
+    badgeColor: 'var(--brand-orange)',
+    overlay: 'linear-gradient(to top, rgba(40, 15, 10, 0.9) 0%, rgba(224, 122, 95, 0.45) 50%, transparent 100%)',
   },
   {
     id: 2,
@@ -19,8 +19,8 @@ const CATEGORIES = [
     img: '/images/birthday_dress.png',
     span: 'normal',
     badge: 'Trending',
-    badgeColor: '#FF1493',
-    overlay: 'linear-gradient(to top, rgba(13,32,64,0.8) 0%, rgba(13,32,64,0.2) 60%, transparent 100%)',
+    badgeColor: 'var(--brand-pink)',
+    overlay: 'linear-gradient(to top, rgba(50, 10, 25, 0.9) 0%, rgba(255, 75, 114, 0.45) 50%, transparent 100%)',
   },
   {
     id: 3,
@@ -29,8 +29,8 @@ const CATEGORIES = [
     img: '/images/casual_boys.png',
     span: 'normal',
     badge: 'Best Seller',
-    badgeColor: '#32CD32',
-    overlay: 'linear-gradient(to top, rgba(13,32,64,0.8) 0%, rgba(13,32,64,0.2) 60%, transparent 100%)',
+    badgeColor: 'var(--brand-blue)',
+    overlay: 'linear-gradient(to top, rgba(10, 25, 50, 0.9) 0%, rgba(0, 168, 232, 0.45) 50%, transparent 100%)',
   },
 ]
 

@@ -379,8 +379,8 @@
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--brand-terracotta-light);
+  box-shadow: 0 12px 30px var(--hover-glow-color, rgba(0, 0, 0, 0.08));
+  border-color: var(--hover-border-color, var(--brand-terracotta)) !important;
 }
 
 .imgWrap {

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Premium 5-Color Organic Palette */
+  /* Premium 5-Color Organic Palette & Logo System */
   --brand-navy: #3D405B;            /* Primary Slate Navy */
   --brand-navy-light: #545778;
   --brand-navy-dark: #2C2E43;
@@ -9,10 +9,23 @@
   --brand-beige: #F4EFE6;           /* Secondary Background Sandy Beige */
   --brand-terracotta: #E07A5F;       /* Primary Accent Coral/Terracotta */
   --brand-terracotta-light: #F49D85;
-  --brand-sage: #81B29A;            /* Nature Sage Green */
-  --brand-sage-light: #A7C9B9;
-  --brand-gold: #F4A261;            /* Warm Sand Gold */
-  --brand-gold-light: #F8C398;
+
+  /* Logo Specific Colors */
+  --brand-pink: #FF4B72;            /* Logo Pink */
+  --brand-pink-light: #FF7D97;
+  --brand-pink-glow: rgba(255, 75, 114, 0.15);
+
+  --brand-blue: #00A8E8;            /* Logo Blue */
+  --brand-blue-light: #46C7FA;
+  --brand-blue-glow: rgba(0, 168, 232, 0.15);
+
+  --brand-green: #2EC4B6;           /* Logo Green */
+  --brand-green-light: #6CE0D5;
+  --brand-green-glow: rgba(46, 196, 182, 0.15);
+
+  --brand-orange: #FF9F1C;          /* Logo Orange */
+  --brand-orange-light: #FFC069;
+  --brand-orange-glow: rgba(255, 159, 28, 0.15);
   
   --white: #ffffff;
   --off-white: var(--brand-cream);
@@ -28,14 +41,14 @@
   --navy-700: var(--brand-navy-light);
   --navy-600: var(--brand-navy-light);
   --navy-500: var(--brand-navy-light);
-  --navy-400: var(--brand-sage);
-  --navy-300: var(--brand-sage-light);
+  --navy-400: var(--brand-blue);
+  --navy-300: var(--brand-green-light);
   --navy-200: var(--brand-beige);
   --navy-100: var(--brand-cream);
   --navy-50:  var(--brand-cream);
-  --gold: var(--brand-gold);
-  --gold-light: var(--brand-gold-light);
-  --rose: var(--brand-terracotta-light);
+  --gold: var(--brand-orange);
+  --gold-light: var(--brand-orange-light);
+  --rose: var(--brand-pink);
 
   --font-head: 'Outfit', sans-serif;
   --font-kids: 'Fredoka', sans-serif;

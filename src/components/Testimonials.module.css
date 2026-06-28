@@ -34,6 +34,19 @@
   padding: 28px 24px;
   border: 1.5px solid var(--border);
   transition: transform 0.25s, box-shadow 0.25s;
+  border-top-width: 5px !important;
+}
+
+.card:nth-child(3n+1) {
+  border-top-color: var(--brand-pink) !important;
+}
+
+.card:nth-child(3n+2) {
+  border-top-color: var(--brand-blue) !important;
+}
+
+.card:nth-child(3n+3) {
+  border-top-color: var(--brand-orange) !important;
 }
 .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
 

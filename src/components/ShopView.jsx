@@ -216,6 +216,26 @@ export default function ShopView({ products, onSelectProduct }) {
   const [wishlisted, setWishlisted] = useState({})
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false)
 
+  const getGlowColor = (cat) => {
+    switch (cat) {
+      case 'Birthday': return 'var(--brand-pink-glow)'
+      case 'Casual': return 'var(--brand-blue-glow)'
+      case 'Festival Wear':
+      case 'Traditional': return 'var(--brand-orange-glow)'
+      default: return 'var(--brand-green-glow)'
+    }
+  }
+
+  const getHoverBorderColor = (cat) => {
+    switch (cat) {
+      case 'Birthday': return 'var(--brand-pink)'
+      case 'Casual': return 'var(--brand-blue)'
+      case 'Festival Wear':
+      case 'Traditional': return 'var(--brand-orange)'
+      default: return 'var(--brand-green)'
+    }
+  }
+
   const toggleWishlist = (id, e) => {
     e.stopPropagation()
     setWishlisted(prev => ({ ...prev, [id]: !prev[id] }))
@@ -456,6 +476,10 @@ export default function ShopView({ products, onSelectProduct }) {
                         exit={{ opacity: 0, scale: 0.9 }}
                         transition={{ duration: 0.3, delay: Math.min(idx * 0.05, 0.4) }}
                         className={styles.card}
+                        style={{
+                          '--hover-glow-color': getGlowColor(p.category),
+                          '--hover-border-color': getHoverBorderColor(p.category)
+                        }}
                         onClick={() => onSelectProduct(p)}
                       >
                         <div className={styles.imgWrap}>

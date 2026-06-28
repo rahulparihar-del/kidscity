@@ -66,23 +66,47 @@
   transition: color var(--transition-fast);
 }
 
-.link:hover {
-  color: var(--brand-terracotta);
-}
-
-.linkActive {
-  color: var(--brand-terracotta);
-}
-
-.linkActive::after {
+.link::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--brand-terracotta);
+  width: 0;
+  height: 2.5px;
   border-radius: 2px;
+  transition: width var(--transition-fast);
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+.links li:nth-child(1) .link::after {
+  background: var(--brand-pink);
+}
+.links li:nth-child(1) .link:hover,
+.links li:nth-child(1) .linkActive {
+  color: var(--brand-pink) !important;
+}
+
+.links li:nth-child(2) .link::after {
+  background: var(--brand-blue);
+}
+.links li:nth-child(2) .link:hover,
+.links li:nth-child(2) .linkActive {
+  color: var(--brand-blue) !important;
+}
+
+.links li:nth-child(3) .link::after {
+  background: var(--brand-green);
+}
+.links li:nth-child(3) .link:hover,
+.links li:nth-child(3) .linkActive {
+  color: var(--brand-green) !important;
+}
+
+.linkActive::after {
+  width: 100% !important;
 }
 
 .actions {

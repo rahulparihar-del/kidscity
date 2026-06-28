@@ -32,16 +32,33 @@ function ProductCard({ product, onSelectProduct }) {
     setWishlist(!wishlist)
   }
 
-  const handleInquire = (e) => {
-    e.stopPropagation()
-    const phone = '917891672762'
-    const text = `Hi Kids City! I saw "${product.name}" on your website. Is it available in store?`
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank')
+  const getGlowColor = (cat) => {
+    switch (cat) {
+      case 'Birthday': return 'var(--brand-pink-glow)'
+      case 'Casual': return 'var(--brand-blue-glow)'
+      case 'Festival Wear':
+      case 'Traditional': return 'var(--brand-orange-glow)'
+      default: return 'var(--brand-green-glow)'
+    }
+  }
+
+  const getHoverBorderColor = (cat) => {
+    switch (cat) {
+      case 'Birthday': return 'var(--brand-pink)'
+      case 'Casual': return 'var(--brand-blue)'
+      case 'Festival Wear':
+      case 'Traditional': return 'var(--brand-orange)'
+      default: return 'var(--brand-green)'
+    }
   }
 
   return (
     <motion.div
       className={styles.card}
+      style={{
+        '--hover-glow-color': getGlowColor(product.category),
+        '--hover-border-color': getHoverBorderColor(product.category)
+      }}
       whileHover={{ y: -6 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       onClick={() => onSelectProduct(product)}
