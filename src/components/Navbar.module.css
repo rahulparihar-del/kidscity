@@ -256,7 +256,7 @@
 }
 
 .drawerLogo {
-  height: 48px;
+  height: 72px;
   width: auto;
   object-fit: contain;
 }
@@ -302,41 +302,31 @@
 .drawerLink {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 13px 14px;
+  gap: 10px;
+  padding: 14px 16px;
   border-radius: 14px;
   text-decoration: none;
   color: var(--brand-navy);
   font-family: var(--font-head);
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 700;
   transition: all 0.25s ease;
-  position: relative;
+  border: 1.5px solid transparent;
 }
 
 .drawerLink:hover {
   background: var(--brand-cream);
+  border-color: var(--border);
 }
 
 .drawerLinkActive {
-  background: rgba(224, 122, 95, 0.08);
+  background: rgba(224, 122, 95, 0.07);
   color: var(--brand-terracotta);
+  border-color: rgba(224, 122, 95, 0.2);
 }
 
 .drawerLinkActive .drawerChevron {
   color: var(--brand-terracotta);
-}
-
-.drawerLinkEmoji {
-  font-size: 1.2rem;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--brand-beige);
-  border-radius: 10px;
-  flex-shrink: 0;
 }
 
 .drawerLinkText {

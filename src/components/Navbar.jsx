@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import styles from './Navbar.module.css'
 
 const NAV_LINKS = [
-  { label: 'Home', view: 'home', emoji: '🏠' },
-  { label: 'Collections', view: 'shop', emoji: '👗' },
-  { label: 'Contact & FAQ', view: 'contact', emoji: '💬' },
+  { label: 'Home', view: 'home' },
+  { label: 'Collections', view: 'shop' },
+  { label: 'Contact & FAQ', view: 'contact' },
 ]
 
 export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag }) {
@@ -148,7 +148,6 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag 
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.07 + 0.1, duration: 0.35 }}
                 >
-                  <span className={styles.drawerLinkEmoji}>{emoji}</span>
                   <span className={styles.drawerLinkText}>{label}</span>
                   <ChevronRight size={16} className={styles.drawerChevron} />
                 </motion.a>
