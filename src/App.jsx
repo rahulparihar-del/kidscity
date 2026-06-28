@@ -13,16 +13,92 @@ import Footer from './components/Footer'
 import WhatsAppFAB from './components/WhatsAppFAB'
 
 // New modular routing views
-import ShopView from './components/ShopView'
+import ShopView, { PRODUCTS } from './components/ShopView'
 import ProductDetail from './components/ProductDetail'
 import ContactView from './components/ContactView'
 import InquiryDrawer from './components/InquiryDrawer'
+import AdminPanel from './components/AdminPanel'
+
+// Supabase client
+import { supabase } from './supabaseClient'
 
 export default function App() {
-  const [currentView, setCurrentView] = useState('home') // 'home', 'shop', 'product-detail', 'contact'
+  const [currentView, setCurrentView] = useState('home') // 'home', 'shop', 'product-detail', 'contact', 'admin'
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [inquiryBag, setInquiryBag] = useState([])
   const [isBagOpen, setIsBagOpen] = useState(false)
+  const [dbProducts, setDbProducts] = useState([])
+
+  // Load products on mount with real-time listeners and database seeding
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('products')
+          .select('*')
+          .order('id', { ascending: false })
+
+        if (error) throw error
+
+        if (data && data.length > 0) {
+          setDbProducts(data)
+        } else {
+          // Seeding database with initial products if table has 0 items
+          console.log("Products table is empty. Seeding initial e-commerce products...")
+          
+          const seedData = PRODUCTS.map(p => ({
+            name: p.name,
+            category: p.category,
+            price_val: p.priceVal,
+            price: p.price,
+            tag: p.tag || null,
+            tag_color: p.tagColor || null,
+            img: p.img,
+            rating: p.rating,
+            reviews: p.reviews,
+            sizes: p.sizes,
+            description: p.desc,
+            specs: p.specs,
+            gallery: p.gallery,
+            discount: 0
+          }))
+
+          const { error: seedError } = await supabase
+            .from('products')
+            .insert(seedData)
+
+          if (seedError) {
+            console.error("Failed to seed products:", seedError.message)
+          } else {
+            console.log("Seeding complete. Fetching updated catalog...")
+            const { data: reloaded } = await supabase
+              .from('products')
+              .select('*')
+              .order('id', { ascending: false })
+            
+            if (reloaded) setDbProducts(reloaded)
+          }
+        }
+      } catch (err) {
+        console.error("Failed to read products from Supabase:", err.message)
+      }
+    }
+
+    loadProducts()
+
+    // Setup Supabase Real-time listener
+    const channel = supabase
+      .channel('products-realtime-changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'products' }, (payload) => {
+        console.log("Real-time product change detected:", payload)
+        loadProducts() // Reload products dynamically
+      })
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
+  }, [])
 
   // Load inquiry bag from localStorage on mount
   useEffect(() => {
@@ -95,6 +171,7 @@ export default function App() {
               <CategoryGrid />
               <ShopByCategory />
               <FeaturedProducts
+                products={dbProducts}
                 onSelectProduct={handleSelectProduct}
                 onViewChange={setCurrentView}
               />
@@ -114,7 +191,10 @@ export default function App() {
             transition={{ duration: 0.3 }}
           >
             <main>
-              <ShopView onSelectProduct={handleSelectProduct} />
+              <ShopView
+                products={dbProducts}
+                onSelectProduct={handleSelectProduct}
+              />
             </main>
           </motion.div>
         )}
@@ -133,6 +213,7 @@ export default function App() {
                 onBack={() => setCurrentView('shop')}
                 onAddToBag={handleAddToBag}
                 onSelectProduct={handleSelectProduct}
+                allProducts={dbProducts}
               />
             </main>
           </motion.div>
@@ -148,6 +229,20 @@ export default function App() {
           >
             <main>
               <ContactView />
+            </main>
+          </motion.div>
+        )}
+
+        {currentView === 'admin' && (
+          <motion.div
+            key="admin"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <main>
+              <AdminPanel onBack={() => setCurrentView('home')} />
             </main>
           </motion.div>
         )}

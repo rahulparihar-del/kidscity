@@ -152,7 +152,12 @@ export default function Footer({ onViewChange }) {
 
         {/* Bottom copyright segment */}
         <div className={styles.bottom}>
-          <p className={styles.copy}>&copy; 2026 Kids City. All rights reserved.</p>
+          <p className={styles.copy}>
+            &copy; 2026 Kids City. All rights reserved. &middot;{' '}
+            <a href="#admin" onClick={(e) => handleNavClick('admin', e)} style={{ textDecoration: 'underline' }}>
+              CRM Portal
+            </a>
+          </p>
           <div className={styles.heartTag}>
             Made with <Heart size={12} fill="currentColor" strokeWidth={0} className={styles.heartIcon} /> in Wakad, Pune
           </div>

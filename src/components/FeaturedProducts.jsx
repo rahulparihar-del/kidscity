@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { Star, Heart } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { PRODUCTS } from './ShopView'
+// Fallback items defined dynamically
 import styles from './FeaturedProducts.module.css'
 
 const TABS = ['All', 'Festival Wear', 'Traditional', 'Casual', 'Birthday']
 
-// Get only top 6 featured products for home page banner
-const FEATURED_PRODUCTS = PRODUCTS.slice(0, 6)
+// Featured products sliced from dynamic db array
 
 function StarRating({ rating }) {
   return (
@@ -86,12 +85,15 @@ function ProductCard({ product, onSelectProduct }) {
   )
 }
 
-export default function FeaturedProducts({ onSelectProduct, onViewChange }) {
+export default function FeaturedProducts({ products, onSelectProduct, onViewChange }) {
   const [activeTab, setActiveTab] = useState('All')
 
+  // Top 6 products for home view
+  const displayProducts = (products && products.length > 0 ? products : []).slice(0, 6)
+
   const filtered = activeTab === 'All'
-    ? FEATURED_PRODUCTS
-    : FEATURED_PRODUCTS.filter(p => p.category === activeTab)
+    ? displayProducts
+    : displayProducts.filter(p => p.category === activeTab)
 
   return (
     <section id="featured" className={styles.section}>

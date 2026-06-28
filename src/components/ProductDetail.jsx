@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { ArrowLeft, MessageSquare, ShoppingBag, Heart, Star, Ruler, HelpCircle, ChevronDown, Check } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { PRODUCTS } from './ShopView'
+// PRODUCTS fallback loaded from dynamic props
 import styles from './ProductDetail.module.css'
 
-export default function ProductDetail({ product, onBack, onAddToBag, onSelectProduct }) {
+export default function ProductDetail({ product, onBack, onAddToBag, onSelectProduct, allProducts }) {
   const [activeImg, setActiveImg] = useState(product.img)
   const [selectedSize, setSelectedSize] = useState('')
   const [activeTab, setActiveTab] = useState('description')
@@ -80,8 +80,9 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
     return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`
   }
 
-  // Filter related products
-  const relatedProducts = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 3)
+  // Filter related products from live array
+  const relatedSource = allProducts && allProducts.length > 0 ? allProducts : []
+  const relatedProducts = relatedSource.filter(p => p.category === product.category && p.id !== product.id).slice(0, 3)
 
   return (
     <div className={styles.detailPage}>

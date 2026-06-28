@@ -207,7 +207,7 @@ const PRICE_RANGES = [
   { label: '₹900+', min: 900, max: 2000 }
 ]
 
-export default function ShopView({ onSelectProduct }) {
+export default function ShopView({ products, onSelectProduct }) {
   const [search, setSearch] = useState('')
   const [selectedCat, setSelectedCat] = useState('All')
   const [selectedSize, setSelectedSize] = useState('All')
@@ -221,9 +221,11 @@ export default function ShopView({ onSelectProduct }) {
     setWishlisted(prev => ({ ...prev, [id]: !prev[id] }))
   }
 
+  const catalogSource = products && products.length > 0 ? products : PRODUCTS
+
   // Filtered and sorted products
   const filteredProducts = useMemo(() => {
-    let items = [...PRODUCTS]
+    let items = [...catalogSource]
 
     // Search filter
     if (search.trim() !== '') {
@@ -256,7 +258,7 @@ export default function ShopView({ onSelectProduct }) {
     }
 
     return items
-  }, [search, selectedCat, selectedSize, selectedPrice, sortBy])
+  }, [catalogSource, search, selectedCat, selectedSize, selectedPrice, sortBy])
 
   // Reusable filters renderer for both Sidebar and Mobile Drawer
   const renderFilters = () => (
