@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { supabase } from '../supabaseClient'
 
 /**
@@ -10,10 +10,17 @@ import { supabase } from '../supabaseClient'
  *   key         text   (unique, e.g. "hero_center", "hero_left", "category_festival")
  *   image_data  text   (base64 data-URL)
  *   updated_at  timestamptz
+ *
+ * NOTE: Each hook instance gets a unique channel name to avoid the
+ * "cannot add callbacks after subscribe()" error when multiple components
+ * call this hook simultaneously (e.g. HeroBanner + CategoryGrid).
  */
 export function useSiteImages() {
   const [images, setImages] = useState({})
   const [loading, setLoading] = useState(true)
+
+  // Generate a stable unique channel name per hook instance
+  const channelName = useRef(`site-images-${Math.random().toString(36).slice(2)}`)
 
   const fetchImages = async () => {
     try {
@@ -38,9 +45,9 @@ export function useSiteImages() {
   useEffect(() => {
     fetchImages()
 
-    // Listen for real-time changes to site_images table
+    // Each instance uses its own unique channel name to avoid conflicts
     const channel = supabase
-      .channel('site-images-realtime')
+      .channel(channelName.current)
       .on('postgres_changes', { event: '*', schema: 'public', table: 'site_images' }, () => {
         fetchImages()
       })
