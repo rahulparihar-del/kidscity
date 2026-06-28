@@ -1,0 +1,235 @@
+.contactPage {
+  background: var(--brand-cream);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+.banner {
+  background: var(--brand-beige);
+  padding: 80px 0 50px 0;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.title {
+  font-family: var(--font-head);
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 900;
+  color: var(--brand-navy);
+  margin: 6px 0 12px 0;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section {
+  padding: 60px 0;
+}
+
+/* Cards Row */
+.cardsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 70px;
+}
+
+@media (max-width: 991px) {
+  .cardsRow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.infoCard {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transition: transform var(--transition);
+}
+
+.infoCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.iconCircle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.infoCard h3 {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--brand-navy);
+}
+
+.infoCard p {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.5;
+}
+
+.cardLink {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--brand-terracotta);
+  margin-top: auto;
+}
+
+.hoursTag {
+  background: var(--brand-cream);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  font-weight: 750;
+  color: var(--brand-navy);
+  border: 1px solid var(--border);
+  margin-top: auto;
+}
+
+/* Two-column layout */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: start;
+}
+
+@media (max-width: 991px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+}
+
+.heading {
+  font-family: var(--font-head);
+  font-size: 1.6rem;
+  font-weight: 850;
+  color: var(--brand-navy);
+  margin-bottom: 6px;
+}
+
+.formSub {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.formCol {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 600px) {
+  .formCol {
+    padding: 24px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputWrap label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--brand-navy);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* FAQs */
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faqCard {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.faqCard:hover {
+  border-color: var(--brand-terracotta);
+}
+
+.faqHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.faqNum {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: var(--brand-terracotta);
+  opacity: 0.85;
+}
+
+.faqQuestion {
+  font-family: var(--font-head);
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--brand-navy);
+  flex: 1;
+  line-height: 1.35;
+}
+
+.faqChevron {
+  color: var(--text-muted);
+}
+
+.faqBody {
+  overflow: hidden;
+}
+
+.faqAnswer {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+  padding: 14px 0 0 34px;
+  border-top: 1px dashed var(--border);
+  margin-top: 14px;
+}
