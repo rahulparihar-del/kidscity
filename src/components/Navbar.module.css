@@ -33,17 +33,17 @@
 }
 
 .logoImg {
-  height: 200px;
+  height: 130px;
   width: auto;
   object-fit: contain;
-  margin: -65px -50px;
+  margin: -39px -15px;
   transition: all var(--transition);
   display: block;
 }
 
 .scrolled .logoImg {
-  height: 150px;
-  margin: -48px -38px;
+  height: 100px;
+  margin: -30px -10px;
 }
 
 .links {
