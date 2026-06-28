@@ -31,14 +31,25 @@ export default function AdminPanel({ onBack }) {
   const [setItem, setSetItem] = useState('')
   const [images, setImages] = useState([]) // Array of Base64 strings
 
-  // Passcode verification
-  const handleLogin = (e) => {
+// Native browser SHA-256 hash helper
+const sha256 = async (text) => {
+  const msgBuffer = new TextEncoder().encode(text)
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer)
+  const hashArray = Array.from(new Uint8Array(hashBuffer))
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+}
+
+  // Passcode verification using cryptographic hashing
+  const handleLogin = async (e) => {
     e.preventDefault()
-    if (passcode === 'Kids@1999') {
+    const inputHash = await sha256(passcode)
+    const targetHash = '4b0d50e914c7bdee548fb3b0384fdb5d25cdefb0126a6c5d9f3a6edd34c1325c'
+    
+    if (inputHash === targetHash) {
       setIsAuthenticated(true)
       setLoginError('')
     } else {
-      setLoginError('Invalid passcode. Hint: check implementation plan.')
+      setLoginError('Invalid passcode.')
     }
   }
 
