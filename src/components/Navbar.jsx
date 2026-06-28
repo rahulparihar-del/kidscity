@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { ShoppingBag, Phone, Menu, X } from 'lucide-react'
+import { ShoppingBag, Phone, Menu, X, Home, MessageSquare } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import styles from './Navbar.module.css'
 
 export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag }) {
@@ -7,7 +8,7 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag 
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50)
+    const onScroll = () => setScrolled(window.scrollY > 30)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -17,7 +18,7 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag 
     onViewChange(view)
     setMenuOpen(false)
     window.scrollTo({ top: 0, behavior: 'smooth' })
-  };
+  }
 
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
@@ -71,7 +72,7 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag 
 
           {/* Bag button */}
           <button className={styles.bagBtn} onClick={onOpenBag} aria-label="Open inquiry bag">
-            <ShoppingBag size={20} />
+            <ShoppingBag size={18} />
             {bagCount > 0 && (
               <span className={styles.badge}>{bagCount}</span>
             )}
@@ -90,64 +91,77 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag 
         {/* Hamburger and Mob Bag */}
         <div className={styles.mobControls}>
           <button className={styles.bagBtn} onClick={onOpenBag} aria-label="Open inquiry bag">
-            <ShoppingBag size={20} />
+            <ShoppingBag size={18} />
             {bagCount > 0 && (
               <span className={styles.badge}>{bagCount}</span>
             )}
           </button>
           
           <button
-            className={styles.hamburger}
+            className={`${styles.hamburger} ${menuOpen ? styles.hamburgerActive : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
           >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className={styles.mobileMenu}>
-          <a
-            href="#home"
-            className={`${styles.mobileLink} ${currentView === 'home' ? styles.mobileLinkActive : ''}`}
-            onClick={(e) => handleNavClick('home', e)}
+      {/* Mobile drawer menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className={styles.mobileMenu}
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           >
-            Home
-          </a>
-          <a
-            href="#shop"
-            className={`${styles.mobileLink} ${currentView === 'shop' ? styles.mobileLinkActive : ''}`}
-            onClick={(e) => handleNavClick('shop', e)}
-          >
-            Collections
-          </a>
-          <a
-            href="#contact"
-            className={`${styles.mobileLink} ${currentView === 'contact' ? styles.mobileLinkActive : ''}`}
-            onClick={(e) => handleNavClick('contact', e)}
-          >
-            Contact &amp; FAQ
-          </a>
-          
-          <div className={styles.mobileCtas}>
-            <a href="tel:+917891672762" className="btn btn-navy" style={{ justifyContent: 'center' }}>
-              Call: 078916 72762
-            </a>
-            <a
-              href="https://wa.me/917891672762"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-wa"
-              style={{ justifyContent: 'center' }}
-            >
-              WhatsApp Us
-            </a>
-          </div>
-        </div>
-      )}
+            <div className={styles.mobileMenuLinks}>
+              <a
+                href="#home"
+                className={`${styles.mobileLink} ${currentView === 'home' ? styles.mobileLinkActive : ''}`}
+                onClick={(e) => handleNavClick('home', e)}
+              >
+                <Home size={18} className={styles.mobLinkIcon} />
+                <span>Home</span>
+              </a>
+              <a
+                href="#shop"
+                className={`${styles.mobileLink} ${currentView === 'shop' ? styles.mobileLinkActive : ''}`}
+                onClick={(e) => handleNavClick('shop', e)}
+              >
+                <ShoppingBag size={18} className={styles.mobLinkIcon} />
+                <span>Collections</span>
+              </a>
+              <a
+                href="#contact"
+                className={`${styles.mobileLink} ${currentView === 'contact' ? styles.mobileLinkActive : ''}`}
+                onClick={(e) => handleNavClick('contact', e)}
+              >
+                <MessageSquare size={18} className={styles.mobLinkIcon} />
+                <span>Contact &amp; FAQ</span>
+              </a>
+            </div>
+            
+            <div className={styles.mobileCtas}>
+              <a href="tel:+917891672762" className={`${styles.mobCtaBtn} ${styles.mobCtaCall}`}>
+                <Phone size={15} />
+                <span>Call: 078916 72762</span>
+              </a>
+              <a
+                href="https://wa.me/917891672762"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${styles.mobCtaBtn} ${styles.mobCtaWa}`}
+              >
+                <span>Chat on WhatsApp</span>
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   )
 }
