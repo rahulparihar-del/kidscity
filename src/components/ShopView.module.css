@@ -52,6 +52,9 @@
     grid-template-columns: 1fr;
     gap: 30px;
   }
+  .sidebar {
+    display: none;
+  }
 }
 
 /* ── Sidebar filters ── */
@@ -233,10 +236,51 @@
   align-items: center;
 }
 
+.mobileFilterTrigger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--white);
+  border: 2px solid var(--border);
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--brand-navy);
+  box-shadow: var(--shadow-sm);
+  min-height: 50px;
+  transition: all var(--transition-fast);
+}
+
+.mobileFilterTrigger:hover {
+  border-color: var(--brand-terracotta);
+  color: var(--brand-terracotta);
+}
+
+@media (max-width: 991px) {
+  .mobileFilterTrigger {
+    display: inline-flex;
+  }
+}
+
 @media (max-width: 600px) {
   .controlsBar {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: stretch;
+    gap: 12px;
+  }
+  .searchBox {
+    width: 100%;
+    flex: none;
+  }
+  .mobileFilterTrigger {
+    flex: 1;
+  }
+  .sortBox {
+    flex: 1;
+    justify-content: center;
   }
 }
 
@@ -488,4 +532,82 @@
 .noResults p {
   color: var(--text-mid);
   margin-bottom: 12px;
+}
+
+/* ── Mobile Filters Drawer ── */
+.mobileBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(44, 46, 67, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1002;
+}
+
+.mobileDrawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 380px;
+  height: 100%;
+  background: var(--brand-cream);
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  z-index: 1003;
+  border-right: 1px solid var(--border);
+}
+
+.drawerHeader {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawerHeaderTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.drawerHeaderTitle h3 {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 850;
+  color: var(--brand-navy);
+}
+
+.drawerClose {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-navy);
+  background: var(--brand-beige);
+  transition: all var(--transition-fast);
+}
+
+.drawerClose:hover {
+  background: var(--brand-terracotta);
+  color: var(--white);
+  transform: rotate(90deg);
+}
+
+.drawerBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.drawerFooter {
+  padding: 20px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--white);
 }

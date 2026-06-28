@@ -213,3 +213,14 @@
   gap: 12px;
   margin-top: 10px;
 }
+
+@media (max-width: 560px) {
+  .logoImg {
+    height: 100px !important;
+    margin: -30px -10px !important;
+  }
+  .scrolled .logoImg {
+    height: 80px !important;
+    margin: -24px -8px !important;
+  }
+}

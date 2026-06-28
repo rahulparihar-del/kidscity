@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { Search, SlidersHorizontal, ArrowUpDown, Star, Heart } from 'lucide-react'
+import { Search, SlidersHorizontal, ArrowUpDown, Star, Heart, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import styles from './ShopView.module.css'
 
@@ -214,6 +214,7 @@ export default function ShopView({ onSelectProduct }) {
   const [selectedPrice, setSelectedPrice] = useState(PRICE_RANGES[0])
   const [sortBy, setSortBy] = useState('popular')
   const [wishlisted, setWishlisted] = useState({})
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false)
 
   const toggleWishlist = (id, e) => {
     e.stopPropagation()
@@ -257,6 +258,60 @@ export default function ShopView({ onSelectProduct }) {
     return items
   }, [search, selectedCat, selectedSize, selectedPrice, sortBy])
 
+  // Reusable filters renderer for both Sidebar and Mobile Drawer
+  const renderFilters = () => (
+    <>
+      {/* Category Filter */}
+      <div className={styles.filterGroup}>
+        <h4 className={styles.filterLabel}>Category</h4>
+        <div className={styles.catChips}>
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat}
+              className={`${styles.chip} ${selectedCat === cat ? styles.chipActive : ''}`}
+              onClick={() => setSelectedCat(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Sizing Filter */}
+      <div className={styles.filterGroup}>
+        <h4 className={styles.filterLabel}>Age / Size</h4>
+        <div className={styles.sizeGrid}>
+          {SIZES.map(sz => (
+            <button
+              key={sz}
+              className={`${styles.sizeBtn} ${selectedSize === sz ? styles.sizeActive : ''}`}
+              onClick={() => setSelectedSize(sz)}
+            >
+              {sz === 'All' ? 'All Sizes' : sz}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Price Filter */}
+      <div className={styles.filterGroup}>
+        <h4 className={styles.filterLabel}>Price Range</h4>
+        <div className={styles.priceOptions}>
+          {PRICE_RANGES.map((pr, idx) => (
+            <button
+              key={idx}
+              className={`${styles.priceBtn} ${selectedPrice.label === pr.label ? styles.priceActive : ''}`}
+              onClick={() => setSelectedPrice(pr)}
+            >
+              <span className={styles.radioDot} />
+              {pr.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    </>
+  )
+
   return (
     <div className={styles.shopPage}>
       {/* Header Banner */}
@@ -280,61 +335,13 @@ export default function ShopView({ onSelectProduct }) {
       <section className={styles.shopSection}>
         <div className="container">
           <div className={styles.layout}>
-            {/* Filters Sidebar */}
+            {/* Desktop Filters Sidebar (Hidden on mobile) */}
             <aside className={styles.sidebar}>
               <div className={styles.sidebarHeader}>
                 <SlidersHorizontal size={18} className={styles.filterIcon} />
                 <h3>Filters</h3>
               </div>
-
-              {/* Category Filter */}
-              <div className={styles.filterGroup}>
-                <h4 className={styles.filterLabel}>Category</h4>
-                <div className={styles.catChips}>
-                  {CATEGORIES.map(cat => (
-                    <button
-                      key={cat}
-                      className={`${styles.chip} ${selectedCat === cat ? styles.chipActive : ''}`}
-                      onClick={() => setSelectedCat(cat)}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Sizing Filter */}
-              <div className={styles.filterGroup}>
-                <h4 className={styles.filterLabel}>Age / Size</h4>
-                <div className={styles.sizeGrid}>
-                  {SIZES.map(sz => (
-                    <button
-                      key={sz}
-                      className={`${styles.sizeBtn} ${selectedSize === sz ? styles.sizeActive : ''}`}
-                      onClick={() => setSelectedSize(sz)}
-                    >
-                      {sz === 'All' ? 'All Sizes' : sz}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Price Filter */}
-              <div className={styles.filterGroup}>
-                <h4 className={styles.filterLabel}>Price Range</h4>
-                <div className={styles.priceOptions}>
-                  {PRICE_RANGES.map((pr, idx) => (
-                    <button
-                      key={idx}
-                      className={`${styles.priceBtn} ${selectedPrice.label === pr.label ? styles.priceActive : ''}`}
-                      onClick={() => setSelectedPrice(pr)}
-                    >
-                      <span className={styles.radioDot} />
-                      {pr.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              {renderFilters()}
             </aside>
 
             {/* Catalog Grid */}
@@ -352,6 +359,14 @@ export default function ShopView({ onSelectProduct }) {
                     className={styles.searchInput}
                   />
                 </div>
+
+                {/* Mobile Filter Trigger Button */}
+                <button
+                  className={styles.mobileFilterTrigger}
+                  onClick={() => setIsMobileFiltersOpen(true)}
+                >
+                  <SlidersHorizontal size={16} /> Filters
+                </button>
 
                 {/* Sort */}
                 <div className={styles.sortBox}>
@@ -463,6 +478,56 @@ export default function ShopView({ onSelectProduct }) {
           </div>
         </div>
       </section>
+
+      {/* Sliding Mobile Filters Drawer Overlay */}
+      <AnimatePresence>
+        {isMobileFiltersOpen && (
+          <>
+            <motion.div
+              className={styles.mobileBackdrop}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileFiltersOpen(false)}
+            />
+            <motion.div
+              className={styles.mobileDrawer}
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 220 }}
+            >
+              <div className={styles.drawerHeader}>
+                <div className={styles.drawerHeaderTitle}>
+                  <SlidersHorizontal size={18} className={styles.filterIcon} />
+                  <h3>Filters</h3>
+                </div>
+                <button
+                  className={styles.drawerClose}
+                  onClick={() => setIsMobileFiltersOpen(false)}
+                  aria-label="Close filters"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              <div className={styles.drawerBody}>
+                {renderFilters()}
+              </div>
+
+              <div className={styles.drawerFooter}>
+                <button
+                  className="btn btn-terracotta"
+                  style={{ width: '100%' }}
+                  onClick={() => setIsMobileFiltersOpen(false)}
+                >
+                  Apply Filters ({filteredProducts.length} Items)
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
