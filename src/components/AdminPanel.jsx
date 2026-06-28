@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { Plus, Edit2, Trash2, LayoutDashboard, Database, LogOut, Upload, Check, AlertCircle, ShoppingBag, Percent, Tag, Star } from 'lucide-react'
 import { supabase } from '../supabaseClient'
 import styles from './AdminPanel.module.css'
