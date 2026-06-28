@@ -1,12 +1,20 @@
 import { Star, ArrowRight, Heart, Sparkles, ShieldCheck } from 'lucide-react'
 import { motion } from 'framer-motion'
 import styles from './HeroBanner.module.css'
+import { useSiteImages } from '../hooks/useSiteImages'
 
 export default function HeroBanner({ onViewChange }) {
+  const { images } = useSiteImages()
+
   const handleBrowseClick = () => {
     onViewChange('shop')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+
+  // Resolve image: use Supabase override if present, else fall back to static file
+  const imgLeft   = images['hero_left']   || '/images/festival_wear.png'
+  const imgRight  = images['hero_right']  || '/images/birthday_dress.png'
+  const imgCenter = images['hero_center'] || '/images/hero_girl.png'
 
   return (
     <section id="hero" className={styles.hero}>
@@ -48,7 +56,7 @@ export default function HeroBanner({ onViewChange }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Explore 500+ premium styles of festival wear, traditional dresses, and casual everyday clothes for boys & girls (0–14 years). Handpicked comfort for Pune's families.
+            Explore 500+ premium styles of festival wear, traditional dresses, and casual everyday clothes for boys &amp; girls (0–14 years). Handpicked comfort for Pune's families.
           </motion.p>
 
           {/* Action buttons */}
@@ -108,7 +116,7 @@ export default function HeroBanner({ onViewChange }) {
               transition={{ type: 'spring', stiffness: 260, damping: 20 }}
             >
               <img
-                src="/images/festival_wear.png"
+                src={imgLeft}
                 alt="Festive kids collection"
                 className={styles.collageImg}
               />
@@ -124,7 +132,7 @@ export default function HeroBanner({ onViewChange }) {
               transition={{ type: 'spring', stiffness: 260, damping: 20 }}
             >
               <img
-                src="/images/birthday_dress.png"
+                src={imgRight}
                 alt="Birthday kids dress"
                 className={styles.collageImg}
               />
@@ -140,7 +148,7 @@ export default function HeroBanner({ onViewChange }) {
               transition={{ type: 'spring', stiffness: 200, damping: 18 }}
             >
               <img
-                src="/images/hero_girl.png"
+                src={imgCenter}
                 alt="Kids Clothing model"
                 className={styles.collageImg}
               />

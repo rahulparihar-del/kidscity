@@ -1,13 +1,15 @@
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import styles from './CategoryGrid.module.css'
+import { useSiteImages } from '../hooks/useSiteImages'
 
-const CATEGORIES = [
+const CATEGORY_DEFS = [
   {
     id: 1,
+    imageKey: 'category_festival',
+    defaultImg: '/images/festival_wear.png',
     label: 'Festival Season',
     sublabel: 'Navratri · Diwali · Eid',
-    img: '/images/festival_wear.png',
     span: 'large',
     badge: 'New Arrivals',
     badgeColor: 'var(--brand-orange)',
@@ -17,9 +19,10 @@ const CATEGORIES = [
   },
   {
     id: 2,
+    imageKey: 'category_birthday',
+    defaultImg: '/images/birthday_dress.png',
     label: 'Birthday Special',
     sublabel: 'Princess & Party Wear',
-    img: '/images/birthday_dress.png',
     span: 'normal',
     badge: 'Trending',
     badgeColor: 'var(--brand-pink)',
@@ -29,9 +32,10 @@ const CATEGORIES = [
   },
   {
     id: 3,
+    imageKey: 'category_casual',
+    defaultImg: '/images/casual_boys.png',
     label: 'Boys Casual',
     sublabel: 'Everyday Comfort',
-    img: '/images/casual_boys.png',
     span: 'normal',
     badge: 'Best Seller',
     badgeColor: 'var(--brand-blue)',
@@ -42,6 +46,8 @@ const CATEGORIES = [
 ]
 
 export default function CategoryGrid() {
+  const { images } = useSiteImages()
+
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -64,6 +70,12 @@ export default function CategoryGrid() {
       }
     }
   }
+
+  // Merge categories with resolved images from Supabase (fallback to default static file)
+  const CATEGORIES = CATEGORY_DEFS.map(cat => ({
+    ...cat,
+    img: images[cat.imageKey] || cat.defaultImg
+  }))
 
   return (
     <section id="categories" className={styles.section}>
