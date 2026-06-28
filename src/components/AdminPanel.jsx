@@ -7,6 +7,49 @@ import styles from './AdminPanel.module.css'
 const CATEGORIES = ['Festival Wear', 'Birthday', 'Casual', 'Traditional', 'Baby']
 const AVAILABLE_SIZES = ['0-3m', '3-6m', '6-12m', '18-24m', '2-4y', '4-6y', '6-8y', '8-10y', 'S', 'M', 'L', 'XL']
 
+/**
+ * Converts a file to WebP format and compresses it to keep database size lightweight.
+ * Limits max dimensions to 1000px width/height.
+ */
+const convertToWebP = (file, maxWidth = 1000, maxHeight = 1000) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = (event) => {
+      const img = new Image()
+      img.src = event.target.result
+      img.onload = () => {
+        const canvas = document.createElement('canvas')
+        let width = img.width
+        let height = img.height
+
+        // Downscale image if it exceeds max constraints
+        if (width > maxWidth || height > maxHeight) {
+          if (width > height) {
+            height = Math.round((height * maxWidth) / width)
+            width = maxWidth
+          } else {
+            width = Math.round((width * maxHeight) / height)
+            height = maxHeight
+          }
+        }
+
+        canvas.width = width
+        canvas.height = height
+
+        const ctx = canvas.getContext('2d')
+        ctx.drawImage(img, 0, 0, width, height)
+
+        // Convert to WebP with 0.8 quality
+        const webpDataUrl = canvas.toDataURL('image/webp', 0.8)
+        resolve(webpDataUrl)
+      }
+      img.onerror = (err) => reject(err)
+    }
+    reader.onerror = (err) => reject(err)
+  })
+}
+
 // Home page image slot definitions
 const HOME_IMAGE_SLOTS = [
   {
@@ -131,18 +174,19 @@ const sha256 = async (text) => {
     }
   }, [isAuthenticated])
 
-  // Handle multiple image uploads and convert to Base64
-  const handleImageChange = (e) => {
+  // Handle multiple image uploads, convert to WebP, compress, and save
+  const handleImageChange = async (e) => {
     const files = Array.from(e.target.files)
     if (files.length === 0) return
 
-    files.forEach(file => {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setImages(prev => [...prev, reader.result])
+    for (const file of files) {
+      try {
+        const webpDataUrl = await convertToWebP(file)
+        setImages(prev => [...prev, webpDataUrl])
+      } catch (err) {
+        console.error("Failed to convert product image to WebP:", err)
       }
-      reader.readAsDataURL(file)
-    })
+    }
   }
 
   // Remove image from preview list
@@ -305,27 +349,23 @@ const sha256 = async (text) => {
   }, [products])
 
   // ── Home Image Handlers ──────────────────────────────────────
-  const handleSiteImageChange = (key, e) => {
+  const handleSiteImageChange = async (key, e) => {
     const file = e.target.files[0]
     if (!file) return
 
-    const reader = new FileReader()
-    reader.onloadend = async () => {
-      const dataUrl = reader.result
-      setImageUploading(prev => ({ ...prev, [key]: true }))
-      try {
-        await upsertSiteImage(key, dataUrl)
-        setSiteImages(prev => ({ ...prev, [key]: dataUrl }))
-        setMessage({ text: 'Home page image updated! Changes are live on the website.', type: 'success' })
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-      } catch (err) {
-        console.error('Failed to upload site image:', err.message)
-        setMessage({ text: `Failed to update image: ${err.message}`, type: 'error' })
-      } finally {
-        setImageUploading(prev => ({ ...prev, [key]: false }))
-      }
+    setImageUploading(prev => ({ ...prev, [key]: true }))
+    try {
+      const webpDataUrl = await convertToWebP(file)
+      await upsertSiteImage(key, webpDataUrl)
+      setSiteImages(prev => ({ ...prev, [key]: webpDataUrl }))
+      setMessage({ text: 'Home page image updated! Changes are live on the website.', type: 'success' })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } catch (err) {
+      console.error('Failed to upload site image:', err.message)
+      setMessage({ text: `Failed to update image: ${err.message}`, type: 'error' })
+    } finally {
+      setImageUploading(prev => ({ ...prev, [key]: false }))
     }
-    reader.readAsDataURL(file)
   }
 
   const handleSiteImageRemove = async (key) => {
