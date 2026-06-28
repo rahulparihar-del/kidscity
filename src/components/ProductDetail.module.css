@@ -135,12 +135,23 @@
 
 .name {
   font-family: var(--font-head);
-  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-size: clamp(1.35rem, 2.8vw, 2.1rem);
   font-weight: 900;
   color: var(--brand-navy);
-  line-height: 1.15;
+  line-height: 1.25;
   margin-top: 10px;
   letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  margin-top: 8px;
+  line-height: 1.5;
+  font-weight: 600;
+  border-left: 3px solid var(--brand-terracotta);
+  padding-left: 10px;
 }
 
 .ratingRow {
@@ -606,4 +617,22 @@
 
 .sizeTable tr:last-child td {
   border-bottom: none;
+}
+
+@media (max-width: 600px) {
+  .name {
+    font-size: 1.15rem !important;
+    line-height: 1.3 !important;
+  }
+  .subtitle {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+    padding-left: 8px !important;
+  }
+  .price {
+    font-size: 1.6rem !important;
+  }
+  .taxLabel {
+    font-size: 0.72rem !important;
+  }
 }

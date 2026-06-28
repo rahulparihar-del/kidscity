@@ -84,6 +84,11 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
   const relatedSource = allProducts && allProducts.length > 0 ? allProducts : []
   const relatedProducts = relatedSource.filter(p => p.category === product.category && p.id !== product.id).slice(0, 3)
 
+  // Handle names with pipes dynamically for clean display
+  const nameParts = product.name.split('|').map(s => s.trim())
+  const displayName = nameParts[0]
+  const displaySubtitle = nameParts.slice(1).join(' | ')
+
   return (
     <div className={styles.detailPage}>
       <div className="container">
@@ -93,7 +98,7 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
             <ArrowLeft size={16} /> Back to Catalog
           </button>
           <span className={styles.breadcrumbs}>
-            Home &gt; Shop &gt; {product.category} &gt; {product.name}
+            Home &gt; Shop &gt; {product.category} &gt; {displayName}
           </span>
         </div>
 
@@ -132,7 +137,8 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
           <div className={styles.infoCol}>
             <div className={styles.header}>
               <span className="badge badge-terracotta">{product.category}</span>
-              <h1 className={styles.name}>{product.name}</h1>
+              <h1 className={styles.name}>{displayName}</h1>
+              {displaySubtitle && <p className={styles.subtitle}>{displaySubtitle}</p>}
               
               {/* Rating */}
               <div className={styles.ratingRow}>
