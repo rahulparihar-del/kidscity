@@ -1,6 +1,6 @@
 .section {
-  padding: 100px 0;
-  background: var(--off-white);
+  padding: 120px 0;
+  background: var(--brand-cream);
   position: relative;
   overflow: hidden;
 }
@@ -15,208 +15,258 @@
 
 .blob1 {
   position: absolute;
-  width: 450px;
-  height: 450px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 168, 232, 0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 168, 232, 0.05) 0%, transparent 70%);
   top: -100px;
   left: -150px;
 }
 
 .blob2 {
   position: absolute;
-  width: 500px;
-  height: 500px;
+  width: 550px;
+  height: 550px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 75, 114, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 75, 114, 0.04) 0%, transparent 70%);
   bottom: -150px;
   right: -100px;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 56px;
+  margin-bottom: 64px;
   position: relative;
   z-index: 2;
 }
 
 .headerSub {
-  font-size: 1.05rem;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
   color: var(--text-mid);
-  max-width: 540px;
-  margin: 14px auto 0;
+  max-width: 580px;
+  margin: 16px auto 0;
   line-height: 1.7;
   font-weight: 500;
 }
 
-/* Grid: large card on left, 2 stacked on right */
+/* Grid: 3 equal arched portals */
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 300px 300px;
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
   position: relative;
   z-index: 2;
 }
 
+/* Arched Boutique Portal Card */
 .card {
   position: relative;
-  border-radius: var(--radius-lg);
+  height: 490px;
+  border-radius: 200px 200px 24px 24px;
   overflow: hidden;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  text-decoration: none;
-  box-shadow: var(--shadow-md);
   border: 1.5px solid var(--border);
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card:hover {
-  transform: translateY(-8px) scale(1.002) !important;
-  box-shadow: 0 20px 40px var(--hover-glow-color, rgba(0, 0, 0, 0.06));
-  border-color: var(--hover-border-color, var(--brand-terracotta)) !important;
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px var(--hover-glow-color, rgba(61, 64, 91, 0.08));
+  border-color: var(--hover-border-color, var(--brand-terracotta));
 }
 
-.cardLarge {
-  grid-row: span 2;
-}
-
-.img {
+/* Image Wrapper */
+.imgWrap {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  border-radius: 200px 200px 0 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: top center;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  object-position: center 15%;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card:hover .img {
   transform: scale(1.06);
 }
 
-.overlay {
+/* Elegant Slate Navy legibility gradient overlay */
+.gradientOverlay {
   position: absolute;
   inset: 0;
-  z-index: 1;
-  opacity: 0.85;
+  z-index: 2;
+  background: linear-gradient(
+    to top,
+    rgba(61, 64, 91, 0.45) 0%,
+    rgba(61, 64, 91, 0.1) 40%,
+    transparent 100%
+  );
   transition: opacity 0.4s ease;
 }
 
-.card:hover .overlay {
-  opacity: 0.92;
+.card:hover .gradientOverlay {
+  opacity: 0.85;
 }
 
+/* Floating Glassmorphic Footer Block */
 .cardContent {
   position: relative;
-  z-index: 2;
-  padding: 28px 30px;
+  z-index: 3;
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  text-align: center;
+  background: rgba(253, 251, 247, 0.88); /* matching --brand-cream with transparency */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.6);
+  margin: 0 16px 16px 16px;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 30px rgba(61, 64, 91, 0.04);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .cardContent {
+  background: var(--white);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-top-color: rgba(255, 255, 255, 0.9);
 }
 
 .cardBadge {
   display: inline-block;
-  align-self: flex-start;
-  padding: 5px 14px;
+  padding: 4px 12px;
   border-radius: 50px;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 800;
   color: var(--white);
   text-transform: uppercase;
   letter-spacing: 1.2px;
-  box-shadow: var(--shadow-sm);
+  margin-bottom: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.textGroup {
+  margin-bottom: 14px;
 }
 
 .cardLabel {
   font-family: var(--font-head);
   font-weight: 800;
+  font-size: 1.45rem;
+  color: var(--brand-navy);
   letter-spacing: -0.02em;
-  font-size: 1.5rem;
-  color: var(--white);
-  line-height: 1.2;
-}
-
-.cardLarge .cardLabel {
-  font-size: 2.1rem;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
+  line-height: 1.25;
 }
 
 .cardSub {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.82);
-  font-weight: 600;
-  letter-spacing: 0.3px;
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  color: var(--text-mid);
+  font-weight: 500;
+  letter-spacing: 0.1px;
 }
 
+/* Explore Link Button inside footer */
 .shopBtn {
+  font-family: var(--font-kids);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--brand-terracotta);
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(8px);
-  color: white;
-  font-size: 0.8rem;
-  font-weight: 800;
-  padding: 8px 18px;
-  border-radius: 50px;
-  border: 1.5px solid rgba(255, 255, 255, 0.35);
-  align-self: flex-start;
-  margin-top: 6px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 6px;
+  transition: color 0.3s ease;
 }
 
 .card:hover .shopBtn {
-  background: var(--white);
-  color: var(--brand-navy-dark);
-  border-color: var(--white);
-  padding-right: 22px;
-  box-shadow: var(--shadow-md);
+  color: var(--brand-terracotta-light);
 }
 
-.shopBtn svg {
-  transition: transform 0.3s ease;
+.arrow {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.card:hover .shopBtn svg {
+.card:hover .arrow {
   transform: translateX(4px);
 }
 
-@media (max-width: 768px) {
+/* Responsive Breakpoints */
+@media (max-width: 991px) {
   .grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap: 16px;
-  }
-  .cardLarge {
-    grid-row: span 1;
-    height: 300px;
+    gap: 20px;
   }
   .card {
-    height: 250px;
+    height: 440px;
+    border-radius: 170px 170px 20px 20px;
+  }
+  .cardLabel {
+    font-size: 1.25rem;
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 768px) {
   .section {
-    padding: 64px 0;
+    padding: 80px 0;
   }
-  .header {
-    margin-bottom: 36px;
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+    gap: 28px;
   }
-  .headerSub {
-    font-size: 0.94rem;
-  }
-  .cardContent {
-    padding: 20px 24px;
-  }
-  .cardLarge .cardLabel {
-    font-size: 1.7rem;
+  .card {
+    height: 480px;
+    border-radius: 190px 190px 24px 24px;
   }
   .cardLabel {
-    font-size: 1.35rem;
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 0;
+  }
+  .header {
+    margin-bottom: 40px;
+  }
+  .headerSub {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .grid {
+    max-width: 100%;
+    gap: 24px;
+  }
+  .card {
+    height: 410px;
+    border-radius: 160px 160px 20px 20px;
+  }
+  .cardContent {
+    padding: 20px 16px;
+    margin: 0 12px 12px 12px;
+  }
+  .cardLabel {
+    font-size: 1.2rem;
+  }
+  .cardSub {
+    font-size: 0.8rem;
   }
 }

@@ -10,10 +10,8 @@ const CATEGORY_DEFS = [
     defaultImg: '/images/festival_wear.png',
     label: 'Festival Season',
     sublabel: 'Navratri · Diwali · Eid',
-    span: 'large',
     badge: 'New Arrivals',
     badgeColor: 'var(--brand-orange)',
-    overlay: 'linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%)',
     glowColor: 'var(--brand-orange-glow)',
     borderColor: 'var(--brand-orange)'
   },
@@ -23,10 +21,8 @@ const CATEGORY_DEFS = [
     defaultImg: '/images/birthday_dress.png',
     label: 'Birthday Special',
     sublabel: 'Princess & Party Wear',
-    span: 'normal',
     badge: 'Trending',
     badgeColor: 'var(--brand-pink)',
-    overlay: 'linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%)',
     glowColor: 'var(--brand-pink-glow)',
     borderColor: 'var(--brand-pink)'
   },
@@ -36,16 +32,14 @@ const CATEGORY_DEFS = [
     defaultImg: '/images/casual_boys.png',
     label: 'Boys Casual',
     sublabel: 'Everyday Comfort',
-    span: 'normal',
     badge: 'Best Seller',
     badgeColor: 'var(--brand-blue)',
-    overlay: 'linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%)',
     glowColor: 'var(--brand-blue-glow)',
     borderColor: 'var(--brand-blue)'
   },
 ]
 
-export default function CategoryGrid() {
+export default function CategoryGrid({ onViewChange }) {
   const { images, loading } = useSiteImages()
 
   const containerVariants = {
@@ -53,20 +47,20 @@ export default function CategoryGrid() {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15
+        staggerChildren: 0.12
       }
     }
   }
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 50 },
     show: {
       opacity: 1,
       y: 0,
       transition: {
         type: 'spring',
-        stiffness: 85,
-        damping: 16
+        stiffness: 70,
+        damping: 15
       }
     }
   }
@@ -77,9 +71,17 @@ export default function CategoryGrid() {
     img: images[cat.imageKey] || cat.defaultImg
   }))
 
+  const handleCategoryClick = (e) => {
+    e.preventDefault()
+    if (onViewChange) {
+      onViewChange('shop')
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   return (
     <section id="categories" className={styles.section}>
-      {/* Dynamic Background Blobs for Visual Aesthetics */}
+      {/* Decorative organic background elements */}
       <div className={styles.bgDeco}>
         <div className={styles.blob1} />
         <div className={styles.blob2} />
@@ -88,14 +90,16 @@ export default function CategoryGrid() {
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <motion.div
           className={styles.header}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, type: 'spring', stiffness: 50 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
         >
           <span className="section-label">Shop by Collection</span>
           <h2 className="section-heading">Curated for Every <span className="serif-accent">Occasion</span></h2>
-          <p className={styles.headerSub}>From everyday casual to festive grandeur — we dress your little stars for every moment.</p>
+          <p className={styles.headerSub}>
+            Discover handpicked luxury styles. From vibrant festivals to birthday blowouts and casual play, find the perfect fit.
+          </p>
         </motion.div>
 
         <motion.div
@@ -103,42 +107,47 @@ export default function CategoryGrid() {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: '-60px' }}
-          style={{ opacity: loading ? 0 : 1, transition: 'opacity 0.3s ease' }}
+          viewport={{ once: true, margin: '-40px' }}
+          style={{ opacity: loading ? 0 : 1, transition: 'opacity 0.4s ease' }}
         >
           {CATEGORIES.map(cat => (
-            <motion.a
+            <motion.div
               key={cat.id}
-              href="#featured"
               variants={cardVariants}
-              className={`${styles.card} ${cat.span === 'large' ? styles.cardLarge : ''}`}
+              className={styles.card}
               style={{
                 '--hover-glow-color': cat.glowColor,
                 '--hover-border-color': cat.borderColor
               }}
-              aria-label={`Shop ${cat.label}`}
+              onClick={handleCategoryClick}
             >
-              <img
-                src={cat.img}
-                alt={`${cat.label} kids clothing collection at Kids City Wakad — ${cat.sublabel}`}
-                className={styles.img}
-                loading="lazy"
-              />
-              <div className={styles.overlay} style={{ background: cat.overlay }} />
+              {/* Arched image container */}
+              <div className={styles.imgWrap}>
+                <img
+                  src={cat.img}
+                  alt={`${cat.label} collection`}
+                  className={styles.img}
+                />
+                <div className={styles.gradientOverlay} />
+              </div>
 
+              {/* Glassmorphic floating footer card */}
               <div className={styles.cardContent}>
                 <span className={styles.cardBadge} style={{ background: cat.badgeColor }}>
                   {cat.badge}
                 </span>
-                <div>
+                
+                <div className={styles.textGroup}>
                   <h3 className={styles.cardLabel}>{cat.label}</h3>
                   <p className={styles.cardSub}>{cat.sublabel}</p>
                 </div>
+
                 <span className={styles.shopBtn}>
-                  Shop Now <ArrowRight size={15} strokeWidth={2.4} />
+                  Explore Collection
+                  <ArrowRight size={14} className={styles.arrow} />
                 </span>
               </div>
-            </motion.a>
+            </motion.div>
           ))}
         </motion.div>
       </div>

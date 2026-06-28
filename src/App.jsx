@@ -221,7 +221,7 @@ export default function App() {
             <main>
               <HeroBanner onViewChange={setCurrentView} />
               <TrustBar />
-              <CategoryGrid />
+              <CategoryGrid onViewChange={setCurrentView} />
               <ShopByCategory />
               <FeaturedProducts
                 products={dbProducts}
