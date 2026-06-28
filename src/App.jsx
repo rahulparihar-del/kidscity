@@ -29,6 +29,7 @@ export default function App() {
   const [isBagOpen, setIsBagOpen] = useState(false)
   const [dbProducts, setDbProducts] = useState([])
   const [appLoading, setAppLoading] = useState(true)
+  const [viewLoading, setViewLoading] = useState(false)
 
   // Load products on mount with real-time listeners and database seeding
   useEffect(() => {
@@ -122,6 +123,60 @@ export default function App() {
     }
   }, [])
 
+  // Track page image loading on view change to prevent flashing of un-loaded content
+  useEffect(() => {
+    // We don't need to show it on mount since appLoading covers the initial load
+    if (appLoading) return
+
+    setViewLoading(true)
+
+    // Give React a small frame to render the new view's DOM elements
+    const timer = setTimeout(() => {
+      const images = Array.from(document.querySelectorAll('img')).filter(
+        img => !img.classList.contains('app-loader-logo')
+      )
+
+      if (images.length === 0) {
+        setViewLoading(false)
+        return
+      }
+
+      let loadedCount = 0
+      const totalImages = images.length
+
+      const handleImageLoad = () => {
+        loadedCount++
+        if (loadedCount >= totalImages) {
+          setViewLoading(false)
+        }
+      }
+
+      images.forEach(img => {
+        if (img.complete) {
+          handleImageLoad()
+        } else {
+          img.addEventListener('load', handleImageLoad)
+          img.addEventListener('error', handleImageLoad) // count errors too so loader doesn't get stuck
+        }
+      })
+
+      // Safety timeout: hide loader after 1 second max even if some images are slow
+      const safetyTimeout = setTimeout(() => {
+        setViewLoading(false)
+      }, 1000)
+
+      return () => {
+        clearTimeout(safetyTimeout)
+        images.forEach(img => {
+          img.removeEventListener('load', handleImageLoad)
+          img.removeEventListener('error', handleImageLoad)
+        })
+      }
+    }, 60) // delay to let DOM render
+
+    return () => clearTimeout(timer)
+  }, [currentView, appLoading])
+
   // Load inquiry bag from localStorage on mount
   useEffect(() => {
     try {
@@ -165,7 +220,7 @@ export default function App() {
   return (
     <>
       <AnimatePresence>
-        {appLoading && (
+        {(appLoading || viewLoading) && (
           <motion.div
             className="app-loader"
             initial={{ opacity: 1 }}
