@@ -78,7 +78,7 @@ export default function Testimonials() {
       <div className="container">
         <div className={styles.header}>
           <span className="section-label">Reviews</span>
-          <h2 className="section-heading">What Parents Are Saying</h2>
+          <h2 className="section-heading">What Parents Are <span className="serif-accent">Saying</span></h2>
           <div className={styles.ratingBadge}>
             <Star size={20} fill="currentColor" strokeWidth={0} className={styles.bigStar} />
             <span className={styles.bigNum}>{Number(rating).toFixed(1)}</span>

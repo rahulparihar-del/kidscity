@@ -84,7 +84,7 @@ export default function ContactView() {
       <div className={styles.banner}>
         <div className="container">
           <span className="section-label">Get in Touch</span>
-          <h1 className={styles.title}>Visit or Message Us</h1>
+          <h1 className={styles.title}>Visit or <span className="serif-accent">Message</span> Us</h1>
           <p className={styles.subtitle}>
             Have questions about sizes, collections, or custom outfits? We are here to help you.
           </p>
@@ -135,7 +135,7 @@ export default function ContactView() {
           <div className={styles.grid}>
             {/* Form Column */}
             <div className={styles.formCol}>
-              <h2 className={styles.heading}>Send a Direct Query</h2>
+              <h2 className={styles.heading}>Send a <span className="serif-accent">Direct</span> Query</h2>
               <p className={styles.formSub}>
                 Fill out the form below. Submitting will pre-fill a WhatsApp message to chat directly with our store manager.
               </p>
@@ -200,7 +200,7 @@ export default function ContactView() {
 
             {/* FAQs Column */}
             <div className={styles.faqCol}>
-              <h2 className={styles.heading}>Frequently Asked Questions</h2>
+              <h2 className={styles.heading}>Frequently Asked <span className="serif-accent">Questions</span></h2>
               <p className={styles.formSub}>Quick help answers on shopping with Kids City Wakad.</p>
               
               <div className={styles.faqList}>

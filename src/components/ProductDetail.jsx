@@ -334,7 +334,7 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
         {/* You May Also Like Section */}
         {relatedProducts.length > 0 && (
           <section className={styles.relatedSection}>
-            <h2 className={styles.relatedTitle}>You May Also Like</h2>
+            <h2 className={styles.relatedTitle}>You May Also <span className="serif-accent">Like</span></h2>
             <div className={styles.relatedGrid}>
               {relatedProducts.map(rp => (
                 <div

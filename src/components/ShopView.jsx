@@ -268,7 +268,7 @@ export default function ShopView({ onSelectProduct }) {
             className={styles.headerContent}
           >
             <span className="section-label" style={{ color: 'var(--brand-terracotta)' }}>Premium Wear</span>
-            <h1 className={styles.title}>Explore Collections</h1>
+            <h1 className={styles.title}>Explore <span className="serif-accent">Collections</span></h1>
             <p className={styles.subtitle}>
               Filter by size, category, and price to find the perfect outfit for your little star.
             </p>

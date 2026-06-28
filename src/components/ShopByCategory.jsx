@@ -16,7 +16,7 @@ export default function ShopByCategory() {
       <div className="container">
         <div className={styles.header}>
           <span className="section-label">Browse</span>
-          <h2 className="section-heading">Shop by Category</h2>
+          <h2 className="section-heading">Shop by <span className="serif-accent">Category</span></h2>
         </div>
 
         <div className={styles.grid}>

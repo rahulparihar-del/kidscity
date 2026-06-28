@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: 90px;
   background: rgba(253, 251, 247, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
@@ -14,7 +14,7 @@
 }
 
 .scrolled {
-  height: 72px;
+  height: 74px;
   background: var(--white);
   border-bottom: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
@@ -32,9 +32,14 @@
 }
 
 .logoImg {
-  height: 44px;
+  height: 68px;
   width: auto;
   object-fit: contain;
+  transition: height var(--transition);
+}
+
+.scrolled .logoImg {
+  height: 54px;
 }
 
 .links {

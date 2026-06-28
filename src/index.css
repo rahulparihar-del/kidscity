@@ -21,6 +21,22 @@
   --text-mid: #5C5F80;
   --text-muted: #8E91B3;
 
+  /* Legacy color mapping for 100% backward compatibility */
+  --navy-950: var(--brand-navy-dark);
+  --navy-900: var(--brand-navy);
+  --navy-800: var(--brand-navy);
+  --navy-700: var(--brand-navy-light);
+  --navy-600: var(--brand-navy-light);
+  --navy-500: var(--brand-navy-light);
+  --navy-400: var(--brand-sage);
+  --navy-300: var(--brand-sage-light);
+  --navy-200: var(--brand-beige);
+  --navy-100: var(--brand-cream);
+  --navy-50:  var(--brand-cream);
+  --gold: var(--brand-gold);
+  --gold-light: var(--brand-gold-light);
+  --rose: var(--brand-terracotta-light);
+
   --font-head: 'Outfit', sans-serif;
   --font-kids: 'Fredoka', sans-serif;
   --font-serif: 'Playfair Display', serif;
@@ -133,6 +149,13 @@ button {
   color: var(--brand-navy);
   line-height: 1.2;
   letter-spacing: -0.02em;
+}
+
+.serif-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--brand-terracotta);
 }
 
 /* ── Buttons ── */

@@ -47,7 +47,7 @@ export default function Newsletter() {
           viewport={{ once: true, amount: 0.4 }}
         >
           <span className={styles.label}>Visit Us</span>
-          <h2 className={styles.heading}>Come Say Hello in Wakad</h2>
+          <h2 className={styles.heading}>Come Say Hello in <span className="serif-accent">Wakad</span></h2>
           <p className={styles.sub}>
             Drop by the store, message us on WhatsApp, or give us a call. We are
             always happy to help you find the perfect outfit.

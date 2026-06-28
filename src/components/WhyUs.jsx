@@ -54,8 +54,8 @@ export default function WhyUs() {
       <div className={`container ${styles.inner}`}>
         {/* Left */}
         <div className={styles.left}>
-          <span className="section-label" style={{ color: 'var(--gold)' }}>Why Choose Us</span>
-          <h2 className={styles.heading}>Why Pune Parents Trust Kids City</h2>
+          <span className="section-label" style={{ color: 'var(--brand-terracotta)' }}>Why Choose Us</span>
+          <h2 className={styles.heading}>Why Pune Parents <span className="serif-accent">Trust</span> Kids City</h2>
           <p className={styles.desc}>
             We've been Wakad's most trusted children's clothing destination — because every visit feels personal and every outfit feels perfect.
           </p>

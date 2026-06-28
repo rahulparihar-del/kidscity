@@ -40,7 +40,7 @@ export default function CategoryGrid() {
       <div className="container">
         <div className={styles.header}>
           <span className="section-label">Shop by Collection</span>
-          <h2 className="section-heading">Curated for Every Occasion</h2>
+          <h2 className="section-heading">Curated for Every <span className="serif-accent">Occasion</span></h2>
           <p className={styles.headerSub}>From everyday casual to festive grandeur — we dress your little stars for every moment.</p>
         </div>
 

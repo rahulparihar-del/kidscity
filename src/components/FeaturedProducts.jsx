@@ -98,7 +98,7 @@ export default function FeaturedProducts({ onSelectProduct, onViewChange }) {
       <div className="container">
         <div className={styles.header}>
           <span className="section-label">Featured</span>
-          <h2 className="section-heading">Our Best Collections</h2>
+          <h2 className="section-heading">Our Best <span className="serif-accent">Collections</span></h2>
           <p className={styles.headerSub}>
             Handpicked styles loved by Pune parents. Click on a dress to see sizes and detailed guide.
           </p>
