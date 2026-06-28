@@ -123,6 +123,31 @@ export default function App() {
     }
   }, [])
 
+  // Parse URL query parameter for product deep-linking on load and handle history navigation
+  useEffect(() => {
+    if (dbProducts.length === 0) return
+
+    const handleUrlRoute = () => {
+      const params = new URLSearchParams(window.location.search)
+      const productId = params.get('product')
+      if (productId) {
+        const match = dbProducts.find(p => p.id.toString() === productId)
+        if (match) {
+          setSelectedProduct(match)
+          setCurrentView('product-detail')
+          return
+        }
+      }
+    }
+
+    // Run on initial load/reload of dbProducts
+    handleUrlRoute()
+
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', handleUrlRoute)
+    return () => window.removeEventListener('popstate', handleUrlRoute)
+  }, [dbProducts])
+
   // Track page image loading on view change to prevent flashing of un-loaded content
   useEffect(() => {
     // We don't need to show it on mount since appLoading covers the initial load
@@ -215,6 +240,9 @@ export default function App() {
   const handleSelectProduct = (product) => {
     setSelectedProduct(product)
     setCurrentView('product-detail')
+    // Update URL query parameter without reloading
+    const newUrl = `${window.location.pathname}?product=${product.id}`
+    window.history.pushState({ productId: product.id }, '', newUrl)
   }
 
   return (
@@ -318,7 +346,10 @@ export default function App() {
             <main>
               <ProductDetail
                 product={selectedProduct}
-                onBack={() => setCurrentView('shop')}
+                onBack={() => {
+                  setCurrentView('shop')
+                  window.history.pushState({}, '', window.location.pathname)
+                }}
                 onAddToBag={handleAddToBag}
                 onSelectProduct={handleSelectProduct}
                 allProducts={dbProducts}
