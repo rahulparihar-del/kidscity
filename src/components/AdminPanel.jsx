@@ -55,17 +55,17 @@ const HOME_IMAGE_SLOTS = [
   {
     section: 'Hero Banner',
     slots: [
-      { key: 'hero_left',   label: 'Left Card (Festival Wear)',   defaultSrc: '/images/festival_wear.png',  description: 'Left tilted card in the hero collage' },
-      { key: 'hero_center', label: 'Center Card (Main Hero)',     defaultSrc: '/images/hero_girl.png',      description: 'Large center card — most prominent image' },
-      { key: 'hero_right',  label: 'Right Card (Birthday)',       defaultSrc: '/images/birthday_dress.png', description: 'Right tilted card in the hero collage' },
+      { key: 'hero_left',   label: 'Left Card (Festival Wear)',   defaultSrc: '/images/festival_wear.webp',  description: 'Left tilted card in the hero collage' },
+      { key: 'hero_center', label: 'Center Card (Main Hero)',     defaultSrc: '/images/hero_girl.webp',      description: 'Large center card — most prominent image' },
+      { key: 'hero_right',  label: 'Right Card (Birthday)',       defaultSrc: '/images/birthday_dress.webp', description: 'Right tilted card in the hero collage' },
     ]
   },
   {
     section: 'Category Grid',
     slots: [
-      { key: 'category_festival', label: 'Festival Season (Large Card)', defaultSrc: '/images/festival_wear.png',  description: 'Large featured card — Festival / Navratri / Diwali' },
-      { key: 'category_birthday', label: 'Birthday Special',             defaultSrc: '/images/birthday_dress.png', description: 'Party & princess wear category card' },
-      { key: 'category_casual',   label: 'Boys Casual',                  defaultSrc: '/images/casual_boys.png',    description: 'Everyday casual wear category card' },
+      { key: 'category_festival', label: 'Festival Season (Large Card)', defaultSrc: '/images/festival_wear.webp',  description: 'Large featured card — Festival / Navratri / Diwali' },
+      { key: 'category_birthday', label: 'Birthday Special',             defaultSrc: '/images/birthday_dress.webp', description: 'Party & princess wear category card' },
+      { key: 'category_casual',   label: 'Boys Casual',                  defaultSrc: '/images/casual_boys.webp',    description: 'Everyday casual wear category card' },
     ]
   }
 ]

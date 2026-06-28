@@ -7,7 +7,7 @@ const CATEGORY_DEFS = [
   {
     id: 1,
     imageKey: 'category_festival',
-    defaultImg: '/images/festival_wear.png',
+    defaultImg: '/images/festival_wear.webp',
     label: 'Festival Season',
     sublabel: 'Navratri · Diwali · Eid',
     badge: 'New Arrivals',
@@ -18,7 +18,7 @@ const CATEGORY_DEFS = [
   {
     id: 2,
     imageKey: 'category_birthday',
-    defaultImg: '/images/birthday_dress.png',
+    defaultImg: '/images/birthday_dress.webp',
     label: 'Birthday Special',
     sublabel: 'Princess & Party Wear',
     badge: 'Trending',
@@ -29,7 +29,7 @@ const CATEGORY_DEFS = [
   {
     id: 3,
     imageKey: 'category_casual',
-    defaultImg: '/images/casual_boys.png',
+    defaultImg: '/images/casual_boys.webp',
     label: 'Boys Casual',
     sublabel: 'Everyday Comfort',
     badge: 'Best Seller',

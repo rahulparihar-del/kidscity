@@ -12,9 +12,9 @@ export default function HeroBanner({ onViewChange }) {
   }
 
   // Resolve image: use Supabase override if present, else fall back to static file
-  const imgLeft   = images['hero_left']   || '/images/festival_wear.png'
-  const imgRight  = images['hero_right']  || '/images/birthday_dress.png'
-  const imgCenter = images['hero_center'] || '/images/hero_girl.png'
+  const imgLeft   = images['hero_left']   || '/images/festival_wear.webp'
+  const imgRight  = images['hero_right']  || '/images/birthday_dress.webp'
+  const imgCenter = images['hero_center'] || '/images/hero_girl.webp'
 
   return (
     <section id="hero" className={styles.hero}>

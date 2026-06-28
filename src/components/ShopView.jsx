@@ -12,13 +12,13 @@ export const PRODUCTS = [
     price: '₹899',
     tag: 'Bestseller',
     tagColor: '#E07A5F',
-    img: '/images/festival_wear.png',
+    img: '/images/festival_wear.webp',
     rating: 4.9,
     reviews: 42,
     sizes: ['2-4y', '4-6y', '6-8y', '8-10y'],
     desc: 'Traditional high-quality Chaniya Choli with heavy mirror work and vibrant threads, perfect for Garba nights. Soft inner lining for maximum comfort while dancing.',
     specs: { Fabric: 'Premium Cotton Silk', Wash: 'Dry Clean Only', Set: 'Lehenga, Choli & Dupatta' },
-    gallery: ['/images/festival_wear.png', '/images/hero_girl.png', '/images/birthday_dress.png']
+    gallery: ['/images/festival_wear.webp', '/images/hero_girl.webp', '/images/birthday_dress.webp']
   },
   {
     id: 2,
@@ -28,13 +28,13 @@ export const PRODUCTS = [
     price: '₹749',
     tag: 'Trending',
     tagColor: '#F28482',
-    img: '/images/birthday_dress.png',
+    img: '/images/birthday_dress.webp',
     rating: 4.8,
     reviews: 36,
     sizes: ['0-2y', '2-4y', '4-6y', '6-8y'],
     desc: 'Gorgeous layered tulle gown with soft satin lining and butterfly embellishments. Makes your little girl feel like a real princess on her special day.',
     specs: { Fabric: 'Tulle & Satin', Wash: 'Gentle Hand Wash', Set: 'Single Dress with Bow Headband' },
-    gallery: ['/images/birthday_dress.png', '/images/hero_girl.png', '/images/festival_wear.png']
+    gallery: ['/images/birthday_dress.webp', '/images/hero_girl.webp', '/images/festival_wear.webp']
   },
   {
     id: 3,
@@ -44,13 +44,13 @@ export const PRODUCTS = [
     price: '₹549',
     tag: 'New',
     tagColor: '#81B29A',
-    img: '/images/casual_boys.png',
+    img: '/images/casual_boys.webp',
     rating: 4.9,
     reviews: 28,
     sizes: ['2-4y', '4-6y', '6-8y', '8-10y', '10-12y'],
     desc: 'Trendy dynamic casual set featuring a breathable cotton t-shirt and premium stretchable denim shorts. Durable stitch detailing for active play.',
     specs: { Fabric: '100% Breathable Cotton & Denim', Wash: 'Machine Washable', Set: 'T-Shirt & Shorts' },
-    gallery: ['/images/casual_boys.png', '/images/festival_wear.png']
+    gallery: ['/images/casual_boys.webp', '/images/festival_wear.webp']
   },
   {
     id: 4,
@@ -60,13 +60,13 @@ export const PRODUCTS = [
     price: '₹699',
     tag: 'Festival',
     tagColor: '#F4A261',
-    img: '/images/festival_wear.png',
+    img: '/images/festival_wear.webp',
     rating: 4.7,
     reviews: 19,
     sizes: ['2-4y', '4-6y', '6-8y', '8-10y', '10-12y', '12-14y'],
     desc: 'Classy ethnic silk-blend kurta with gold embroidery around the collar. Paired with a comfortable elasticized pajama for hassle-free styling.',
     specs: { Fabric: 'Banarasi Art Silk', Wash: 'Dry Clean Recommended', Set: 'Kurta & Pajama' },
-    gallery: ['/images/festival_wear.png', '/images/casual_boys.png']
+    gallery: ['/images/festival_wear.webp', '/images/casual_boys.webp']
   },
   {
     id: 5,
@@ -76,13 +76,13 @@ export const PRODUCTS = [
     price: '₹649',
     tag: 'Popular',
     tagColor: '#F28482',
-    img: '/images/hero_girl.png',
+    img: '/images/hero_girl.webp',
     rating: 4.8,
     reviews: 31,
     sizes: ['0-2y', '2-4y', '4-6y', '6-8y'],
     desc: 'Delightful tiered designer frock in peach, accented with elegant floral lace details. Highly breathable fabric structure perfect for summer celebrations.',
     specs: { Fabric: 'Organza & Soft Voile', Wash: 'Hand Wash', Set: 'Frock Only' },
-    gallery: ['/images/hero_girl.png', '/images/birthday_dress.png']
+    gallery: ['/images/hero_girl.webp', '/images/birthday_dress.webp']
   },
   {
     id: 6,
@@ -92,13 +92,13 @@ export const PRODUCTS = [
     price: '₹899',
     tag: 'Premium',
     tagColor: '#3D405B',
-    img: '/images/casual_boys.png',
+    img: '/images/casual_boys.webp',
     rating: 4.9,
     reviews: 24,
     sizes: ['4-6y', '6-8y', '8-10y', '10-12y'],
     desc: 'Luxurious jacquard sherwani set styled with premium gold piping and brocade work. Ideal for weddings and high-profile festive family occasions.',
     specs: { Fabric: 'Jacquard Silk', Wash: 'Dry Clean Only', Set: 'Sherwani jacket & churidar pajama' },
-    gallery: ['/images/casual_boys.png', '/images/festival_wear.png']
+    gallery: ['/images/casual_boys.webp', '/images/festival_wear.webp']
   },
   {
     id: 7,
@@ -108,13 +108,13 @@ export const PRODUCTS = [
     price: '₹499',
     tag: 'Cotton',
     tagColor: '#81B29A',
-    img: '/images/hero_girl.png',
+    img: '/images/hero_girl.webp',
     rating: 4.6,
     reviews: 14,
     sizes: ['2-4y', '4-6y', '6-8y', '8-10y'],
     desc: 'Lightweight flowy summer dress in a gorgeous wildflower print. Breathable and gentle on children\'s sensitive skin.',
     specs: { Fabric: '100% Organic Cotton', Wash: 'Machine Wash cold', Set: 'Dress Only' },
-    gallery: ['/images/hero_girl.png', '/images/birthday_dress.png']
+    gallery: ['/images/hero_girl.webp', '/images/birthday_dress.webp']
   },
   {
     id: 8,
@@ -124,13 +124,13 @@ export const PRODUCTS = [
     price: '₹599',
     tag: 'Practical',
     tagColor: '#3D405B',
-    img: '/images/casual_boys.png',
+    img: '/images/casual_boys.webp',
     rating: 4.7,
     reviews: 22,
     sizes: ['4-6y', '6-8y', '8-10y', '10-12y', '12-14y'],
     desc: 'Classic smart-casual outfit including a pique cotton polo shirt and multi-pocket cargo pants. Designed for rugged use and comfort.',
     specs: { Fabric: 'Pique Cotton & Twill', Wash: 'Machine Wash', Set: 'Polo Shirt & Cargo Pants' },
-    gallery: ['/images/casual_boys.png']
+    gallery: ['/images/casual_boys.webp']
   },
   {
     id: 9,
@@ -140,13 +140,13 @@ export const PRODUCTS = [
     price: '₹399',
     tag: 'Organic',
     tagColor: '#81B29A',
-    img: '/images/birthday_dress.png',
+    img: '/images/birthday_dress.webp',
     rating: 4.9,
     reviews: 35,
     sizes: ['0-2y'],
     desc: 'Super soft, chemical-free organic cotton sleep-n-play romper with dual security snaps for quick diaper checks.',
     specs: { Fabric: '100% Organic Cotton (GOTS Certified)', Wash: 'Machine Wash Warm', Set: '2-Pack Romper Set' },
-    gallery: ['/images/birthday_dress.png', '/images/hero_girl.png']
+    gallery: ['/images/birthday_dress.webp', '/images/hero_girl.webp']
   },
   {
     id: 10,
@@ -156,13 +156,13 @@ export const PRODUCTS = [
     price: '₹1299',
     tag: 'Luxury',
     tagColor: '#3D405B',
-    img: '/images/casual_boys.png',
+    img: '/images/casual_boys.webp',
     rating: 5.0,
     reviews: 12,
     sizes: ['4-6y', '6-8y', '8-10y', '10-12y', '12-14y'],
     desc: 'Stunning premium deep navy velvet sherwani jacket with zardozi hand embroidery. Complemented by designer dhoti pants.',
     specs: { Fabric: 'Micro-Velvet & Silk Blend', Wash: 'Dry Clean Only', Set: 'Sherwani & Dhoti Pants' },
-    gallery: ['/images/casual_boys.png', '/images/festival_wear.png']
+    gallery: ['/images/casual_boys.webp', '/images/festival_wear.webp']
   },
   {
     id: 11,
@@ -172,13 +172,13 @@ export const PRODUCTS = [
     price: '₹999',
     tag: 'Star Pick',
     tagColor: '#F4A261',
-    img: '/images/birthday_dress.png',
+    img: '/images/birthday_dress.webp',
     rating: 4.8,
     reviews: 18,
     sizes: ['2-4y', '4-6y', '6-8y', '8-10y'],
     desc: 'Make her feel like a star! Sparkly tulle ball gown embedded with shiny gold constellations, layered beautifully.',
     specs: { Fabric: 'Sequined Tulle & Silk Ribbon', Wash: 'Hand Wash Only', Set: 'Gown & Matching Tiara' },
-    gallery: ['/images/birthday_dress.png', '/images/hero_girl.png']
+    gallery: ['/images/birthday_dress.webp', '/images/hero_girl.webp']
   },
   {
     id: 12,
@@ -188,13 +188,13 @@ export const PRODUCTS = [
     price: '₹799',
     tag: 'Winter',
     tagColor: '#81B29A',
-    img: '/images/casual_boys.png',
+    img: '/images/casual_boys.webp',
     rating: 4.8,
     reviews: 15,
     sizes: ['2-4y', '4-6y', '6-8y', '8-10y', '10-12y'],
     desc: 'Plush high-loft sherpa fleece hoody with soft cotton lining. Features cute bear ears on the hood for adorable style.',
     specs: { Fabric: 'Sherpa Fleece & Jersey Lining', Wash: 'Gentle Machine Wash', Set: 'Hoodie Jacket' },
-    gallery: ['/images/casual_boys.png']
+    gallery: ['/images/casual_boys.webp']
   }
 ]
 

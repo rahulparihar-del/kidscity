@@ -25,7 +25,7 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag 
         {/* Logo */}
         <a href="/" className={styles.logo} onClick={(e) => handleNavClick('home', e)} aria-label="Kids City Home">
           <img
-            src="/images/logo_full.png"
+            src="/images/logo_full.webp"
             alt="Kids City — A Clothing Hub for Your Little Sunshine"
             className={styles.logoImg}
           />

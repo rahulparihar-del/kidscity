@@ -229,7 +229,7 @@ export default function App() {
           >
             <div className="app-loader-content">
               <motion.img
-                src="/images/logo_full.png"
+                src="/images/logo_full.webp"
                 alt="Kids City Logo"
                 className="app-loader-logo"
                 animate={{ scale: [0.96, 1.04, 0.96] }}
