@@ -4,7 +4,7 @@ import { supabase } from '../supabaseClient'
 import styles from './AdminPanel.module.css'
 
 const CATEGORIES = ['Festival Wear', 'Birthday', 'Casual', 'Traditional', 'Baby']
-const AVAILABLE_SIZES = ['0-2y', '2-4y', '4-6y', '6-8y', '8-10y', '10-12y', '12-14y']
+const AVAILABLE_SIZES = ['0-3m', '3-6m', '6-12m', '18-24m', '2-4y', '4-6y', '6-8y', '8-10y', 'S', 'M', 'L', 'XL']
 
 export default function AdminPanel({ onBack }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -30,6 +30,7 @@ export default function AdminPanel({ onBack }) {
   const [wash, setWash] = useState('')
   const [setItem, setSetItem] = useState('')
   const [images, setImages] = useState([]) // Array of Base64 strings
+  const [customSizeInput, setCustomSizeInput] = useState('')
 
 // Native browser SHA-256 hash helper
 const sha256 = async (text) => {
@@ -119,6 +120,16 @@ const sha256 = async (text) => {
     setWash('')
     setSetItem('')
     setImages([])
+    setCustomSizeInput('')
+  }
+
+  const handleAddCustomSize = () => {
+    const val = customSizeInput.trim()
+    if (!val) return
+    if (!selectedSizes.includes(val)) {
+      setSelectedSizes(prev => [...prev, val])
+    }
+    setCustomSizeInput('')
   }
 
   // Submit Handler: Add or Update
@@ -463,6 +474,52 @@ const sha256 = async (text) => {
                       </button>
                     ))}
                   </div>
+
+                  {/* Custom Size Input */}
+                  <div className={styles.customSizeRow}>
+                    <input
+                      type="text"
+                      placeholder="Add custom size (e.g. 24, XXL, 6-9m)..."
+                      className="form-input"
+                      value={customSizeInput}
+                      onChange={e => setCustomSizeInput(e.target.value)}
+                      onKeyDown={e => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault()
+                          handleAddCustomSize()
+                        }
+                      }}
+                    />
+                    <button
+                      type="button"
+                      className={`btn btn-beige ${styles.addSizeBtn}`}
+                      onClick={handleAddCustomSize}
+                    >
+                      <Plus size={16} /> Add Custom
+                    </button>
+                  </div>
+
+                  {/* Selected Sizes Tags */}
+                  {selectedSizes.length > 0 && (
+                    <div className={styles.selectedSizesTags}>
+                      <span className={styles.tagsLabel}>Selected ({selectedSizes.length}):</span>
+                      <div className={styles.tagsContainer}>
+                        {selectedSizes.map(sz => (
+                          <span key={sz} className={styles.sizeTag}>
+                            {sz}
+                            <button
+                              type="button"
+                              className={styles.removeTagBtn}
+                              onClick={() => handleSizeToggle(sz)}
+                              aria-label={`Remove size ${sz}`}
+                            >
+                              ×
+                            </button>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Specs */}

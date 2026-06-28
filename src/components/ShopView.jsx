@@ -199,7 +199,7 @@ export const PRODUCTS = [
 ]
 
 const CATEGORIES = ['All', 'Festival Wear', 'Birthday', 'Casual', 'Traditional', 'Baby']
-const SIZES = ['All', '0-2y', '2-4y', '4-6y', '6-8y', '8-10y', '10-12y', '12-14y']
+// Sizing filters are calculated dynamically from database items
 const PRICE_RANGES = [
   { label: 'All Prices', min: 0, max: 2000 },
   { label: 'Under ₹600', min: 0, max: 600 },
@@ -222,6 +222,36 @@ export default function ShopView({ products, onSelectProduct }) {
   }
 
   const catalogSource = products && products.length > 0 ? products : PRODUCTS
+
+  // Dynamic SIZES derived from active database products list
+  const derivedSizes = useMemo(() => {
+    const unique = new Set()
+    catalogSource.forEach(p => {
+      if (p.sizes && Array.isArray(p.sizes)) {
+        p.sizes.forEach(sz => {
+          if (sz) unique.add(sz)
+        })
+      }
+    })
+    
+    // Sort sizes logically (months, years, letters, numbers)
+    const sorted = Array.from(unique).sort((a, b) => {
+      const letterOrder = { 'XS': 1, 'S': 2, 'M': 3, 'L': 4, 'XL': 5, 'XXL': 6 }
+      if (letterOrder[a] && letterOrder[b]) return letterOrder[a] - letterOrder[b]
+      if (letterOrder[a]) return 1
+      if (letterOrder[b]) return -1
+
+      const numA = parseInt(a)
+      const numB = parseInt(b)
+      if (!isNaN(numA) && !isNaN(numB)) return numA - numB
+      if (!isNaN(numA)) return 1
+      if (!isNaN(numB)) return -1
+      
+      return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
+    })
+
+    return ['All', ...sorted]
+  }, [catalogSource])
 
   // Filtered and sorted products
   const filteredProducts = useMemo(() => {
@@ -283,7 +313,7 @@ export default function ShopView({ products, onSelectProduct }) {
       <div className={styles.filterGroup}>
         <h4 className={styles.filterLabel}>Age / Size</h4>
         <div className={styles.sizeGrid}>
-          {SIZES.map(sz => (
+          {derivedSizes.map(sz => (
             <button
               key={sz}
               className={`${styles.sizeBtn} ${selectedSize === sz ? styles.sizeActive : ''}`}
