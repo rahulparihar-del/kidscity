@@ -1,18 +1,50 @@
 .section {
-  padding: 88px 0;
+  padding: 100px 0;
   background: var(--off-white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background watercolor clouds matching logo colors */
+.bgDeco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob1 {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 168, 232, 0.06) 0%, transparent 70%);
+  top: -100px;
+  left: -150px;
+}
+
+.blob2 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 75, 114, 0.05) 0%, transparent 70%);
+  bottom: -150px;
+  right: -100px;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 52px;
+  margin-bottom: 56px;
+  position: relative;
+  z-index: 2;
 }
 
 .headerSub {
-  font-size: 1rem;
-  color: var(--text-muted);
-  max-width: 500px;
-  margin: 12px auto 0;
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  max-width: 540px;
+  margin: 14px auto 0;
   line-height: 1.7;
   font-weight: 500;
 }
@@ -21,8 +53,10 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 280px 280px;
-  gap: 16px;
+  grid-template-rows: 300px 300px;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
 }
 
 .card {
@@ -34,12 +68,15 @@
   flex-direction: column;
   justify-content: flex-end;
   text-decoration: none;
-  box-shadow: var(--shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-md);
+  border: 1.5px solid var(--border);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
 }
+
 .card:hover {
-  transform: scale(1.015);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-8px) scale(1.002) !important;
+  box-shadow: 0 20px 40px var(--hover-glow-color, rgba(0, 0, 0, 0.06));
+  border-color: var(--hover-border-color, var(--brand-terracotta)) !important;
 }
 
 .cardLarge {
@@ -53,83 +90,133 @@
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.card:hover .img { transform: scale(1.06); }
+
+.card:hover .img {
+  transform: scale(1.06);
+}
 
 .overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
+  opacity: 0.85;
+  transition: opacity 0.4s ease;
+}
+
+.card:hover .overlay {
+  opacity: 0.92;
 }
 
 .cardContent {
   position: relative;
   z-index: 2;
-  padding: 20px 22px;
+  padding: 28px 30px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
 .cardBadge {
   display: inline-block;
   align-self: flex-start;
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: 50px;
   font-size: 0.7rem;
   font-weight: 800;
-  color: var(--navy-900);
+  color: var(--white);
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  letter-spacing: 1.2px;
+  box-shadow: var(--shadow-sm);
 }
 
 .cardLabel {
   font-family: var(--font-head);
   font-weight: 800;
   letter-spacing: -0.02em;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: var(--white);
   line-height: 1.2;
 }
-.cardLarge .cardLabel { font-size: 1.9rem; }
+
+.cardLarge .cardLabel {
+  font-size: 2.1rem;
+  margin-bottom: 2px;
+}
 
 .cardSub {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.75);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.82);
   font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 .shopBtn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(255,255,255,0.15);
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(8px);
   color: white;
   font-size: 0.8rem;
   font-weight: 800;
-  padding: 7px 16px;
+  padding: 8px 18px;
   border-radius: 50px;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
   align-self: flex-start;
-  margin-top: 4px;
-  transition: background 0.2s;
+  margin-top: 6px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.card:hover .shopBtn { background: rgba(255,255,255,0.25); }
 
-@media (max-width: 700px) {
+.card:hover .shopBtn {
+  background: var(--white);
+  color: var(--brand-navy-dark);
+  border-color: var(--white);
+  padding-right: 22px;
+  box-shadow: var(--shadow-md);
+}
+
+.shopBtn svg {
+  transition: transform 0.3s ease;
+}
+
+.card:hover .shopBtn svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+    gap: 16px;
   }
-  .cardLarge { grid-row: span 1; height: 280px; }
-  .card { height: 240px; }
+  .cardLarge {
+    grid-row: span 1;
+    height: 300px;
+  }
+  .card {
+    height: 250px;
+  }
 }
 
 @media (max-width: 560px) {
-  .section { padding: 56px 0; }
-  .header { margin-bottom: 32px; }
-  .headerSub { font-size: 0.92rem; }
-  .cardLarge .cardLabel { font-size: 1.6rem; }
+  .section {
+    padding: 64px 0;
+  }
+  .header {
+    margin-bottom: 36px;
+  }
+  .headerSub {
+    font-size: 0.94rem;
+  }
+  .cardContent {
+    padding: 20px 24px;
+  }
+  .cardLarge .cardLabel {
+    font-size: 1.7rem;
+  }
+  .cardLabel {
+    font-size: 1.35rem;
+  }
 }
