@@ -29,17 +29,21 @@
 .logo {
   display: flex;
   align-items: center;
+  overflow: visible;
 }
 
 .logoImg {
-  height: 68px;
+  height: 200px;
   width: auto;
   object-fit: contain;
-  transition: height var(--transition);
+  margin: -65px -50px;
+  transition: all var(--transition);
+  display: block;
 }
 
 .scrolled .logoImg {
-  height: 54px;
+  height: 150px;
+  margin: -48px -38px;
 }
 
 .links {
