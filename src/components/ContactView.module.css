@@ -6,7 +6,7 @@
 
 .banner {
   background: var(--brand-beige);
-  padding: 80px 0 50px 0;
+  padding: 130px 0 50px 0; /* 130px top = clears the fixed 90px navbar */
   text-align: center;
   border-bottom: 1px solid var(--border);
 }
