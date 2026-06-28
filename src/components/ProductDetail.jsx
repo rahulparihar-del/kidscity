@@ -76,7 +76,14 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
   const getWhatsAppOrderLink = () => {
     const sizeToUse = selectedSize || product.sizes[0]
     const phone = '917891672762'
-    const text = `Hi Kids City! I saw the "${product.name}" on your website. I want to buy it in size "${sizeToUse}" (${product.price}). Is it available in store?`
+    let text = `Hi Kids City! I saw the "${product.name}" on your website. I want to buy it in size "${sizeToUse}" (${product.price}). Is it available in store?`
+    
+    // If the image is a static file, append the full public URL so WhatsApp generates a preview card
+    if (product.img && product.img.startsWith('/')) {
+      const fullImgUrl = window.location.origin + product.img
+      text += `\n\nProduct Photo: ${fullImgUrl}`
+    }
+    
     return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`
   }
 

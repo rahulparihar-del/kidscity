@@ -10,7 +10,14 @@ export default function InquiryDrawer({ isOpen, onClose, bagItems, onRemoveFromB
     let text = "Hi Kids City! I saw these outfits on your website and would like to check their availability:\n\n"
     
     bagItems.forEach((item, idx) => {
-      text += `${idx + 1}. ${item.name} (${item.category})\n   - Size: ${item.size}\n   - Price: ${item.price}\n\n`
+      text += `${idx + 1}. ${item.name} (${item.category})\n   - Size: ${item.size}\n   - Price: ${item.price}`
+      
+      // If the image is a static file, append the full public URL so WhatsApp displays preview card
+      if (item.img && item.img.startsWith('/')) {
+        const fullImgUrl = window.location.origin + item.img
+        text += `\n   - Photo: ${fullImgUrl}`
+      }
+      text += `\n\n`
     })
     
     text += `Total items: ${totalItems}\nIs this collection currently in stock at your Wakad store?`
