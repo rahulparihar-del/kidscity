@@ -253,9 +253,35 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
                     </form>
 
                     {predictedSize && (
-                      <div className={styles.wizardResult}>
-                        <span>Recommended Size:</span>
-                        <strong>{predictedSize}</strong>
+                      <div className={`${styles.wizardResult} ${predictedSize.includes('Note') ? styles.outOfStockResult : styles.inStockResult}`}>
+                        <div className={styles.resultHeader}>
+                          <span className={styles.resultLabel}>Recommended Size</span>
+                          <span className={styles.resultBadge}>
+                            {predictedSize.includes('Note') ? 'Out of stock' : 'Available'}
+                          </span>
+                        </div>
+                        <div className={styles.resultValueRow}>
+                          <strong className={styles.sizeVal}>
+                            {predictedSize.includes('Note') ? predictedSize.split('(')[0].trim() : predictedSize}
+                          </strong>
+                          {!predictedSize.includes('Note') && (
+                            <button
+                              type="button"
+                              className={styles.applySizeBtn}
+                              onClick={() => {
+                                setSelectedSize(predictedSize)
+                                setSizeHelperOpen(false)
+                              }}
+                            >
+                              Apply Size
+                            </button>
+                          )}
+                        </div>
+                        {predictedSize.includes('Note') && (
+                          <div className={styles.stockWarning}>
+                            <span>⚠️ {predictedSize.substring(predictedSize.indexOf('(') + 1, predictedSize.length - 1)}</span>
+                          </div>
+                        )}
                       </div>
                     )}
                   </motion.div>
