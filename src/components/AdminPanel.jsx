@@ -8,11 +8,11 @@ const CATEGORIES = ['Festival Wear', 'Birthday', 'Casual', 'Traditional', 'Baby'
 const AVAILABLE_SIZES = ['0-3m', '3-6m', '6-12m', '18-24m', '2-4y', '4-6y', '6-8y', '8-10y', 'S', 'M', 'L', 'XL']
 
 /**
- * Converts a file to WebP format with aggressive compression to keep
- * base64 strings small enough to store reliably in Supabase text columns.
- * Max 600px × 600px, quality 0.65
+ * Converts a file to WebP format with high quality compression to keep
+ * images looking crisp and HD while staying lightweight in database payload.
+ * Max 900px × 1200px (ideal portrait aspect ratio), quality 0.85
  */
-const convertToWebP = (file, maxWidth = 600, maxHeight = 600, quality = 0.65) => {
+const convertToWebP = (file, maxWidth = 900, maxHeight = 1200, quality = 0.85) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
     reader.readAsDataURL(file)
