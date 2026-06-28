@@ -750,24 +750,69 @@ const sha256 = async (text) => {
                         </label>
                       </div>
 
+                      {/* Existing images (edit mode) */}
                       {images.length > 0 && (
-                        <div className={styles.previewGrid}>
-                          {images.map((img, idx) => (
-                            <div key={idx} className={styles.previewCard}>
-                              <img src={img} alt={`Preview ${idx}`} />
-                              <button
-                                type="button"
-                                className={styles.removePreviewBtn}
-                                onClick={() => removeImage(idx)}
-                                aria-label="Remove image"
-                              >
-                                <Trash2 size={12} />
-                              </button>
-                            </div>
-                          ))}
+                        <div className={styles.previewSection}>
+                          <div className={styles.previewHeader}>
+                            <span className={styles.previewCount}>
+                              {images.length} image{images.length > 1 ? 's' : ''} · first = cover
+                            </span>
+                            <button
+                              type="button"
+                              className={styles.clearImagesBtn}
+                              onClick={() => setImages([])}
+                            >
+                              <Trash2 size={13} /> Clear All &amp; Re-upload
+                            </button>
+                          </div>
+                          <div className={styles.previewGrid}>
+                            {images.map((img, idx) => (
+                              <div key={idx} className={`${styles.previewCard} ${idx === 0 ? styles.previewCover : ''}`}>
+                                <img
+                                  src={img}
+                                  alt={`Preview ${idx + 1}`}
+                                  onError={(e) => {
+                                    e.target.style.display = 'none'
+                                    e.target.nextSibling && (e.target.nextSibling.style.display = 'flex')
+                                  }}
+                                />
+                                <div className={styles.brokenImgFallback}>⚠️ Broken</div>
+                                {idx === 0 && <span className={styles.coverBadge}>Cover</span>}
+                                <button
+                                  type="button"
+                                  className={styles.removePreviewBtn}
+                                  onClick={() => removeImage(idx)}
+                                  aria-label="Remove image"
+                                >
+                                  <Trash2 size={12} />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       )}
-                    </div>
+
+                      {/* Upload more / replace */}
+                      <div className={styles.dropzone}>
+                        <input
+                          type="file"
+                          multiple
+                          accept="image/*"
+                          onChange={handleImageChange}
+                          id="file-uploader"
+                          className={styles.fileInput}
+                        />
+                        <label htmlFor="file-uploader" className={styles.dropLabel}>
+                          <Upload size={22} className={styles.uploadIcon} />
+                          <span>{images.length > 0 ? 'Add More Images' : 'Click to Upload Product Images'}</span>
+                          <small>
+                            {images.length > 0
+                              ? 'Or use "Clear All & Re-upload" above to replace'
+                              : 'Select multiple images (first will be cover)'}
+                          </small>
+                        </label>
+                      </div>
+                    </div>{/* end inputWrap */}
 
                     <div className={styles.formActions}>
                       <button type="submit" className="btn btn-terracotta" disabled={submitting}>
