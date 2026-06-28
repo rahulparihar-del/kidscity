@@ -731,9 +731,11 @@ const sha256 = async (text) => {
                       </div>
                     </div>
 
-                    {/* Dropzone base64 uploader */}
+                    {/* ── Product Images ── */}
                     <div className={styles.inputWrap}>
                       <label>Product Image Files *</label>
+
+                      {/* Upload area — always visible */}
                       <div className={styles.dropzone}>
                         <input
                           type="file"
@@ -745,38 +747,48 @@ const sha256 = async (text) => {
                         />
                         <label htmlFor="file-uploader" className={styles.dropLabel}>
                           <Upload size={22} className={styles.uploadIcon} />
-                          <span>Click to Upload Product Images</span>
-                          <small>Select multiple images (first will be cover)</small>
+                          <span>
+                            {images.length > 0 ? '+ Add More Images' : 'Click to Upload Product Images'}
+                          </span>
+                          <small>
+                            {images.length > 0
+                              ? 'First image is cover photo'
+                              : 'Select one or more images (first will be cover)'}
+                          </small>
                         </label>
                       </div>
 
-                      {/* Existing images (edit mode) */}
+                      {/* Preview grid — only visible after images are selected */}
                       {images.length > 0 && (
                         <div className={styles.previewSection}>
                           <div className={styles.previewHeader}>
                             <span className={styles.previewCount}>
-                              {images.length} image{images.length > 1 ? 's' : ''} · first = cover
+                              {images.length} image{images.length > 1 ? 's' : ''} · first = cover photo
                             </span>
                             <button
                               type="button"
                               className={styles.clearImagesBtn}
                               onClick={() => setImages([])}
                             >
-                              <Trash2 size={13} /> Clear All &amp; Re-upload
+                              <Trash2 size={13} /> Clear All
                             </button>
                           </div>
                           <div className={styles.previewGrid}>
                             {images.map((img, idx) => (
-                              <div key={idx} className={`${styles.previewCard} ${idx === 0 ? styles.previewCover : ''}`}>
+                              <div
+                                key={idx}
+                                className={`${styles.previewCard} ${idx === 0 ? styles.previewCover : ''}`}
+                              >
                                 <img
                                   src={img}
                                   alt={`Preview ${idx + 1}`}
                                   onError={(e) => {
                                     e.target.style.display = 'none'
-                                    e.target.nextSibling && (e.target.nextSibling.style.display = 'flex')
+                                    const fb = e.target.nextSibling
+                                    if (fb) fb.style.display = 'flex'
                                   }}
                                 />
-                                <div className={styles.brokenImgFallback}>⚠️ Broken</div>
+                                <div className={styles.brokenImgFallback}>⚠️ Broken image</div>
                                 {idx === 0 && <span className={styles.coverBadge}>Cover</span>}
                                 <button
                                   type="button"
@@ -791,27 +803,6 @@ const sha256 = async (text) => {
                           </div>
                         </div>
                       )}
-
-                      {/* Upload more / replace */}
-                      <div className={styles.dropzone}>
-                        <input
-                          type="file"
-                          multiple
-                          accept="image/*"
-                          onChange={handleImageChange}
-                          id="file-uploader"
-                          className={styles.fileInput}
-                        />
-                        <label htmlFor="file-uploader" className={styles.dropLabel}>
-                          <Upload size={22} className={styles.uploadIcon} />
-                          <span>{images.length > 0 ? 'Add More Images' : 'Click to Upload Product Images'}</span>
-                          <small>
-                            {images.length > 0
-                              ? 'Or use "Clear All & Re-upload" above to replace'
-                              : 'Select multiple images (first will be cover)'}
-                          </small>
-                        </label>
-                      </div>
                     </div>{/* end inputWrap */}
 
                     <div className={styles.formActions}>
