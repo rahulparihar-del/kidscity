@@ -438,7 +438,7 @@ export default function ShopView({ products, onSelectProduct }) {
 
               {/* Products count */}
               <div className={styles.resultCount}>
-                Showing {filteredProducts.length} of {PRODUCTS.length} styles
+                Showing {filteredProducts.length} of {catalogSource.length} styles
               </div>
 
               {/* Grid with animation */}

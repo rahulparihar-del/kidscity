@@ -41,7 +41,13 @@ export default function App() {
         if (error) throw error
 
         if (data && data.length > 0) {
-          setDbProducts(data)
+          const transformed = data.map(p => ({
+            ...p,
+            priceVal: p.price_val,
+            tagColor: p.tag_color,
+            desc: p.description
+          }))
+          setDbProducts(transformed)
         } else {
           // Seeding database with initial products if table has 0 items
           console.log("Products table is empty. Seeding initial e-commerce products...")
@@ -76,7 +82,15 @@ export default function App() {
               .select('*')
               .order('id', { ascending: false })
             
-            if (reloaded) setDbProducts(reloaded)
+            if (reloaded) {
+              const transformed = reloaded.map(p => ({
+                ...p,
+                priceVal: p.price_val,
+                tagColor: p.tag_color,
+                desc: p.description
+              }))
+              setDbProducts(transformed)
+            }
           }
         }
       } catch (err) {

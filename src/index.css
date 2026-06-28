@@ -26,6 +26,9 @@
   --brand-orange: #FF9F1C;          /* Logo Orange */
   --brand-orange-light: #FFC069;
   --brand-orange-glow: rgba(255, 159, 28, 0.15);
+
+  --brand-sage: #81B29A;            /* Sage Green */
+  --brand-sage-light: #B4D4C5;
   
   --white: #ffffff;
   --off-white: var(--brand-cream);
