@@ -46,7 +46,7 @@ const CATEGORY_DEFS = [
 ]
 
 export default function CategoryGrid() {
-  const { images } = useSiteImages()
+  const { images, loading } = useSiteImages()
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -104,6 +104,7 @@ export default function CategoryGrid() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-60px' }}
+          style={{ opacity: loading ? 0 : 1, transition: 'opacity 0.3s ease' }}
         >
           {CATEGORIES.map(cat => (
             <motion.a

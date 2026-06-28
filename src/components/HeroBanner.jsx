@@ -4,7 +4,7 @@ import styles from './HeroBanner.module.css'
 import { useSiteImages } from '../hooks/useSiteImages'
 
 export default function HeroBanner({ onViewChange }) {
-  const { images } = useSiteImages()
+  const { images, loading } = useSiteImages()
 
   const handleBrowseClick = () => {
     onViewChange('shop')
@@ -102,7 +102,7 @@ export default function HeroBanner({ onViewChange }) {
         </div>
 
         {/* Right Column: Layered Boutique Collage */}
-        <div className={styles.collageCol}>
+        <div className={styles.collageCol} style={{ opacity: loading ? 0 : 1, transition: 'opacity 0.3s ease' }}>
           <div className={styles.collageContainer}>
             {/* Background Blob Frame */}
             <div className={styles.collageBlob} />
