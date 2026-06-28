@@ -28,10 +28,12 @@ export default function App() {
   const [inquiryBag, setInquiryBag] = useState([])
   const [isBagOpen, setIsBagOpen] = useState(false)
   const [dbProducts, setDbProducts] = useState([])
+  const [appLoading, setAppLoading] = useState(true)
 
   // Load products on mount with real-time listeners and database seeding
   useEffect(() => {
     const loadProducts = async () => {
+      const startTime = Date.now()
       try {
         const { data, error } = await supabase
           .from('products')
@@ -95,6 +97,12 @@ export default function App() {
         }
       } catch (err) {
         console.error("Failed to read products from Supabase:", err.message)
+      } finally {
+        const elapsed = Date.now() - startTime
+        const remaining = Math.max(900 - elapsed, 0)
+        setTimeout(() => {
+          setAppLoading(false)
+        }, remaining)
       }
     }
 
@@ -156,6 +164,37 @@ export default function App() {
 
   return (
     <>
+      <AnimatePresence>
+        {appLoading && (
+          <motion.div
+            className="app-loader"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
+          >
+            <div className="app-loader-content">
+              <motion.img
+                src="/images/logo_full.png"
+                alt="Kids City Logo"
+                className="app-loader-logo"
+                animate={{ scale: [0.96, 1.04, 0.96] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              <p className="app-loader-tagline">Dressing your little sunshine...</p>
+              <div className="app-loader-track">
+                <motion.div
+                  className="app-loader-bar"
+                  initial={{ width: '0%' }}
+                  animate={{ width: '100%' }}
+                  transition={{ duration: 0.8, ease: 'easeInOut' }}
+                />
+              </div>
+              <span className="app-loader-message">Gonna open soon</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <Navbar
         currentView={currentView}
         onViewChange={setCurrentView}

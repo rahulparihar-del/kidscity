@@ -330,3 +330,70 @@ button {
 .animate-marquee {
   animation: marquee 35s linear infinite;
 }
+
+/* ── Global App Loader ── */
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--brand-cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.app-loader-content {
+  text-align: center;
+  max-width: 320px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.app-loader-logo {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+}
+
+.app-loader-tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--brand-navy);
+  margin-top: -4px;
+}
+
+.app-loader-track {
+  width: 100%;
+  height: 4px;
+  background: var(--brand-beige);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 4px;
+}
+
+.app-loader-bar {
+  height: 100%;
+  background: var(--brand-terracotta);
+  border-radius: 10px;
+}
+
+.app-loader-message {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  animation: pulse-message 1.6s infinite ease-in-out;
+}
+
+@keyframes pulse-message {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
