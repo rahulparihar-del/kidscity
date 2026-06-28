@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
-import { Plus, Edit2, Trash2, LayoutDashboard, Database, LogOut, Upload, Check, AlertCircle, ShoppingBag, Percent, Tag, Star, Image, RefreshCw, X } from 'lucide-react'
+import { Plus, Edit2, Trash2, LayoutDashboard, Database, LogOut, Upload, Check, AlertCircle, ShoppingBag, Percent, Tag, Star, Image as ImageIcon, RefreshCw, X } from 'lucide-react'
 import { supabase } from '../supabaseClient'
 import { upsertSiteImage, deleteSiteImage } from '../hooks/useSiteImages'
 import styles from './AdminPanel.module.css'
@@ -480,7 +480,7 @@ const sha256 = async (text) => {
               onClick={() => setActiveTab('homeImages')}
               id="admin-tab-home-images"
             >
-              <Image size={16} />
+              <ImageIcon size={16} />
               Home Page Images
             </button>
           </div>
@@ -986,7 +986,7 @@ const sha256 = async (text) => {
               {HOME_IMAGE_SLOTS.map(section => (
                 <div key={section.section} className={styles.imageSectionBlock}>
                   <div className={styles.imageSectionHeader}>
-                    <Image size={18} className={styles.dbIcon} />
+                    <ImageIcon size={18} className={styles.dbIcon} />
                     <h3 className={styles.imageSectionTitle}>{section.section}</h3>
                   </div>
 
