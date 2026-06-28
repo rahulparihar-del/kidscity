@@ -71,12 +71,19 @@ function ProductCard({ product, onSelectProduct }) {
       onClick={() => onSelectProduct(product)}
     >
       <div className={styles.imgWrap}>
-        <img
-          src={product.img}
-          alt={`${product.name} — ${product.category} at Kids City Wakad`}
-          className={styles.productImg}
-          loading="lazy"
-        />
+        {product.img ? (
+          <img
+            src={product.img}
+            alt={`${product.name} — ${product.category} at Kids City Wakad`}
+            className={styles.productImg}
+            loading="lazy"
+            onError={(e) => { e.target.style.display = 'none' }}
+          />
+        ) : (
+          <div className={styles.imgPlaceholder}>
+            <span>No Image</span>
+          </div>
+        )}
         {product.tag && (
           <span className={styles.tag} style={{ background: product.tagColor }}>
             {product.tag}
