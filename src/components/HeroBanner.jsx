@@ -36,7 +36,7 @@ export default function HeroBanner({ onViewChange }) {
             transition={{ duration: 0.5 }}
           >
             <Sparkles size={14} className={styles.sparkleIcon} />
-            <span>Wakad's #1 Kids Fashion Destination</span>
+            <span className={styles.badgeText} style={{ margin: 0, fontWeight: 'inherit', fontSize: 'inherit' }}>Kids Clothes Shop in Wakad, Pune</span>
           </motion.div>
 
           {/* Headline - Mix of Outfit and Playfair Display */}
@@ -56,7 +56,7 @@ export default function HeroBanner({ onViewChange }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Explore 500+ premium styles of festival wear, traditional dresses, and casual everyday clothes for boys &amp; girls (0–14 years). Handpicked comfort for Pune's families.
+            Explore 500+ premium styles of kids festival wear, traditional dresses, and casual everyday clothes for boys &amp; girls (0–14 years). Discover the most loved children's clothing store in Wakad, Pune.
           </motion.p>
 
           {/* Action buttons */}

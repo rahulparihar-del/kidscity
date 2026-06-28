@@ -135,8 +135,10 @@ export default function Footer({ onViewChange }) {
             <h4 className={styles.colTitle}>Visit Us</h4>
             <div className={styles.contactList}>
               <div className={styles.contactItem}>
-                <MapPin size={16} className={styles.contactIcon} />
-                <span>Shop No 12, Mahalaxmi Complex, Wakad, Pune, MH 411057</span>
+                <MapPin size={16} className={styles.contactIcon} style={{ flexShrink: 0, marginTop: '2px' }} />
+                <address style={{ fontStyle: 'normal', margin: 0, padding: 0 }}>
+                  Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Rd, beside Annapurna Veg Restaurant, Wakad, Pune, Maharashtra 411057
+                </address>
               </div>
               <a href="tel:+917891672762" className={styles.contactItemLink}>
                 <Phone size={16} className={styles.contactIcon} />
