@@ -28,10 +28,10 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- ============================================================
-         NOTE: Replace https://www.kidscitywakad.in with your real
-         live domain everywhere below (canonical, Open Graph, schema).
+         NOTE: The production site domain is dynamically compiled
+         via %VITE_SITE_URL% throughout index.html, sitemaps and robots.txt.
          ============================================================ -->
-    <link rel="canonical" href="https://www.kidscitywakad.in/" />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
 
     <!-- Primary SEO -->
     <title>Kids City Wakad | Kids Clothes Shop in Pune</title>
@@ -68,8 +68,8 @@
       property="og:description"
       content="Premium kids clothing for every occasion — festival wear, traditional dresses, birthday &amp; party outfits and everyday casuals. 4.9★ rated by 135+ Pune families. Visit Kids City in Wakad!"
     />
-    <meta property="og:url" content="https://www.kidscitywakad.in/" />
-    <meta property="og:image" content="https://www.kidscitywakad.in/images/logo_full.webp" />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:image" content="%VITE_SITE_URL%/images/logo_full.webp" />
     <meta property="og:image:alt" content="Kids City — stylish kids fashion store in Wakad, Pune" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -82,7 +82,7 @@
       name="twitter:description"
       content="Premium kids clothing for every occasion in Wakad, Pune. Festival, traditional, birthday &amp; casual wear for boys &amp; girls. 4.9★ · 135+ happy families."
     />
-    <meta name="twitter:image" content="https://www.kidscitywakad.in/images/logo_full.webp" />
+    <meta name="twitter:image" content="%VITE_SITE_URL%/images/logo_full.webp" />
 
     <!-- Structured Data Block 1: Organization + LocalBusiness (ClothingStore) -->
     <script type="application/ld+json">
@@ -91,13 +91,13 @@
         "@graph": [
           {
             "@type": ["Organization", "ClothingStore"],
-            "@id": "https://www.kidscitywakad.in/#organization",
+            "@id": "%VITE_SITE_URL%/#organization",
             "name": "Kids City",
             "alternateName": "Kids City Wakad",
-            "url": "https://www.kidscitywakad.in/",
+            "url": "%VITE_SITE_URL%/",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://www.kidscitywakad.in/images/logo_full.webp",
+              "url": "%VITE_SITE_URL%/images/logo_full.webp",
               "width": 512,
               "height": 200
             },
@@ -160,17 +160,17 @@
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "@id": "https://www.kidscitywakad.in/#website",
-        "url": "https://www.kidscitywakad.in/",
+        "@id": "%VITE_SITE_URL%/#website",
+        "url": "%VITE_SITE_URL%/",
         "name": "Kids City",
         "description": "Premium kids clothing store in Wakad, Pune — festival wear, ethnic dresses, birthday outfits, night suits and casual wear for boys & girls.",
-        "publisher": {"@id": "https://www.kidscitywakad.in/#organization"},
+        "publisher": {"@id": "%VITE_SITE_URL%/#organization"},
         "inLanguage": "en-IN",
         "potentialAction": {
           "@type": "SearchAction",
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "https://www.kidscitywakad.in/?s={search_term_string}"
+            "urlTemplate": "%VITE_SITE_URL%/?s={search_term_string}"
           },
           "query-input": "required name=search_term_string"
         }
@@ -187,43 +187,43 @@
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://www.kidscitywakad.in/"
+            "item": "%VITE_SITE_URL%/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Shop All Collections",
-            "item": "https://www.kidscitywakad.in/shop"
+            "item": "%VITE_SITE_URL%/shop"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": "Boys Clothing",
-            "item": "https://www.kidscitywakad.in/boys"
+            "item": "%VITE_SITE_URL%/boys"
           },
           {
             "@type": "ListItem",
             "position": 4,
             "name": "Girls Clothing",
-            "item": "https://www.kidscitywakad.in/girls"
+            "item": "%VITE_SITE_URL%/girls"
           },
           {
             "@type": "ListItem",
             "position": 5,
             "name": "Night Suits",
-            "item": "https://www.kidscitywakad.in/night-suits"
+            "item": "%VITE_SITE_URL%/night-suits"
           },
           {
             "@type": "ListItem",
             "position": 6,
             "name": "About Us",
-            "item": "https://www.kidscitywakad.in/about"
+            "item": "%VITE_SITE_URL%/about"
           },
           {
             "@type": "ListItem",
             "position": 7,
             "name": "Contact",
-            "item": "https://www.kidscitywakad.in/contact"
+            "item": "%VITE_SITE_URL%/contact"
           }
         ]
       }

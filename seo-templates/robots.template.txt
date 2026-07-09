@@ -14,4 +14,4 @@ Allow: /
 Crawl-delay: 2
 
 # Sitemap
-Sitemap: https://kidscity.online/sitemap.xml
+Sitemap: %VITE_SITE_URL%/sitemap.xml
