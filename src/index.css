@@ -331,71 +331,661 @@ button {
   animation: marquee 35s linear infinite;
 }
 
-/* ── Global App Loader ── */
+/* ── Intro / Splash Screen ─────────────────────────────────── */
+
+@keyframes logoBounce {
+  0%   { opacity: 0; transform: scale(0.55); }
+  65%  { opacity: 1; transform: scale(1.06); }
+  80%  { transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1);    }
+}
+
+@keyframes shimmerSweep {
+  0%   { left: -80%; }
+  100% { left: 160%; }
+}
+
+@keyframes tagSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes progressGrow {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
 .app-loader {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  background: var(--brand-cream);
+  background: #ffffff;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  gap: 20px;
 }
 
-.app-loader-content {
-  text-align: center;
-  max-width: 320px;
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
+/* Logo wrapper — clips the shimmer */
+.loader-logo-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  display: inline-flex;
 }
 
+/* Logo image — spring bounce in */
 .app-loader-logo {
-  height: 64px;
-  width: auto;
-  object-fit: contain;
+  width: 280px;
+  height: auto;
+  display: block;
+  animation: logoBounce 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
 }
 
+/* Light shimmer sweep across the logo */
+.loader-logo-wrap::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -80%;
+  width: 55%;
+  height: 140%;
+  background: linear-gradient(
+    105deg,
+    transparent   30%,
+    rgba(255,255,255,0.65) 50%,
+    transparent   70%
+  );
+  animation: shimmerSweep 1.8s ease-in-out 0.9s infinite;
+  pointer-events: none;
+}
+
+/* Tagline under logo */
 .app-loader-tagline {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.15rem;
-  color: var(--brand-navy);
-  margin-top: -4px;
+  font-size: 1rem;
+  color: #b0909a;
+  letter-spacing: 0.03em;
+  animation: tagSlideUp 0.6s ease 0.7s both;
 }
 
+/* Thin rainbow progress bar pinned to bottom of screen */
+.loader-progress-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #D6226A 0%,
+    #F4813A 25%,
+    #1AABF0 55%,
+    #2DB84B 75%,
+    #9f5cf6 100%
+  );
+  animation: progressGrow 1.3s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+}
+
+/* Hide old loader pieces that are no longer used */
+.app-loader-track,
+.app-loader-bar,
+.loader-dots,
+.loader-dot,
+.loader-bubbles,
+.loader-bubble,
+.loader-sparkle,
+.loader-confetti,
+.conf-piece,
+.loader-svg-wrap,
+.loader-ring,
+.loader-ring-2,
+.loader-bar-bottom { display: none; }
+
+.app-loader-message {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: #d8c8cc;
+  animation: tagSlideUp 0.5s ease 1s both;
+}
+
+
+
+/* ── Keyframes ──────────────────────────────────────────────── */
+@keyframes loaderFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes logoReveal {
+  0%   { opacity: 0; transform: scale(0.72) translateY(16px); }
+  65%  { opacity: 1; transform: scale(1.04) translateY(-4px); }
+  100% { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+
+@keyframes taglineReveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes ringRotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ringFill {
+  from { stroke-dashoffset: 283; }
+  to   { stroke-dashoffset: 0;   }
+}
+
+/* Tiny confetti pieces — rotate + drift */
+@keyframes confDrift1 {
+  0%,100% { transform: translateY(0) rotate(0deg)   scale(1);   }
+  50%     { transform: translateY(-14px) rotate(90deg) scale(1.15); }
+}
+@keyframes confDrift2 {
+  0%,100% { transform: translateY(0) rotate(0deg)    scale(1);   }
+  50%     { transform: translateY(-10px) rotate(-75deg) scale(1.1); }
+}
+@keyframes confDrift3 {
+  0%,100% { transform: translateY(0) rotate(0deg)   scale(1);   }
+  50%     { transform: translateY(-18px) rotate(120deg) scale(1.2); }
+}
+
+/* Glow pulse behind logo */
+@keyframes glowPulse {
+  0%,100% { opacity: 0.55; transform: scale(1);    }
+  50%     { opacity: 0.85; transform: scale(1.08); }
+}
+
+/* Bottom bar sweep */
+@keyframes barSlide {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Main container ─────────────────────────────────────────── */
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fffcfa;
+  overflow: hidden;
+  animation: loaderFadeIn 0.25s ease forwards;
+}
+
+/* Soft warm radial glow — centre only, not full screen */
+.app-loader::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(255, 165, 100, 0.12) 0%,
+    rgba(255, 107, 157, 0.08) 40%,
+    transparent 70%
+  );
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: glowPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ── Confetti — tiny geometric dots at screen edges ─────────── */
+.loader-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Each conf piece is a tiny colored shape */
+.conf-piece {
+  position: absolute;
+  border-radius: 3px;
+  opacity: 0.65;
+}
+
+/* Pink circle */
+.cp-1 { width:10px;height:10px;border-radius:50%;background:#ff6b9d;
+         top:8%;left:8%;   animation:confDrift1 4.2s ease-in-out infinite; }
+/* Orange diamond */
+.cp-2 { width:9px;height:9px;background:#ffb340;
+         top:12%;right:9%; animation:confDrift2 3.8s ease-in-out infinite 0.4s;transform:rotate(45deg); }
+/* Blue circle */
+.cp-3 { width:8px;height:8px;border-radius:50%;background:#1aabf0;
+         bottom:12%;left:7%;animation:confDrift3 5s ease-in-out infinite 0.8s; }
+/* Green square */
+.cp-4 { width:8px;height:8px;background:#2db84b;
+         bottom:9%;right:8%;animation:confDrift1 4.5s ease-in-out infinite 1s; }
+/* Purple circle */
+.cp-5 { width:7px;height:7px;border-radius:50%;background:#9f5cf6;
+         top:38%;left:3%;  animation:confDrift2 3.5s ease-in-out infinite 1.4s; }
+/* Orange circle */
+.cp-6 { width:7px;height:7px;border-radius:50%;background:#f5a623;
+         top:42%;right:3%; animation:confDrift3 4s ease-in-out infinite 0.6s; }
+/* Pink square */
+.cp-7 { width:6px;height:6px;background:#ff6b9d;
+         top:22%;left:18%; animation:confDrift1 4.8s ease-in-out infinite 1.8s;transform:rotate(45deg); }
+/* Blue square */
+.cp-8 { width:6px;height:6px;background:#1aabf0;
+         bottom:22%;right:18%;animation:confDrift2 3.6s ease-in-out infinite 2s;transform:rotate(45deg); }
+/* Green circle */
+.cp-9 { width:9px;height:9px;border-radius:50%;background:#2db84b;
+         top:70%;left:5%;  animation:confDrift3 4.3s ease-in-out infinite 0.5s; }
+/* Purple diamond */
+.cp-10 { width:8px;height:8px;background:#9f5cf6;
+          top:25%;right:5%;animation:confDrift1 5.2s ease-in-out infinite 1.2s;transform:rotate(45deg); }
+
+/* ── Central content ────────────────────────────────────────── */
+.app-loader-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* Logo */
+.app-loader-logo {
+  width: 300px;
+  height: auto;
+  object-fit: contain;
+  animation: logoReveal 0.9s cubic-bezier(0.34, 1.45, 0.64, 1) 0.15s both;
+  filter: drop-shadow(0 12px 32px rgba(214, 34, 106, 0.18))
+          drop-shadow(0 4px 10px rgba(0,0,0,0.06));
+}
+
+/* Tagline */
+.app-loader-tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #9a7a7a;
+  margin-top: 10px;
+  margin-bottom: 36px;
+  letter-spacing: 0.02em;
+  animation: taglineReveal 0.7s ease 0.75s both;
+}
+
+/* ── SVG circular progress ring ─────────────────────────────── */
+.loader-svg-wrap {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 24px;
+}
+
+.loader-svg-ring {
+  width: 64px;
+  height: 64px;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+
+/* Track (grey background circle) */
+.ring-track {
+  fill: none;
+  stroke: #f2eaea;
+  stroke-width: 3.5;
+}
+
+/* Spinning arc on top */
+.ring-spin-arc {
+  fill: none;
+  stroke: url(#ringGrad);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  animation: ringFill 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+}
+
+/* ── Bottom accent bar ───────────────────────────────────────── */
+.loader-bar-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6b9d, #ffb340, #1aabf0, #2db84b, #9f5cf6);
+  transform-origin: left center;
+  animation: barSlide 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+}
+
+/* ── App loader track / bar (hidden — using SVG ring now) ────── */
+.app-loader-track { display: none; }
+.app-loader-bar   { display: none; }
+.loader-dots      { display: none; }
+
+/* Message */
+.app-loader-message {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #c8b8b8;
+  animation: taglineReveal 0.6s ease 1s both;
+}
+
+@keyframes pulse-message {
+  0%,100% { opacity: 0.45; }
+  50%     { opacity: 0.9;  }
+}
+/* ═══════════════════════════════════════════════════════════════
+   PREMIUM INTRO / SPLASH SCREEN
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Animated rainbow gradient background */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating bubble keyframes */
+@keyframes floatUp {
+  0%   { transform: translateY(0) scale(1);   opacity: 0.7; }
+  50%  { transform: translateY(-30px) scale(1.08); opacity: 1; }
+  100% { transform: translateY(0) scale(1);   opacity: 0.7; }
+}
+@keyframes floatUpB {
+  0%   { transform: translateY(0) rotate(0deg)   scale(1);    opacity: 0.6; }
+  50%  { transform: translateY(-22px) rotate(8deg) scale(1.1); opacity: 0.9; }
+  100% { transform: translateY(0) rotate(0deg)   scale(1);    opacity: 0.6; }
+}
+@keyframes floatUpC {
+  0%   { transform: translateY(0) scale(1);    opacity: 0.5; }
+  50%  { transform: translateY(-18px) scale(1.12); opacity: 1; }
+  100% { transform: translateY(0) scale(1);    opacity: 0.5; }
+}
+
+/* Shimmer bar sweep */
+@keyframes shimmerSweep {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+/* Sparkle twinkle */
+@keyframes twinkle {
+  0%, 100% { transform: scale(0.6) rotate(0deg);   opacity: 0.4; }
+  50%       { transform: scale(1.3) rotate(180deg); opacity: 1;   }
+}
+
+/* Dot bounce loader */
+@keyframes dotBounce {
+  0%, 80%, 100% { transform: scale(0);   opacity: 0.3; }
+  40%           { transform: scale(1.2); opacity: 1;   }
+}
+
+/* Logo pop-in */
+@keyframes logoPop {
+  0%   { transform: scale(0.4) rotate(-8deg); opacity: 0; }
+  60%  { transform: scale(1.1) rotate(3deg);  opacity: 1; }
+  80%  { transform: scale(0.96) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0deg);    opacity: 1; }
+}
+
+/* Tagline slide-up */
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Pulse wave ring */
+@keyframes pulseRing {
+  0%   { transform: scale(0.85); opacity: 0.5; }
+  50%  { transform: scale(1.15); opacity: 0.15; }
+  100% { transform: scale(0.85); opacity: 0.5; }
+}
+
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  /* Animated rainbow gradient */
+  background: linear-gradient(
+    135deg,
+    #fff0f5 0%,
+    #fff8ec 20%,
+    #f0fbff 40%,
+    #f5fff0 60%,
+    #fdf5ff 80%,
+    #fff0f5 100%
+  );
+  background-size: 300% 300%;
+  animation: gradientShift 5s ease infinite;
+}
+
+/* ── Floating decorative bubbles ──────────────────────────────── */
+.loader-bubbles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.loader-bubble {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+.lb-1 {
+  width: 80px; height: 80px;
+  background: radial-gradient(circle, #ff6b9d88, #ff6b9d22);
+  top: 8%; left: 6%;
+  animation: floatUp 4s ease-in-out infinite;
+}
+.lb-2 {
+  width: 55px; height: 55px;
+  background: radial-gradient(circle, #ffb84088, #ffb84022);
+  top: 15%; right: 10%;
+  animation: floatUpB 3.5s ease-in-out infinite 0.6s;
+}
+.lb-3 {
+  width: 100px; height: 100px;
+  background: radial-gradient(circle, #4dc9f688, #4dc9f622);
+  bottom: 15%; left: 4%;
+  animation: floatUpC 5s ease-in-out infinite 1s;
+}
+.lb-4 {
+  width: 65px; height: 65px;
+  background: radial-gradient(circle, #7ed32188, #7ed32122);
+  bottom: 10%; right: 8%;
+  animation: floatUp 4.2s ease-in-out infinite 0.3s;
+}
+.lb-5 {
+  width: 40px; height: 40px;
+  background: radial-gradient(circle, #b76cff88, #b76cff22);
+  top: 40%; left: 2%;
+  animation: floatUpB 3.8s ease-in-out infinite 1.5s;
+}
+.lb-6 {
+  width: 45px; height: 45px;
+  background: radial-gradient(circle, #ff6b9d66, #ffb84033);
+  top: 55%; right: 4%;
+  animation: floatUpC 4.5s ease-in-out infinite 0.8s;
+}
+.lb-7 {
+  width: 28px; height: 28px;
+  background: radial-gradient(circle, #4dc9f6aa, #4dc9f633);
+  top: 25%; left: 30%;
+  animation: floatUp 3.2s ease-in-out infinite 2s;
+}
+.lb-8 {
+  width: 32px; height: 32px;
+  background: radial-gradient(circle, #ffb840aa, #ffb84033);
+  bottom: 30%; right: 25%;
+  animation: floatUpB 3.6s ease-in-out infinite 1.2s;
+}
+
+/* ── Sparkle stars ────────────────────────────────────────────── */
+.loader-sparkle {
+  position: absolute;
+  pointer-events: none;
+  font-size: 1.4rem;
+  animation: twinkle 2s ease-in-out infinite;
+}
+.ls-1 { top: 12%; left: 20%;  animation-delay: 0s;    }
+.ls-2 { top: 20%; right: 18%; animation-delay: 0.5s;  }
+.ls-3 { bottom: 22%; left: 18%; animation-delay: 1s;  }
+.ls-4 { bottom: 18%; right: 20%; animation-delay: 1.5s; }
+.ls-5 { top: 50%; left: 12%;  animation-delay: 0.8s;  }
+.ls-6 { top: 45%; right: 12%; animation-delay: 0.3s;  }
+
+/* ── Central content card ─────────────────────────────────────── */
+.app-loader-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 0 24px;
+}
+
+/* Pulse ring behind logo */
+.loader-ring {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 3px solid #ff6b9d33;
+  animation: pulseRing 2.5s ease-in-out infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.loader-ring-2 {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 2px solid #4dc9f622;
+  animation: pulseRing 2.5s ease-in-out infinite 0.8s;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loader-logo-wrap {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-loader-logo {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  animation: logoPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  filter: drop-shadow(0 8px 24px rgba(214, 34, 106, 0.2));
+  position: relative;
+  z-index: 2;
+}
+
+/* Tagline */
+.app-loader-tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: #5a3e5a;
+  margin-top: -12px;
+  margin-bottom: 28px;
+  animation: slideUp 0.7s ease forwards 0.5s;
+  opacity: 0;
+  letter-spacing: 0.01em;
+}
+
+/* ── Premium shimmer progress bar ──────────────────────────────── */
 .app-loader-track {
-  width: 100%;
-  height: 4px;
-  background: var(--brand-beige);
-  border-radius: 10px;
+  width: 240px;
+  height: 6px;
+  background: #f0e6f5;
+  border-radius: 99px;
   overflow: hidden;
   position: relative;
-  margin-top: 4px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
 }
 
 .app-loader-bar {
   height: 100%;
-  background: var(--brand-terracotta);
-  border-radius: 10px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #ff6b9d, #ffb840, #4dc9f6, #7ed321, #b76cff);
+  background-size: 300% 100%;
+  animation: gradientShift 1.5s ease infinite;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Shimmer sheen */
+.app-loader-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.55) 40%,
+    transparent 60%
+  );
+  animation: shimmerSweep 1.2s ease-in-out infinite;
+}
+
+/* ── Bouncing dot loader ────────────────────────────────────────── */
+.loader-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.loader-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: dotBounce 1.4s ease-in-out infinite both;
+}
+.loader-dot:nth-child(1) { background: #ff6b9d; animation-delay: 0s;    }
+.loader-dot:nth-child(2) { background: #ffb840; animation-delay: 0.2s;  }
+.loader-dot:nth-child(3) { background: #4dc9f6; animation-delay: 0.4s;  }
+.loader-dot:nth-child(4) { background: #7ed321; animation-delay: 0.6s;  }
+.loader-dot:nth-child(5) { background: #b76cff; animation-delay: 0.8s;  }
+
+/* Message text */
 .app-loader-message {
   font-family: var(--font-body);
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 0.78rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--text-muted);
-  animation: pulse-message 1.6s infinite ease-in-out;
+  letter-spacing: 3px;
+  color: #b8a0c0;
+  animation: slideUp 0.7s ease forwards 0.8s, pulse-message 2s infinite ease-in-out 1.5s;
+  opacity: 0;
 }
 
 @keyframes pulse-message {
-  0%, 100% { opacity: 0.55; }
-  50% { opacity: 1; }
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1;   }
 }
 
 /* ── Global Mobile Overrides (≤480px) ─────────────────────────── */

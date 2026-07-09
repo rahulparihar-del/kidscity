@@ -102,7 +102,9 @@ export default function HeroBanner({ onViewChange }) {
         </div>
 
         {/* Right Column: Layered Boutique Collage */}
-        <div className={styles.collageCol} style={{ opacity: loading ? 0 : 1, transition: 'opacity 0.3s ease' }}>
+        {/* NOTE: Never hide this column while loading — static fallbacks show instantly.
+            Supabase image overrides will silently swap in once the fetch resolves. */}
+        <div className={styles.collageCol}>
           <div className={styles.collageContainer}>
             {/* Background Blob Frame */}
             <div className={styles.collageBlob} />
@@ -117,8 +119,10 @@ export default function HeroBanner({ onViewChange }) {
             >
               <img
                 src={imgLeft}
-                alt="Festive kids collection"
+                alt="Kids festival wear collection — Navratri and Diwali outfits for boys and girls in Wakad, Pune"
                 className={styles.collageImg}
+                loading="eager"
+                fetchpriority="high"
               />
               <div className={styles.cardLabel}>Festive Joy</div>
             </motion.div>
@@ -133,8 +137,10 @@ export default function HeroBanner({ onViewChange }) {
             >
               <img
                 src={imgRight}
-                alt="Birthday kids dress"
+                alt="Birthday party dress for kids — princess and party wear for girls at Kids City Wakad"
                 className={styles.collageImg}
+                loading="eager"
+                fetchpriority="high"
               />
               <div className={styles.cardLabel}>Party Wear</div>
             </motion.div>
@@ -149,8 +155,10 @@ export default function HeroBanner({ onViewChange }) {
             >
               <img
                 src={imgCenter}
-                alt="Kids Clothing model"
+                alt="Kids clothing model — new arrivals at Kids City, best children's fashion store in Wakad, Pune"
                 className={styles.collageImg}
+                loading="eager"
+                fetchpriority="high"
               />
               <div className={styles.cardLabelMain}>New Arrivals</div>
             </motion.div>

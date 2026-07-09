@@ -37,16 +37,16 @@
 }
 
 .logoImg {
-  height: 116px;
+  height: 90px;
   width: auto;
   object-fit: contain;
-  margin: -32px -15px;
+  margin: -22px -10px;
   transition: all 0.4s ease;
 }
 
 .scrolled .logoImg {
-  height: 90px;
-  margin: -24px -10px;
+  height: 70px;
+  margin: -16px -8px;
 }
 
 /* ─── Desktop nav links ───────────────────────────────────────── */
@@ -416,6 +416,6 @@
 @media (max-width: 560px) {
   .nav { height: 78px; }
   .scrolled { height: 66px; }
-  .logoImg { height: 96px; margin: -24px -10px; }
-  .scrolled .logoImg { height: 78px; margin: -18px -8px; }
+  .logoImg { height: 74px; margin: -16px -8px; }
+  .scrolled .logoImg { height: 60px; margin: -12px -6px; }
 }

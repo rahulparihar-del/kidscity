@@ -486,7 +486,7 @@ export default function ShopView({ products, onSelectProduct }) {
                           {p.img ? (
                             <img
                               src={p.img}
-                              alt={p.name}
+                              alt={`${p.name} — ${p.category || 'Kids clothing'} at Kids City Wakad, Pune`}
                               className={styles.cardImg}
                               loading="lazy"
                               onError={(e) => { e.target.style.display = 'none' }}

@@ -108,7 +108,6 @@ export default function CategoryGrid({ onViewChange }) {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-40px' }}
-          style={{ opacity: loading ? 0 : 1, transition: 'opacity 0.4s ease' }}
         >
           {CATEGORIES.map(cat => (
             <motion.div
@@ -125,8 +124,9 @@ export default function CategoryGrid({ onViewChange }) {
               <div className={styles.imgWrap}>
                 <img
                   src={cat.img}
-                  alt={`${cat.label} collection`}
+                  alt={`${cat.label} kids clothing — ${cat.sublabel} at Kids City Wakad, Pune`}
                   className={styles.img}
+                  loading="lazy"
                 />
                 <div className={styles.gradientOverlay} />
               </div>

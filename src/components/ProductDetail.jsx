@@ -119,7 +119,7 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 src={activeImg}
-                alt={product.name}
+                alt={`${product.name} — ${product.category || 'Kids clothing'} at Kids City Wakad, Pune`}
                 className={styles.mainImage}
               />
             </div>
@@ -133,7 +133,7 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
                     className={`${styles.thumbBtn} ${activeImg === img ? styles.thumbActive : ''}`}
                     onClick={() => setActiveImg(img)}
                   >
-                    <img src={img} alt={`Thumbnail ${idx}`} className={styles.thumbImg} />
+                    <img src={img} alt={`${product.name} view ${idx + 1} — Kids City Wakad`} className={styles.thumbImg} />
                   </button>
                 ))}
               </div>

@@ -40,7 +40,7 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag 
           <a href="/" className={styles.logo} onClick={(e) => handleNavClick('home', e)} aria-label="Kids City Home">
             <img
               src="/images/logo_full.webp"
-              alt="Kids City"
+              alt="Kids City — Kids Clothes Shop in Wakad, Pune"
               className={styles.logoImg}
             />
           </a>
@@ -129,7 +129,7 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag 
           >
             {/* Drawer header */}
             <div className={styles.drawerHeader}>
-              <img src="/images/logo_full.webp" alt="Kids City" className={styles.drawerLogo} />
+              <img src="/images/logo_full.webp" alt="Kids City — Children Clothing Store in Pune" className={styles.drawerLogo} />
               <button className={styles.closeBtn} onClick={() => setMenuOpen(false)} aria-label="Close menu">
                 <X size={20} />
               </button>

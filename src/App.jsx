@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { PAGE_SEO, getProductSEO } from './hooks/useSEO'
 import Navbar from './components/Navbar'
 import HeroBanner from './components/HeroBanner'
 import TrustBar from './components/TrustBar'
@@ -148,6 +149,25 @@ export default function App() {
     return () => window.removeEventListener('popstate', handleUrlRoute)
   }, [dbProducts])
 
+  // ── Dynamic SEO: update <title> + meta description on every view change ──
+  useEffect(() => {
+    const seo =
+      currentView === 'product-detail' && selectedProduct
+        ? getProductSEO(selectedProduct)
+        : PAGE_SEO[currentView] || PAGE_SEO.home
+
+    document.title = seo.title
+
+    const metaDesc = document.querySelector('meta[name="description"]')
+    if (metaDesc) metaDesc.setAttribute('content', seo.description)
+
+    // Update OG title + description too
+    const ogTitle = document.querySelector('meta[property="og:title"]')
+    const ogDesc  = document.querySelector('meta[property="og:description"]')
+    if (ogTitle) ogTitle.setAttribute('content', seo.title)
+    if (ogDesc)  ogDesc.setAttribute('content', seo.description)
+  }, [currentView, selectedProduct])
+
   // Track page image loading on view change to prevent flashing of un-loaded content
   useEffect(() => {
     // We don't need to show it on mount since appLoading covers the initial load
@@ -253,27 +273,25 @@ export default function App() {
             className="app-loader"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
+            transition={{ duration: 0.45, ease: 'easeInOut' }}
           >
-            <div className="app-loader-content">
-              <motion.img
+            {/* Logo with shimmer sweep */}
+            <div className="loader-logo-wrap">
+              <img
                 src="/images/logo_full.webp"
-                alt="Kids City Logo"
+                alt="Kids City"
                 className="app-loader-logo"
-                animate={{ scale: [0.96, 1.04, 0.96] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
               />
-              <p className="app-loader-tagline">Dressing your little sunshine...</p>
-              <div className="app-loader-track">
-                <motion.div
-                  className="app-loader-bar"
-                  initial={{ width: '0%' }}
-                  animate={{ width: '100%' }}
-                  transition={{ duration: 0.8, ease: 'easeInOut' }}
-                />
-              </div>
-              <span className="app-loader-message">Gonna open soon</span>
             </div>
+
+            {/* Tagline */}
+            <p className="app-loader-tagline">Clothes for Little Explorers</p>
+
+            {/* Brand message */}
+            <span className="app-loader-message">Wakad · Pune</span>
+
+            {/* Rainbow progress bar pinned to screen bottom */}
+            <div className="loader-progress-line" />
           </motion.div>
         )}
       </AnimatePresence>

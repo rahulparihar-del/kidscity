@@ -103,20 +103,19 @@
 }
 
 .logo {
-  font-family: var(--font-head);
-  font-size: 1.9rem;
-  font-weight: 900;
-  color: var(--white);
-  letter-spacing: -0.03em;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
 }
 
-.logoSerif {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 600;
-  color: var(--brand-terracotta-light);
+.logoImg {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: brightness(1.05);
 }
+
 
 .brandText {
   font-size: 0.9rem;

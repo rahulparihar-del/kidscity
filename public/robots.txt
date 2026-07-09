@@ -1,5 +1,17 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /?s=
+Disallow: /api/
 
-# Replace with your real domain
+# Common crawlers
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# Sitemap
 Sitemap: https://www.kidscitywakad.in/sitemap.xml

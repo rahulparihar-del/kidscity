@@ -14,6 +14,7 @@ const COLLECTIONS = [
 const QUICK_LINKS = [
   { label: 'Home', view: 'home' },
   { label: 'Collections', view: 'shop' },
+  { label: 'About Us', view: 'home' },
   { label: 'Contact Us', view: 'contact' },
   { label: 'Frequently Asked Questions', view: 'contact' }
 ]
@@ -63,8 +64,15 @@ export default function Footer({ onViewChange }) {
         <div className={styles.grid}>
           {/* Brand Info */}
           <div className={styles.brandCol}>
-            <a href="/" onClick={(e) => handleNavClick('home', e)} className={styles.logo}>
-              Kids<span className={styles.logoSerif}>City</span>
+            <a href="/" onClick={(e) => handleNavClick('home', e)} className={styles.logo} aria-label="Kids City Home">
+              <img
+                src="/images/logo_full.webp"
+                alt="Kids City — Kids Clothes Shop in Wakad, Pune"
+                className={styles.logoImg}
+                loading="lazy"
+                width="140"
+                height="56"
+              />
             </a>
             <p className={styles.brandText}>
               Wakad's premier children's clothing store. We handpick high-quality, comfortable, and stylish outfits for boys & girls aged 0 to 14 years.
@@ -136,8 +144,15 @@ export default function Footer({ onViewChange }) {
             <div className={styles.contactList}>
               <div className={styles.contactItem}>
                 <MapPin size={16} className={styles.contactIcon} style={{ flexShrink: 0, marginTop: '2px' }} />
-                <address style={{ fontStyle: 'normal', margin: 0, padding: 0 }}>
-                  Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Rd, beside Annapurna Veg Restaurant, Wakad, Pune, Maharashtra 411057
+                <address
+                  style={{ fontStyle: 'normal', margin: 0, padding: 0 }}
+                  itemScope
+                  itemType="https://schema.org/PostalAddress"
+                >
+                  <span itemProp="streetAddress">Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Rd, beside Annapurna Veg Restaurant, Wakad</span>,{' '}
+                  <span itemProp="addressLocality">Pimpri-Chinchwad</span>,{' '}
+                  <span itemProp="addressRegion">Maharashtra</span>{' '}
+                  <span itemProp="postalCode">411057</span>
                 </address>
               </div>
               <a href="tel:+917891672762" className={styles.contactItemLink}>
