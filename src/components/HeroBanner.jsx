@@ -122,7 +122,7 @@ export default function HeroBanner({ onViewChange }) {
                 alt="Kids festival wear collection — Navratri and Diwali outfits for boys and girls in Wakad, Pune"
                 className={styles.collageImg}
                 loading="eager"
-                fetchpriority="high"
+                fetchPriority="high"
               />
               <div className={styles.cardLabel}>Festive Joy</div>
             </motion.div>
@@ -140,7 +140,7 @@ export default function HeroBanner({ onViewChange }) {
                 alt="Birthday party dress for kids — princess and party wear for girls at Kids City Wakad"
                 className={styles.collageImg}
                 loading="eager"
-                fetchpriority="high"
+                fetchPriority="high"
               />
               <div className={styles.cardLabel}>Party Wear</div>
             </motion.div>
@@ -158,7 +158,7 @@ export default function HeroBanner({ onViewChange }) {
                 alt="Kids clothing model — new arrivals at Kids City, best children's fashion store in Wakad, Pune"
                 className={styles.collageImg}
                 loading="eager"
-                fetchpriority="high"
+                fetchPriority="high"
               />
               <div className={styles.cardLabelMain}>New Arrivals</div>
             </motion.div>
