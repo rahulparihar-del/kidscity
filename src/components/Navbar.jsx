@@ -9,6 +9,14 @@ const NAV_LINKS = [
   { label: 'Contact & FAQ', view: 'contact' },
 ]
 
+const DRAWER_LINKS = [
+  { label: 'Home', view: 'home' },
+  { label: 'Collections', view: 'shop' },
+  { label: 'About Us', view: 'about' },
+  { label: 'FAQ', view: 'faq' },
+  { label: 'Contact & FAQ', view: 'contact' },
+]
+
 export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -46,13 +54,14 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag 
           </a>
 
           {/* Desktop links */}
-          <ul className={styles.links}>
+          <ul className={styles.links} role="navigation" aria-label="Main navigation">
             {NAV_LINKS.map(({ label, view }) => (
               <li key={view}>
                 <a
-                  href={`#${view}`}
+                  href={`/${view === 'home' ? '' : view}`}
                   className={`${styles.link} ${currentView === view ? styles.linkActive : ''}`}
                   onClick={(e) => handleNavClick(view, e)}
+                  aria-current={currentView === view ? 'page' : undefined}
                 >
                   {label}
                 </a>
@@ -136,17 +145,18 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag 
             </div>
 
             {/* Nav links */}
-            <nav className={styles.drawerNav}>
+            <nav className={styles.drawerNav} aria-label="Mobile navigation">
               <p className={styles.drawerNavLabel}>Navigation</p>
-              {NAV_LINKS.map(({ label, view, emoji }, i) => (
+              {DRAWER_LINKS.map(({ label, view }, i) => (
                 <motion.a
                   key={view}
-                  href={`#${view}`}
+                  href={`/${view === 'home' ? '' : view}`}
                   className={`${styles.drawerLink} ${currentView === view ? styles.drawerLinkActive : ''}`}
                   onClick={(e) => handleNavClick(view, e)}
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.07 + 0.1, duration: 0.35 }}
+                  aria-current={currentView === view ? 'page' : undefined}
                 >
                   <span className={styles.drawerLinkText}>{label}</span>
                   <ChevronRight size={16} className={styles.drawerChevron} />

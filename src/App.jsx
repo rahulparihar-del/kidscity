@@ -13,18 +13,60 @@ import Newsletter from './components/Newsletter'
 import Footer from './components/Footer'
 import WhatsAppFAB from './components/WhatsAppFAB'
 
-// New modular routing views
+// Modular routing views
 import ShopView, { PRODUCTS } from './components/ShopView'
 import ProductDetail from './components/ProductDetail'
 import ContactView from './components/ContactView'
+import AboutView from './components/AboutView'
+import FAQView from './components/FAQView'
+import PolicyView from './components/PolicyView'
+import NotFoundView from './components/NotFoundView'
 import InquiryDrawer from './components/InquiryDrawer'
 import AdminPanel from './components/AdminPanel'
 
 // Supabase client
 import { supabase } from './supabaseClient'
 
+// ── URL path ↔ view mapping ──────────────────────────────────────────────────
+const PATH_TO_VIEW = {
+  '/':                'home',
+  '/collections':     'shop',
+  '/shop':            'shop',
+  '/contact':         'contact',
+  '/about':           'about',
+  '/faq':             'faq',
+  '/privacy-policy':  'privacy-policy',
+  '/terms':           'terms',
+  '/shipping-policy': 'shipping-policy',
+  '/return-policy':   'return-policy',
+  '/404':             '404',
+}
+
+const VIEW_TO_PATH = {
+  home:              '/',
+  shop:              '/collections',
+  contact:           '/contact',
+  about:             '/about',
+  faq:               '/faq',
+  'privacy-policy':  '/privacy-policy',
+  'terms':           '/terms',
+  'shipping-policy': '/shipping-policy',
+  'return-policy':   '/return-policy',
+  '404':             '/404',
+  admin:             '/admin',
+}
+
+const POLICY_VIEWS = ['privacy-policy', 'terms', 'shipping-policy', 'return-policy']
+
+function resolveViewFromPath(pathname) {
+  return PATH_TO_VIEW[pathname] || '404'
+}
+
 export default function App() {
-  const [currentView, setCurrentView] = useState('home') // 'home', 'shop', 'product-detail', 'contact', 'admin'
+  const [currentView, setCurrentView] = useState(() => {
+    // On first load, resolve from the URL path
+    return resolveViewFromPath(window.location.pathname)
+  })
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [inquiryBag, setInquiryBag] = useState([])
   const [isBagOpen, setIsBagOpen] = useState(false)
@@ -129,8 +171,10 @@ export default function App() {
     if (dbProducts.length === 0) return
 
     const handleUrlRoute = () => {
+      const path = window.location.pathname
       const params = new URLSearchParams(window.location.search)
       const productId = params.get('product')
+
       if (productId) {
         const match = dbProducts.find(p => p.id.toString() === productId)
         if (match) {
@@ -139,6 +183,10 @@ export default function App() {
           return
         }
       }
+
+      // Route from path
+      const view = resolveViewFromPath(path)
+      setCurrentView(view)
     }
 
     // Run on initial load/reload of dbProducts
@@ -166,6 +214,17 @@ export default function App() {
     const ogDesc  = document.querySelector('meta[property="og:description"]')
     if (ogTitle) ogTitle.setAttribute('content', seo.title)
     if (ogDesc)  ogDesc.setAttribute('content', seo.description)
+
+    // Update canonical URL
+    let canonical = document.querySelector('link[rel="canonical"]')
+    if (canonical) {
+      const path = VIEW_TO_PATH[currentView] || '/'
+      const canonicalUrl = `https://kidscity.online${path}`
+      canonical.setAttribute('href', canonicalUrl)
+      // Update OG URL
+      const ogUrl = document.querySelector('meta[property="og:url"]')
+      if (ogUrl) ogUrl.setAttribute('content', canonicalUrl)
+    }
   }, [currentView, selectedProduct])
 
   // Track page image loading on view change to prevent flashing of un-loaded content
@@ -256,6 +315,17 @@ export default function App() {
     }
   }
 
+  // ── View change handler — also updates URL ──────────────────────────────────
+  const handleViewChange = (view) => {
+    setCurrentView(view)
+    const path = VIEW_TO_PATH[view] || '/'
+    // Don't update URL for admin or product-detail (product-detail uses query param)
+    if (view !== 'product-detail') {
+      window.history.pushState({ view }, '', path)
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   // Router handler to update views and handle details navigation
   const handleSelectProduct = (product) => {
     setSelectedProduct(product)
@@ -267,6 +337,9 @@ export default function App() {
 
   return (
     <>
+      {/* Skip to content for accessibility */}
+      <a href="#main-content" className="skip-nav">Skip to main content</a>
+
       <AnimatePresence>
         {(appLoading || viewLoading) && (
           <motion.div
@@ -284,12 +357,6 @@ export default function App() {
               />
             </div>
 
-            {/* Tagline */}
-            <p className="app-loader-tagline">Clothes for Little Explorers</p>
-
-            {/* Brand message */}
-            <span className="app-loader-message">Wakad · Pune</span>
-
             {/* Rainbow progress bar pinned to screen bottom */}
             <div className="loader-progress-line" />
           </motion.div>
@@ -298,7 +365,7 @@ export default function App() {
 
       <Navbar
         currentView={currentView}
-        onViewChange={setCurrentView}
+        onViewChange={handleViewChange}
         bagCount={inquiryBag.length}
         onOpenBag={() => setIsBagOpen(true)}
       />
@@ -310,102 +377,142 @@ export default function App() {
         onRemoveFromBag={handleRemoveFromBag}
       />
 
-      <AnimatePresence mode="wait">
-        {currentView === 'home' && (
-          <motion.div
-            key="home"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <main>
-              <HeroBanner onViewChange={setCurrentView} />
+      <main id="main-content">
+        <AnimatePresence mode="wait">
+          {currentView === 'home' && (
+            <motion.div
+              key="home"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <HeroBanner onViewChange={handleViewChange} />
               <TrustBar />
-              <CategoryGrid onViewChange={setCurrentView} />
+              <CategoryGrid onViewChange={handleViewChange} />
               <ShopByCategory />
               <FeaturedProducts
                 products={dbProducts}
                 onSelectProduct={handleSelectProduct}
-                onViewChange={setCurrentView}
+                onViewChange={handleViewChange}
               />
               <WhyUs />
               <Testimonials />
               <Newsletter />
-            </main>
-          </motion.div>
-        )}
+            </motion.div>
+          )}
 
-        {currentView === 'shop' && (
-          <motion.div
-            key="shop"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.3 }}
-          >
-            <main>
+          {currentView === 'shop' && (
+            <motion.div
+              key="shop"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+            >
               <ShopView
                 products={dbProducts}
                 onSelectProduct={handleSelectProduct}
               />
-            </main>
-          </motion.div>
-        )}
+            </motion.div>
+          )}
 
-        {currentView === 'product-detail' && selectedProduct && (
-          <motion.div
-            key={`detail-${selectedProduct.id}`}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.3 }}
-          >
-            <main>
+          {currentView === 'product-detail' && selectedProduct && (
+            <motion.div
+              key={`detail-${selectedProduct.id}`}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.3 }}
+            >
               <ProductDetail
                 product={selectedProduct}
                 onBack={() => {
-                  setCurrentView('shop')
-                  window.history.pushState({}, '', window.location.pathname)
+                  handleViewChange('shop')
+                  window.history.pushState({}, '', '/collections')
                 }}
                 onAddToBag={handleAddToBag}
                 onSelectProduct={handleSelectProduct}
                 allProducts={dbProducts}
               />
-            </main>
-          </motion.div>
-        )}
+            </motion.div>
+          )}
 
-        {currentView === 'contact' && (
-          <motion.div
-            key="contact"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.3 }}
-          >
-            <main>
+          {currentView === 'contact' && (
+            <motion.div
+              key="contact"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+            >
               <ContactView />
-            </main>
-          </motion.div>
-        )}
+            </motion.div>
+          )}
 
-        {currentView === 'admin' && (
-          <motion.div
-            key="admin"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <main>
-              <AdminPanel onBack={() => setCurrentView('home')} />
-            </main>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          {currentView === 'about' && (
+            <motion.div
+              key="about"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+            >
+              <AboutView onViewChange={handleViewChange} />
+            </motion.div>
+          )}
 
-      <Footer onViewChange={setCurrentView} />
+          {currentView === 'faq' && (
+            <motion.div
+              key="faq"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+            >
+              <FAQView onViewChange={handleViewChange} />
+            </motion.div>
+          )}
+
+          {POLICY_VIEWS.includes(currentView) && (
+            <motion.div
+              key={currentView}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+            >
+              <PolicyView policyKey={currentView} onViewChange={handleViewChange} />
+            </motion.div>
+          )}
+
+          {currentView === '404' && (
+            <motion.div
+              key="404"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+            >
+              <NotFoundView onViewChange={handleViewChange} />
+            </motion.div>
+          )}
+
+          {currentView === 'admin' && (
+            <motion.div
+              key="admin"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <AdminPanel onBack={() => handleViewChange('home')} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </main>
+
+      <Footer onViewChange={handleViewChange} />
       <WhatsAppFAB />
     </>
   )

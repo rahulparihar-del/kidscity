@@ -1,0 +1,138 @@
+.policyPage {
+  background: var(--brand-cream);
+  min-height: 100vh;
+}
+.banner {
+  background: linear-gradient(135deg, var(--brand-navy-dark) 0%, var(--brand-navy) 100%);
+  padding: 110px 0 48px;
+}
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  border-radius: 100px;
+  padding: 7px 16px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background 0.2s;
+}
+.backBtn:hover { background: rgba(255,255,255,0.2); }
+.title {
+  font-family: var(--font-head);
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.lastUpdated {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.6);
+}
+.content { padding: 60px 0 80px; }
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 40px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .contentGrid { grid-template-columns: 1fr; }
+  .toc { order: -1; }
+}
+.article {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px 44px;
+  box-shadow: 0 2px 16px rgba(61,64,91,0.06);
+  border: 1px solid var(--border);
+}
+@media (max-width: 600px) { .article { padding: 28px 20px; } }
+.intro {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+  padding: 16px 20px;
+  background: var(--brand-beige);
+  border-left: 4px solid var(--brand-terracotta);
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 32px;
+}
+.policySection { margin-bottom: 32px; }
+.sectionHeading {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brand-navy-dark);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.sectionContent {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.78;
+}
+.contactBox {
+  background: var(--brand-beige);
+  border-radius: 14px;
+  padding: 24px 28px;
+  margin-top: 32px;
+}
+.contactBox h3 {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--brand-navy-dark);
+  margin-bottom: 12px;
+}
+.contactBox p {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.contactBox a { color: var(--brand-terracotta); text-decoration: none; }
+.contactBox a:hover { text-decoration: underline; }
+
+/* TOC */
+.tocCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 2px 12px rgba(61,64,91,0.06);
+  border: 1px solid var(--border);
+  position: sticky;
+  top: 80px;
+}
+.tocTitle {
+  font-family: var(--font-head);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brand-navy-dark);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.tocList { list-style: none; padding: 0; margin: 0; }
+.tocList li { margin-bottom: 8px; }
+.tocLink {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  text-decoration: none;
+  display: block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+.tocLink:hover { background: var(--brand-beige); color: var(--brand-terracotta); }

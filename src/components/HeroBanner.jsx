@@ -36,7 +36,7 @@ export default function HeroBanner({ onViewChange }) {
             transition={{ duration: 0.5 }}
           >
             <Sparkles size={14} className={styles.sparkleIcon} />
-            <span className={styles.badgeText} style={{ margin: 0, fontWeight: 'inherit', fontSize: 'inherit' }}>Kids Clothes Shop in Wakad, Pune</span>
+            <span className={styles.badgeText} style={{ margin: 0, fontWeight: 'inherit', fontSize: 'inherit' }}>Wakad's Most Loved Kids Clothes Shop</span>
           </motion.div>
 
           {/* Headline - Mix of Outfit and Playfair Display */}
@@ -46,7 +46,7 @@ export default function HeroBanner({ onViewChange }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Dressing your <span className={styles.serifAccent}>little sunshine</span> in pure comfort
+            Best Kids Clothes Shop in <span className={styles.serifAccent}>Wakad, Pune</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -56,7 +56,7 @@ export default function HeroBanner({ onViewChange }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Explore 500+ premium styles of kids festival wear, traditional dresses, and casual everyday clothes for boys &amp; girls (0–14 years). Discover the most loved children's clothing store in Wakad, Pune.
+            Discover premium kids clothing for boys and girls aged 0–14 years. Explore festival wear, birthday dresses, traditional outfits, casual wear, and new arrivals at Kids City, Wakad — rated 4.9★ by 135+ Pune families.
           </motion.p>
 
           {/* Action buttons */}
@@ -119,10 +119,12 @@ export default function HeroBanner({ onViewChange }) {
             >
               <img
                 src={imgLeft}
-                alt="Kids festival wear collection — Navratri and Diwali outfits for boys and girls in Wakad, Pune"
+                alt="Kids festival wear Wakad Pune — Navratri lehenga and Diwali kurta outfits for boys and girls at Kids City"
                 className={styles.collageImg}
                 loading="eager"
                 fetchPriority="high"
+                width="240"
+                height="320"
               />
               <div className={styles.cardLabel}>Festive Joy</div>
             </motion.div>
@@ -137,10 +139,12 @@ export default function HeroBanner({ onViewChange }) {
             >
               <img
                 src={imgRight}
-                alt="Birthday party dress for kids — princess and party wear for girls at Kids City Wakad"
+                alt="Birthday dress for kids Pune — princess party wear for girls at Kids City, best kids boutique in Wakad"
                 className={styles.collageImg}
                 loading="eager"
                 fetchPriority="high"
+                width="240"
+                height="320"
               />
               <div className={styles.cardLabel}>Party Wear</div>
             </motion.div>
@@ -155,10 +159,12 @@ export default function HeroBanner({ onViewChange }) {
             >
               <img
                 src={imgCenter}
-                alt="Kids clothing model — new arrivals at Kids City, best children's fashion store in Wakad, Pune"
+                alt="Kids wear Wakad Pune — new arrivals at Kids City, children's clothing store for boys and girls aged 0–14 years"
                 className={styles.collageImg}
                 loading="eager"
                 fetchPriority="high"
+                width="280"
+                height="380"
               />
               <div className={styles.cardLabelMain}>New Arrivals</div>
             </motion.div>

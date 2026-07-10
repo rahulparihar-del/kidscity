@@ -1,23 +1,32 @@
 import { motion } from 'framer-motion'
-import { MapPin, Phone, MessageSquare, Camera, Clock, Navigation, Heart, ArrowRight } from 'lucide-react'
+import { MapPin, Phone, MessageSquare, Camera, Clock, Navigation, Heart, ArrowRight, Mail, Star } from 'lucide-react'
 import styles from './Footer.module.css'
 
 const COLLECTIONS = [
-  { label: 'Festival Wear', view: 'shop' },
-  { label: 'Traditional wear', view: 'shop' },
-  { label: 'Casual wear', view: 'shop' },
-  { label: 'Birthday Special', view: 'shop' },
+  { label: 'Festival Wear — Wakad', view: 'shop' },
+  { label: 'Traditional Kids Wear', view: 'shop' },
+  { label: 'Birthday Dresses Pune', view: 'shop' },
+  { label: 'Casual Kids Wear', view: 'shop' },
   { label: 'Girls Collection', view: 'shop' },
-  { label: 'Boys Collection', view: 'shop' }
+  { label: 'Boys Collection', view: 'shop' },
 ]
 
 const QUICK_LINKS = [
   { label: 'Home', view: 'home' },
   { label: 'Collections', view: 'shop' },
-  { label: 'About Us', view: 'home' },
-  { label: 'Contact Us', view: 'contact' },
-  { label: 'Frequently Asked Questions', view: 'contact' }
+  { label: 'About Kids City', view: 'about' },
+  { label: 'Contact & Visit', view: 'contact' },
+  { label: 'FAQ', view: 'faq' },
 ]
+
+const POLICY_LINKS = [
+  { label: 'Privacy Policy', view: 'privacy-policy' },
+  { label: 'Terms & Conditions', view: 'terms' },
+  { label: 'Shipping Policy', view: 'shipping-policy' },
+  { label: 'Return & Exchange', view: 'return-policy' },
+]
+
+const SERVICE_AREAS = ['Wakad', 'Hinjewadi', 'Baner', 'Balewadi', 'Pimple Saudagar', 'Ravet', 'Tathawade', 'Pimpri', 'Pune']
 
 export default function Footer({ onViewChange }) {
   const handleNavClick = (view, e) => {
@@ -27,7 +36,7 @@ export default function Footer({ onViewChange }) {
   }
 
   return (
-    <footer id="footer" className={styles.footer}>
+    <footer id="footer" className={styles.footer} aria-label="Kids City footer">
       <div className="container">
         {/* Top CTA Conversion Band */}
         <div className={styles.ctaBand}>
@@ -37,7 +46,7 @@ export default function Footer({ onViewChange }) {
               Bring your little stars to our <span className="serif-accent" style={{ color: 'var(--brand-terracotta-light)' }}>Wakad boutique</span>
             </h3>
             <p className={styles.ctaSub}>
-              Explore 500+ premium styles of skin-safe, comfortable kids clothes in store. Open daily at Mahalaxmi Complex.
+              Explore 500+ premium kids clothing styles — festival wear, birthday dresses, traditional outfits, and everyday casuals for boys & girls aged 0–14 years in Wakad, Pune.
             </p>
           </div>
           <div className={styles.ctaBtns}>
@@ -46,6 +55,7 @@ export default function Footer({ onViewChange }) {
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-terracotta"
+              aria-label="Get directions to Kids City Wakad on Google Maps"
             >
               <Navigation size={16} fill="currentColor" strokeWidth={0} /> Get Directions
             </a>
@@ -54,6 +64,7 @@ export default function Footer({ onViewChange }) {
               target="_blank"
               rel="noopener noreferrer"
               className={`btn btn-wa ${styles.waCta}`}
+              aria-label="Chat with Kids City Wakad on WhatsApp"
             >
               <MessageSquare size={16} fill="currentColor" strokeWidth={0} /> WhatsApp Chat
             </a>
@@ -67,7 +78,7 @@ export default function Footer({ onViewChange }) {
             <a href="/" onClick={(e) => handleNavClick('home', e)} className={styles.logo} aria-label="Kids City Home">
               <img
                 src="/images/logo_full.webp"
-                alt="Kids City — Kids Clothes Shop in Wakad, Pune"
+                alt="Kids City — Best Kids Clothes Shop in Wakad, Pune"
                 className={styles.logoImg}
                 loading="lazy"
                 width="140"
@@ -75,8 +86,21 @@ export default function Footer({ onViewChange }) {
               />
             </a>
             <p className={styles.brandText}>
-              Wakad's premier children's clothing store. We handpick high-quality, comfortable, and stylish outfits for boys & girls aged 0 to 14 years.
+              Wakad's most loved children's clothing store since 2018. We handpick high-quality, skin-safe, comfortable, and stylish outfits for boys & girls aged 0–14 years across Pune and Pimpri-Chinchwad.
             </p>
+
+            {/* Google Reviews badge */}
+            <a
+              href="https://www.google.com/maps/dir//Kids+City+Wakad"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.reviewBadge}
+              aria-label="Kids City has 4.9 star Google rating from 135 reviews"
+            >
+              <Star size={14} fill="#FBBF24" strokeWidth={0} />
+              <span className={styles.reviewScore}>4.9</span>
+              <span className={styles.reviewCount}>· 135+ Google Reviews</span>
+            </a>
             
             {/* Social media links */}
             <div className={styles.socials}>
@@ -85,7 +109,7 @@ export default function Footer({ onViewChange }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialBtn}
-                aria-label="Instagram"
+                aria-label="Kids City Instagram — kids clothing Wakad"
               >
                 <Camera size={16} />
               </a>
@@ -94,14 +118,14 @@ export default function Footer({ onViewChange }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialBtn}
-                aria-label="WhatsApp"
+                aria-label="Kids City WhatsApp"
               >
                 <MessageSquare size={16} />
               </a>
               <a
                 href="tel:+917891672762"
                 className={styles.socialBtn}
-                aria-label="Phone Call"
+                aria-label="Call Kids City Wakad"
               >
                 <Phone size={16} />
               </a>
@@ -114,7 +138,7 @@ export default function Footer({ onViewChange }) {
             <ul className={styles.linkList}>
               {COLLECTIONS.map((c, i) => (
                 <li key={i}>
-                  <a href="#shop" onClick={(e) => handleNavClick(c.view, e)} className={styles.footLink}>
+                  <a href="/collections" onClick={(e) => handleNavClick(c.view, e)} className={styles.footLink}>
                     <ArrowRight size={12} className={styles.arrowIcon} />
                     {c.label}
                   </a>
@@ -129,7 +153,18 @@ export default function Footer({ onViewChange }) {
             <ul className={styles.linkList}>
               {QUICK_LINKS.map((l, i) => (
                 <li key={i}>
-                  <a href={`#${l.view}`} onClick={(e) => handleNavClick(l.view, e)} className={styles.footLink}>
+                  <a href={`/${l.view}`} onClick={(e) => handleNavClick(l.view, e)} className={styles.footLink}>
+                    <ArrowRight size={12} className={styles.arrowIcon} />
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <h4 className={styles.colTitle} style={{ marginTop: 20 }}>Policies</h4>
+            <ul className={styles.linkList}>
+              {POLICY_LINKS.map((l, i) => (
+                <li key={i}>
+                  <a href={`/${l.view}`} onClick={(e) => handleNavClick(l.view, e)} className={styles.footLink}>
                     <ArrowRight size={12} className={styles.arrowIcon} />
                     {l.label}
                   </a>
@@ -155,14 +190,25 @@ export default function Footer({ onViewChange }) {
                   <span itemProp="postalCode">411057</span>
                 </address>
               </div>
-              <a href="tel:+917891672762" className={styles.contactItemLink}>
+              <a href="tel:+917891672762" className={styles.contactItemLink} aria-label="Call Kids City Wakad">
                 <Phone size={16} className={styles.contactIcon} />
-                <span>078916 72762</span>
+                <span>+91 78916 72762</span>
+              </a>
+              <a href="mailto:kidscitywakad@gmail.com" className={styles.contactItemLink} aria-label="Email Kids City Wakad">
+                <Mail size={16} className={styles.contactIcon} />
+                <span>kidscitywakad@gmail.com</span>
               </a>
               <div className={styles.contactItem}>
                 <Clock size={16} className={styles.contactIcon} />
                 <span>Open Daily: 10:00 AM – 9:30 PM</span>
               </div>
+            </div>
+
+            <div className={styles.serviceAreaBlock}>
+              <h5 className={styles.serviceAreaTitle}>Service Areas</h5>
+              <p className={styles.serviceAreaText}>
+                {SERVICE_AREAS.join(' · ')}
+              </p>
             </div>
           </div>
         </div>
@@ -170,8 +216,8 @@ export default function Footer({ onViewChange }) {
         {/* Bottom copyright segment */}
         <div className={styles.bottom}>
           <p className={styles.copy}>
-            &copy; 2026 Kids City. All rights reserved. &middot;{' '}
-            <a href="#admin" onClick={(e) => handleNavClick('admin', e)} style={{ textDecoration: 'underline' }}>
+            &copy; 2026 Kids City Wakad, Pune. All rights reserved. &middot;{' '}
+            <a href="/admin" onClick={(e) => handleNavClick('admin', e)} style={{ textDecoration: 'underline' }}>
               CRM Portal
             </a>
           </p>
@@ -183,6 +229,7 @@ export default function Footer({ onViewChange }) {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.mapsLink}
+            aria-label="Find Kids City on Google Maps"
           >
             Locate on Google Maps
           </a>

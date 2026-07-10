@@ -117,6 +117,44 @@ button {
   background: none;
 }
 
+/* ── Skip Navigation (Accessibility) ── */
+.skip-nav {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--brand-terracotta);
+  color: #fff;
+  padding: 12px 20px;
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  z-index: 9999;
+  border-radius: 0 0 8px 0;
+  transition: top 0.2s;
+}
+.skip-nav:focus {
+  top: 0;
+}
+
+/* ── Focus Visible (Keyboard Navigation) ── */
+:focus-visible {
+  outline: 3px solid var(--brand-terracotta);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
 /* ── Scrollbar ── */
 ::-webkit-scrollbar {
   width: 8px;
@@ -364,20 +402,19 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 8px;
 }
 
-/* Logo wrapper — clips the shimmer */
+/* Logo wrapper */
 .loader-logo-wrap {
   position: relative;
   overflow: hidden;
-  border-radius: 4px;
   display: inline-flex;
 }
 
-/* Logo image — spring bounce in */
+/* Logo image */
 .app-loader-logo {
-  width: 280px;
+  width: 200px;
   height: auto;
   display: block;
   animation: logoBounce 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
@@ -405,9 +442,10 @@ button {
 .app-loader-tagline {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #b0909a;
   letter-spacing: 0.03em;
+  margin-top: 4px;
   animation: tagSlideUp 0.6s ease 0.7s both;
 }
 
@@ -445,11 +483,12 @@ button {
 
 .app-loader-message {
   font-family: var(--font-body);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 5px;
   color: #d8c8cc;
+  margin-top: 2px;
   animation: tagSlideUp 0.5s ease 1s both;
 }
 
@@ -595,22 +634,22 @@ button {
 
 /* Logo */
 .app-loader-logo {
-  width: 300px;
+  width: 200px;
   height: auto;
   object-fit: contain;
   animation: logoReveal 0.9s cubic-bezier(0.34, 1.45, 0.64, 1) 0.15s both;
-  filter: drop-shadow(0 12px 32px rgba(214, 34, 106, 0.18))
-          drop-shadow(0 4px 10px rgba(0,0,0,0.06));
+  filter: drop-shadow(0 8px 20px rgba(214, 34, 106, 0.14))
+          drop-shadow(0 2px 8px rgba(0,0,0,0.05));
 }
 
 /* Tagline */
 .app-loader-tagline {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: #9a7a7a;
-  margin-top: 10px;
-  margin-bottom: 36px;
+  margin-top: 6px;
+  margin-bottom: 8px;
   letter-spacing: 0.02em;
   animation: taglineReveal 0.7s ease 0.75s both;
 }
@@ -668,11 +707,12 @@ button {
 /* Message */
 .app-loader-message {
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 4px;
   color: #c8b8b8;
+  margin-top: 2px;
   animation: taglineReveal 0.6s ease 1s both;
 }
 
