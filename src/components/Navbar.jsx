@@ -6,6 +6,7 @@ import styles from './Navbar.module.css'
 const NAV_LINKS = [
   { label: 'Home', view: 'home' },
   { label: 'Collections', view: 'shop' },
+  { label: 'About Us', view: 'about' },
   { label: 'Contact & FAQ', view: 'contact' },
 ]
 
