@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Search, SlidersHorizontal, ArrowUpDown, Star, Heart, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import styles from './ShopView.module.css'
@@ -205,6 +205,47 @@ const PRICE_RANGES = [
   { label: '₹600 - ₹900', min: 600, max: 900 },
   { label: '₹900+', min: 900, max: 2000 }
 ]
+
+function AutoScrollingImage({ img, gallery, alt, className }) {
+  const images = gallery && gallery.length > 0 ? gallery : [img]
+  const [idx, setIdx] = useState(0)
+
+  useEffect(() => {
+    if (images.length <= 1) return
+
+    const timer = setInterval(() => {
+      setIdx((prev) => (prev + 1) % images.length)
+    }, 3500) // cycle every 3.5s
+
+    return () => clearInterval(timer)
+  }, [images])
+
+  if (images.length === 0 || !images[0]) {
+    return (
+      <div className={styles.imgPlaceholder}>
+        <span>No Image</span>
+      </div>
+    )
+  }
+
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+      <AnimatePresence mode="popLayout">
+        <motion.img
+          key={images[idx]}
+          src={images[idx]}
+          alt={alt}
+          className={className}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6 }}
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+        />
+      </AnimatePresence>
+    </div>
+  )
+}
 
 export default function ShopView({ products, onSelectProduct }) {
   const catalogSource = products && products.length > 0 ? products : PRODUCTS
@@ -488,19 +529,12 @@ export default function ShopView({ products, onSelectProduct }) {
                         onClick={() => onSelectProduct(p)}
                       >
                         <div className={styles.imgWrap}>
-                          {p.img ? (
-                            <img
-                              src={p.img}
-                              alt={`${p.name} — ${p.category || 'Kids clothing'} at Kids City Wakad, Pune`}
-                              className={styles.cardImg}
-                              loading="lazy"
-                              onError={(e) => { e.target.style.display = 'none' }}
-                            />
-                          ) : (
-                            <div className={styles.imgPlaceholder}>
-                              <span>No Image</span>
-                            </div>
-                          )}
+                          <AutoScrollingImage
+                            img={p.img}
+                            gallery={p.gallery}
+                            alt={`${p.name} — ${p.category || 'Kids clothing'} at Kids City Wakad, Pune`}
+                            className={styles.cardImg}
+                          />
                           {p.tag && (
                             <span
                               className={styles.tag}

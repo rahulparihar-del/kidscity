@@ -1,8 +1,49 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Star, Heart } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 // Fallback items defined dynamically
 import styles from './FeaturedProducts.module.css'
+
+function AutoScrollingImage({ img, gallery, alt, className }) {
+  const images = gallery && gallery.length > 0 ? gallery : [img]
+  const [idx, setIdx] = useState(0)
+
+  useEffect(() => {
+    if (images.length <= 1) return
+
+    const timer = setInterval(() => {
+      setIdx((prev) => (prev + 1) % images.length)
+    }, 3500) // cycle every 3.5s
+
+    return () => clearInterval(timer)
+  }, [images])
+
+  if (images.length === 0 || !images[0]) {
+    return (
+      <div className={styles.imgPlaceholder}>
+        <span>No Image</span>
+      </div>
+    )
+  }
+
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+      <AnimatePresence mode="popLayout">
+        <motion.img
+          key={images[idx]}
+          src={images[idx]}
+          alt={alt}
+          className={className}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6 }}
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+        />
+      </AnimatePresence>
+    </div>
+  )
+}
 
 const TABS = ['All', 'Festival Wear', 'Traditional', 'Casual', 'Birthday']
 
@@ -71,19 +112,12 @@ function ProductCard({ product, onSelectProduct }) {
       onClick={() => onSelectProduct(product)}
     >
       <div className={styles.imgWrap}>
-        {product.img ? (
-          <img
-            src={product.img}
-            alt={`${product.name} — ${product.category} at Kids City Wakad`}
-            className={styles.productImg}
-            loading="lazy"
-            onError={(e) => { e.target.style.display = 'none' }}
-          />
-        ) : (
-          <div className={styles.imgPlaceholder}>
-            <span>No Image</span>
-          </div>
-        )}
+        <AutoScrollingImage
+          img={product.img}
+          gallery={product.gallery}
+          alt={`${product.name} — ${product.category} at Kids City Wakad`}
+          className={styles.productImg}
+        />
         {product.tag && (
           <span className={styles.tag} style={{ background: product.tagColor }}>
             {product.tag}
