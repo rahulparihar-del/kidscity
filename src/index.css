@@ -5,8 +5,8 @@
   --brand-navy: #3D405B;            /* Primary Slate Navy */
   --brand-navy-light: #545778;
   --brand-navy-dark: #2C2E43;
-  --brand-cream: #FDFBF7;           /* Main Background Warm Cream */
-  --brand-beige: #F4EFE6;           /* Secondary Background Sandy Beige */
+  --brand-cream: #ffffff;           /* Clean white background */
+  --brand-beige: #ffffff;           /* Clean white secondary background */
   --brand-terracotta: #E07A5F;       /* Primary Accent Coral/Terracotta */
   --brand-terracotta-light: #F49D85;
 
@@ -32,7 +32,7 @@
   
   --white: #ffffff;
   --off-white: var(--brand-cream);
-  --border: #E6DFD3;
+  --border: #e2e8f0;
   --text-dark: var(--brand-navy);
   --text-mid: #5C5F80;
   --text-muted: #8E91B3;

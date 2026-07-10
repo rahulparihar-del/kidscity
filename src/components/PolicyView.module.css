@@ -3,16 +3,17 @@
   min-height: 100vh;
 }
 .banner {
-  background: linear-gradient(135deg, var(--brand-navy-dark) 0%, var(--brand-navy) 100%);
-  padding: 110px 0 48px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  padding: 120px 0 48px;
 }
 .backBtn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: #fff;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  color: var(--brand-navy);
   border-radius: 100px;
   padding: 7px 16px;
   font-family: var(--font-body);
@@ -20,20 +21,23 @@
   font-weight: 500;
   cursor: pointer;
   margin-bottom: 20px;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
-.backBtn:hover { background: rgba(255,255,255,0.2); }
+.backBtn:hover {
+  background: var(--brand-navy);
+  color: #ffffff;
+}
 .title {
   font-family: var(--font-head);
   font-size: clamp(1.8rem, 3.5vw, 2.4rem);
   font-weight: 800;
-  color: #fff;
+  color: var(--brand-navy-dark);
   margin-bottom: 10px;
 }
 .lastUpdated {
   font-family: var(--font-body);
   font-size: 0.88rem;
-  color: rgba(255,255,255,0.6);
+  color: var(--text-muted);
 }
 .content { padding: 60px 0 80px; }
 .contentGrid {
