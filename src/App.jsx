@@ -22,7 +22,6 @@ import FAQView from './components/FAQView'
 import PolicyView from './components/PolicyView'
 import NotFoundView from './components/NotFoundView'
 import InquiryDrawer from './components/InquiryDrawer'
-import AdminPanel from './components/AdminPanel'
 
 // Supabase client
 import { supabase } from './supabaseClient'
@@ -53,7 +52,6 @@ const VIEW_TO_PATH = {
   'shipping-policy': '/shipping-policy',
   'return-policy':   '/return-policy',
   '404':             '/404',
-  admin:             '/admin',
 }
 
 const POLICY_VIEWS = ['privacy-policy', 'terms', 'shipping-policy', 'return-policy']
@@ -498,17 +496,7 @@ export default function App() {
             </motion.div>
           )}
 
-          {currentView === 'admin' && (
-            <motion.div
-              key="admin"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <AdminPanel onBack={() => handleViewChange('home')} />
-            </motion.div>
-          )}
+
         </AnimatePresence>
       </main>
 

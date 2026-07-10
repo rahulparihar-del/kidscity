@@ -216,10 +216,7 @@ export default function Footer({ onViewChange }) {
         {/* Bottom copyright segment */}
         <div className={styles.bottom}>
           <p className={styles.copy}>
-            &copy; 2026 Kids City Wakad, Pune. All rights reserved. &middot;{' '}
-            <a href="/admin" onClick={(e) => handleNavClick('admin', e)} style={{ textDecoration: 'underline' }}>
-              CRM Portal
-            </a>
+            &copy; 2026 Kids City Wakad, Pune. All rights reserved.
           </p>
           <div className={styles.heartTag}>
             Made with <Heart size={12} fill="currentColor" strokeWidth={0} className={styles.heartIcon} /> in Wakad, Pune
