@@ -1,5 +1,5 @@
 .footer {
-  background: var(--brand-navy-dark);
+  background: #0d1e3d; /* Rich premium deep dark blue */
   color: #E6DFD3;
   padding: 80px 0 40px 0;
   border-top: 1px solid var(--border);
