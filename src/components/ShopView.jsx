@@ -198,7 +198,6 @@ export const PRODUCTS = [
   }
 ]
 
-const CATEGORIES = ['All', 'Festival Wear', 'Birthday', 'Casual', 'Traditional', 'Baby']
 // Sizing filters are calculated dynamically from database items
 const PRICE_RANGES = [
   { label: 'All Prices', min: 0, max: 2000 },
@@ -208,6 +207,13 @@ const PRICE_RANGES = [
 ]
 
 export default function ShopView({ products, onSelectProduct }) {
+  const catalogSource = products && products.length > 0 ? products : PRODUCTS
+
+  const CATEGORIES = useMemo(() => {
+    const cats = new Set(catalogSource.map(p => p.category).filter(Boolean))
+    return ['All', ...Array.from(cats)]
+  }, [catalogSource])
+
   const [search, setSearch] = useState('')
   const [selectedCat, setSelectedCat] = useState('All')
   const [selectedSize, setSelectedSize] = useState('All')
@@ -241,7 +247,6 @@ export default function ShopView({ products, onSelectProduct }) {
     setWishlisted(prev => ({ ...prev, [id]: !prev[id] }))
   }
 
-  const catalogSource = products && products.length > 0 ? products : PRODUCTS
 
   // Dynamic SIZES derived from active database products list
   const derivedSizes = useMemo(() => {
