@@ -213,11 +213,11 @@
   border-radius: 4px;
   font-weight: 800;
   font-size: 0.78rem;
-  color: var(--brand-gold);
+  color: var(--gold);
 }
 
 .starIcon {
-  color: var(--brand-gold);
+  color: var(--gold);
 }
 
 .sageIcon {
