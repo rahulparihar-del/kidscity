@@ -83,7 +83,7 @@ export default function HeroBanner({ onViewChange }) {
             </button>
           </motion.div>
 
-          {/* Trust stats in clean horizontal capsules */}
+          {/* Trust stats in clean individual capsules */}
           <motion.div
             className={styles.trustStrip}
             initial={{ opacity: 0 }}
@@ -93,23 +93,20 @@ export default function HeroBanner({ onViewChange }) {
             <div className={styles.trustItem}>
               <div className={styles.ratingBox}>
                 <span>4.9</span>
-                <Star size={14} fill="currentColor" strokeWidth={0} className={styles.starIcon} />
+                <Star size={12} fill="currentColor" strokeWidth={0} className={styles.starIcon} />
               </div>
               <span className={styles.trustText}>500+ Reviews</span>
             </div>
-            <div className={styles.trustDiv} />
             <div className={styles.trustItem}>
-              <ShieldCheck size={18} className={styles.sageIcon} />
+              <ShieldCheck size={16} className={styles.sageIcon} />
               <span className={styles.trustText}>COD Available</span>
             </div>
-            <div className={styles.trustDiv} />
             <div className={styles.trustItem}>
-              <ShieldCheck size={18} className={styles.sageIcon} />
+              <ShieldCheck size={16} className={styles.sageIcon} />
               <span className={styles.trustText}>Free Delivery in Wakad</span>
             </div>
-            <div className={styles.trustDiv} />
             <div className={styles.trustItem}>
-              <ShieldCheck size={18} className={styles.sageIcon} />
+              <ShieldCheck size={16} className={styles.sageIcon} />
               <span className={styles.trustText}>7-Day Easy Exchange</span>
             </div>
           </motion.div>
