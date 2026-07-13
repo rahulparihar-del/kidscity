@@ -605,7 +605,6 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
                         +91 78916 72762
                       </a>
                     </div>
-                    <p className={styles.footerSubText}>*Please keep 0 or +91 before the number you dial.</p>
                   </div>
                 </>
               ) : (
