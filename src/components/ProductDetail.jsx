@@ -604,7 +604,7 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
                     <div className={styles.footerRow} style={{ marginTop: '6px' }}>
                       <span>In a hurry? Call us now </span>
                       <a href="tel:+917891672762" className={styles.footerPhoneLink}>
-                        08048052825
+                        +91 78916 72762
                       </a>
                     </div>
                     <p className={styles.footerSubText}>*Please keep 0 or +91 before the number you dial.</p>
