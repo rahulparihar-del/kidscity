@@ -191,7 +191,9 @@
   color: var(--text-mid);
   line-height: 1.6;
   margin-bottom: 30px;
+  white-space: pre-wrap;
 }
+
 
 /* Sizing selector */
 .sizeSection {
@@ -565,6 +567,12 @@
   color: var(--text-mid);
   line-height: 1.6;
 }
+
+.specsTab p {
+  white-space: pre-wrap;
+  margin-bottom: 16px;
+}
+
 
 .specsTable {
   width: 100%;
