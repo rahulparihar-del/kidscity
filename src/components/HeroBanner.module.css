@@ -156,6 +156,21 @@
 
 .primaryCta {
   box-shadow: 0 8px 24px rgba(224, 122, 95, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ctaIcon {
+  flex-shrink: 0;
+}
+
+.ctaArrow {
+  transition: transform 0.2s ease;
+}
+
+.primaryCta:hover .ctaArrow {
+  transform: translateX(4px);
 }
 
 .secondaryCta {
@@ -414,11 +429,9 @@
   color: var(--brand-terracotta);
 }
 
-.goldDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--brand-sage);
+.tagIcon {
+  color: var(--brand-sage);
+  flex-shrink: 0;
 }
 
 /* ── Floating Badges on Collage ── */

@@ -1,4 +1,4 @@
-import { Star, ArrowRight, Heart, Sparkles, ShieldCheck } from 'lucide-react'
+import { Star, ArrowRight, Heart, Sparkles, ShieldCheck, ShoppingBag, Tag } from 'lucide-react'
 import { motion } from 'framer-motion'
 import styles from './HeroBanner.module.css'
 import { useSiteImages } from '../hooks/useSiteImages'
@@ -36,7 +36,9 @@ export default function HeroBanner({ onViewChange }) {
             transition={{ duration: 0.5 }}
           >
             <Sparkles size={14} className={styles.sparkleIcon} />
-            <span className={styles.badgeText} style={{ margin: 0, fontWeight: 'inherit', fontSize: 'inherit' }}>⭐ 500+ Happy Parents · 4.9★ Google Rating · Trusted Since 2018</span>
+            <span className={styles.badgeText} style={{ margin: 0, fontWeight: 'inherit', fontSize: 'inherit' }}>
+              500+ Happy Parents • 4.9 Rating • Trusted Since 2018
+            </span>
           </motion.div>
 
           {/* Headline - Mix of Outfit and Playfair Display */}
@@ -69,7 +71,9 @@ export default function HeroBanner({ onViewChange }) {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <button onClick={handleBrowseClick} className={`btn btn-terracotta ${styles.primaryCta}`}>
-              🛔 Shop Night Suits — From ₹399 <ArrowRight size={16} />
+              <ShoppingBag size={16} className={styles.ctaIcon} />
+              <span>Shop Night Suits — From ₹399</span>
+              <ArrowRight size={16} className={styles.ctaArrow} />
             </button>
             <button
               onClick={() => { onViewChange('shop'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
@@ -195,8 +199,8 @@ export default function HeroBanner({ onViewChange }) {
               animate={{ y: [0, 6, 0] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
             >
-              <span className={styles.goldDot} />
-              <span>🎉 Sale: Up to 40% OFF</span>
+              <Tag size={13} className={styles.tagIcon} />
+              <span>Sale: Up to 40% OFF</span>
             </motion.div>
           </div>
         </div>
