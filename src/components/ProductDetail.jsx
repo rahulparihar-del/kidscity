@@ -27,7 +27,8 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
   useEffect(() => {
     const timer = setTimeout(() => {
       const alreadyRequested = localStorage.getItem('callbackRequested')
-      if (!alreadyRequested) {
+      const sessionDismissed = sessionStorage.getItem('callbackDismissed')
+      if (!alreadyRequested && !sessionDismissed) {
         setShowCallbackPopup(true)
       }
     }, 5000)
@@ -555,7 +556,7 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
                 className={styles.popupCloseBtn}
                 onClick={() => {
                   setShowCallbackPopup(false)
-                  localStorage.setItem('callbackRequested', 'true')
+                  sessionStorage.setItem('callbackDismissed', 'true')
                 }}
                 aria-label="Close popup"
               >
