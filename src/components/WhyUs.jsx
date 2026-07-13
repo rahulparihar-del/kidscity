@@ -88,7 +88,7 @@ export default function WhyUs() {
               Visit Our Store
             </a>
             <a href="tel:+917891672762" className="btn btn-outline-navy">
-              Call: 078916 72762
+              Call: +91 78916 72762
             </a>
           </div>
         </div>

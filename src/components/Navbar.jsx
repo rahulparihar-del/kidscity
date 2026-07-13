@@ -74,7 +74,7 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag 
           <div className={styles.actions}>
             <a href="tel:+917891672762" className={styles.callLink}>
               <Phone size={14} className={styles.callIcon} />
-              078916 72762
+              +91 78916 72762
             </a>
 
             <button className={styles.bagBtn} onClick={onOpenBag} aria-label="Open inquiry bag">
@@ -177,7 +177,7 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag 
                 </div>
                 <div className={styles.drawerContactText}>
                   <span className={styles.drawerContactTitle}>Call Us</span>
-                  <span className={styles.drawerContactSub}>078916 72762</span>
+                  <span className={styles.drawerContactSub}>+91 78916 72762</span>
                 </div>
               </a>
               <a

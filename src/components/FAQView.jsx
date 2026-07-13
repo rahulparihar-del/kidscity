@@ -179,7 +179,7 @@ export default function FAQView({ onViewChange }) {
                   <MessageSquare size={16} /> WhatsApp Us
                 </a>
                 <a href="tel:+917891672762" className="btn btn-outline-navy" style={{ width: '100%', justifyContent: 'center', marginBottom: 12 }}>
-                  <Phone size={16} /> Call: 078916 72762
+                  <Phone size={16} /> Call: +91 78916 72762
                 </a>
                 <a href="#contact" onClick={handleContact} className="btn btn-terracotta" style={{ width: '100%', justifyContent: 'center' }}>
                   Contact Page

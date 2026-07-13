@@ -20,7 +20,7 @@ const CONTACT = [
   {
     icon: Phone,
     label: 'Call Us',
-    value: '078916 72762',
+    value: '+91 78916 72762',
     href: 'tel:+917891672762',
   },
   {
