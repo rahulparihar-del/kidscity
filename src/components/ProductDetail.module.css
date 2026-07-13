@@ -491,9 +491,14 @@
 
 @media (max-width: 600px) {
   .actionRow {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+  }
+  .primaryCta {
+    grid-column: span 2;
   }
 }
+
 
 .primaryCta {
   width: 100%;
@@ -626,9 +631,27 @@
 
 @media (max-width: 768px) {
   .relatedGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
+
+@media (max-width: 480px) {
+  .relatedGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .relatedInfo {
+    padding: 12px;
+  }
+  .relatedInfo h4 {
+    font-size: 0.8rem;
+  }
+  .relatedInfo span {
+    font-size: 0.8rem;
+  }
+}
+
 
 .relatedCard {
   background: var(--white);
@@ -1082,3 +1105,27 @@
     font-size: 0.8rem;
   }
 }
+
+@media (max-width: 768px) {
+  .detailPage {
+    padding: 80px 0 50px 0;
+  }
+  .mainGrid {
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .breadcrumbs {
+    line-height: 1.45;
+    font-size: 0.8rem;
+  }
+  .navRow {
+    margin-bottom: 20px;
+  }
+  .specsTable th, .specsTable td {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+}
+
