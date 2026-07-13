@@ -834,7 +834,7 @@
 }
 
 .popupTitleAccent {
-  color: var(--gold);
+  color: var(--brand-terracotta);
 }
 
 .popupSubtitle {
@@ -904,7 +904,7 @@
   background: #fdf5e6;
   border: none;
   border-left: 1px solid #f9ebd2;
-  color: var(--gold);
+  color: var(--brand-terracotta);
   padding: 0 22px;
   font-family: var(--font-head);
   font-weight: 900;
@@ -918,7 +918,7 @@
 }
 
 .callbackSubmitBtn:hover {
-  background: var(--gold);
+  background: var(--brand-terracotta);
   color: var(--white);
 }
 
@@ -943,7 +943,7 @@
 }
 
 .footerLink {
-  color: var(--gold);
+  color: var(--brand-terracotta);
   text-decoration: underline;
   font-weight: 800;
 }
@@ -953,7 +953,7 @@
 }
 
 .footerPhoneLink {
-  color: var(--gold);
+  color: var(--brand-terracotta);
   font-weight: 800;
   font-size: 0.92rem;
 }
@@ -1060,9 +1060,9 @@
     border-radius: var(--radius-md);
     padding: 12px 20px;
     justify-content: center;
-    background: var(--gold);
+    background: var(--brand-terracotta);
     color: var(--white);
-    box-shadow: 0 4px 12px rgba(245, 166, 35, 0.25);
+    box-shadow: 0 4px 12px rgba(224, 122, 95, 0.25);
   }
   .callbackSubmitBtn:hover {
     background: var(--brand-navy);
