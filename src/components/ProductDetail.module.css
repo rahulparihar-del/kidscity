@@ -680,22 +680,26 @@
 .relatedInfo {
   padding: 16px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
 }
 
 .relatedInfo h4 {
   font-family: var(--font-head);
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   font-weight: 750;
   color: var(--brand-navy);
+  line-height: 1.35;
+  margin: 0;
 }
 
 .relatedInfo span {
   font-weight: 800;
   color: var(--brand-terracotta);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
 }
+
 
 /* Sizing Modal */
 .modalBackdrop {
