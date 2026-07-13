@@ -1,7 +1,7 @@
 import { Star } from 'lucide-react'
 import styles from './AnnouncementBar.module.css'
 
-const MESSAGE = "4.9 Google Rating \u00A0·\u00A0 135+ Happy Families \u00A0·\u00A0 Wakad's #1 Kids Store \u00A0·\u00A0 New Collection Every Week \u00A0·\u00A0 Open Daily at Mahalaxmi Complex, Wakad \u00A0·\u00A0"
+const MESSAGE = "🎉 MONSOON SALE — Upto 40% OFF on Night Suits & Festival Wear \u00A0·\u00A0 FREE Delivery in Wakad & Hinjewadi \u00A0·\u00A0 Cash on Delivery Available \u00A0·\u00A0 4.9★ Rated by 500+ Happy Parents \u00A0·\u00A0 New Stock Every Week \u00A0·\u00A0 WhatsApp: 78916 72762 \u00A0·\u00A0"
 
 export default function AnnouncementBar() {
   return (

@@ -48,6 +48,20 @@ const SEED_REVIEWS = [
     text: '"Great find for kids clothes! KIDS CITY has a fantastic range, from trendy to classic styles, all at good prices. The shop is welcoming, and the staff are super helpful."',
     relativeTime: 'Google Review',
   },
+  {
+    author: 'Priya Sharma',
+    location: 'Wakad, Pune (Google Review)',
+    rating: 5,
+    text: '"Bought 3 night suits for my 2-year-old — the hosiery cotton is SO soft, he sleeps so peacefully now! Will definitely buy more sets. Best kids store in Wakad!"',
+    relativeTime: 'Google Review',
+  },
+  {
+    author: 'Anita Kulkarni',
+    location: 'Hinjewadi, Pune (Google Review)',
+    rating: 5,
+    text: '"Ordered a Navratri lehenga for my 4-year-old daughter — it was absolutely stunning! Perfect fit and the mirror work is gorgeous. Kids City is our go-to store now!"',
+    relativeTime: 'Google Review',
+  },
 ]
 
 const AVATAR_COLORS = [
@@ -68,7 +82,7 @@ function colorFor(name) {
 export default function Testimonials() {
   const [reviews, setReviews] = useState(SEED_REVIEWS)
   const [rating, setRating] = useState(4.9)
-  const [total, setTotal] = useState(135)
+  const [total, setTotal] = useState(500)
   const [mapsUri, setMapsUri] = useState(null)
 
   useEffect(() => {

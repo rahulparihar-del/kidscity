@@ -36,7 +36,7 @@ export default function HeroBanner({ onViewChange }) {
             transition={{ duration: 0.5 }}
           >
             <Sparkles size={14} className={styles.sparkleIcon} />
-            <span className={styles.badgeText} style={{ margin: 0, fontWeight: 'inherit', fontSize: 'inherit' }}>Wakad's Most Loved Kids Clothes Shop</span>
+            <span className={styles.badgeText} style={{ margin: 0, fontWeight: 'inherit', fontSize: 'inherit' }}>⭐ 500+ Happy Parents · 4.9★ Google Rating · Trusted Since 2018</span>
           </motion.div>
 
           {/* Headline - Mix of Outfit and Playfair Display */}
@@ -46,7 +46,7 @@ export default function HeroBanner({ onViewChange }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Best Kids Clothes Shop in <span className={styles.serifAccent}>Wakad, Pune</span>
+            Adorable Clothes for Little Ones <span className={styles.serifAccent}>Your Kids Will Love</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -56,7 +56,9 @@ export default function HeroBanner({ onViewChange }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Discover premium kids clothing for boys and girls aged 0–14 years. Explore festival wear, birthday dresses, traditional outfits, casual wear, and new arrivals at Kids City, Wakad — rated 4.9★ by 135+ Pune families.
+            Soft, skin-safe fabrics. Adorable designs. Prices Indian families love.
+            Night suits, festive wear, casual sets & more — for babies to big kids (1–12 years).
+            <strong> 500+ Pune parents shop with us. Shop online — or visit us in Wakad!</strong>
           </motion.p>
 
           {/* Action buttons */}
@@ -67,16 +69,14 @@ export default function HeroBanner({ onViewChange }) {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <button onClick={handleBrowseClick} className={`btn btn-terracotta ${styles.primaryCta}`}>
-              Browse Collections <ArrowRight size={16} />
+              🛔 Shop Night Suits — From ₹399 <ArrowRight size={16} />
             </button>
-            <a
-              href="https://www.google.com/maps/dir//Kids+City+Wakad"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => { onViewChange('shop'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
               className={`btn btn-outline-navy ${styles.secondaryCta}`}
             >
-              Visit Wakad Store
-            </a>
+              See All Collections
+            </button>
           </motion.div>
 
           {/* Trust stats in clean horizontal capsules */}
@@ -91,12 +91,22 @@ export default function HeroBanner({ onViewChange }) {
                 <span>4.9</span>
                 <Star size={14} fill="currentColor" strokeWidth={0} className={styles.starIcon} />
               </div>
-              <span className={styles.trustText}>135+ Reviews</span>
+              <span className={styles.trustText}>500+ Reviews</span>
             </div>
             <div className={styles.trustDiv} />
             <div className={styles.trustItem}>
               <ShieldCheck size={18} className={styles.sageIcon} />
-              <span className={styles.trustText}>100% Skin-Safe Fabrics</span>
+              <span className={styles.trustText}>COD Available</span>
+            </div>
+            <div className={styles.trustDiv} />
+            <div className={styles.trustItem}>
+              <ShieldCheck size={18} className={styles.sageIcon} />
+              <span className={styles.trustText}>Free Delivery in Wakad</span>
+            </div>
+            <div className={styles.trustDiv} />
+            <div className={styles.trustItem}>
+              <ShieldCheck size={18} className={styles.sageIcon} />
+              <span className={styles.trustText}>7-Day Easy Exchange</span>
             </div>
           </motion.div>
         </div>
@@ -176,17 +186,17 @@ export default function HeroBanner({ onViewChange }) {
               transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
             >
               <Heart size={14} fill="currentColor" strokeWidth={0} className={styles.heartIcon} />
-              <span>Loved by Moms</span>
+              <span>Loved by 500+ Moms</span>
             </motion.div>
 
-            {/* Floating Badge: Quality Tag */}
+            {/* Floating Badge: Sale Tag */}
             <motion.div
               className={`${styles.floatBadge} ${styles.badgeQuality}`}
               animate={{ y: [0, 6, 0] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
             >
               <span className={styles.goldDot} />
-              <span>0–14 Years</span>
+              <span>🎉 Sale: Up to 40% OFF</span>
             </motion.div>
           </div>
         </div>

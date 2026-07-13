@@ -1,14 +1,16 @@
-import { Star, Users, Trophy, BadgeCheck, Package, Gem, Wallet } from 'lucide-react'
+import { Star, Users, ShieldCheck, Package, Gem, Wallet, Truck, RotateCcw, MessageSquare } from 'lucide-react'
 import styles from './TrustBar.module.css'
 
 const ITEMS = [
-  { icon: Star, text: '4.9 Google Rating', color: '#f5a623' },
-  { icon: Users, text: '135+ Happy Families', color: '#32CD32' },
-  { icon: Trophy, text: "Wakad's #1 Kids Store", color: '#f5a623' },
-  { icon: BadgeCheck, text: 'Quality Guaranteed', color: '#00BFFF' },
-  { icon: Package, text: 'New Collection Weekly', color: '#FF6600' },
-  { icon: Gem, text: 'Premium Kids Wear', color: '#8B00FF' },
-  { icon: Wallet, text: 'Affordable Prices', color: '#32CD32' },
+  { icon: Truck,         text: 'Free Delivery in Wakad',       color: '#32CD32' },
+  { icon: Wallet,        text: 'Cash on Delivery Available',    color: '#f5a623' },
+  { icon: RotateCcw,     text: '7-Day Easy Exchange',           color: '#00BFFF' },
+  { icon: Star,          text: '4.9★ Google Rating',            color: '#f5a623' },
+  { icon: Users,         text: '500+ Happy Parents',            color: '#FF6600' },
+  { icon: ShieldCheck,   text: '100% Skin-Safe Cotton',         color: '#32CD32' },
+  { icon: MessageSquare, text: 'WhatsApp: 78916 72762',         color: '#25D366' },
+  { icon: Package,       text: 'New Collection Weekly',         color: '#FF6600' },
+  { icon: Gem,           text: 'Premium Kids Wear',             color: '#8B00FF' },
 ]
 
 export default function TrustBar() {

@@ -22,14 +22,14 @@ export function useSEO({ title, description }) {
 /** Page-level SEO configs — one per view */
 export const PAGE_SEO = {
   home: {
-    title: 'Best Kids Clothes Shop in Wakad, Pune | Kids City',
+    title: 'Kids City | Night Suits, Festival & Baby Wear Online — From ₹399',
     description:
-      'Kids City is the best kids clothes shop in Wakad, Pune. Discover 500+ premium kids clothing styles for boys & girls aged 0–14 yrs — festival wear, birthday dresses, traditional outfits & casual wear. 4.9★ rated. Visit us in Wakad daily 10 AM–9:30 PM.',
+      'Shop soft, skin-safe kids wear from ₹399! Night suits, baby clothes, Navratri lehengas & birthday dresses for ages 0–12 yrs. 4.9★ rated · 500+ happy parents · COD available · Easy exchanges. Order via WhatsApp or visit Wakad, Pune.',
   },
   shop: {
-    title: 'Kids Clothing Collections Wakad, Pune | Festival, Birthday & Traditional Wear — Kids City',
+    title: 'Buy Kids Clothes Online India | Night Suits, Baby Wear & Festival Dresses — Kids City',
     description:
-      'Browse 500+ kids outfits at Kids City Wakad, Pune. Boys & girls festival wear, ethnic traditional dresses, birthday party outfits, night suits & casual clothes. Ages 0–14 yrs. Kids clothes shop near Hinjewadi, Baner & Pimple Saudagar.',
+      'Browse 500+ kids outfits online — cotton night suits from ₹399, Navratri lehengas, birthday frocks, baby rompers & casual sets (0–12 yrs). COD available. Free delivery in Wakad. Fast shipping across India.',
   },
   contact: {
     title: 'Contact Kids City | Kids Clothes Shop Wakad, Pune — Visit or WhatsApp Us',
@@ -78,12 +78,9 @@ export function getProductSEO(product) {
   if (!product) return PAGE_SEO.shop
   const price = product.price || ''
   const category = product.category || 'Kids Clothing'
+  const sizesStr = product.sizes ? product.sizes.slice(0, 3).join(', ') : ''
   return {
-    title: `${product.name} | ${category} — Kids City Wakad, Pune${price ? ' ' + price : ''}`,
-    description: `Buy ${product.name} at Kids City Wakad, Pune — Wakad's best kids clothes shop. ${
-      product.desc
-        ? product.desc.slice(0, 110).replace(/\n/g, ' ') + '...'
-        : `Premium ${category} for children aged 0–14 years. Visit us or WhatsApp +91 78916 72762 to check availability and sizes.`
-    }`,
+    title: `Buy ${product.name} Online | ${category} for Kids — Kids City${price ? ' | ' + price : ''}`,
+    description: `Shop ${product.name} at Kids City, Wakad — ${price}. Soft, skin-safe ${category} for children.${sizesStr ? ' Sizes: ' + sizesStr + '.' : ''} COD available. WhatsApp +91 78916 72762 to order or check stock. Free delivery in Wakad, Pune.`,
   }
 }

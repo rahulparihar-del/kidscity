@@ -57,7 +57,7 @@ export default function WhyUs() {
           <span className="section-label" style={{ color: 'var(--brand-terracotta)' }}>Why Choose Us</span>
           <h2 className={styles.heading}>Why <span className="serif-accent">Wakad &amp; Pune</span> Parents Choose Kids City</h2>
           <p className={styles.desc}>
-            Kids City has been Wakad's most trusted children's clothing store since 2018 — serving families from Hinjewadi, Baner, Pimple Saudagar, and across Pune, because every visit feels personal and every outfit feels perfect.
+            Kids City has been Wakad's most trusted children's clothing store since 2018 — night suits, festive wear, birthday dresses and more. Serving families from Hinjewadi, Baner, Pimple Saudagar, and across Pune, because every visit feels personal and every outfit feels perfect.
           </p>
 
           <div className={styles.statsRow}>
@@ -68,8 +68,8 @@ export default function WhyUs() {
               <span className={styles.statLabel}>Google Rating</span>
             </div>
             <div className={styles.statBlock}>
-              <span className={styles.statNum}>135+</span>
-              <span className={styles.statLabel}>Families Served</span>
+              <span className={styles.statNum}>500+</span>
+              <span className={styles.statLabel}>Happy Parents</span>
             </div>
             <div className={styles.statBlock}>
               <span className={styles.statNum}>#1</span>

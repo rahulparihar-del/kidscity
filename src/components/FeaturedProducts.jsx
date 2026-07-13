@@ -45,7 +45,7 @@ function AutoScrollingImage({ img, gallery, alt, className }) {
   )
 }
 
-const TABS = ['All', 'Festival Wear', 'Traditional', 'Casual', 'Birthday']
+const TABS = ['All', 'Night Suits', 'Festival Wear', 'Traditional', 'Birthday', 'Casual']
 
 // Featured products sliced from dynamic db array
 
@@ -167,7 +167,7 @@ export default function FeaturedProducts({ products, onSelectProduct, onViewChan
           <span className={styles.sectionLabel}>Featured</span>
           <h2 className={styles.sectionHeading}>Our Best <span className={styles.serifAccent}>Collections</span></h2>
           <p className={styles.headerSub}>
-            Handpicked styles loved by Pune parents. Click on a dress to see sizes and detailed guide.
+            Soft, skin-safe night suits from ₹399, festive lehengas, birthday dresses & more. Loved by 500+ Pune parents!
           </p>
         </div>
 
