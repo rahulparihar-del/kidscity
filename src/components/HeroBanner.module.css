@@ -167,12 +167,14 @@
 .trustStrip {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 14px;
   background: var(--white);
   border: 1px solid var(--border);
-  padding: 10px 24px;
+  padding: 10px 20px;
   border-radius: 50px;
   box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+  max-width: 560px;
 }
 
 .trustItem {
@@ -358,20 +360,24 @@
     padding: 10px 20px !important;
   }
   .trustStrip {
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 12px;
     border-radius: 20px;
-    padding: 14px 18px;
+    padding: 14px 16px;
     width: 100%;
-    max-width: 280px;
+    max-width: 320px;
     align-items: center;
+    justify-items: start;
   }
   .trustDiv {
-    width: 80%;
-    height: 1px;
+    display: none;
   }
   .trustText {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
+  }
+  .trustItem {
+    gap: 5px;
   }
   .cardLeft {
     width: 108px;
@@ -391,16 +397,16 @@
     height: 310px;
   }
   .floatBadge {
-    padding: 6px 12px;
-    font-size: 0.7rem;
+    padding: 5px 10px;
+    font-size: 0.68rem;
   }
   .badgeLove {
-    top: -5px;
-    right: 5%;
+    top: -14px;
+    right: 0%;
   }
   .badgeQuality {
-    bottom: 2%;
-    left: 2%;
+    bottom: 0%;
+    left: 0%;
   }
 }
 
@@ -413,4 +419,40 @@
   height: 6px;
   border-radius: 50%;
   background: var(--brand-sage);
+}
+
+/* ── Floating Badges on Collage ── */
+.floatBadge {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
+  padding: 7px 14px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--brand-navy);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+  backdrop-filter: blur(6px);
+}
+
+.badgeLove {
+  top: 0px;
+  right: -10px;
+  background: linear-gradient(135deg, #fff5f7, #fff);
+  border-color: rgba(240, 100, 120, 0.25);
+  color: var(--brand-navy);
+}
+
+.badgeQuality {
+  bottom: 10px;
+  left: -10px;
+  background: linear-gradient(135deg, #f0fff4, #fff);
+  border-color: rgba(50, 180, 80, 0.25);
+  color: var(--brand-navy);
 }
