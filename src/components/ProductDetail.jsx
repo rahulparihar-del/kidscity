@@ -26,7 +26,7 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
   // Show popup after 5 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
-      const alreadyRequested = localStorage.getItem('callbackRequested')
+      const alreadyRequested = localStorage.getItem('callback_request_submitted')
       if (!alreadyRequested) {
         setShowCallbackPopup(true)
       }
@@ -40,7 +40,7 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
     if (!phoneInput || phoneInput.length < 10) return
 
     setCallbackSubmitted(true)
-    localStorage.setItem('callbackRequested', 'true')
+    localStorage.setItem('callback_request_submitted', 'true')
 
     try {
       await supabase.from('callback_requests').insert([{
@@ -541,7 +541,6 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
               exit={{ opacity: 0 }}
               onClick={() => {
                 setShowCallbackPopup(false)
-                localStorage.setItem('callbackRequested', 'true')
               }}
             />
             <motion.div
