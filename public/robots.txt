@@ -14,9 +14,6 @@ Crawl-delay: 1
 
 User-agent: Googlebot-Image
 Allow: /images/
-Allow: /favicon.svg
-Allow: /favicon.png
-Allow: /favicon.ico
 
 # ── Bing ──────────────────────────────────────────────────────────────────────
 User-agent: Bingbot

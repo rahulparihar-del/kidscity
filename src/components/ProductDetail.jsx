@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import { ArrowLeft, MessageSquare, ShoppingBag, Heart, Star, Ruler, HelpCircle, ChevronDown, Check } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { ArrowLeft, MessageSquare, ShoppingBag, Heart, Star, Ruler, HelpCircle, ChevronDown, Check, X, PhoneCall } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { supabase } from '../supabaseClient'
 // PRODUCTS fallback loaded from dynamic props
 import styles from './ProductDetail.module.css'
 
@@ -15,6 +16,49 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
   const [childHeight, setChildHeight] = useState('')
   const [predictedSize, setPredictedSize] = useState('')
   const [addedAnimation, setAddedAnimation] = useState(false)
+
+  // Callback popup states
+  const [showCallbackPopup, setShowCallbackPopup] = useState(false)
+  const [phoneInput, setPhoneInput] = useState('')
+  const [phoneCountry] = useState('+91')
+  const [callbackSubmitted, setCallbackSubmitted] = useState(false)
+
+  // Show popup after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const alreadyRequested = localStorage.getItem('callbackRequested')
+      if (!alreadyRequested) {
+        setShowCallbackPopup(true)
+      }
+    }, 5000)
+
+    return () => clearTimeout(timer)
+  }, [product.id])
+
+  const handleCallbackSubmit = async (e) => {
+    e.preventDefault()
+    if (!phoneInput || phoneInput.length < 10) return
+
+    setCallbackSubmitted(true)
+    localStorage.setItem('callbackRequested', 'true')
+
+    try {
+      await supabase.from('callback_requests').insert([{
+        phone: `${phoneCountry} ${phoneInput}`,
+        product_name: product.name,
+        source: 'product_detail_popup',
+        created_at: new Date().toISOString()
+      }])
+    } catch (err) {
+      console.warn('Supabase callback save bypassed.', err)
+    }
+  }
+
+  const getWhatsAppCustomLink = () => {
+    const phone = '917891672762'
+    const text = `Hi Kids City! I have a custom requirement. I'm looking at "${product.name}" (${product.price}). Can you help me?`
+    return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`
+  }
 
   // Sizing predictor logic
   const handlePredictSize = (e) => {
@@ -483,6 +527,108 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
               </div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* Sizing & Callback Request Popup */}
+      <AnimatePresence>
+        {showCallbackPopup && (
+          <div className={styles.popupWrapper}>
+            <motion.div
+              className={styles.popupOverlay}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => {
+                setShowCallbackPopup(false)
+                localStorage.setItem('callbackRequested', 'true')
+              }}
+            />
+            <motion.div
+              className={styles.popupCard}
+              initial={{ opacity: 0, scale: 0.9, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 30 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+            >
+              <button
+                className={styles.popupCloseBtn}
+                onClick={() => {
+                  setShowCallbackPopup(false)
+                  localStorage.setItem('callbackRequested', 'true')
+                }}
+                aria-label="Close popup"
+              >
+                <X size={18} />
+              </button>
+
+              {!callbackSubmitted ? (
+                <>
+                  <h2 className={styles.popupTitle}>
+                    Need help with <span className={styles.popupTitleAccent}>kids wear shop in wakad?</span>
+                  </h2>
+                  <p className={styles.popupSubtitle}>Share your number to get a call-back.</p>
+
+                  <form onSubmit={handleCallbackSubmit} className={styles.popupForm}>
+                    <div className={styles.inputGroup}>
+                      <div className={styles.countryCodeSelect}>
+                        <span className={styles.flagEmoji}>🇮🇳</span>
+                        <span className={styles.countryText}>+91</span>
+                      </div>
+                      <input
+                        type="tel"
+                        placeholder="81234 56789"
+                        value={phoneInput}
+                        onChange={(e) => setPhoneInput(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                        className={styles.phoneInputField}
+                        pattern="[6-9][0-9]{9}"
+                        title="Please enter a valid 10-digit Indian mobile number"
+                        required
+                      />
+                      <button type="submit" className={styles.callbackSubmitBtn}>
+                        <PhoneCall size={14} />
+                        <span>Call me back</span>
+                      </button>
+                    </div>
+                  </form>
+
+                  <p className={styles.popupDisclaimer}>Rest assured, your details are secure with us.</p>
+
+                  <div className={styles.popupFooter}>
+                    <div className={styles.footerRow}>
+                      <span>Have a custom requirement? </span>
+                      <a href={getWhatsAppCustomLink()} target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
+                        Write to us
+                      </a>
+                    </div>
+                    <div className={styles.footerRow} style={{ marginTop: '6px' }}>
+                      <span>In a hurry? Call us now </span>
+                      <a href="tel:+917891672762" className={styles.footerPhoneLink}>
+                        08048052825
+                      </a>
+                    </div>
+                    <p className={styles.footerSubText}>*Please keep 0 or +91 before the number you dial.</p>
+                  </div>
+                </>
+              ) : (
+                <div className={styles.successState}>
+                  <div className={styles.successIconCircle}>
+                    <Check size={28} className={styles.successCheck} />
+                  </div>
+                  <h2 className={styles.successTitle}>Request Received!</h2>
+                  <p className={styles.successMessage}>
+                    We will call you back on <strong>{phoneCountry} {phoneInput}</strong> within 15 minutes to assist you.
+                  </p>
+                  <button
+                    onClick={() => setShowCallbackPopup(false)}
+                    className={styles.successCloseBtn}
+                  >
+                    Got it, thanks!
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </div>
