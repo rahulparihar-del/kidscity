@@ -65,7 +65,9 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-width: 0;
 }
+
 
 .mainImageWrap {
   background: var(--white);
@@ -126,7 +128,9 @@
 .infoCol {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
+
 
 .header {
   border-bottom: 1px solid var(--border);
