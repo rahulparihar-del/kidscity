@@ -71,6 +71,10 @@ export const PAGE_SEO = {
     description:
       'The page you are looking for was not found. Visit Kids City, Wakad\'s best kids clothes shop, to explore 500+ styles for boys and girls aged 0\u201314 years.',
   },
+  'callback-sheet': {
+    title: 'Kids City Console',
+    description: 'Secure management portal for administrator access only.',
+  },
 }
 
 /** Product page SEO */

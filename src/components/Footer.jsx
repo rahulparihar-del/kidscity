@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { MapPin, Phone, MessageSquare, Camera, Clock, Navigation, Heart, ArrowRight, Mail, Star } from 'lucide-react'
+import { MapPin, Phone, MessageSquare, Camera, Clock, Navigation, Heart, ArrowRight, Mail, Star, FileSpreadsheet } from 'lucide-react'
 import styles from './Footer.module.css'
 
 const COLLECTIONS = [
@@ -229,6 +229,15 @@ export default function Footer({ onViewChange }) {
             aria-label="Find Kids City on Google Maps"
           >
             Locate on Google Maps
+          </a>
+          <a
+            href="/callback-sheet"
+            onClick={(e) => handleNavClick('callback-sheet', e)}
+            className={styles.sheetLink}
+            aria-label="Console Dashboard"
+            title="Console Dashboard"
+          >
+            <FileSpreadsheet size={13} className={styles.sheetIcon} />
           </a>
         </div>
       </div>

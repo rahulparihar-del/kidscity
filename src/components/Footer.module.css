@@ -317,3 +317,22 @@
 .mapsLink:hover {
   color: var(--brand-terracotta-light);
 }
+
+.sheetLink {
+  color: #8E887E;
+  opacity: 0.35;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+.sheetLink:hover {
+  opacity: 1;
+  color: var(--white);
+}
+
+.sheetIcon {
+  vertical-align: middle;
+}

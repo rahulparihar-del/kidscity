@@ -22,6 +22,7 @@ import FAQView from './components/FAQView'
 import PolicyView from './components/PolicyView'
 import NotFoundView from './components/NotFoundView'
 import InquiryDrawer from './components/InquiryDrawer'
+import CallbackSheetView from './components/CallbackSheetView'
 
 // Supabase client
 import { supabase } from './supabaseClient'
@@ -38,6 +39,7 @@ const PATH_TO_VIEW = {
   '/terms':           'terms',
   '/shipping-policy': 'shipping-policy',
   '/return-policy':   'return-policy',
+  '/callback-sheet':  'callback-sheet',
   '/404':             '404',
 }
 
@@ -51,6 +53,7 @@ const VIEW_TO_PATH = {
   'terms':           '/terms',
   'shipping-policy': '/shipping-policy',
   'return-policy':   '/return-policy',
+  'callback-sheet':  '/callback-sheet',
   '404':             '/404',
 }
 
@@ -493,6 +496,18 @@ export default function App() {
               transition={{ duration: 0.3 }}
             >
               <NotFoundView onViewChange={handleViewChange} />
+            </motion.div>
+          )}
+
+          {currentView === 'callback-sheet' && (
+            <motion.div
+              key="callback-sheet"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+            >
+              <CallbackSheetView onBack={() => handleViewChange('home')} />
             </motion.div>
           )}
 
