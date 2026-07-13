@@ -208,7 +208,7 @@ export const PRODUCTS = [
     img: '/images/nightsuit-hosiery-1-1.webp',
     rating: 4.9,
     reviews: 68,
-    sizes: ['1-2y', '2-3y', '3-4y', '4-5y', '5-6y', '6-7y', '7-8y'],
+    sizes: ['0-6m', '6-12m', '12-18m'],
     desc: 'The night suit every Pune mom recommends! Premium hosiery cotton, gentle on sensitive skin, easy to wash, keeps kids cozy all night.\n\nWhy Parents Love It:\n100% pure hosiery combed cotton - ultra-soft & non-irritating\nBreathable & lightweight - perfect for India\'s climate\nFun cartoon prints kids adore\nElastic waistband - easy on, easy off\nMachine washable - stays soft after 100+ washes\nFull sleeve + full length for complete comfort\n\nVery popular - limited stock! Order via WhatsApp.\n\nCOD Available | Free Delivery in Wakad | Easy 7-Day Exchange',
     specs: { Fabric: '100% Hosiery Cotton', Wash: 'Machine Washable', Set: 'Top + Pyjama Set', Origin: 'Made in India' },
     gallery: ['/images/nightsuit-hosiery-1-1.webp', '/images/nightsuit-hosiery-1-2.webp', '/images/nightsuit-hosiery-1-3.webp', '/images/nightsuit-hosiery-1-4.webp', '/images/nightsuit-hosiery-1-5.webp']
@@ -224,7 +224,7 @@ export const PRODUCTS = [
     img: '/images/nightsuit-hosiery-2-1.webp',
     rating: 4.8,
     reviews: 44,
-    sizes: ['1-2y', '2-3y', '3-4y', '4-5y', '5-6y', '6-7y', '7-8y'],
+    sizes: ['0-6m', '6-12m', '12-18m'],
     desc: 'Super soft hosiery night suit with adorable animal prints - kids absolutely love it!\n\nFeatures:\n100% pure hosiery cotton - skin-safe & breathable\nMachine washable, retains softness\nElastic waist for easy bedtime dressing\nSizes 1-8 years\n\nCOD Available | Free Delivery within Wakad',
     specs: { Fabric: '100% Hosiery Cotton', Wash: 'Machine Washable', Set: 'Top + Pyjama Set', Origin: 'Made in India' },
     gallery: ['/images/nightsuit-hosiery-2-1.webp', '/images/nightsuit-hosiery-2-2.webp', '/images/nightsuit-hosiery-2-4.webp', '/images/nightsuit-hosiery-2-5.webp']
@@ -240,7 +240,7 @@ export const PRODUCTS = [
     img: '/images/nightsuit-hosiery-3-1.webp',
     rating: 4.9,
     reviews: 31,
-    sizes: ['2-3y', '3-4y', '4-5y', '5-6y', '6-7y', '7-8y', '8-9y', '9-10y'],
+    sizes: ['0-6m', '6-12m', '12-18m'],
     desc: 'Classic stripe and check patterns in premium hosiery cotton. Smart, neat and incredibly comfortable for kids 2-10 years.\n\nFeatures:\nPremium hosiery combed cotton\nClassic patterns loved by parents & kids\nMachine washable, colour-fast\nElastic waistband for all-night comfort\n\nCOD Available | Easy 7-Day Exchange',
     specs: { Fabric: '100% Combed Hosiery Cotton', Wash: 'Machine Washable', Set: 'Full Sleeve Top + Pyjama', Origin: 'Made in India' },
     gallery: ['/images/nightsuit-hosiery-3-1.webp', '/images/nightsuit-hosiery-3-2.webp', '/images/nightsuit-hosiery-3-4.webp', '/images/nightsuit-hosiery-3-5.webp']
@@ -256,7 +256,7 @@ export const PRODUCTS = [
     img: '/images/nightsuit-hosiery-4-1.webp',
     rating: 4.8,
     reviews: 19,
-    sizes: ['1-2y', '2-3y', '3-4y', '4-5y', '5-6y', '6-7y'],
+    sizes: ['0-6m', '6-12m', '12-18m'],
     desc: 'Beautiful floral print hosiery night suit - perfect for your little girl! Adorable pastel patterns on premium soft cotton.\n\nFeatures:\n100% hosiery cotton - skin-safe & cozy\nSweet floral patterns girls adore\nMachine washable\nElastic waist - comfortable all night\n\nCOD Available | Free Delivery in Wakad',
     specs: { Fabric: '100% Hosiery Cotton', Wash: 'Machine Washable', Set: 'Top + Pyjama Set', Origin: 'Made in India' },
     gallery: ['/images/nightsuit-hosiery-4-1.webp', '/images/nightsuit-hosiery-4-2.webp', '/images/nightsuit-hosiery-4-4.webp', '/images/nightsuit-hosiery-4-5.webp']
@@ -272,7 +272,7 @@ export const PRODUCTS = [
     img: '/images/nightsuit-hosiery-5-1.webp',
     rating: 4.7,
     reviews: 22,
-    sizes: ['2-3y', '3-4y', '4-5y', '5-6y', '6-7y', '7-8y', '8-9y', '9-10y', '10-11y', '11-12y'],
+    sizes: ['0-6m', '6-12m', '12-18m'],
     desc: 'Clean, classic solid-color night suit in premium hosiery cotton. Timeless design for everyday bedtime comfort.\n\nFeatures:\nPremium quality hosiery cotton\nSolid rich colours - easy to mix & match\nAvailable up to 12 years (biggest size range!)\nMachine washable, colour-fast\n\nCOD Available | Easy 7-Day Exchange',
     specs: { Fabric: '100% Hosiery Cotton', Wash: 'Machine Washable', Set: 'Full Sleeve Top + Pyjama', Origin: 'Made in India' },
     gallery: ['/images/nightsuit-hosiery-5-1.webp', '/images/nightsuit-hosiery-5-2.webp', '/images/nightsuit-hosiery-5-4.webp', '/images/nightsuit-hosiery-5-5.webp']
