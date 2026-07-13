@@ -429,6 +429,7 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
                     setActiveImg(rp.img)
                     setSelectedSize('')
                     setPredictedSize('')
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
                   }}
                 >
                   <img src={rp.img} alt={rp.name} className={styles.relatedImg} />
