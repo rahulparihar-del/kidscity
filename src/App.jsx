@@ -357,11 +357,13 @@ export default function App() {
         deliveryPincode={deliveryPincode}
       />
 
-      <LocationBar
-        deliveryPincode={deliveryPincode}
-        setDeliveryPincode={setDeliveryPincode}
-        isWakad={isWakad}
-      />
+      {currentView !== 'home' && (
+        <LocationBar
+          deliveryPincode={deliveryPincode}
+          setDeliveryPincode={setDeliveryPincode}
+          isWakad={isWakad}
+        />
+      )}
 
       <InquiryDrawer
         isOpen={isBagOpen}
