@@ -21,7 +21,7 @@ export default function HeroBanner({ onViewChange }) {
           transition={{ duration: 0.4 }}
         >
           <span className={styles.tagIcon}>✦</span>
-          500+ Happy Parents • 4.9 Rating
+          Wakad's Loved Kids Wear Store • 4.9★ Rated
         </motion.div>
 
         <motion.h1
@@ -30,8 +30,8 @@ export default function HeroBanner({ onViewChange }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Adorable Clothes for Little Ones<br />
-          <span className={styles.serifAccent}>Your Kids Will Love</span>
+          Best Kids Clothes Shop in Wakad<br />
+          <span className={styles.serifAccent}>Premium Outfits in Pune</span>
         </motion.h1>
 
         <motion.p
@@ -40,7 +40,7 @@ export default function HeroBanner({ onViewChange }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Skin-safe cotton wear for ages 1–12 · Night suits, festive & casuals
+          Wakad's trusted boutique for skin-safe cotton night suits, baby wear, & traditional festival outfits in Pune.
         </motion.p>
 
         <motion.div

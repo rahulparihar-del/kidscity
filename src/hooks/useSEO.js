@@ -22,9 +22,9 @@ export function useSEO({ title, description }) {
 /** Page-level SEO configs — one per view */
 export const PAGE_SEO = {
   home: {
-    title: 'Kids City | Night Suits, Festival & Baby Wear Online — From ₹399',
+    title: 'Kids City | Best Kids Clothes Shop in Wakad, Pune — From ₹399',
     description:
-      'Shop soft, skin-safe kids wear from ₹399! Night suits, baby clothes, Navratri lehengas & birthday dresses for ages 0–12 yrs. 4.9★ rated · 500+ happy parents · COD available · Easy exchanges. Order via WhatsApp or visit Wakad, Pune.',
+      'Wakad\'s best kids wear shop & clothing store. Buy skin-safe baby wear, kids night suits, Navratri lehengas, & birthday dresses from ₹399. 4.9★ rated · COD & easy exchanges in Wakad, Pune.',
   },
   shop: {
     title: 'Buy Kids Clothes Online India | Night Suits, Baby Wear & Festival Dresses — Kids City',
