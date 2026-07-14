@@ -7,10 +7,10 @@
   background: #ffffff;
 }
 
-/* ── Full-bleed background image ── */
-.heroImage {
+/* ── Full-bleed background image (Desktop) ── */
+.heroImageDesktop {
   position: absolute;
-  bottom: 15px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 110%;
@@ -19,6 +19,13 @@
   object-fit: contain;
   object-position: center bottom;
   z-index: 1;
+  display: block;
+}
+
+/* ── Mobile & Tablet image default states (hidden on desktop) ── */
+.heroImageMobile,
+.heroImageTablet {
+  display: none;
 }
 
 /* ── Gradient overlay ── */
@@ -160,13 +167,31 @@
 @media (max-width: 767px) {
   .hero {
     height: auto;
-    min-height: 100vh;
+    min-height: auto;
     margin-top: 78px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
   }
 
-  .heroImage {
-    max-height: 55%;
-    width: 140%;
+  .heroImageDesktop,
+  .heroImageTablet {
+    display: none;
+  }
+
+  .heroImageMobile {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    z-index: 1;
+    display: block;
+    margin-top: -16px; /* Pulls the image up slightly to reduce gap below buttons */
   }
 
   .contentOverlay {
@@ -185,6 +210,7 @@
 
   .subtitle {
     font-size: 0.85rem;
+    white-space: normal;
   }
 
   .ctas {
@@ -197,5 +223,27 @@
     width: 100%;
     text-align: center;
     min-height: 46px;
+  }
+}
+
+/* ── Tablet Viewports (768px to 1024px) ── */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .heroImageDesktop,
+  .heroImageMobile {
+    display: none;
+  }
+
+  .heroImageTablet {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: auto;
+    max-height: 64%; /* Perfectly sized to fit vertically below the text on iPad */
+    object-fit: contain;
+    object-position: center bottom;
+    z-index: 1;
+    display: block;
   }
 }

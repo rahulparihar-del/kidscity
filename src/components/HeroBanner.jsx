@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import styles from './HeroBanner.module.css'
-import heroImage from '../assets/herosection/removebg_image/ChatGPT Image Jul 15, 2026, 12_29_08 AM (1).png'
+import heroImage from '../assets/herosection/removebg_image/desktop_hero.webp'
+import mobileHeroImage from '../assets/herosection/mobile_hero/mobile_hero.webp'
+import tabletHeroImage from '../assets/herosection/tablet_hero/tablet_hero.webp'
 
 export default function HeroBanner({ onViewChange }) {
   const handleBrowseClick = () => {
@@ -10,15 +12,7 @@ export default function HeroBanner({ onViewChange }) {
 
   return (
     <section id="hero" className={styles.hero}>
-      <img
-        src={heroImage}
-        alt="Kids City Boutique Wakad Pune — Premium children clothing store"
-        className={styles.heroImage}
-        loading="eager"
-        fetchPriority="high"
-      />
       <div className={styles.gradientOverlay} />
-
       <div className={styles.contentOverlay}>
         <motion.div
           className={styles.tagBadge}
@@ -66,6 +60,29 @@ export default function HeroBanner({ onViewChange }) {
           </button>
         </motion.div>
       </div>
+
+      {/* Desktop View Image */}
+      <img
+        src={heroImage}
+        alt="Kids City Boutique Wakad Pune — Premium children clothing store"
+        className={styles.heroImageDesktop}
+        loading="eager"
+        fetchPriority="high"
+      />
+      {/* Mobile View Image */}
+      <img
+        src={mobileHeroImage}
+        alt="Kids City Boutique Wakad Pune"
+        className={styles.heroImageMobile}
+        loading="eager"
+      />
+      {/* Tablet View Image */}
+      <img
+        src={tabletHeroImage}
+        alt="Kids City Boutique Wakad Pune"
+        className={styles.heroImageTablet}
+        loading="eager"
+      />
     </section>
   )
 }
