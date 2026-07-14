@@ -72,7 +72,7 @@ export default function App() {
   const [inquiryBag, setInquiryBag] = useState([])
   const [isBagOpen, setIsBagOpen] = useState(false)
   const [dbProducts, setDbProducts] = useState([])
-  const [appLoading, setAppLoading] = useState(true)
+  const [appLoading, setAppLoading] = useState(false)
   const [viewLoading, setViewLoading] = useState(false)
 
   const [deliveryPincode, setDeliveryPincode] = useState('')
@@ -323,28 +323,7 @@ export default function App() {
       {/* Skip to content for accessibility */}
       <a href="#main-content" className="skip-nav">Skip to main content</a>
 
-      <AnimatePresence>
-        {(appLoading || viewLoading) && (
-          <motion.div
-            className="app-loader"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.45, ease: 'easeInOut' }}
-          >
-            {/* Logo with shimmer sweep */}
-            <div className="loader-logo-wrap">
-              <img
-                src="/images/logo_full.webp"
-                alt="Kids City"
-                className="app-loader-logo"
-              />
-            </div>
 
-            {/* Rainbow progress bar pinned to screen bottom */}
-            <div className="loader-progress-line" />
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <Navbar
         currentView={currentView}
