@@ -18,7 +18,7 @@ const DRAWER_LINKS = [
   { label: 'Contact & FAQ', view: 'contact' },
 ]
 
-export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag }) {
+export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag, isWakad, deliveryPincode }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -77,10 +77,12 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag 
               +91 78916 72762
             </a>
 
-            <button className={styles.bagBtn} onClick={onOpenBag} aria-label="Open inquiry bag">
-              <ShoppingBag size={18} />
-              {bagCount > 0 && <span className={styles.badge}>{bagCount}</span>}
-            </button>
+            {isWakad && (
+              <button className={styles.bagBtn} onClick={onOpenBag} aria-label="Open inquiry bag">
+                <ShoppingBag size={18} />
+                {bagCount > 0 && <span className={styles.badge}>{bagCount}</span>}
+              </button>
+            )}
 
             <a
               href="https://wa.me/917891672762?text=Hi%20Kids%20City!%20I%20saw%20your%20website%20and%20want%20to%20inquire%20about%20your%20clothes."
@@ -94,10 +96,12 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag 
 
           {/* Mobile: bag + hamburger */}
           <div className={styles.mobControls}>
-            <button className={styles.bagBtn} onClick={onOpenBag} aria-label="Open inquiry bag">
-              <ShoppingBag size={18} />
-              {bagCount > 0 && <span className={styles.badge}>{bagCount}</span>}
-            </button>
+            {isWakad && (
+              <button className={styles.bagBtn} onClick={onOpenBag} aria-label="Open inquiry bag">
+                <ShoppingBag size={18} />
+                {bagCount > 0 && <span className={styles.badge}>{bagCount}</span>}
+              </button>
+            )}
 
             <button
               className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ''}`}

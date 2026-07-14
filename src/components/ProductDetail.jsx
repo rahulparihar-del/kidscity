@@ -5,7 +5,7 @@ import { supabase } from '../supabaseClient'
 // PRODUCTS fallback loaded from dynamic props
 import styles from './ProductDetail.module.css'
 
-export default function ProductDetail({ product, onBack, onAddToBag, onSelectProduct, allProducts }) {
+export default function ProductDetail({ product, onBack, onAddToBag, onSelectProduct, allProducts, isWakad, deliveryPincode, setDeliveryPincode }) {
   const [activeImg, setActiveImg] = useState(product.img)
   const [selectedSize, setSelectedSize] = useState('')
   const [activeTab, setActiveTab] = useState('description')
@@ -16,6 +16,17 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
   const [childHeight, setChildHeight] = useState('')
   const [predictedSize, setPredictedSize] = useState('')
   const [addedAnimation, setAddedAnimation] = useState(false)
+
+  const [detailPincode, setDetailPincode] = useState('')
+  const [pincodeError, setPincodeError] = useState('')
+
+  useEffect(() => {
+    if (deliveryPincode) {
+      setDetailPincode(deliveryPincode)
+    } else {
+      setDetailPincode('')
+    }
+  }, [deliveryPincode])
 
   // Callback popup states
   const [showCallbackPopup, setShowCallbackPopup] = useState(false)
@@ -117,10 +128,10 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
   }
 
   // Get WhatsApp order link
-  const getWhatsAppOrderLink = () => {
+  const getWhatsAppOrderLink = (inquiryId) => {
     const sizeToUse = selectedSize || product.sizes[0]
     const phone = '917891672762'
-    let text = `Hi Kids City! I saw the "${product.name}" on your website. I want to buy it in size "${sizeToUse}" (${product.price}). Is it available in store?`
+    let text = `Hi Kids City! I want to buy the "${product.name}" in size "${sizeToUse}" (${product.price}) (Inquiry ID: #${inquiryId}). Is it available in store?`
     
     // If the image is a static file, append the full public URL so WhatsApp generates a preview card
     if (product.img && product.img.startsWith('/')) {
@@ -129,6 +140,36 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
     }
     
     return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`
+  }
+
+  const handleDirectOrder = async () => {
+    const randId = 'KC-' + Math.floor(10000 + Math.random() * 90000)
+    const sizeToUse = selectedSize || product.sizes[0]
+    const orderItem = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      size: sizeToUse,
+      img: product.img,
+      category: product.category
+    }
+
+    try {
+      await supabase.from('customer_inquiries').insert([{
+        inquiry_id: randId,
+        name: 'Direct WhatsApp Order',
+        phone: 'N/A (WhatsApp Direct)',
+        items: [orderItem],
+        total_price: product.price,
+        created_at: new Date().toISOString()
+      }])
+    } catch (err) {
+      console.warn("Direct order save bypassed:", err)
+    }
+
+    // Open WhatsApp
+    const waUrl = getWhatsAppOrderLink(randId)
+    window.open(waUrl, '_blank')
   }
 
   // Filter related products from live array
@@ -333,34 +374,77 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
               </AnimatePresence>
             </div>
 
-            {/* Add & Inquiry Action Buttons */}
-            <div className={styles.actionRow}>
-              <a
-                href={getWhatsAppOrderLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`btn btn-wa ${styles.primaryCta}`}
-              >
-                <MessageSquare size={18} fill="currentColor" strokeWidth={0} />
-                Order via WhatsApp
-              </a>
-
-              <button
-                className={`btn ${addedAnimation ? 'btn-sage' : 'btn-navy'} ${styles.secondaryCta}`}
-                onClick={handleAddToBag}
-              >
-                {addedAnimation ? <Check size={18} /> : <ShoppingBag size={18} />}
-                {addedAnimation ? 'Added to Bag!' : 'Add to Inquiry Bag'}
-              </button>
-
-              <button
-                className={`${styles.wishlistBtn} ${wishlist ? styles.wishActive : ''}`}
-                onClick={() => setWishlist(!wishlist)}
-                aria-label="Add to wishlist"
-              >
-                <Heart size={20} fill={wishlist ? 'currentColor' : 'none'} />
-              </button>
+            {/* Delivery Pincode Checker Section */}
+            <div className={styles.deliveryCheckSection}>
+              <h3 className={styles.deliveryTitle}>Delivery Availability</h3>
+              {!deliveryPincode ? (
+                <div className={styles.deliveryFormWrap}>
+                  <p className={styles.deliveryPrompt}>Enter delivery pincode to see availability and unlock order buttons:</p>
+                  <form onSubmit={(e) => {
+                    e.preventDefault()
+                    const cleaned = detailPincode.trim()
+                    if (!/^\d{6}$/.test(cleaned)) {
+                      setPincodeError('Please enter a valid 6-digit pincode.')
+                      return
+                    }
+                    setPincodeError('')
+                    setDeliveryPincode(cleaned)
+                  }} className={styles.deliveryForm}>
+                    <input
+                      type="text"
+                      placeholder="e.g. 411057"
+                      value={detailPincode}
+                      onChange={(e) => {
+                        setDetailPincode(e.target.value.replace(/\D/g, '').slice(0, 6))
+                        setPincodeError('')
+                      }}
+                      className={styles.pincodeInputField}
+                    />
+                    <button type="submit" className="btn btn-navy">Check</button>
+                  </form>
+                  {pincodeError && <p className={styles.deliveryError}>{pincodeError}</p>}
+                </div>
+              ) : isWakad ? (
+                <div className={styles.deliverySuccess}>
+                  <Check size={16} className={styles.deliverySuccessIcon} />
+                  <span>Delivering to <strong>Wakad, Pune (411057)</strong>. Order options unlocked.</span>
+                </div>
+              ) : (
+                <div className={styles.deliveryFailure}>
+                  <X size={16} className={styles.deliveryFailureIcon} />
+                  <span>We do not deliver to <strong>{deliveryPincode}</strong>. We only deliver to <strong>Wakad, Pune (411057)</strong>. Ordering is disabled.</span>
+                </div>
+              )}
             </div>
+
+            {/* Add & Inquiry Action Buttons */}
+            {isWakad && (
+              <div className={styles.actionRow}>
+                <button
+                  onClick={handleDirectOrder}
+                  className={`btn btn-wa ${styles.primaryCta}`}
+                >
+                  <MessageSquare size={18} fill="currentColor" strokeWidth={0} />
+                  Order via WhatsApp
+                </button>
+
+                <button
+                  className={`btn ${addedAnimation ? 'btn-sage' : 'btn-navy'} ${styles.secondaryCta}`}
+                  onClick={handleAddToBag}
+                >
+                  {addedAnimation ? <Check size={18} /> : <ShoppingBag size={18} />}
+                  {addedAnimation ? 'Added to Bag!' : 'Add to Inquiry Bag'}
+                </button>
+
+                <button
+                  className={`${styles.wishlistBtn} ${wishlist ? styles.wishActive : ''}`}
+                  onClick={() => setWishlist(!wishlist)}
+                  aria-label="Add to wishlist"
+                >
+                  <Heart size={20} fill={wishlist ? 'currentColor' : 'none'} />
+                </button>
+              </div>
+            )}
 
             {/* Tabs for details, reviews */}
             <div className={styles.tabsSection}>

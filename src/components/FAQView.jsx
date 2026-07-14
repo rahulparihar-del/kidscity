@@ -54,12 +54,12 @@ const FAQS = [
         a: 'Yes! You can WhatsApp us at +91 78916 72762 to check stock, available sizes, and current collections before your visit. Our team responds quickly and can even send you photos of available styles.'
       },
       {
-        q: 'Do you offer size exchanges for kids clothing?',
-        a: 'Yes, we offer hassle-free size exchanges within 7 days of purchase if the size does not fit. Please keep the original tags intact and bring your original bill. Exchange is subject to stock availability.'
+        q: 'Do you offer returns or size exchanges?',
+        a: 'We have a strict no-return policy and all sales are final. However, we offer size exchanges within 7 days of purchase. The item must be unused, unwashed, with tags intact, and exchanged in person at our physical store in Wakad, Pune.'
       },
       {
-        q: 'Do you deliver kids clothes in Pune?',
-        a: 'Yes! We offer local home delivery in Wakad, Hinjewadi, and Baner. For other areas in Pune and Pimpri-Chinchwad, we coordinate shipping via local courier. Contact us on WhatsApp to arrange delivery.'
+        q: 'Do you deliver kids clothes outside Wakad, Pune?',
+        a: 'No. We offer local home delivery exclusively to locations within Wakad, Pune (Pincode: 411057) only. We do not deliver to Hinjewadi, Baner, or other parts of Pune. Out-of-area ordering is disabled.'
       },
       {
         q: 'What payment methods are accepted at Kids City?',

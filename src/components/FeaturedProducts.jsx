@@ -65,7 +65,7 @@ function StarRating({ rating }) {
   )
 }
 
-function ProductCard({ product, onSelectProduct }) {
+function ProductCard({ product, onSelectProduct, isWakad }) {
   const [wishlist, setWishlist] = useState(false)
 
   const handleWishlist = (e) => {
@@ -137,20 +137,22 @@ function ProductCard({ product, onSelectProduct }) {
         <StarRating rating={product.rating} />
         <div className={styles.priceRow}>
           <span className={styles.price}>{product.price}</span>
-          <button
-            onClick={handleInquire}
-            className={styles.inquireBtn}
-            aria-label={`Inquire about ${product.name}`}
-          >
-            Inquire
-          </button>
+          {isWakad && (
+            <button
+              onClick={handleInquire}
+              className={styles.inquireBtn}
+              aria-label={`Inquire about ${product.name}`}
+            >
+              Inquire
+            </button>
+          )}
         </div>
       </div>
     </motion.div>
   )
 }
 
-export default function FeaturedProducts({ products, onSelectProduct, onViewChange }) {
+export default function FeaturedProducts({ products, onSelectProduct, onViewChange, isWakad }) {
   const [activeTab, setActiveTab] = useState('All')
 
   // Top 6 products for home view
@@ -189,7 +191,7 @@ export default function FeaturedProducts({ products, onSelectProduct, onViewChan
         {/* Grid */}
         <div className={styles.grid}>
           {filtered.map(p => (
-            <ProductCard key={p.id} product={p} onSelectProduct={onSelectProduct} />
+            <ProductCard key={p.id} product={p} onSelectProduct={onSelectProduct} isWakad={isWakad} />
           ))}
         </div>
 

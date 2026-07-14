@@ -13,6 +13,8 @@ import Newsletter from './components/Newsletter'
 import Footer from './components/Footer'
 import WhatsAppFAB from './components/WhatsAppFAB'
 
+import LocationBar from './components/LocationBar'
+
 // Modular routing views
 import ShopView, { PRODUCTS } from './components/ShopView'
 import ProductDetail from './components/ProductDetail'
@@ -74,6 +76,9 @@ export default function App() {
   const [dbProducts, setDbProducts] = useState([])
   const [appLoading, setAppLoading] = useState(true)
   const [viewLoading, setViewLoading] = useState(false)
+
+  const [deliveryPincode, setDeliveryPincode] = useState('')
+  const isWakad = deliveryPincode === '411057'
 
   // Load products on mount with real-time listeners and database seeding
   useEffect(() => {
@@ -282,38 +287,17 @@ export default function App() {
     return () => clearTimeout(timer)
   }, [currentView, appLoading])
 
-  // Load inquiry bag from localStorage on mount
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem('kidscity_inquiry_bag')
-      if (stored) {
-        setInquiryBag(JSON.parse(stored))
-      }
-    } catch (e) {
-      console.error("Failed to load inquiry bag", e)
-    }
-  }, [])
-
-  // Sync inquiry bag to localStorage on change
+  // Handle adding items to inquiry bag
   const handleAddToBag = (item) => {
     const updated = [...inquiryBag, item]
     setInquiryBag(updated)
     setIsBagOpen(true)
-    try {
-      localStorage.setItem('kidscity_inquiry_bag', JSON.stringify(updated))
-    } catch (e) {
-      console.error("Failed to save inquiry bag", e)
-    }
   }
 
+  // Handle removing items from inquiry bag
   const handleRemoveFromBag = (indexToRemove) => {
     const updated = inquiryBag.filter((_, idx) => idx !== indexToRemove)
     setInquiryBag(updated)
-    try {
-      localStorage.setItem('kidscity_inquiry_bag', JSON.stringify(updated))
-    } catch (e) {
-      console.error("Failed to save inquiry bag", e)
-    }
   }
 
   // ── View change handler — also updates URL ──────────────────────────────────
@@ -369,6 +353,14 @@ export default function App() {
         onViewChange={handleViewChange}
         bagCount={inquiryBag.length}
         onOpenBag={() => setIsBagOpen(true)}
+        isWakad={isWakad}
+        deliveryPincode={deliveryPincode}
+      />
+
+      <LocationBar
+        deliveryPincode={deliveryPincode}
+        setDeliveryPincode={setDeliveryPincode}
+        isWakad={isWakad}
       />
 
       <InquiryDrawer
@@ -376,6 +368,7 @@ export default function App() {
         onClose={() => setIsBagOpen(false)}
         bagItems={inquiryBag}
         onRemoveFromBag={handleRemoveFromBag}
+        onClearBag={() => setInquiryBag([])}
       />
 
       <main id="main-content">
@@ -396,6 +389,7 @@ export default function App() {
                 products={dbProducts}
                 onSelectProduct={handleSelectProduct}
                 onViewChange={handleViewChange}
+                isWakad={isWakad}
               />
               <WhyUs />
               <Testimonials />
@@ -435,6 +429,9 @@ export default function App() {
                 onAddToBag={handleAddToBag}
                 onSelectProduct={handleSelectProduct}
                 allProducts={dbProducts}
+                isWakad={isWakad}
+                deliveryPincode={deliveryPincode}
+                setDeliveryPincode={setDeliveryPincode}
               />
             </motion.div>
           )}

@@ -230,3 +230,118 @@
 .checkoutBtn {
   width: 100%;
 }
+
+/* Contact Form Styles */
+.formHeader {
+  margin-bottom: 20px;
+}
+
+.formTitle {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--brand-navy);
+}
+
+.formText {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  margin-top: 4px;
+}
+
+.checkoutForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.field input {
+  padding: 10px 12px;
+  border: 1.5px solid #e0dbd3;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.field input:focus {
+  border-color: var(--brand-navy);
+}
+
+.phoneInputGroup {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #e0dbd3;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.phoneInputGroup:focus-within {
+  border-color: var(--brand-navy);
+}
+
+.phonePrefix {
+  padding: 10px 12px;
+  background: #fbfaf8;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  border-right: 1.5px solid #e0dbd3;
+}
+
+.phoneField {
+  border: none !important;
+  flex: 1;
+  padding: 10px 12px;
+  outline: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.btnRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.cancelBtn {
+  flex: 1;
+  border: 1.5px solid #e0dbd3;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.cancelBtn:hover {
+  background: #fbfaf8;
+  color: var(--brand-navy);
+  border-color: var(--brand-navy);
+}
+
+.submitBtn {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
