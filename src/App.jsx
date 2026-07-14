@@ -13,8 +13,6 @@ import Newsletter from './components/Newsletter'
 import Footer from './components/Footer'
 import WhatsAppFAB from './components/WhatsAppFAB'
 
-import LocationBar from './components/LocationBar'
-
 // Modular routing views
 import ShopView, { PRODUCTS } from './components/ShopView'
 import ProductDetail from './components/ProductDetail'
@@ -357,13 +355,6 @@ export default function App() {
         deliveryPincode={deliveryPincode}
       />
 
-      {currentView !== 'home' && (
-        <LocationBar
-          deliveryPincode={deliveryPincode}
-          setDeliveryPincode={setDeliveryPincode}
-          isWakad={isWakad}
-        />
-      )}
 
       <InquiryDrawer
         isOpen={isBagOpen}
