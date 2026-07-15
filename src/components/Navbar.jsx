@@ -65,7 +65,7 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag,
             onClick={(e) => handleNavClick('home', e)}
             aria-label="Kids City Home"
           >
-            <div className="w-[108px] h-10 max-[560px]:w-24 max-[560px]:h-9 overflow-hidden flex items-center justify-start">
+            <div className="w-[126px] h-10 max-[560px]:w-[110px] max-[560px]:h-9 overflow-hidden flex items-center justify-start">
               <img
                 src="/images/logo_full.webp"
                 alt="Kids City — Kids Clothes Shop in Wakad, Pune"
@@ -203,7 +203,7 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag,
           >
             {/* Drawer header */}
             <div className="flex items-center justify-between px-5 pt-[18px] pb-4 border-b border-border">
-              <div className="w-[100px] h-9 overflow-hidden flex items-center">
+              <div className="w-[116px] h-9 overflow-hidden flex items-center">
                 <img
                   src="/images/logo_full.webp"
                   alt="Kids City — Children Clothing Store in Pune"
