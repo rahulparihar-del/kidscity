@@ -662,9 +662,10 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
                   </h2>
                   <p className="text-[0.95rem] font-bold text-text-mid mb-6 text-left">Share your number to get a call-back.</p>
 
-                  <form onSubmit={handleCallbackSubmit} className="w-full mb-3 box-border">
-                    <div className="flex items-stretch border border-[#dcdcdc] rounded-[16px] overflow-hidden bg-white box-border focus-within:border-brand-navy focus-within:ring-2 focus-within:ring-brand-navy/10 max-[520px]:flex-col max-[520px]:border-none max-[520px]:bg-transparent max-[520px]:gap-2">
-                      <div className="flex items-center gap-1.5 px-3.5 bg-[#f8f9fa] border-r border-[#e9ecef] text-[0.92rem] font-bold text-brand-navy-light user-select-none max-[520px]:border max-[520px]:border-[#dcdcdc] max-[520px]:rounded-[16px] max-[520px]:py-3 max-[520px]:px-3.5 max-[520px]:bg-white">
+                  <form onSubmit={handleCallbackSubmit} className="w-full flex flex-col gap-4 box-border">
+                    {/* Unified Phone Input Box */}
+                    <div className="flex items-stretch border border-[#dcdcdc] rounded-[16px] overflow-hidden bg-white box-border focus-within:border-brand-navy focus-within:ring-2 focus-within:ring-brand-navy/10">
+                      <div className="flex items-center gap-1.5 px-3.5 bg-[#f8f9fa] border-r border-[#e9ecef] text-[0.92rem] font-bold text-brand-navy-light user-select-none shrink-0">
                         <span className="text-[1.15rem]">🇮🇳</span>
                         <span>+91</span>
                       </div>
@@ -673,16 +674,21 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
                         placeholder="81234 56789"
                         value={phoneInput}
                         onChange={(e) => setPhoneInput(e.target.value.replace(/\D/g, '').slice(0, 10))}
-                        className="flex-1 border-none px-3.5 py-3 text-[1.05rem] font-bold text-brand-navy outline-none min-w-0 tracking-wider placeholder:color-[#c0c0c0] placeholder:font-medium max-[520px]:border max-[520px]:border-[#dcdcdc] max-[520px]:rounded-[16px] max-[520px]:py-3 max-[520px]:px-3.5 max-[520px]:bg-white"
+                        className="flex-1 border-none px-3.5 py-3.5 text-[1.05rem] font-bold text-brand-navy outline-none min-w-0 tracking-wider placeholder:text-[#c0c0c0] placeholder:font-medium"
                         pattern="[6-9][0-9]{9}"
                         title="Please enter a valid 10-digit Indian mobile number"
                         required
                       />
-                      <button type="submit" className="bg-[#fdf5e6] border-l border-[#f9ebd2] text-brand-terracotta px-5.5 font-[family-name:var(--font-head)] font-[900] text-[0.92rem] cursor-pointer transition-all duration-150 flex items-center gap-2 whitespace-nowrap hover:bg-brand-terracotta hover:text-white max-[520px]:border-none max-[520px]:rounded-[16px] max-[520px]:py-3 max-[520px]:px-5 max-[520px]:justify-center max-[520px]:bg-brand-terracotta max-[520px]:text-white max-[520px]:shadow-[0_4px_12px_rgba(224,122,95,0.25)] max-[520px]:hover:bg-brand-navy">
-                        <PhoneCall size={14} />
-                        <span>Call me back</span>
-                      </button>
                     </div>
+
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      className="w-full bg-brand-terracotta hover:bg-[#c9664b] text-white font-[family-name:var(--font-head)] font-[900] text-[0.95rem] py-3.5 rounded-[16px] cursor-pointer transition-all duration-150 flex items-center justify-center gap-2 shadow-[0_4px_12px_rgba(224,122,95,0.25)] hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                      <PhoneCall size={14} />
+                      <span>Call me back</span>
+                    </button>
                   </form>
 
                   <p className="text-[0.76rem] italic text-[#888888] mb-6 max-[520px]:mb-4.5 text-left">Rest assured, your details are secure with us.</p>
