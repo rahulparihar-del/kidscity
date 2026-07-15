@@ -174,17 +174,18 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
   const nameParts = product.name.split('|').map(s => s.trim())
   const displayName = nameParts[0]
   const displaySubtitle = nameParts.slice(1).join(' | ')
+  const breadcrumbName = displayName.length > 40 ? displayName.slice(0, 40) + '...' : displayName
 
   return (
     <div className="bg-white min-h-screen pt-[100px] max-[768px]:pt-20 pb-20">
       <div className="container">
         {/* Breadcrumb / Back button */}
-        <div className="flex justify-between items-center mb-[30px] max-[600px]:flex-col max-[600px]:items-start max-[600px]:gap-3 max-[480px]:mb-5">
+        <div className="flex flex-wrap justify-between items-center gap-4 mb-[30px] max-[600px]:flex-col max-[600px]:items-start max-[600px]:gap-3 max-[480px]:mb-5">
           <button onClick={onBack} className="flex items-center gap-2 font-bold text-[0.88rem] text-brand-navy bg-white border border-border px-[18px] py-2 rounded-[50px] transition-all duration-150 hover:bg-brand-navy hover:text-white hover:-translate-x-1">
             <ArrowLeft size={16} /> Back to Catalog
           </button>
           <span className="text-[0.82rem] text-text-muted font-semibold max-[480px]:line-height-[1.45] max-[480px]:text-[0.8rem]">
-            Home &gt; Shop &gt; {product.category} &gt; {displayName}
+            Home &gt; Shop &gt; {product.category} &gt; {breadcrumbName}
           </span>
         </div>
 
