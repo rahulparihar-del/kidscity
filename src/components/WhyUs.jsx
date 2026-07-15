@@ -1,5 +1,4 @@
 import { Star } from 'lucide-react'
-import styles from './WhyUs.module.css'
 
 const FEATURES = [
   {
@@ -9,7 +8,7 @@ const FEATURES = [
       </svg>
     ),
     title: 'Premium Quality',
-    desc: 'Soft, safe, skin-friendly fabrics carefully selected for your child\'s comfort and style.',
+    desc: "Soft, safe, skin-friendly fabrics carefully selected for your child's comfort and style.",
     color: 'linear-gradient(135deg, #f5a623, #e8820a)',
   },
   {
@@ -21,7 +20,7 @@ const FEATURES = [
     ),
     title: '500+ Styles',
     desc: 'An unmatched variety — from traditional kurtas to trendy western wear across all age groups.',
-    color: 'linear-gradient(135deg, var(--navy-600), var(--navy-400))',
+    color: 'linear-gradient(135deg, #545778, #00A8E8)',
   },
   {
     icon: (
@@ -30,7 +29,7 @@ const FEATURES = [
       </svg>
     ),
     title: 'New Every Week',
-    desc: 'Fresh collections arrive weekly so you\'ll always find something new and exciting.',
+    desc: "Fresh collections arrive weekly so you'll always find something new and exciting.",
     color: 'linear-gradient(135deg, #32CD32, #228B22)',
   },
   {
@@ -47,62 +46,71 @@ const FEATURES = [
 
 export default function WhyUs() {
   return (
-    <section id="why" className={styles.section}>
-      {/* Background */}
-      <div className={styles.bg} />
-      
-      <div className={`container ${styles.inner}`}>
+    <section id="why" className="py-24 max-[900px]:py-[60px] relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white to-white z-0" />
+
+      <div className="container relative z-10 grid grid-cols-2 max-[900px]:grid-cols-1 gap-20 max-[900px]:gap-10 items-center">
         {/* Left */}
-        <div className={styles.left}>
+        <div>
           <span className="section-label" style={{ color: 'var(--brand-terracotta)' }}>Why Choose Us</span>
-          <h2 className={styles.heading}>Why <span className="serif-accent">Wakad &amp; Pune</span> Parents Choose Kids City</h2>
-          <p className={styles.desc}>
+          <h2 className="font-[family-name:var(--font-head)] font-extrabold tracking-[-0.02em] text-[clamp(1.9rem,3vw,2.8rem)] text-brand-navy leading-[1.2] mb-4">
+            Why <span className="serif-accent">Wakad &amp; Pune</span> Parents Choose Kids City
+          </h2>
+          <p className="text-base text-text-mid leading-[1.75] mb-9 font-medium">
             Kids City has been Wakad's most trusted children's clothing store since 2018 — night suits, festive wear, birthday dresses and more. Serving families from Hinjewadi, Baner, Pimple Saudagar, and across Pune, because every visit feels personal and every outfit feels perfect.
           </p>
 
-          <div className={styles.statsRow}>
-            <div className={styles.statBlock}>
-              <span className={styles.statNum}>
-                4.9<Star size={16} fill="currentColor" strokeWidth={0} className={styles.statStar} />
+          {/* Stats row */}
+          <div className="flex gap-8 max-[900px]:gap-6 max-[480px]:flex-wrap max-[480px]:gap-4 mb-9">
+            <div className="flex flex-col">
+              <span className="inline-flex items-center gap-0.5 font-[family-name:var(--font-head)] font-extrabold tracking-[-0.02em] text-[2rem] text-brand-orange leading-none">
+                4.9<Star size={16} fill="currentColor" strokeWidth={0} className="inline" />
               </span>
-              <span className={styles.statLabel}>Google Rating</span>
+              <span className="text-[0.73rem] font-bold text-text-muted uppercase tracking-[0.5px] mt-1">Google Rating</span>
             </div>
-            <div className={styles.statBlock}>
-              <span className={styles.statNum}>500+</span>
-              <span className={styles.statLabel}>Happy Parents</span>
+            <div className="flex flex-col">
+              <span className="font-[family-name:var(--font-head)] font-extrabold tracking-[-0.02em] text-[2rem] text-brand-orange leading-none">500+</span>
+              <span className="text-[0.73rem] font-bold text-text-muted uppercase tracking-[0.5px] mt-1">Happy Parents</span>
             </div>
-            <div className={styles.statBlock}>
-              <span className={styles.statNum}>#1</span>
-              <span className={styles.statLabel}>In Wakad</span>
+            <div className="flex flex-col">
+              <span className="font-[family-name:var(--font-head)] font-extrabold tracking-[-0.02em] text-[2rem] text-brand-orange leading-none">#1</span>
+              <span className="text-[0.73rem] font-bold text-text-muted uppercase tracking-[0.5px] mt-1">In Wakad</span>
             </div>
           </div>
 
-          <div className={styles.actions}>
-            <a
-              href="https://www.google.com/maps/dir//Kids+City"
-              className="btn btn-gold"
-            >
+          {/* CTAs */}
+          <div className="flex flex-wrap max-[480px]:flex-col gap-3.5">
+            <a href="https://www.google.com/maps/dir//Kids+City" className="btn btn-gold">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
               </svg>
               Visit Our Store
             </a>
-            <a href="tel:+917891672762" className="btn btn-outline-navy">
+            <a href="tel:+917891672762" className="btn btn-outline-navy max-[480px]:w-full max-[480px]:justify-center">
               Call: +91 78916 72762
             </a>
           </div>
         </div>
 
-        {/* Right features */}
-        <div className={styles.features}>
+        {/* Right — feature cards */}
+        <div className="flex flex-col gap-4">
           {FEATURES.map((f, i) => (
-            <div key={i} className={styles.feat}>
-              <div className={styles.featIcon} style={{ background: f.color }}>
+            <div
+              key={i}
+              className="flex gap-[18px] max-[480px]:gap-3.5 items-start bg-white border border-border rounded-[24px] p-[22px_20px] max-[480px]:p-[18px_16px] shadow-[0_4px_12px_rgba(61,64,91,0.05)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(61,64,91,0.12)]"
+            >
+              <div
+                className="w-12 h-12 max-[480px]:w-[42px] max-[480px]:h-[42px] rounded-[14px] flex items-center justify-center shrink-0 shadow-[0_4px_16px_rgba(0,0,0,0.2)]"
+                style={{ background: f.color }}
+              >
                 {f.icon}
               </div>
               <div>
-                <h3 className={styles.featTitle}>{f.title}</h3>
-                <p className={styles.featDesc}>{f.desc}</p>
+                <h3 className="font-[family-name:var(--font-head)] font-extrabold tracking-[-0.02em] text-[1.05rem] text-brand-navy mb-1.5">
+                  {f.title}
+                </h3>
+                <p className="text-[0.87rem] text-text-mid font-medium leading-[1.55]">{f.desc}</p>
               </div>
             </div>
           ))}

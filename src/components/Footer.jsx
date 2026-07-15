@@ -1,6 +1,4 @@
-import { motion } from 'framer-motion'
 import { MapPin, Phone, MessageSquare, Camera, Clock, Navigation, Heart, ArrowRight, Mail, Star, FileSpreadsheet } from 'lucide-react'
-import styles from './Footer.module.css'
 
 const COLLECTIONS = [
   { label: 'Festival Wear — Wakad', view: 'shop' },
@@ -28,6 +26,23 @@ const POLICY_LINKS = [
 
 const SERVICE_AREAS = ['Wakad', 'Hinjewadi', 'Baner', 'Balewadi', 'Pimple Saudagar', 'Ravet', 'Tathawade', 'Pimpri', 'Pune']
 
+// Reusable footer link with hover arrow effect
+function FootLink({ href, onClick, children }) {
+  return (
+    <a
+      href={href}
+      onClick={onClick}
+      className="group inline-flex items-center gap-1 text-[0.92rem] text-[#B8B2A6] transition-all duration-150 hover:text-white hover:translate-x-1.5"
+    >
+      <ArrowRight
+        size={12}
+        className="text-brand-sage opacity-0 -translate-x-2 transition-all duration-150 group-hover:opacity-100 group-hover:translate-x-0"
+      />
+      {children}
+    </a>
+  )
+}
+
 export default function Footer({ onViewChange }) {
   const handleNavClick = (view, e) => {
     e.preventDefault()
@@ -36,20 +51,29 @@ export default function Footer({ onViewChange }) {
   }
 
   return (
-    <footer id="footer" className={styles.footer} aria-label="Kids City footer">
+    <footer
+      id="footer"
+      className="bg-[#0d1e3d] text-[#E6DFD3] pt-20 pb-10 border-t border-border"
+      aria-label="Kids City footer"
+    >
       <div className="container">
-        {/* Top CTA Conversion Band */}
-        <div className={styles.ctaBand}>
-          <div className={styles.ctaText}>
-            <span className={styles.ctaLabel}>Visit Store Daily</span>
-            <h3 className={styles.ctaTitle}>
-              Bring your little stars to our <span className="serif-accent" style={{ color: 'var(--brand-terracotta-light)' }}>Wakad boutique</span>
+        {/* Top CTA band */}
+        <div className="flex max-[991px]:flex-col justify-between items-center max-[991px]:items-start gap-10 max-[991px]:gap-[30px] border-b border-[rgba(230,223,211,0.12)] pb-12 mb-12">
+          <div className="max-w-[600px]">
+            <span className="block text-[0.72rem] font-extrabold tracking-[2px] uppercase text-brand-terracotta-light mb-2">
+              Visit Store Daily
+            </span>
+            <h3 className="font-[family-name:var(--font-head)] text-[2rem] font-black text-white leading-[1.25] tracking-[-0.02em] mb-3">
+              Bring your little stars to our{' '}
+              <span className="font-[family-name:var(--font-serif)] italic font-semibold text-brand-terracotta-light">
+                Wakad boutique
+              </span>
             </h3>
-            <p className={styles.ctaSub}>
-              Explore 500+ premium kids clothing styles — festival wear, birthday dresses, traditional outfits, and everyday casuals for boys & girls aged 0–14 years in Wakad, Pune.
+            <p className="text-[0.95rem] text-[#B8B2A6] leading-[1.6]">
+              Explore 500+ premium kids clothing styles — festival wear, birthday dresses, traditional outfits, and everyday casuals for boys &amp; girls aged 0–14 years in Wakad, Pune.
             </p>
           </div>
-          <div className={styles.ctaBtns}>
+          <div className="flex gap-4 flex-wrap max-[991px]:w-full">
             <a
               href="https://www.google.com/maps/dir//Kids+City+Wakad"
               target="_blank"
@@ -63,7 +87,7 @@ export default function Footer({ onViewChange }) {
               href="https://wa.me/917891672762?text=Hi%20Kids%20City!%20I'd%20like%20to%20visit%20your%20store%20today."
               target="_blank"
               rel="noopener noreferrer"
-              className={`btn btn-wa ${styles.waCta}`}
+              className="btn btn-wa"
               aria-label="Chat with Kids City Wakad on WhatsApp"
             >
               <MessageSquare size={16} fill="currentColor" strokeWidth={0} /> WhatsApp Chat
@@ -71,114 +95,115 @@ export default function Footer({ onViewChange }) {
           </div>
         </div>
 
-        {/* Main Grid Section */}
-        <div className={styles.grid}>
-          {/* Brand Info */}
-          <div className={styles.brandCol}>
-            <a href="/" onClick={(e) => handleNavClick('home', e)} className={styles.logo} aria-label="Kids City Home">
+        {/* Main grid */}
+        <div className="grid grid-cols-[1.3fr_0.8fr_0.8fr_1.1fr] max-[991px]:grid-cols-2 max-[560px]:grid-cols-1 gap-[50px] max-[991px]:gap-10 max-[560px]:gap-8">
+          {/* Brand col */}
+          <div className="flex flex-col">
+            <a
+              href="/"
+              onClick={(e) => handleNavClick('home', e)}
+              className="inline-flex items-center no-underline"
+              aria-label="Kids City Home"
+            >
               <img
                 src="/images/logo_full.webp"
                 alt="Kids City — Best Kids Clothes Shop in Wakad, Pune"
-                className={styles.logoImg}
+                className="h-[52px] w-auto object-contain block brightness-105"
                 loading="lazy"
                 width="140"
                 height="56"
               />
             </a>
-            <p className={styles.brandText}>
-              Wakad's most loved children's clothing store since 2018. We handpick high-quality, skin-safe, comfortable, and stylish outfits for boys & girls aged 0–14 years across Pune and Pimpri-Chinchwad.
+            <p className="text-[0.9rem] text-[#B8B2A6] leading-[1.65] my-4 max-w-[320px]">
+              Wakad's most loved children's clothing store since 2018. We handpick high-quality, skin-safe, comfortable, and stylish outfits for boys &amp; girls aged 0–14 years across Pune and Pimpri-Chinchwad.
             </p>
 
-            {/* Google Reviews badge */}
+            {/* Google reviews badge */}
             <a
               href="https://www.google.com/maps/dir//Kids+City+Wakad"
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.reviewBadge}
+              className="inline-flex items-center gap-1.5 bg-white/5 border border-white/10 rounded-full px-3.5 py-1.5 mb-5 no-underline transition-colors duration-200 hover:bg-white/[0.09] w-fit"
               aria-label="Kids City has 4.9 star Google rating from 135 reviews"
             >
               <Star size={14} fill="#FBBF24" strokeWidth={0} />
-              <span className={styles.reviewScore}>4.9</span>
-              <span className={styles.reviewCount}>· 135+ Google Reviews</span>
+              <span className="font-[family-name:var(--font-head)] text-[0.92rem] font-bold text-[#FBBF24]">4.9</span>
+              <span className="font-[family-name:var(--font-body)] text-[0.82rem] text-[#B8B2A6]">· 135+ Google Reviews</span>
             </a>
-            
-            {/* Social media links */}
-            <div className={styles.socials}>
-              <a
-                href="https://instagram.com/kidscity____"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialBtn}
-                aria-label="Kids City Instagram — kids clothing Wakad"
-              >
-                <Camera size={16} />
-              </a>
-              <a
-                href="https://wa.me/917891672762"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialBtn}
-                aria-label="Kids City WhatsApp"
-              >
-                <MessageSquare size={16} />
-              </a>
-              <a
-                href="tel:+917891672762"
-                className={styles.socialBtn}
-                aria-label="Call Kids City Wakad"
-              >
-                <Phone size={16} />
-              </a>
+
+            {/* Socials */}
+            <div className="flex gap-3">
+              {[
+                { href: 'https://instagram.com/kidscity____', icon: Camera, label: 'Kids City Instagram — kids clothing Wakad' },
+                { href: 'https://wa.me/917891672762', icon: MessageSquare, label: 'Kids City WhatsApp' },
+                { href: 'tel:+917891672762', icon: Phone, label: 'Call Kids City Wakad' },
+              ].map(({ href, icon: Icon, label }) => (
+                <a
+                  key={href}
+                  href={href}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="w-10 h-10 rounded-full bg-white/[0.04] border border-[rgba(230,223,211,0.12)] flex items-center justify-center text-[#E6DFD3] transition-all duration-150 hover:bg-brand-terracotta hover:border-brand-terracotta hover:text-white hover:-translate-y-[3px]"
+                  aria-label={label}
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Collections list */}
-          <div className={styles.linksCol}>
-            <h4 className={styles.colTitle}>Collections</h4>
-            <ul className={styles.linkList}>
+          {/* Collections */}
+          <div>
+            <h4 className="font-[family-name:var(--font-head)] text-[0.88rem] font-extrabold tracking-[1.5px] uppercase text-white mb-6">
+              Collections
+            </h4>
+            <ul className="flex flex-col gap-3">
               {COLLECTIONS.map((c, i) => (
                 <li key={i}>
-                  <a href="/collections" onClick={(e) => handleNavClick(c.view, e)} className={styles.footLink}>
-                    <ArrowRight size={12} className={styles.arrowIcon} />
+                  <FootLink href="/collections" onClick={(e) => handleNavClick(c.view, e)}>
                     {c.label}
-                  </a>
+                  </FootLink>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Quick Links */}
-          <div className={styles.linksCol}>
-            <h4 className={styles.colTitle}>Quick Links</h4>
-            <ul className={styles.linkList}>
+          {/* Quick Links + Policies */}
+          <div>
+            <h4 className="font-[family-name:var(--font-head)] text-[0.88rem] font-extrabold tracking-[1.5px] uppercase text-white mb-6">
+              Quick Links
+            </h4>
+            <ul className="flex flex-col gap-3 mb-5">
               {QUICK_LINKS.map((l, i) => (
                 <li key={i}>
-                  <a href={`/${l.view}`} onClick={(e) => handleNavClick(l.view, e)} className={styles.footLink}>
-                    <ArrowRight size={12} className={styles.arrowIcon} />
+                  <FootLink href={`/${l.view}`} onClick={(e) => handleNavClick(l.view, e)}>
                     {l.label}
-                  </a>
+                  </FootLink>
                 </li>
               ))}
             </ul>
-            <h4 className={styles.colTitle} style={{ marginTop: 20 }}>Policies</h4>
-            <ul className={styles.linkList}>
+            <h4 className="font-[family-name:var(--font-head)] text-[0.88rem] font-extrabold tracking-[1.5px] uppercase text-white mt-5 mb-6">
+              Policies
+            </h4>
+            <ul className="flex flex-col gap-3">
               {POLICY_LINKS.map((l, i) => (
                 <li key={i}>
-                  <a href={`/${l.view}`} onClick={(e) => handleNavClick(l.view, e)} className={styles.footLink}>
-                    <ArrowRight size={12} className={styles.arrowIcon} />
+                  <FootLink href={`/${l.view}`} onClick={(e) => handleNavClick(l.view, e)}>
                     {l.label}
-                  </a>
+                  </FootLink>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Details */}
-          <div className={styles.contactCol}>
-            <h4 className={styles.colTitle}>Visit Us</h4>
-            <div className={styles.contactList}>
-              <div className={styles.contactItem}>
-                <MapPin size={16} className={styles.contactIcon} style={{ flexShrink: 0, marginTop: '2px' }} />
+          {/* Contact col */}
+          <div className="flex flex-col">
+            <h4 className="font-[family-name:var(--font-head)] text-[0.88rem] font-extrabold tracking-[1.5px] uppercase text-white mb-6">
+              Visit Us
+            </h4>
+            <div className="flex flex-col gap-4">
+              <div className="flex gap-3 items-start text-[0.9rem] text-[#B8B2A6] leading-[1.5]">
+                <MapPin size={16} className="text-brand-terracotta-light shrink-0 mt-0.5" />
                 <address
                   style={{ fontStyle: 'normal', margin: 0, padding: 0 }}
                   itemScope
@@ -190,42 +215,43 @@ export default function Footer({ onViewChange }) {
                   <span itemProp="postalCode">411057</span>
                 </address>
               </div>
-              <a href="tel:+917891672762" className={styles.contactItemLink} aria-label="Call Kids City Wakad">
-                <Phone size={16} className={styles.contactIcon} />
+              <a href="tel:+917891672762" className="flex gap-3 items-start text-[0.9rem] text-[#B8B2A6] leading-[1.5] no-underline transition-colors duration-150 hover:text-white" aria-label="Call Kids City Wakad">
+                <Phone size={16} className="text-brand-terracotta-light shrink-0 mt-0.5" />
                 <span>+91 78916 72762</span>
               </a>
-              <a href="mailto:kidscitywakad@gmail.com" className={styles.contactItemLink} aria-label="Email Kids City Wakad">
-                <Mail size={16} className={styles.contactIcon} />
+              <a href="mailto:kidscitywakad@gmail.com" className="flex gap-3 items-start text-[0.9rem] text-[#B8B2A6] leading-[1.5] no-underline transition-colors duration-150 hover:text-white" aria-label="Email Kids City Wakad">
+                <Mail size={16} className="text-brand-terracotta-light shrink-0 mt-0.5" />
                 <span>kidscitywakad@gmail.com</span>
               </a>
-              <div className={styles.contactItem}>
-                <Clock size={16} className={styles.contactIcon} />
+              <div className="flex gap-3 items-start text-[0.9rem] text-[#B8B2A6] leading-[1.5]">
+                <Clock size={16} className="text-brand-terracotta-light shrink-0 mt-0.5" />
                 <span>Open Daily: 10:00 AM – 9:30 PM</span>
               </div>
             </div>
 
-            <div className={styles.serviceAreaBlock}>
-              <h5 className={styles.serviceAreaTitle}>Service Areas</h5>
-              <p className={styles.serviceAreaText}>
+            {/* Service areas */}
+            <div className="mt-6 p-4 bg-white/[0.04] rounded-[10px] border border-white/[0.06]">
+              <h5 className="font-[family-name:var(--font-head)] text-[0.72rem] font-extrabold tracking-[1.5px] uppercase text-brand-terracotta-light mb-2">
+                Service Areas
+              </h5>
+              <p className="font-[family-name:var(--font-body)] text-[0.82rem] text-[#8E887E] leading-[1.7]">
                 {SERVICE_AREAS.join(' · ')}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Bottom copyright segment */}
-        <div className={styles.bottom}>
-          <p className={styles.copy}>
-            &copy; 2026 Kids City Wakad, Pune. All rights reserved.
-          </p>
-          <div className={styles.heartTag}>
-            Made with <Heart size={12} fill="currentColor" strokeWidth={0} className={styles.heartIcon} /> in Wakad, Pune
+        {/* Bottom copyright */}
+        <div className="border-t border-[rgba(230,223,211,0.08)] mt-[60px] pt-[30px] flex max-md:flex-col max-md:text-center justify-between items-center gap-4 text-[0.8rem] text-[#8E887E] flex-wrap">
+          <p>© 2026 Kids City Wakad, Pune. All rights reserved.</p>
+          <div className="flex items-center gap-1">
+            Made with <Heart size={12} fill="currentColor" strokeWidth={0} className="text-brand-terracotta-light" /> in Wakad, Pune
           </div>
           <a
             href="https://www.google.com/maps/dir//Kids+City+Wakad"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.mapsLink}
+            className="text-white underline font-semibold transition-colors duration-150 hover:text-brand-terracotta-light"
             aria-label="Find Kids City on Google Maps"
           >
             Locate on Google Maps
@@ -233,11 +259,11 @@ export default function Footer({ onViewChange }) {
           <a
             href="/callback-sheet"
             onClick={(e) => handleNavClick('callback-sheet', e)}
-            className={styles.sheetLink}
+            className="text-[#8E887E] opacity-[0.35] transition-all duration-200 inline-flex items-center ml-1.5 cursor-pointer hover:opacity-100 hover:text-white"
             aria-label="Console Dashboard"
             title="Console Dashboard"
           >
-            <FileSpreadsheet size={13} className={styles.sheetIcon} />
+            <FileSpreadsheet size={13} className="align-middle" />
           </a>
         </div>
       </div>

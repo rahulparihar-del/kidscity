@@ -1,7 +1,6 @@
 import { useState, useMemo, useEffect } from 'react'
 import { Search, SlidersHorizontal, ArrowUpDown, Star, Heart, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import styles from './ShopView.module.css'
 
 export const PRODUCTS = [
   {
@@ -196,13 +195,12 @@ export const PRODUCTS = [
     specs: { Fabric: 'Sherpa Fleece & Jersey Lining', Wash: 'Gentle Machine Wash', Set: 'Hoodie Jacket' },
     gallery: ['/images/casual_boys.webp']
   },
-  // -- Night Suits (Best-Selling Category) -----------------------------------
   {
     id: 13,
     name: 'Hosiery Cotton Night Suit - Cartoon Print',
     category: 'Night Suits',
     priceVal: 399,
-    price: '\u20b9399',
+    price: '₹399',
     tag: 'Bestseller',
     tagColor: '#E07A5F',
     img: '/images/nightsuit-hosiery-1-1.webp',
@@ -218,7 +216,7 @@ export const PRODUCTS = [
     name: 'Hosiery Night Suit - Animal Friends Print',
     category: 'Night Suits',
     priceVal: 399,
-    price: '\u20b9399',
+    price: '₹399',
     tag: 'Trending',
     tagColor: '#81B29A',
     img: '/images/nightsuit-hosiery-2-1.webp',
@@ -234,7 +232,7 @@ export const PRODUCTS = [
     name: 'Kids Premium Night Suit - Stripes & Checks',
     category: 'Night Suits',
     priceVal: 449,
-    price: '\u20b9449',
+    price: '₹449',
     tag: 'Popular',
     tagColor: '#F4A261',
     img: '/images/nightsuit-hosiery-3-1.webp',
@@ -250,7 +248,7 @@ export const PRODUCTS = [
     name: 'Kids Soft Cotton Night Suit - Floral Print',
     category: 'Night Suits',
     priceVal: 399,
-    price: '\u20b9399',
+    price: '₹399',
     tag: 'New',
     tagColor: '#F28482',
     img: '/images/nightsuit-hosiery-4-1.webp',
@@ -266,7 +264,7 @@ export const PRODUCTS = [
     name: 'Premium Kids Night Suit - Solid Colors',
     category: 'Night Suits',
     priceVal: 449,
-    price: '\u20b9449',
+    price: '₹449',
     tag: 'Classic',
     tagColor: '#3D405B',
     img: '/images/nightsuit-hosiery-5-1.webp',
@@ -322,9 +320,6 @@ export const PRODUCTS = [
   }
 ]
 
-
-
-// Sizing filters are calculated dynamically from database items
 const PRICE_RANGES = [
   { label: 'All Prices', min: 0, max: 2000 },
   { label: 'Under ₹600', min: 0, max: 600 },
@@ -341,21 +336,21 @@ function AutoScrollingImage({ img, gallery, alt, className }) {
 
     const timer = setInterval(() => {
       setIdx((prev) => (prev + 1) % images.length)
-    }, 3500) // cycle every 3.5s
+    }, 3500)
 
     return () => clearInterval(timer)
   }, [images])
 
   if (images.length === 0 || !images[0]) {
     return (
-      <div className={styles.imgPlaceholder}>
+      <div className="w-full h-full flex items-center justify-center bg-[#fafaf6] text-text-muted text-[0.82rem] font-semibold">
         <span>No Image</span>
       </div>
     )
   }
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+    <div className="relative w-full h-full overflow-hidden">
       <AnimatePresence mode="popLayout">
         <motion.img
           key={images[idx]}
@@ -391,21 +386,21 @@ export default function ShopView({ products, onSelectProduct }) {
 
   const getGlowColor = (cat) => {
     switch (cat) {
-      case 'Birthday': return 'var(--brand-pink-glow)'
-      case 'Casual': return 'var(--brand-blue-glow)'
+      case 'Birthday': return 'rgba(255, 75, 114, 0.15)'
+      case 'Casual': return 'rgba(0, 168, 232, 0.15)'
       case 'Festival Wear':
-      case 'Traditional': return 'var(--brand-orange-glow)'
-      default: return 'var(--brand-green-glow)'
+      case 'Traditional': return 'rgba(224, 122, 95, 0.15)'
+      default: return 'rgba(46, 196, 182, 0.15)'
     }
   }
 
   const getHoverBorderColor = (cat) => {
     switch (cat) {
-      case 'Birthday': return 'var(--brand-pink)'
-      case 'Casual': return 'var(--brand-blue)'
+      case 'Birthday': return '#FF4B72'
+      case 'Casual': return '#00A8E8'
       case 'Festival Wear':
-      case 'Traditional': return 'var(--brand-orange)'
-      default: return 'var(--brand-green)'
+      case 'Traditional': return '#E07A5F'
+      default: return '#2EC4B6'
     }
   }
 
@@ -414,8 +409,6 @@ export default function ShopView({ products, onSelectProduct }) {
     setWishlisted(prev => ({ ...prev, [id]: !prev[id] }))
   }
 
-
-  // Dynamic SIZES derived from active database products list
   const derivedSizes = useMemo(() => {
     const unique = new Set()
     catalogSource.forEach(p => {
@@ -426,7 +419,6 @@ export default function ShopView({ products, onSelectProduct }) {
       }
     })
     
-    // Sort sizes logically (months, years, letters, numbers)
     const sorted = Array.from(unique).sort((a, b) => {
       const letterOrder = { 'XS': 1, 'S': 2, 'M': 3, 'L': 4, 'XL': 5, 'XXL': 6 }
       if (letterOrder[a] && letterOrder[b]) return letterOrder[a] - letterOrder[b]
@@ -445,30 +437,24 @@ export default function ShopView({ products, onSelectProduct }) {
     return ['All', ...sorted]
   }, [catalogSource])
 
-  // Filtered and sorted products
   const filteredProducts = useMemo(() => {
     let items = [...catalogSource]
 
-    // Search filter
     if (search.trim() !== '') {
       const q = search.toLowerCase()
       items = items.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q))
     }
 
-    // Category filter
     if (selectedCat !== 'All') {
       items = items.filter(p => p.category === selectedCat)
     }
 
-    // Size filter
     if (selectedSize !== 'All') {
       items = items.filter(p => p.sizes.includes(selectedSize))
     }
 
-    // Price filter
     items = items.filter(p => p.priceVal >= selectedPrice.min && p.priceVal <= selectedPrice.max)
 
-    // Sort
     if (sortBy === 'popular') {
       items.sort((a, b) => b.rating - a.rating || b.reviews - a.reviews)
     } else if (sortBy === 'low-high') {
@@ -482,17 +468,16 @@ export default function ShopView({ products, onSelectProduct }) {
     return items
   }, [catalogSource, search, selectedCat, selectedSize, selectedPrice, sortBy])
 
-  // Reusable filters renderer for both Sidebar and Mobile Drawer
   const renderFilters = () => (
     <>
       {/* Category Filter */}
-      <div className={styles.filterGroup}>
-        <h4 className={styles.filterLabel}>Category</h4>
-        <div className={styles.catChips}>
+      <div className="mb-8">
+        <h4 className="font-[family-name:var(--font-head)] text-[0.95rem] font-bold text-brand-navy mb-4 uppercase tracking-[0.5px]">Category</h4>
+        <div className="flex flex-wrap gap-2">
           {CATEGORIES.map(cat => (
             <button
               key={cat}
-              className={`${styles.chip} ${selectedCat === cat ? styles.chipActive : ''}`}
+              className={`px-4 py-2 rounded-[50px] border border-border text-[0.82rem] font-semibold transition-all duration-150 ${selectedCat === cat ? 'bg-brand-terracotta border-brand-terracotta text-white' : 'bg-white text-brand-navy hover:border-brand-terracotta hover:bg-white'}`}
               onClick={() => setSelectedCat(cat)}
             >
               {cat}
@@ -502,13 +487,13 @@ export default function ShopView({ products, onSelectProduct }) {
       </div>
 
       {/* Sizing Filter */}
-      <div className={styles.filterGroup}>
-        <h4 className={styles.filterLabel}>Age / Size</h4>
-        <div className={styles.sizeGrid}>
+      <div className="mb-8">
+        <h4 className="font-[family-name:var(--font-head)] text-[0.95rem] font-bold text-brand-navy mb-4 uppercase tracking-[0.5px]">Age / Size</h4>
+        <div className="grid grid-cols-3 gap-2">
           {derivedSizes.map(sz => (
             <button
               key={sz}
-              className={`${styles.sizeBtn} ${selectedSize === sz ? styles.sizeActive : ''}`}
+              className={`px-1 py-2.5 rounded-sm border border-border text-[0.8rem] font-bold text-center transition-all duration-150 ${selectedSize === sz ? 'bg-brand-sage border-brand-sage text-white' : 'bg-white text-brand-navy hover:border-brand-sage'}`}
               onClick={() => setSelectedSize(sz)}
             >
               {sz === 'All' ? 'All Sizes' : sz}
@@ -518,87 +503,86 @@ export default function ShopView({ products, onSelectProduct }) {
       </div>
 
       {/* Price Filter */}
-      <div className={styles.filterGroup}>
-        <h4 className={styles.filterLabel}>Price Range</h4>
-        <div className={styles.priceOptions}>
-          {PRICE_RANGES.map((pr, idx) => (
-            <button
-              key={idx}
-              className={`${styles.priceBtn} ${selectedPrice.label === pr.label ? styles.priceActive : ''}`}
-              onClick={() => setSelectedPrice(pr)}
-            >
-              <span className={styles.radioDot} />
-              {pr.label}
-            </button>
-          ))}
+      <div className="mb-8 last:mb-0">
+        <h4 className="font-[family-name:var(--font-head)] text-[0.95rem] font-bold text-brand-navy mb-4 uppercase tracking-[0.5px]">Price Range</h4>
+        <div className="flex flex-col gap-3">
+          {PRICE_RANGES.map((pr, idx) => {
+            const isActive = selectedPrice.label === pr.label
+            return (
+              <button
+                key={idx}
+                className={`flex items-center gap-3 text-[0.9rem] font-semibold text-left transition-colors duration-150 group ${isActive ? 'text-brand-navy font-bold' : 'text-text-mid hover:text-brand-navy'}`}
+                onClick={() => setSelectedPrice(pr)}
+              >
+                <span className={`w-[18px] h-[18px] rounded-full border-2 border-border relative transition-all duration-150 group-hover:border-brand-terracotta ${isActive ? 'border-brand-terracotta bg-brand-terracotta after:content-[""] after:absolute after:top-1 after:left-1 after:w-1.5 after:h-1.5 after:rounded-full after:bg-white' : 'bg-white'}`} />
+                {pr.label}
+              </button>
+            )
+          })}
         </div>
       </div>
     </>
   )
 
   return (
-    <div className={styles.shopPage}>
+    <div className="bg-white min-h-screen pb-20">
       {/* Header Banner */}
-      <div className={styles.shopHeader}>
+      <div className="bg-white pt-[130px] pb-[60px] text-center border-b border-border relative overflow-hidden">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={styles.headerContent}
-          >
+          <div className="relative z-2 max-w-[600px] mx-auto">
             <span className="section-label" style={{ color: 'var(--brand-terracotta)' }}>Premium Wear</span>
-            <h1 className={styles.title}>Explore <span className="serif-accent">Collections</span></h1>
-            <p className={styles.subtitle}>
+            <h1 className="font-[family-name:var(--font-head)] text-[clamp(2.2rem,5vw,3rem)] font-black text-brand-navy my-1.5 mb-3 leading-[1.1] tracking-tighter">Explore <span className="serif-accent">Collections</span></h1>
+            <p className="text-[1.05rem] text-text-mid leading-relaxed">
               Filter by size, category, and price to find the perfect outfit for your little star.
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Main Content Area */}
-      <section className={styles.shopSection}>
+      <section className="py-[60px]">
         <div className="container">
-          <div className={styles.layout}>
+          <div className="grid grid-cols-[280px_1fr] max-[991px]:grid-cols-1 gap-10 items-start">
             {/* Desktop Filters Sidebar (Hidden on mobile) */}
-            <aside className={styles.sidebar}>
-              <div className={styles.sidebarHeader}>
-                <SlidersHorizontal size={18} className={styles.filterIcon} />
-                <h3>Filters</h3>
+            <aside className="bg-white border border-border rounded-2xl p-[30px] sticky top-[100px] shadow-sm max-[991px]:hidden">
+              <div className="flex items-center gap-2.5 border-b border-border pb-[18px] mb-6">
+                <SlidersHorizontal size={18} className="text-brand-terracotta" />
+                <h3 className="font-[family-name:var(--font-head)] text-[1.15rem] font-[800] text-brand-navy">Filters</h3>
               </div>
               {renderFilters()}
             </aside>
 
             {/* Catalog Grid */}
-            <main className={styles.catalog}>
+            <main className="flex flex-col gap-6">
               {/* Controls bar */}
-              <div className={styles.controlsBar}>
+              <div className="flex gap-5 justify-between items-center max-[600px]:flex-row max-[600px]:flex-wrap max-[600px]:items-stretch max-[600px]:gap-3">
                 {/* Search */}
-                <div className={styles.searchBox}>
-                  <Search size={18} className={styles.searchIcon} />
+                <div className="flex-1 relative max-[600px]:w-full max-[600px]:flex-none">
+                  <Search size={18} className="absolute top-[15px] left-5 text-text-muted" />
                   <input
                     type="text"
                     placeholder="Search dress, kurta, frocks..."
                     value={search}
                     onChange={e => setSearch(e.target.value)}
-                    className={styles.searchInput}
+                    className="w-full py-3.5 pl-[50px] pr-5 rounded-[50px] border-2 border-border bg-white text-[0.92rem] outline-none transition-all duration-150 shadow-sm focus:border-brand-terracotta focus:shadow-md"
                   />
                 </div>
 
                 {/* Mobile Filter Trigger Button */}
                 <button
-                  className={styles.mobileFilterTrigger}
+                  className="hidden max-[991px]:inline-flex items-center justify-center gap-2 bg-white border-2 border-border px-6 py-3 rounded-[50px] font-bold text-[0.88rem] text-brand-navy shadow-sm min-h-[50px] transition-all duration-150 hover:border-brand-terracotta hover:text-brand-terracotta max-[600px]:flex-1"
                   onClick={() => setIsMobileFiltersOpen(true)}
                 >
                   <SlidersHorizontal size={16} /> Filters
                 </button>
 
                 {/* Sort */}
-                <div className={styles.sortBox}>
-                  <ArrowUpDown size={16} className={styles.sortIcon} />
+                <div className="flex items-center gap-2.5 bg-white border-2 border-border px-4 py-1 rounded-[50px] min-h-[50px] shadow-sm max-[600px]:flex-1 max-[600px]:justify-center">
+                  <ArrowUpDown size={16} className="text-brand-navy" />
                   <select
                     value={sortBy}
                     onChange={e => setSortBy(e.target.value)}
-                    className={styles.sortSelect}
+                    className="border-none bg-transparent outline-none font-bold text-[0.88rem] text-brand-navy cursor-pointer pr-2.5"
                   >
                     <option value="popular">Most Popular</option>
                     <option value="low-high">Price: Low to High</option>
@@ -609,23 +593,23 @@ export default function ShopView({ products, onSelectProduct }) {
               </div>
 
               {/* Products count */}
-              <div className={styles.resultCount}>
+              <div className="text-[0.88rem] font-semibold text-text-muted">
                 Showing {filteredProducts.length} of {catalogSource.length} styles
               </div>
 
               {/* Grid with animation */}
-              <motion.div className={styles.grid} layout>
+              <motion.div className="grid grid-cols-3 max-[1200px]:grid-cols-2 max-[600px]:grid-cols-1 gap-6" layout>
                 <AnimatePresence mode="popLayout">
                   {filteredProducts.length === 0 ? (
                     <motion.div
-                      className={styles.noResults}
+                      className="col-span-full text-center px-10 py-20 bg-white border border-border rounded-2xl shadow-sm flex flex-col items-center gap-3"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       key="no-results"
                     >
-                      <h3>No items matched your filters</h3>
-                      <p>Try clearing your search query or selecting a different age size.</p>
+                      <h3 className="font-[family-name:var(--font-head)] text-[1.35rem] color-brand-navy font-extrabold">No items matched your filters</h3>
+                      <p className="text-text-mid">Try clearing your search query or selecting a different age size.</p>
                       <button
                         className="btn btn-navy"
                         onClick={() => {
@@ -647,30 +631,37 @@ export default function ShopView({ products, onSelectProduct }) {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9 }}
                         transition={{ duration: 0.3, delay: Math.min(idx * 0.05, 0.4) }}
-                        className={styles.card}
+                        className="bg-white border border-border rounded-2xl overflow-hidden shadow-sm transition-all duration-350 cursor-pointer flex flex-col hover:-translate-y-1.5"
                         style={{
-                          '--hover-glow-color': getGlowColor(p.category),
-                          '--hover-border-color': getHoverBorderColor(p.category)
+                          transitionProperty: 'transform, border-color, box-shadow'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.borderColor = getHoverBorderColor(p.category);
+                          e.currentTarget.style.boxShadow = `0 12px 30px ${getGlowColor(p.category)}`;
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.borderColor = '';
+                          e.currentTarget.style.boxShadow = '';
                         }}
                         onClick={() => onSelectProduct(p)}
                       >
-                        <div className={styles.imgWrap}>
+                        <div className="aspect-square bg-white relative overflow-hidden flex items-center justify-center p-2">
                           <AutoScrollingImage
                             img={p.img}
                             gallery={p.gallery}
                             alt={`${p.name} — ${p.category || 'Kids clothing'} at Kids City Wakad, Pune`}
-                            className={styles.cardImg}
+                            className="w-full h-full object-contain transition-transform duration-[600ms] ease-out hover:scale-105"
                           />
                           {p.tag && (
                             <span
-                              className={styles.tag}
+                              className="absolute top-4 left-4 px-3 py-1 rounded-[50px] text-[0.68rem] font-extrabold uppercase text-white tracking-[0.5px] shadow-md"
                               style={{ backgroundColor: p.tagColor }}
                             >
                               {p.tag}
                             </span>
                           )}
                           <button
-                            className={`${styles.wishlistBtn} ${wishlisted[p.id] ? styles.wishlistActive : ''}`}
+                            className={`absolute top-4 right-4 w-[38px] h-[38px] rounded-full bg-white shadow-sm flex items-center justify-center transition-all duration-150 hover:scale-110 hover:shadow-md ${wishlisted[p.id] ? 'text-brand-terracotta' : 'text-text-muted hover:text-brand-terracotta'}`}
                             onClick={e => toggleWishlist(p.id, e)}
                             aria-label="Add to wishlist"
                           >
@@ -681,11 +672,11 @@ export default function ShopView({ products, onSelectProduct }) {
                             />
                           </button>
                         </div>
-                        <div className={styles.info}>
-                          <span className={styles.category}>{p.category}</span>
-                          <h3 className={styles.name}>{p.name}</h3>
-                          <div className={styles.ratingRow}>
-                            <div className={styles.stars}>
+                        <div className="p-5 flex flex-col flex-1">
+                          <span className="text-[0.72rem] font-extrabold uppercase text-brand-sage tracking-[0.8px] mb-1.5">{p.category}</span>
+                          <h3 className="font-[family-name:var(--font-head)] text-[1.05rem] font-extrabold text-brand-navy leading-tight mb-2 line-clamp-1 overflow-hidden">{p.name}</h3>
+                          <div className="flex items-center gap-2 mb-4">
+                            <div className="flex gap-0.5 text-brand-orange">
                               {Array.from({ length: 5 }).map((_, i) => (
                                 <Star
                                   key={i}
@@ -695,11 +686,11 @@ export default function ShopView({ products, onSelectProduct }) {
                                 />
                               ))}
                             </div>
-                            <span className={styles.reviews}>({p.reviews})</span>
+                            <span className="text-[0.75rem] text-text-muted font-medium">({p.reviews})</span>
                           </div>
-                          <div className={styles.priceRow}>
-                            <span className={styles.price}>{p.price}</span>
-                            <span className={styles.sizesLabel}>{p.sizes.join(', ')}</span>
+                          <div className="flex justify-between items-center mt-auto border-t border-border pt-3.5">
+                            <span className="text-[1.15rem] font-extrabold text-brand-terracotta">{p.price}</span>
+                            <span className="text-[0.72rem] font-bold text-text-muted bg-white border border-border px-2.5 py-1 rounded-[6px]">{p.sizes.join(', ')}</span>
                           </div>
                         </div>
                       </motion.div>
@@ -717,26 +708,26 @@ export default function ShopView({ products, onSelectProduct }) {
         {isMobileFiltersOpen && (
           <>
             <motion.div
-              className={styles.mobileBackdrop}
+              className="fixed inset-0 bg-[#2c2e43]/40 backdrop-blur-xs z-[1002]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileFiltersOpen(false)}
             />
             <motion.div
-              className={styles.mobileDrawer}
+              className="fixed top-0 left-0 w-full max-w-[380px] h-full bg-white shadow-2xl flex flex-col z-[1003] border-r border-border"
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 220 }}
             >
-              <div className={styles.drawerHeader}>
-                <div className={styles.drawerHeaderTitle}>
-                  <SlidersHorizontal size={18} className={styles.filterIcon} />
-                  <h3>Filters</h3>
+              <div className="px-6 py-5 border-b border-border flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <SlidersHorizontal size={18} className="text-brand-terracotta" />
+                  <h3 className="font-[family-name:var(--font-head)] text-[1.25rem] font-extrabold text-brand-navy">Filters</h3>
                 </div>
                 <button
-                  className={styles.drawerClose}
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-brand-navy bg-[#fafaf6] border border-border transition-all duration-150 hover:bg-brand-terracotta hover:text-white hover:rotate-90"
                   onClick={() => setIsMobileFiltersOpen(false)}
                   aria-label="Close filters"
                 >
@@ -744,14 +735,13 @@ export default function ShopView({ products, onSelectProduct }) {
                 </button>
               </div>
 
-              <div className={styles.drawerBody}>
+              <div className="flex-1 overflow-y-auto p-6">
                 {renderFilters()}
               </div>
 
-              <div className={styles.drawerFooter}>
+              <div className="p-6 border-t border-border bg-white">
                 <button
-                  className="btn btn-terracotta"
-                  style={{ width: '100%' }}
+                  className="btn btn-terracotta w-full"
                   onClick={() => setIsMobileFiltersOpen(false)}
                 >
                   Apply Filters ({filteredProducts.length} Items)

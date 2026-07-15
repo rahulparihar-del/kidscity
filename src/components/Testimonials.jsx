@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Star, ArrowRight } from 'lucide-react'
-import styles from './Testimonials.module.css'
 
-// Fallback reviews. Shown while loading, or if the live Google API is
-// unavailable (e.g. during local dev without the serverless function,
-// or if the env vars are not configured yet).
 const SEED_REVIEWS = [
   {
     author: 'CA Deepak Solanki',
@@ -72,7 +68,8 @@ const AVATAR_COLORS = [
   'linear-gradient(135deg,#E63946,#9D0208)',
 ]
 
-// Deterministic color per name so the same person always gets the same avatar.
+const TOP_COLORS = ['#FF4B72', '#00A8E8', '#FF9F1C']
+
 function colorFor(name) {
   let sum = 0
   for (let i = 0; i < name.length; i++) sum += name.charCodeAt(i)
@@ -87,69 +84,73 @@ export default function Testimonials() {
 
   useEffect(() => {
     let active = true
-
     fetch('/api/reviews')
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
       .then((data) => {
         if (!active) return
-        if (Array.isArray(data.reviews) && data.reviews.length > 0) {
-          setReviews(data.reviews)
-        }
+        if (Array.isArray(data.reviews) && data.reviews.length > 0) setReviews(data.reviews)
         if (data.rating) setRating(data.rating)
         if (data.total) setTotal(data.total)
         if (data.mapsUri) setMapsUri(data.mapsUri)
       })
-      .catch(() => {
-        // Keep the seed reviews on any failure. No UI disruption.
-      })
-
-    return () => {
-      active = false
-    }
+      .catch(() => {})
+    return () => { active = false }
   }, [])
 
   return (
-    <section className={styles.section}>
+    <section className="py-[88px] max-[560px]:py-14 bg-white">
       <div className="container">
-        <div className={styles.header}>
+        {/* Header */}
+        <div className="text-center mb-[52px] max-[560px]:mb-9">
           <span className="section-label">Reviews</span>
           <h2 className="section-heading">What Parents Are <span className="serif-accent">Saying</span></h2>
-          <div className={styles.ratingBadge}>
-            <Star size={20} fill="currentColor" strokeWidth={0} className={styles.bigStar} />
-            <span className={styles.bigNum}>{Number(rating).toFixed(1)}</span>
-            <span className={styles.bigLabel}>
+          <div className="inline-flex items-center gap-2.5 bg-white border-[1.5px] border-border rounded-full px-6 py-2.5 mt-4">
+            <Star size={20} fill="currentColor" strokeWidth={0} className="text-brand-orange" />
+            <span className="font-[family-name:var(--font-head)] text-[1.4rem] text-brand-navy">
+              {Number(rating).toFixed(1)}
+            </span>
+            <span className="text-[0.82rem] text-text-muted font-bold">
               Average Rating · {total} Google Reviews
             </span>
           </div>
         </div>
 
-        <div className={styles.grid}>
+        {/* Grid */}
+        <div className="grid grid-cols-3 max-md:grid-cols-1 gap-5">
           {reviews.map((r, i) => (
-            <article key={i} className={styles.card}>
-              <div className={styles.stars}>
+            <article
+              key={i}
+              className="bg-white rounded-[24px] p-7 max-[560px]:p-5 border-[1.5px] border-t-[5px] border-border transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(61,64,91,0.12)]"
+              style={{ borderTopColor: TOP_COLORS[i % 3] }}
+            >
+              {/* Stars */}
+              <div className="flex gap-0.5 text-brand-orange mb-3.5">
                 {Array.from({ length: r.rating }).map((_, s) => (
                   <Star key={s} size={15} fill="currentColor" strokeWidth={0} />
                 ))}
               </div>
-              <p className={styles.text}>
+              <p className="text-[0.95rem] text-text-mid leading-[1.75] italic mb-5 font-medium">
                 {r.text.startsWith('"') ? r.text : `"${r.text}"`}
               </p>
-              <div className={styles.author}>
+              <div className="flex items-center gap-3 pt-4 border-t border-border">
                 {r.photo ? (
-                  <img className={styles.avatar} src={r.photo} alt={r.author} />
+                  <img
+                    className="w-[42px] h-[42px] rounded-full object-cover shrink-0"
+                    src={r.photo}
+                    alt={r.author}
+                  />
                 ) : (
                   <div
-                    className={styles.avatar}
+                    className="w-[42px] h-[42px] rounded-full flex items-center justify-center font-[family-name:var(--font-head)] font-extrabold text-[1.2rem] text-white shrink-0"
                     style={{ background: colorFor(r.author) }}
                   >
                     {r.author.charAt(0).toUpperCase()}
                   </div>
                 )}
                 <div>
-                  <p className={styles.name}>{r.author}</p>
-                  <p className={styles.loc}>
-                    {r.location ? `${r.location} · ` : ''}
-                    {r.relativeTime || 'Google Review'}
+                  <p className="font-extrabold text-[0.9rem] text-brand-navy">{r.author}</p>
+                  <p className="text-[0.75rem] text-text-muted font-semibold">
+                    {r.location ? `${r.location} · ` : ''}{r.relativeTime || 'Google Review'}
                   </p>
                 </div>
               </div>
@@ -157,13 +158,14 @@ export default function Testimonials() {
           ))}
         </div>
 
+        {/* CTA link */}
         {mapsUri && (
-          <div className={styles.cta}>
+          <div className="text-center mt-10">
             <a
-              className={styles.ctaLink}
               href={mapsUri}
               target="_blank"
               rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-extrabold text-[0.95rem] text-brand-navy no-underline border-[1.5px] border-border rounded-full px-7 py-3 bg-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_20px_50px_rgba(61,64,91,0.12)]"
             >
               Read all {total} reviews on Google
               <ArrowRight size={16} strokeWidth={2.4} />

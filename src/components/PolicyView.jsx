@@ -1,4 +1,3 @@
-import styles from './PolicyView.module.css'
 import { ArrowLeft } from 'lucide-react'
 
 const POLICIES = {
@@ -130,58 +129,62 @@ export default function PolicyView({ policyKey, onViewChange }) {
   }
 
   return (
-    <div className={styles.policyPage}>
-      <div className={styles.banner}>
+    <div className="bg-white min-h-screen">
+      <div className="bg-white border-b border-border pt-[120px] pb-12">
         <div className="container">
-          <button onClick={handleBack} className={styles.backBtn} aria-label="Go back">
+          <button onClick={handleBack} className="inline-flex items-center gap-2 bg-white border border-border text-brand-navy rounded-full px-4 py-1.5 font-[family-name:var(--font-body)] text-[0.88rem] font-medium cursor-pointer mb-5 transition-all duration-200 hover:bg-brand-navy hover:text-white" aria-label="Go back">
             <ArrowLeft size={16} /> Back
           </button>
-          <h1 className={styles.title}>{policy.title}</h1>
-          <p className={styles.lastUpdated}>Last updated: {policy.lastUpdated}</p>
+          <h1 className="font-[family-name:var(--font-head)] text-[clamp(1.8rem,3.5vw,2.4rem)] font-extrabold text-brand-navy-dark mb-2.5">{policy.title}</h1>
+          <p className="font-[family-name:var(--font-body)] text-[0.88rem] text-text-muted">Last updated: {policy.lastUpdated}</p>
         </div>
       </div>
 
-      <section className={styles.content}>
+      <section className="py-[60px] pb-20">
         <div className="container">
-          <div className={styles.contentGrid}>
-            <article className={styles.article}>
-              <p className={styles.intro}>
+          <div className="grid grid-cols-[1fr_260px] max-[860px]:grid-cols-1 gap-10 items-start">
+            <article className="bg-white rounded-[20px] px-11 py-10 max-[600px]:px-5 max-[600px]:py-7 shadow-[0_2px_16px_rgba(61,64,91,0.06)] border border-border">
+              <p className="font-[family-name:var(--font-body)] text-base text-text-mid leading-[1.75] px-5 py-4 bg-[#fafaf6] border-l-4 border-brand-terracotta rounded-r-xl mb-8">
                 This page outlines our {policy.title.toLowerCase()} for Kids City, Wakad's most trusted children's clothing store located at Mahalaxmi Complex, Chatrapati Chowk Road, Wakad, Pune, Maharashtra 411057.
               </p>
 
               {policy.sections.map((section, i) => (
-                <div key={i} className={styles.policySection}>
-                  <h2 className={styles.sectionHeading}>{section.heading}</h2>
-                  <p className={styles.sectionContent}>{section.content}</p>
+                <div key={i} className="mb-8" id={`section-${i}`}>
+                  <h2 className="font-[family-name:var(--font-head)] text-[1.1rem] font-bold text-brand-navy-dark mb-2.5 pb-2 border-b border-border">{section.heading}</h2>
+                  <p className="font-[family-name:var(--font-body)] text-[0.95rem] text-text-mid leading-[1.78]">{section.content}</p>
                 </div>
               ))}
 
-              <div className={styles.contactBox}>
-                <h3>Need Help? Contact Kids City Wakad</h3>
-                <p>📍 Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Road, Wakad, Pune 411057</p>
-                <p>📞 <a href="tel:+917891672762">+91 78916 72762</a></p>
-                <p>✉️ <a href="mailto:kidscitywakad@gmail.com">kidscitywakad@gmail.com</a></p>
-                <p>🕙 Open Daily: 10:00 AM – 9:30 PM</p>
+              <div className="bg-[#fafaf6] rounded-xl p-6 mt-8">
+                <h3 className="font-[family-name:var(--font-head)] text-base font-bold text-brand-navy-dark mb-3">Need Help? Contact Kids City Wakad</h3>
+                <p className="font-[family-name:var(--font-body)] text-[0.92rem] text-text-mid mb-2 leading-relaxed">📍 Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Road, Wakad, Pune 411057</p>
+                <p className="font-[family-name:var(--font-body)] text-[0.92rem] text-text-mid mb-2 leading-relaxed">📞 <a href="tel:+917891672762" className="text-brand-terracotta hover:underline">+91 78916 72762</a></p>
+                <p className="font-[family-name:var(--font-body)] text-[0.92rem] text-text-mid mb-2 leading-relaxed">✉️ <a href="mailto:kidscitywakad@gmail.com" className="text-brand-terracotta hover:underline">kidscitywakad@gmail.com</a></p>
+                <p className="font-[family-name:var(--font-body)] text-[0.92rem] text-text-mid mb-2 leading-relaxed">🕙 Open Daily: 10:00 AM – 9:30 PM</p>
               </div>
             </article>
 
-            <aside className={styles.toc}>
-              <div className={styles.tocCard}>
-                <h3 className={styles.tocTitle}>On This Page</h3>
-                <ul className={styles.tocList}>
+            <aside className="sticky top-20 max-[860px]:-order-1">
+              <div className="bg-white rounded-2xl p-[22px] shadow-[0_2px_12px_rgba(61,64,91,0.06)] border border-border mb-4">
+                <h3 className="font-[family-name:var(--font-head)] text-[0.9rem] font-bold text-brand-navy-dark mb-3 uppercase tracking-wider">On This Page</h3>
+                <ul className="list-none p-0 m-0">
                   {policy.sections.map((section, i) => (
-                    <li key={i}><a href={`#section-${i}`} className={styles.tocLink}>{section.heading}</a></li>
+                    <li key={i} className="mb-2">
+                      <a href={`#section-${i}`} className="font-[family-name:var(--font-body)] text-[0.88rem] text-text-mid hover:bg-[#fafaf6] hover:text-brand-terracotta block px-2 py-1 rounded-md transition-all duration-150">
+                        {section.heading}
+                      </a>
+                    </li>
                   ))}
                 </ul>
               </div>
-              <div className={styles.tocCard} style={{ marginTop: 16 }}>
-                <h3 className={styles.tocTitle}>Other Policies</h3>
-                <ul className={styles.tocList}>
+              <div className="bg-white rounded-2xl p-[22px] shadow-[0_2px_12px_rgba(61,64,91,0.06)] border border-border">
+                <h3 className="font-[family-name:var(--font-head)] text-[0.9rem] font-bold text-brand-navy-dark mb-3 uppercase tracking-wider">Other Policies</h3>
+                <ul className="list-none p-0 m-0">
                   {Object.entries(POLICIES).filter(([k]) => k !== policyKey).map(([k, p]) => (
-                    <li key={k}>
+                    <li key={k} className="mb-2">
                       <a
                         href={`/${k}`}
-                        className={styles.tocLink}
+                        className="font-[family-name:var(--font-body)] text-[0.88rem] text-text-mid hover:bg-[#fafaf6] hover:text-brand-terracotta block px-2 py-1 rounded-md transition-all duration-150"
                         onClick={(e) => { e.preventDefault(); onViewChange(k); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                       >
                         {p.title}
