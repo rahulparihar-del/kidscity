@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { MapPin, Phone, Clock, Send, ChevronDown, CheckCircle2, MessageSquare, Navigation, Car } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import KidsCityMap from './KidsCityMap'
 
 const FAQS = [
   {
@@ -174,7 +175,7 @@ export default function ContactView() {
             </div>
           </div>
 
-          {/* Google Map Embed */}
+          {/* Beautiful Interactive Map – powered by MapLibre GL (mapcn.dev) */}
           <div className="mb-[60px]">
             <h2 className="font-[family-name:var(--font-head)] text-[clamp(1.4rem,3vw,1.9rem)] font-extrabold text-brand-navy-dark mb-2 text-center">
               Find <span className="serif-accent">Kids City</span> on the Map — Wakad, Pune
@@ -182,32 +183,7 @@ export default function ContactView() {
             <p className="font-[family-name:var(--font-body)] text-[0.95rem] text-text-mid text-center max-w-[640px] mx-auto mb-6 leading-[1.65]">
               Located at Mahalaxmi Complex, Chatrapati Chowk Road, Wakad — beside Annapurna Veg Restaurant. Easily reachable from Hinjewadi, Baner, Balewadi, and Pimple Saudagar.
             </p>
-            <div className="rounded-2xl overflow-hidden shadow-[0_4px_24px_rgba(61,64,91,0.12)] border border-border mb-5">
-              <iframe
-                title="Kids City Wakad Location on Google Maps"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.2755406882654!2d73.77186817501563!3d18.598091268380885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bb5d42d2c6a7%3A0x0!2sKids+City!5e0!3m2!1sen!2sin!4v1720000000000!5m2!1sen!2sin"
-                width="100%"
-                height="400"
-                style={{ border: 0, borderRadius: 16 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                aria-label="Google Maps showing Kids City location in Wakad, Pune"
-              />
-            </div>
-            <div className="flex gap-3.5 justify-center flex-wrap">
-              <a
-                href="https://www.google.com/maps/dir//Kids+City+Wakad"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-terracotta"
-              >
-                <Navigation size={16} /> Get Directions
-              </a>
-              <a href="tel:+917891672762" className="btn btn-outline-navy">
-                <Phone size={16} /> Call: +91 78916 72762
-              </a>
-            </div>
+            <KidsCityMap />
           </div>
 
           <div className="grid grid-cols-[1fr_1.2fr] max-[991px]:grid-cols-1 gap-[60px] max-[991px]:gap-[50px] items-start">
