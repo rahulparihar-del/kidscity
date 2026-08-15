@@ -37,15 +37,25 @@ export function absoluteUrl(path = '/') {
   return SITE_URL + (path.startsWith('/') ? path : `/${path}`)
 }
 
-/** URL-safe slug from arbitrary text. */
-export function slugify(str) {
-  return String(str || '')
+/**
+ * URL-safe slug from arbitrary text. Capped to keep URLs readable; long names
+ * are trimmed at a word (hyphen) boundary so the slug never cuts mid-word.
+ */
+export function slugify(str, maxLen = 60) {
+  let s = String(str || '')
     .toLowerCase()
     .trim()
     .replace(/[^\w\s-]/g, '')
     .replace(/[\s_]+/g, '-')
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '')
+  if (s.length > maxLen) {
+    s = s.slice(0, maxLen)
+    const lastDash = s.lastIndexOf('-')
+    if (lastDash > 20) s = s.slice(0, lastDash) // trim to a word boundary
+    s = s.replace(/-+$/, '')
+  }
+  return s
 }
 
 /** Stable slug for a product (prefers an explicit slug field, else from name). */

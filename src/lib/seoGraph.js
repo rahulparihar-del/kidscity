@@ -65,9 +65,13 @@ function breadcrumb(view, product) {
 
 function productNode(product) {
   const canonical = canonicalFor('product-detail', product)
-  const images = [product.img, ...(Array.isArray(product.gallery) ? product.gallery : [])]
-    .filter(Boolean)
-    .map((src) => absoluteUrl(src))
+  const images = [
+    ...new Set(
+      [product.img, ...(Array.isArray(product.gallery) ? product.gallery : [])]
+        .filter(Boolean)
+        .map((src) => absoluteUrl(src))
+    ),
+  ]
   const price = priceToNumber(product.price) ?? priceToNumber(product.priceVal)
 
   // priceValidUntil: a rolling ~1-year validity horizon (not business data).

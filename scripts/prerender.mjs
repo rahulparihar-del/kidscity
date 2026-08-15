@@ -41,7 +41,7 @@ let written = 0
 try {
   const { PRODUCTS } = await vite.ssrLoadModule('/src/components/ShopView.jsx')
   const { PAGE_SEO, getProductSEO } = await vite.ssrLoadModule('/src/hooks/useSEO.js')
-  const { canonicalFor, productSlug } = await vite.ssrLoadModule('/src/lib/seo.js')
+  const { canonicalFor, productSlug, SITE_URL, absoluteUrl } = await vite.ssrLoadModule('/src/lib/seo.js')
   const { buildRouteGraph } = await vite.ssrLoadModule('/src/lib/seoGraph.js')
 
   let FAQS = null
@@ -110,6 +110,46 @@ try {
     written++
   }
   console.log(`[prerender] wrote ${written} route(s): ${staticRoutes.length} static + ${productRoutes.length} product`)
+
+  // ── Product-inclusive sitemap (single source of truth) ──────────────────
+  const today = new Date().toISOString().split('T')[0]
+  const SITE_META = {
+    home: { p: '1.0', f: 'weekly' },
+    shop: { p: '0.9', f: 'daily' },
+    about: { p: '0.6', f: 'monthly' },
+    contact: { p: '0.6', f: 'monthly' },
+    faq: { p: '0.6', f: 'monthly' },
+    'privacy-policy': { p: '0.3', f: 'yearly' },
+    terms: { p: '0.3', f: 'yearly' },
+    'shipping-policy': { p: '0.3', f: 'yearly' },
+    'return-policy': { p: '0.3', f: 'yearly' },
+  }
+  const urlEntry = (loc, { priority = '0.7', changefreq = 'weekly', img, imgTitle } = {}) => {
+    let s = `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n`
+    if (img) {
+      s += `    <image:image>\n      <image:loc>${img}</image:loc>\n      <image:title>${esc(imgTitle || '')}</image:title>\n    </image:image>\n`
+    }
+    return s + `  </url>\n`
+  }
+
+  let xml =
+    '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
+  for (const r of staticRoutes) {
+    const m = SITE_META[r.view] || { p: '0.6', f: 'monthly' }
+    xml += urlEntry(`${SITE_URL}${r.path === '/' ? '/' : r.path}`, { priority: m.p, changefreq: m.f })
+  }
+  for (const r of productRoutes) {
+    xml += urlEntry(canonicalFor('product-detail', r.product), {
+      priority: '0.8',
+      changefreq: 'weekly',
+      img: r.product.img ? absoluteUrl(r.product.img) : undefined,
+      imgTitle: r.product.name,
+    })
+  }
+  xml += '</urlset>\n'
+  fs.writeFileSync(path.join(distDir, 'sitemap.xml'), xml)
+  console.log(`[prerender] wrote sitemap.xml with ${staticRoutes.length + productRoutes.length} URLs`)
 } catch (err) {
   console.error('[prerender] FAILED:', err)
   await vite.close()
