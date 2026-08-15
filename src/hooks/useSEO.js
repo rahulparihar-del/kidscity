@@ -78,13 +78,29 @@ export const PAGE_SEO = {
 }
 
 /** Product page SEO */
+// Trim to a word boundary at/under maxLen (no mid-word cuts, no ellipsis).
+function truncateAtWord(str, maxLen) {
+  const s = String(str || '').trim()
+  if (s.length <= maxLen) return s
+  const cut = s.slice(0, maxLen)
+  const lastSpace = cut.lastIndexOf(' ')
+  return (lastSpace > 10 ? cut.slice(0, lastSpace) : cut)
+    .trim()
+    .replace(/[\s\-–—|,:;]+$/, '') // strip trailing separators/dashes
+}
+
 export function getProductSEO(product) {
   if (!product) return PAGE_SEO.shop
   const price = product.price || ''
-  const category = product.category || 'Kids Clothing'
   const sizesStr = product.sizes ? product.sizes.slice(0, 3).join(', ') : ''
-  return {
-    title: `Buy ${product.name} Online | ${category} for Kids — Kids City${price ? ' | ' + price : ''}`,
-    description: `Shop ${product.name} at Kids City, Wakad — ${price}. Soft, skin-safe ${category} for children.${sizesStr ? ' Sizes: ' + sizesStr + '.' : ''} COD available. WhatsApp +91 78916 72762 to order or check stock. Free delivery in Wakad, Pune.`,
-  }
+
+  // Product.name (in the schema) keeps the FULL name; we only shorten the
+  // human-facing <title>/meta so they don't blow past SERP truncation limits.
+  const titleName = truncateAtWord(product.name, 42)
+  const descName = truncateAtWord(product.name, 60)
+
+  const title = `Buy ${titleName} — Kids City${price ? ' | ' + price : ''}`
+  const description = `${descName} at Kids City, Wakad${price ? ' — ' + price : ''}. Soft, skin-safe kidswear.${sizesStr ? ' Sizes: ' + sizesStr + '.' : ''} COD available. WhatsApp +91 78916 72762 to order.`
+
+  return { title, description }
 }
