@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, MapPin, MessageSquare, Phone } from 'lucide-react'
 
-const FAQS = [
+// eslint-disable-next-line react-refresh/only-export-components -- FAQ data reused by the build-time prerender for FAQPage JSON-LD
+export const FAQS = [
   {
     category: 'Store & Location',
     questions: [

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { PAGE_SEO, getProductSEO } from './hooks/useSEO'
-import { applyRouteSeo, canonicalFor, setRouteJsonLd } from './lib/seo'
+import { applyRouteSeo, canonicalFor, setRouteJsonLd, productSlug, productPath } from './lib/seo'
 import { buildRouteGraph } from './lib/seoGraph'
 import Navbar from './components/Navbar'
 import HeroBanner from './components/HeroBanner'
@@ -62,6 +62,7 @@ const VIEW_TO_PATH = {
 const POLICY_VIEWS = ['privacy-policy', 'terms', 'shipping-policy', 'return-policy']
 
 function resolveViewFromPath(pathname) {
+  if (pathname.startsWith('/products/')) return 'product-detail'
   return PATH_TO_VIEW[pathname] || '404'
 }
 
@@ -174,15 +175,29 @@ export default function App() {
 
   // Parse URL query parameter for product deep-linking on load and handle history navigation
   useEffect(() => {
-    if (dbProducts.length === 0) return
+    const catalog = dbProducts.length ? dbProducts : PRODUCTS
 
     const handleUrlRoute = () => {
       const path = window.location.pathname
       const params = new URLSearchParams(window.location.search)
-      const productId = params.get('product')
 
+      // Path-based product URL: /products/<slug>
+      if (path.startsWith('/products/')) {
+        const slug = decodeURIComponent(path.replace(/^\/products\//, '').replace(/\/+$/, ''))
+        const match = catalog.find(p => productSlug(p) === slug)
+        if (match) {
+          setSelectedProduct(match)
+          setCurrentView('product-detail')
+          return
+        }
+        setCurrentView('404')
+        return
+      }
+
+      // Back-compat: legacy ?product=<id> deep links
+      const productId = params.get('product')
       if (productId) {
-        const match = dbProducts.find(p => p.id.toString() === productId)
+        const match = catalog.find(p => p.id.toString() === productId)
         if (match) {
           setSelectedProduct(match)
           setCurrentView('product-detail')
@@ -307,9 +322,8 @@ export default function App() {
   const handleSelectProduct = (product) => {
     setSelectedProduct(product)
     setCurrentView('product-detail')
-    // Update URL query parameter without reloading
-    const newUrl = `${window.location.pathname}?product=${product.id}`
-    window.history.pushState({ productId: product.id }, '', newUrl)
+    // Path-based product URL (crawlable + prerenderable)
+    window.history.pushState({ productId: product.id }, '', productPath(product))
   }
 
   return (

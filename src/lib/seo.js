@@ -37,14 +37,35 @@ export function absoluteUrl(path = '/') {
   return SITE_URL + (path.startsWith('/') ? path : `/${path}`)
 }
 
+/** URL-safe slug from arbitrary text. */
+export function slugify(str) {
+  return String(str || '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+}
+
+/** Stable slug for a product (prefers an explicit slug field, else from name). */
+export function productSlug(product) {
+  if (!product) return ''
+  return product.slug || slugify(product.name)
+}
+
+/** Path (no origin) for a product detail page. */
+export function productPath(product) {
+  return `/products/${productSlug(product)}`
+}
+
 /**
- * Canonical URL for a view. Product pages are query-param deep links
- * (/collections?product=<id>) in the current architecture, so the canonical
- * reflects that real URL rather than an idealised /products/<slug> path.
+ * Canonical URL for a view. Product detail pages use real path-based URLs
+ * (/products/<slug>) so each product is a distinct, crawlable, prerenderable URL.
  */
 export function canonicalFor(view, product) {
   if (view === 'product-detail' && product) {
-    return `${SITE_URL}/collections?product=${product.id}`
+    return `${SITE_URL}${productPath(product)}`
   }
   return SITE_URL + (VIEW_TO_PATH[view] || '/')
 }
