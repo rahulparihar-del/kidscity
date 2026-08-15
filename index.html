@@ -35,12 +35,14 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Kids City" />
 
     <!-- ============================================================
-         NOTE: The production site domain is dynamically compiled
-         via %VITE_SITE_URL% throughout index.html, sitemaps and robots.txt.
+         NOTE: The production site domain is compiled in at build time
+         via %VITE_SITE_URL% (resolved by vite.config.js transformIndexHtml)
+         throughout index.html, sitemaps and robots.txt.
          ============================================================ -->
     <link rel="canonical" href="%VITE_SITE_URL%/" />
 
@@ -50,10 +52,10 @@
     <link rel="alternate" hreflang="x-default" href="%VITE_SITE_URL%/" />
 
     <!-- Primary SEO -->
-    <title>Kids City | Best Kids Clothes Shop in Wakad, Pune — From ₹299</title>
+    <title>Kids City | Best Kids Clothes Shop in Wakad, Pune — From ₹399</title>
     <meta
       name="description"
-      content="Wakad's best kids wear shop & clothing store. Buy skin-safe baby wear, kids night suits, Navratri lehengas, & birthday dresses from ₹299. 4.9★ rated · COD & easy exchanges in Wakad, Pune."
+      content="Wakad's best kids wear shop & clothing store. Buy skin-safe baby wear, kids night suits, Navratri lehengas, & birthday dresses from ₹399. COD & easy in-store exchanges in Wakad, Pune."
     />
     <meta
       name="keywords"
@@ -80,10 +82,10 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Kids City" />
     <meta property="og:locale" content="en_IN" />
-    <meta property="og:title" content="Kids City | Best Kids Clothes Shop in Wakad, Pune — From ₹299" />
+    <meta property="og:title" content="Kids City | Best Kids Clothes Shop in Wakad, Pune — From ₹399" />
     <meta
       property="og:description"
-      content="Wakad's best kids wear shop & clothing store. Buy skin-safe baby wear, kids night suits, Navratri lehengas, & birthday dresses from ₹299. 4.9★ rated · COD & easy exchanges in Wakad, Pune."
+      content="Wakad's best kids wear shop & clothing store. Buy skin-safe baby wear, kids night suits, Navratri lehengas, & birthday dresses from ₹399. COD & easy in-store exchanges in Wakad, Pune."
     />
     <meta property="og:url" content="%VITE_SITE_URL%/" />
     <meta property="og:image" content="%VITE_SITE_URL%/images/logo_full.webp" />
@@ -94,48 +96,54 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Kids City | Best Kids Clothes Shop in Wakad, Pune — From ₹299" />
+    <meta name="twitter:title" content="Kids City | Best Kids Clothes Shop in Wakad, Pune — From ₹399" />
     <meta
       name="twitter:description"
-      content="Wakad's best kids wear shop & clothing store. Buy skin-safe baby wear, kids night suits, Navratri lehengas, & birthday dresses from ₹299. 4.9★ rated · COD & easy exchanges in Wakad, Pune."
+      content="Wakad's best kids wear shop & clothing store. Buy skin-safe baby wear, kids night suits, Navratri lehengas, & birthday dresses from ₹399. COD & easy in-store exchanges in Wakad, Pune."
     />
     <meta name="twitter:image" content="%VITE_SITE_URL%/images/logo_full.webp" />
     <meta name="twitter:image:alt" content="Kids City Wakad — Best Kids Boutique in Pune" />
 
     <!-- ================================================================
-         Structured Data Block 1: LocalBusiness + ClothingStore + Organization
+         Sitewide structured data (route-invariant): a single @graph with
+         the Organization/LocalBusiness/ClothingStore and the WebSite.
+         Kept static in the shell so it is present in the raw HTML for every
+         crawler. Page-specific entities (WebPage, Product, CollectionPage,
+         BreadcrumbList, FAQPage) are injected per route by the app.
+         NOTE: aggregateRating is intentionally omitted — it must not be
+         emitted until a live, verifiable Google rating/review count is
+         supplied. See src/lib/seo.js and FAQView.jsx for per-route JSON-LD.
          ================================================================ -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": ["Organization", "LocalBusiness", "ClothingStore"],
+            "@type": ["ClothingStore", "LocalBusiness"],
             "@id": "%VITE_SITE_URL%/#organization",
             "name": "Kids City",
-            "alternateName": ["Kids City Wakad", "Kids City Pune", "Kids City Children's Clothing Store"],
+            "alternateName": ["Kids City Wakad", "Kids City Pune"],
             "url": "%VITE_SITE_URL%/",
             "logo": {
               "@type": "ImageObject",
+              "@id": "%VITE_SITE_URL%/#logo",
               "url": "%VITE_SITE_URL%/images/logo_full.webp",
-              "width": 512,
-              "height": 200
+              "contentUrl": "%VITE_SITE_URL%/images/logo_full.webp",
+              "width": 1200,
+              "height": 630,
+              "caption": "Kids City — Best Kids Clothes Shop in Wakad, Pune"
             },
-            "image": [
-              "%VITE_SITE_URL%/images/hero_girl.webp",
-              "%VITE_SITE_URL%/images/festival_wear.webp",
-              "%VITE_SITE_URL%/images/birthday_dress.webp"
-            ],
-            "description": "Kids City is the best kids clothes shop in Wakad, Pune. We offer 500+ premium kids clothing styles for boys and girls aged 0–14 years — festival wear including Navratri lehengas and Diwali kurtas, birthday party dresses, traditional ethnic outfits, casual daily wear, and western wear. Rated 4.9★ by 135+ Pune families.",
-            "telephone": "+91-78916-72762",
-            "email": "kidscitywakad@gmail.com",
+            "image": { "@id": "%VITE_SITE_URL%/#logo" },
+            "description": "Kids City is a kids' clothing store in Wakad, Pune offering skin-safe baby wear, kids night suits, festival and ethnic wear including Navratri lehengas and Diwali kurtas, birthday dresses, and casual wear for children aged 0–14 years, with cash on delivery and easy in-store size exchanges.",
             "priceRange": "₹₹",
             "currenciesAccepted": "INR",
-            "paymentAccepted": "Cash, UPI, Debit Card, Credit Card",
+            "paymentAccepted": ["Cash", "Cash on Delivery", "UPI", "Debit Card", "Credit Card"],
+            "telephone": "+91-78916-72762",
+            "email": "kidscitywakad@gmail.com",
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Rd, beside Annapurna Veg Restaurant, Kaspate Wasti, Wakad",
-              "addressLocality": "Wakad, Pimpri-Chinchwad",
+              "streetAddress": "Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Rd, beside Annapurna Veg Restaurant, Kaspate Wasti",
+              "addressLocality": "Wakad",
               "addressRegion": "Maharashtra",
               "postalCode": "411057",
               "addressCountry": "IN"
@@ -146,6 +154,20 @@
               "longitude": 73.7744639
             },
             "hasMap": "https://www.google.com/maps/dir//Kids+City+Wakad",
+            "areaServed": [
+              { "@type": "City", "name": "Wakad" },
+              { "@type": "City", "name": "Hinjewadi" },
+              { "@type": "City", "name": "Baner" },
+              { "@type": "City", "name": "Balewadi" },
+              { "@type": "City", "name": "Pimple Saudagar" },
+              { "@type": "City", "name": "Ravet" },
+              { "@type": "City", "name": "Tathawade" },
+              { "@type": "City", "name": "Aundh" },
+              { "@type": "City", "name": "Pimpri" },
+              { "@type": "City", "name": "Chinchwad" },
+              { "@type": "City", "name": "Pimpri-Chinchwad" },
+              { "@type": "City", "name": "Pune" }
+            ],
             "openingHoursSpecification": [
               {
                 "@type": "OpeningHoursSpecification",
@@ -154,146 +176,20 @@
                 "closes": "21:30"
               }
             ],
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "bestRating": "5",
-              "worstRating": "1",
-              "reviewCount": "135"
-            },
-            "areaServed": [
-              {"@type": "City", "name": "Wakad"},
-              {"@type": "City", "name": "Hinjewadi"},
-              {"@type": "City", "name": "Baner"},
-              {"@type": "City", "name": "Balewadi"},
-              {"@type": "City", "name": "Pimple Saudagar"},
-              {"@type": "City", "name": "Ravet"},
-              {"@type": "City", "name": "Tathawade"},
-              {"@type": "City", "name": "Aundh"},
-              {"@type": "City", "name": "Pimpri"},
-              {"@type": "City", "name": "Chinchwad"},
-              {"@type": "City", "name": "Pimpri-Chinchwad"},
-              {"@type": "City", "name": "Pune"}
-            ],
             "sameAs": [
-              "https://instagram.com/kidscity____",
-              "https://www.google.com/maps/dir//Kids+City+Wakad"
+              "https://instagram.com/kidscity____"
             ],
             "foundingDate": "2018",
-            "numberOfEmployees": {"@type": "QuantitativeValue", "value": 5},
             "slogan": "Clothes for Little Explorers"
-          }
-        ]
-      }
-    </script>
-
-    <!-- Structured Data Block 2: WebSite with SearchAction (Google Sitelinks Searchbox) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "@id": "%VITE_SITE_URL%/#website",
-        "url": "%VITE_SITE_URL%/",
-        "name": "Kids City",
-        "description": "Best kids clothes shop in Wakad, Pune — festival wear, birthday dresses, traditional outfits, and casual wear for boys & girls aged 0–14 years.",
-        "publisher": {"@id": "%VITE_SITE_URL%/#organization"},
-        "inLanguage": "en-IN",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "%VITE_SITE_URL%/collections?s={search_term_string}"
-          },
-          "query-input": "required name=search_term_string"
-        }
-      }
-    </script>
-
-    <!-- Structured Data Block 3: BreadcrumbList for key pages -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "%VITE_SITE_URL%/"
           },
           {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Kids Clothing Collections",
-            "item": "%VITE_SITE_URL%/collections"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "About Kids City Wakad",
-            "item": "%VITE_SITE_URL%/about"
-          },
-          {
-            "@type": "ListItem",
-            "position": 4,
-            "name": "FAQ",
-            "item": "%VITE_SITE_URL%/faq"
-          },
-          {
-            "@type": "ListItem",
-            "position": 5,
-            "name": "Contact",
-            "item": "%VITE_SITE_URL%/contact"
-          }
-        ]
-      }
-    </script>
-
-    <!-- Structured Data Block 4: FAQPage Schema -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Where is Kids City located in Wakad, Pune?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Kids City is located at Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Road, beside Annapurna Veg Restaurant, Kaspate Wasti, Wakad, Pune, Maharashtra 411057."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What are the store timings for Kids City Wakad?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Kids City Wakad is open every day from 10:00 AM to 9:30 PM, including Saturdays, Sundays, and public holidays."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What type of kids clothing does Kids City stock?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Kids City stocks 500+ styles including festival wear (Navratri lehengas, Diwali kurtas), birthday party dresses, traditional ethnic outfits, casual daily wear, night suits, and western wear for boys and girls aged 0–14 years."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does Kids City serve Hinjewadi, Baner, and other areas near Wakad?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes! Kids City serves families from Wakad, Hinjewadi, Baner, Balewadi, Pimple Saudagar, Ravet, Tathawade, Pimpri, Chinchwad, and across Pune."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I WhatsApp Kids City before visiting the store?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes! WhatsApp us at +91 78916 72762 to check stock, available sizes, and current collections before your visit. Our team responds quickly."
-            }
+            "@type": "WebSite",
+            "@id": "%VITE_SITE_URL%/#website",
+            "url": "%VITE_SITE_URL%/",
+            "name": "Kids City",
+            "description": "Wakad's kids wear shop & clothing store — skin-safe baby wear, kids night suits, Navratri lehengas, and birthday dresses for children aged 0–14 years.",
+            "publisher": { "@id": "%VITE_SITE_URL%/#organization" },
+            "inLanguage": "en-IN"
           }
         ]
       }

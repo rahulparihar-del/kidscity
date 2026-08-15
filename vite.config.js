@@ -15,6 +15,13 @@ export default defineConfig(({ mode }) => {
       react(),
       {
         name: 'generate-seo-files',
+        // Guarantee %VITE_SITE_URL% resolves in index.html on every build, even
+        // if the env var isn't present (the original cause of the token shipping
+        // unresolved to production). Deterministic — does not rely on Vite's
+        // native env replacement or env-file presence.
+        transformIndexHtml(html) {
+          return html.replace(/%VITE_SITE_URL%/g, siteUrl)
+        },
         buildStart() {
           try {
             // Read templates

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { PAGE_SEO, getProductSEO } from './hooks/useSEO'
+import { applyRouteSeo, canonicalFor, setRouteJsonLd } from './lib/seo'
+import { buildRouteGraph } from './lib/seoGraph'
 import Navbar from './components/Navbar'
 import HeroBanner from './components/HeroBanner'
 import TrustBar from './components/TrustBar'
@@ -201,35 +203,27 @@ export default function App() {
     return () => window.removeEventListener('popstate', handleUrlRoute)
   }, [dbProducts])
 
-  // ── Dynamic SEO: update <title> + meta description on every view change ──
+  // ── Dynamic SEO: per-route title / description / canonical / OG / Twitter ──
+  // Centralised in src/lib/seo.js. Fixes product-detail canonicalising to "/"
+  // and keeps OG/Twitter mirrors in sync. (Per-route JSON-LD is layered on in
+  // the P1b/P2 tiers via setRouteJsonLd.)
   useEffect(() => {
     const seo =
       currentView === 'product-detail' && selectedProduct
         ? getProductSEO(selectedProduct)
         : PAGE_SEO[currentView] || PAGE_SEO.home
 
-    document.title = seo.title
+    applyRouteSeo({
+      title: seo.title,
+      description: seo.description,
+      canonical: canonicalFor(currentView, selectedProduct),
+    })
 
-    const metaDesc = document.querySelector('meta[name="description"]')
-    if (metaDesc) metaDesc.setAttribute('content', seo.description)
-
-    // Update OG title + description too
-    const ogTitle = document.querySelector('meta[property="og:title"]')
-    const ogDesc  = document.querySelector('meta[property="og:description"]')
-    if (ogTitle) ogTitle.setAttribute('content', seo.title)
-    if (ogDesc)  ogDesc.setAttribute('content', seo.description)
-
-    // Update canonical URL
-    let canonical = document.querySelector('link[rel="canonical"]')
-    if (canonical) {
-      const path = VIEW_TO_PATH[currentView] || '/'
-      const canonicalUrl = `https://kidscity.online${path}`
-      canonical.setAttribute('href', canonicalUrl)
-      // Update OG URL
-      const ogUrl = document.querySelector('meta[property="og:url"]')
-      if (ogUrl) ogUrl.setAttribute('content', canonicalUrl)
-    }
-  }, [currentView, selectedProduct])
+    // Per-route JSON-LD (WebPage / CollectionPage / Product / BreadcrumbList),
+    // cross-referencing the sitewide Organization + WebSite in index.html.
+    const products = dbProducts.length ? dbProducts : PRODUCTS
+    setRouteJsonLd(buildRouteGraph(currentView, { product: selectedProduct, products, seo }))
+  }, [currentView, selectedProduct, dbProducts])
 
   // Track page image loading on view change to prevent flashing of un-loaded content
   useEffect(() => {
