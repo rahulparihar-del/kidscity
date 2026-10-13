@@ -41,11 +41,11 @@ const POLICIES = {
       },
       {
         heading: 'Products & Pricing',
-        content: 'All prices displayed on our website are in Indian Rupees (₹) and are inclusive of applicable taxes. Prices are subject to change without prior notice. Kids City reserves the right to limit quantities or refuse orders in certain circumstances.'
+        content: 'All prices displayed on our website are in Indian Rupees (INR) and are inclusive of applicable taxes. Prices are subject to change without prior notice. Kids City reserves the right to limit quantities or refuse orders in certain circumstances.'
       },
       {
-        heading: 'Delivery Area Restriction',
-        content: 'We deliver products exclusively to customers residing within Wakad, Pune (411057) only. Orders from any other delivery locations will not be processed or fulfilled.'
+        heading: 'Delivery Area Coverage',
+        content: 'Delivery is currently available in Wakad and nearby areas. Message us on WhatsApp with your pincode to confirm delivery options and dispatch details.'
       },
       {
         heading: 'No-Refund & In-Store Exchange Policy',
@@ -74,20 +74,20 @@ const POLICIES = {
     lastUpdated: '14 July 2026',
     sections: [
       {
-        heading: 'Local Delivery — Wakad, Pune Only',
-        content: 'Kids City offers home delivery services exclusively to customers residing in Wakad, Pune (Pincode: 411057) only. We do not deliver to Hinjewadi, Baner, or any other areas outside Wakad.'
+        heading: 'Delivery Coverage',
+        content: 'Delivery in Wakad and nearby areas. Message us on WhatsApp with your pincode to confirm availability.'
       },
       {
         heading: 'Delivery Charges & Timelines',
-        content: 'For verified Wakad residents, same-day or next-day delivery is available. Delivery fees will be coordinated via WhatsApp when confirming your order.'
+        content: 'Delivery fees and delivery schedules are coordinated directly via WhatsApp based on your pincode and order details.'
       },
       {
         heading: 'Order Confirmation & Payment',
-        content: 'Once you submit your Inquiry Bag or order via WhatsApp, our team will confirm stock availability and size fit. Since we only deliver to Wakad, payment can be made via UPI or Cash on Delivery (COD) upon confirmation.'
+        content: 'Once you submit your inquiry on WhatsApp, our team will confirm stock availability and size fit. Payment can be made via UPI, Cards, or Cash.'
       },
       {
         heading: 'In-Store Pickup Option',
-        content: 'Customers can also block items online and pick them up at our Wakad store (Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Road, Wakad, Pune 411057) within 24 hours.'
+        content: 'Customers can also coordinate item hold and pick them up directly at our Wakad store (Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Road, Wakad, Pune 411057).'
       }
     ]
   },
@@ -96,12 +96,12 @@ const POLICIES = {
     lastUpdated: '14 July 2026',
     sections: [
       {
-        heading: 'Strict No-Return Policy',
-        content: 'Kids City does not accept returns or offer refunds for any purchases under any circumstances. All sales are final.'
+        heading: 'Return Policy',
+        content: 'Kids City does not accept returns or offer monetary refunds. All purchases are eligible for size exchange as detailed below.'
       },
       {
-        heading: '7-Day In-Store Size Exchange Only',
-        content: 'If the size of a garment purchased at Kids City does not fit your child, you may exchange it for a different size or product of equal value within 7 days of purchase. The exchange must be made in person at our physical store in Wakad, Pune. We do not coordinate exchanges via courier or mail.'
+        heading: 'In-Store Size Exchange',
+        content: 'If the size of a garment purchased at Kids City does not fit your child, you may exchange it for a different size or product of equal value in person at our physical store in Wakad, Pune. Items must have tags intact and original bill.'
       },
       {
         heading: 'Exchange Conditions',
@@ -109,11 +109,11 @@ const POLICIES = {
       },
       {
         heading: 'Defective or Damaged Items',
-        content: 'If you receive a defective or damaged item, please contact us within 48 hours of purchase via WhatsApp at +91 78916 72762 with photos of the defect. We will coordinate a size/product exchange at our Wakad store.'
+        content: 'If you receive a defective or damaged item, please contact us promptly via WhatsApp at +91 78916 72762 with photos of the defect. We will coordinate a size or product exchange at our Wakad store.'
       },
       {
-        heading: 'How to Initiate an Exchange',
-        content: 'Step 1: WhatsApp us at +91 78916 72762 with your purchase details and invoice. Step 2: Our team will confirm eligibility. Step 3: Visit our Wakad store with the item and original bill within 7 days of purchase to complete the exchange.'
+        heading: 'How to Coordinate an Exchange',
+        content: 'Step 1: WhatsApp us at +91 78916 72762 with your purchase details and bill. Step 2: Our team will confirm exchange availability. Step 3: Visit our Wakad store with the item and original bill to complete the exchange.'
       },
     ]
   },
@@ -145,7 +145,7 @@ export default function PolicyView({ policyKey, onViewChange }) {
           <div className="grid grid-cols-[1fr_260px] max-[860px]:grid-cols-1 gap-10 items-start">
             <article className="bg-white rounded-[20px] px-11 py-10 max-[600px]:px-5 max-[600px]:py-7 shadow-[0_2px_16px_rgba(61,64,91,0.06)] border border-border">
               <p className="font-[family-name:var(--font-body)] text-base text-text-mid leading-[1.75] px-5 py-4 bg-[#fafaf6] border-l-4 border-brand-terracotta rounded-r-xl mb-8">
-                This page outlines our {policy.title.toLowerCase()} for Kids City, Wakad's most trusted children's clothing store located at Mahalaxmi Complex, Chatrapati Chowk Road, Wakad, Pune, Maharashtra 411057.
+                This page outlines our {policy.title.toLowerCase()} for Kids City, children's clothing store located at Mahalaxmi Complex, Chatrapati Chowk Road, Wakad, Pune, Maharashtra 411057.
               </p>
 
               {policy.sections.map((section, i) => (
@@ -160,7 +160,7 @@ export default function PolicyView({ policyKey, onViewChange }) {
                 <p className="font-[family-name:var(--font-body)] text-[0.92rem] text-text-mid mb-2 leading-relaxed">📍 Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Road, Wakad, Pune 411057</p>
                 <p className="font-[family-name:var(--font-body)] text-[0.92rem] text-text-mid mb-2 leading-relaxed">📞 <a href="tel:+917891672762" className="text-brand-terracotta hover:underline">+91 78916 72762</a></p>
                 <p className="font-[family-name:var(--font-body)] text-[0.92rem] text-text-mid mb-2 leading-relaxed">✉️ <a href="mailto:kidscitywakad@gmail.com" className="text-brand-terracotta hover:underline">kidscitywakad@gmail.com</a></p>
-                <p className="font-[family-name:var(--font-body)] text-[0.92rem] text-text-mid mb-2 leading-relaxed">🕙 Open Daily: 10:00 AM – 9:30 PM</p>
+                <p className="font-[family-name:var(--font-body)] text-[0.92rem] text-text-mid mb-2 leading-relaxed">🕙 Open Daily · Check WhatsApp for hours</p>
               </div>
             </article>
 

@@ -11,7 +11,7 @@
     <image:image>
       <image:loc>%VITE_SITE_URL%/images/hero_girl.webp</image:loc>
       <image:title>Kids City — Best Kids Clothes Shop in Wakad, Pune</image:title>
-      <image:caption>Kids wear Wakad Pune — new arrivals at Kids City, children's clothing store for boys and girls aged 0–14 years</image:caption>
+      <image:caption>Kids wear Wakad Pune — new arrivals at Kids City, children's clothing store for boys and girls aged 0–15 years</image:caption>
     </image:image>
     <image:image>
       <image:loc>%VITE_SITE_URL%/images/festival_wear.webp</image:loc>

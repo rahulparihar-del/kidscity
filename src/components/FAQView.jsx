@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, MapPin, MessageSquare, Phone } from 'lucide-react'
+import { storeConfig } from '../config/storeConfig'
 
 const FAQS = [
   {
@@ -8,19 +9,19 @@ const FAQS = [
     questions: [
       {
         q: 'Where is Kids City located in Wakad, Pune?',
-        a: 'Kids City is located at Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Road, beside Annapurna Veg Restaurant, Kaspate Wasti, Wakad, Pune, Maharashtra 411057. You can find us easily on Google Maps by searching "Kids City Wakad".'
+        a: `Kids City is located at ${storeConfig.address.fullFormatted}. You can find us easily on Google Maps by searching "Kids City Wakad".`
       },
       {
         q: 'What are the store timings for Kids City Wakad?',
-        a: 'We are open every day — Monday through Sunday — from 10:00 AM to 9:30 PM, including all public holidays, festivals, and weekends. You can visit us any day at your convenience.'
+        a: storeConfig.openingHours.display
       },
       {
         q: 'Which areas near Wakad does Kids City serve?',
-        a: 'Kids City serves families from Wakad, Hinjewadi, Baner, Balewadi, Pimple Saudagar, Ravet, Tathawade, Aundh, Pimpri, Chinchwad, and across Pune. We are centrally located for all these neighbourhoods.'
+        a: 'Kids City serves families from Wakad, Hinjewadi, Baner, Balewadi, Pimple Saudagar, Ravet, Tathawade, Aundh, and across Pune.'
       },
       {
         q: 'Is there parking available near Kids City Wakad?',
-        a: 'Yes! Mahalaxmi Complex has available parking space near the store. Wakad is also well-connected by autos and the Pune bus network, making it easy to visit us.'
+        a: 'Yes! Mahalaxmi Complex has available parking space near the store.'
       },
     ]
   },
@@ -29,19 +30,19 @@ const FAQS = [
     questions: [
       {
         q: 'What type of kids clothing does Kids City stock?',
-        a: 'Kids City carries over 500 styles including festival wear (Navratri lehengas, Diwali kurtas), birthday party dresses, traditional Indian outfits, casual daily wear, western wear, night suits, and seasonal collections for boys and girls aged 0 to 14 years.'
+        a: 'Kids City carries festive wear (Navratri lehengas, Diwali kurtas), birthday dresses, traditional outfits, daily playwear, night suits, and baby sets for boys and girls aged 0 to 15 years.'
       },
       {
         q: 'Do you have birthday dresses for girls in Pune?',
-        a: 'Yes! Our Birthday Collection is one of our bestsellers. We carry princess gowns, frilly frocks, tulle dresses, and embellished party wear for girls aged 0–12 years. New styles arrive regularly for birthdays and parties.'
+        a: 'Yes! Our Birthday Collection features party frocks, gowns, and celebration dresses for girls aged 0–15 years.'
       },
       {
         q: 'Do you have traditional kids wear for festivals like Navratri and Diwali?',
-        a: 'Absolutely! We specialize in traditional and festival kids wear — Navratri lehengas, Diwali kurta-pajama sets, Chaniya Choli sets, ethnic dresses, and more. Our festival collection is one of the most popular in Wakad and Pune.'
+        a: 'Absolutely! We specialize in festival kids wear — Navratri lehengas, Diwali kurta-pajama sets, Chaniya Choli sets, and ethnic outfits for boys and girls aged 0 to 15 years.'
       },
       {
         q: 'What age range do you cover for kids clothing?',
-        a: 'Kids City stocks clothing for children from 0 to 14 years old — including newborns, toddlers, infants, and older kids. Most styles come in sizes from 0–2 years up to 12–14 years.'
+        a: `Kids City stocks clothing for children ${storeConfig.ageRange} — from newborns and toddlers up to 15 years.`
       },
     ]
   },
@@ -50,19 +51,19 @@ const FAQS = [
     questions: [
       {
         q: 'Can I check stock availability before visiting the store?',
-        a: 'Yes! You can WhatsApp us at +91 78916 72762 to check stock, available sizes, and current collections before your visit. Our team responds quickly and can even send you photos of available styles.'
+        a: 'Yes! You can WhatsApp us at +91 78916 72762 to check stock, available sizes, and current designs before your visit. Our team will share photos and size details.'
       },
       {
         q: 'Do you offer returns or size exchanges?',
-        a: 'We have a strict no-return policy and all sales are final. However, we offer size exchanges within 7 days of purchase. The item must be unused, unwashed, with tags intact, and exchanged in person at our physical store in Wakad, Pune.'
+        a: storeConfig.policies.returnExchange.display
       },
       {
-        q: 'Do you deliver kids clothes outside Wakad, Pune?',
-        a: 'No. We offer local home delivery exclusively to locations within Wakad, Pune (Pincode: 411057) only. We do not deliver to Hinjewadi, Baner, or other parts of Pune. Out-of-area ordering is disabled.'
+        q: 'Do you deliver kids clothes in Pune?',
+        a: storeConfig.delivery.displaySummary
       },
       {
         q: 'What payment methods are accepted at Kids City?',
-        a: 'We accept Cash, UPI (Google Pay, PhonePe, Paytm), Debit Cards, and Credit Cards. All major UPI payment apps are accepted at our Wakad store.'
+        a: storeConfig.policies.paymentMethods.display
       },
     ]
   },
@@ -205,7 +206,7 @@ export default function FAQView({ onViewChange }) {
                 </div>
                 <div className="flex items-start gap-2.5 font-[family-name:var(--font-body)] text-[0.88rem] text-text-mid mb-2.5 leading-[1.5]">
                   <span className="text-[0.95rem] shrink-0">🕙</span>
-                  <span>Open Daily: 10 AM – 9:30 PM</span>
+                  <span>Open Daily · Check WhatsApp for hours</span>
                 </div>
                 <a
                   href="https://www.google.com/maps/dir//Kids+City+Wakad"

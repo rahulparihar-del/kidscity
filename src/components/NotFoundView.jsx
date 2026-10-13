@@ -37,7 +37,7 @@ export default function NotFoundView({ onViewChange }) {
             Page Not Found
           </h1>
           <p className="font-[family-name:var(--font-body)] text-base text-text-mid leading-[1.7] mb-7">
-            Oops! It looks like this page went off to play. Don't worry — Kids City Wakad still has 500+ amazing kids outfits waiting for you!
+            Oops! It looks like this page went off to play. Don't worry — Kids City Wakad has a lovely collection of kids' outfits (ages 0–15) waiting for you!
           </p>
 
           {/* Actions */}

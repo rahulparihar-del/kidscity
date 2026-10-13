@@ -49,15 +49,15 @@ const clothingStoreSchema = {
     `${SITE_URL}/images/festival_wear.webp`,
     `${SITE_URL}/images/birthday_dress.webp`
   ],
-  description: 'Kids City is a premier children clothing store in Pune established in 2018. We specialize in festive wear including Navratri lehengas and Diwali kurtas, birthday party dresses, cotton night suits, and everyday outfits for boys and girls aged 0 to 14 years. Boutique in Wakad with home delivery across Pune.',
+  description: 'Kids City is a children clothing store located in the neighbourhood of Wakad, Pune, established in 2018. We specialize in festive wear including Navratri lehengas and Diwali kurtas, birthday party dresses, cotton night suits, and everyday outfits for boys and girls aged 0 to 15 years.',
   telephone: storeConfig.phone,
   email: storeConfig.email,
-  priceRange: '₹₹',
+  priceRange: '$$',
   currenciesAccepted: 'INR',
   address: {
     '@type': 'PostalAddress',
     streetAddress: `${storeConfig.address.shopNumber}, ${storeConfig.address.complex}, ${storeConfig.address.street}`,
-    addressLocality: `${storeConfig.address.locality}, ${storeConfig.address.city}`,
+    addressLocality: storeConfig.address.city,
     addressRegion: storeConfig.address.state,
     postalCode: storeConfig.address.postalCode,
     addressCountry: storeConfig.address.country
@@ -98,7 +98,7 @@ const routes = []
 // 1. Homepage
 routes.push({
   url: '/',
-  title: 'Kids City | Kids Clothes Shop in Wakad, Pune — From ₹299',
+  title: 'Kids City | Kids Clothes Shop in Wakad, Pune',
   description: 'Kids City is Pune trusted children clothing boutique in Wakad. Shop festive lehengas, kurtas, birthday frocks & cotton night suits. 4.9★ on Google. Pune delivery.',
   canonical: `${SITE_URL}/`,
   image: `${SITE_URL}/images/og-kids-city.jpg`,
@@ -113,7 +113,7 @@ routes.push({
       '@id': `${SITE_URL}/#website`,
       url: `${SITE_URL}/`,
       name: 'Kids City',
-      description: 'Kids clothing store in Wakad, Pune — festive wear, birthday dresses, and cotton sleepwear for boys & girls aged 0–14 years.',
+      description: 'Kids clothing store in Wakad, Pune — festive wear, birthday dresses, and cotton sleepwear for boys & girls aged 0–15 years.',
       publisher: { '@id': `${SITE_URL}/#store` },
       inLanguage: 'en-IN'
     }
@@ -123,7 +123,7 @@ routes.push({
       <p style="font-size: 0.85rem; font-weight: bold; color: #E07A5F; margin-bottom: 8px;">★ ${storeConfig.rating.displayNotice}</p>
       <h1 style="font-size: 2.5rem; color: #3D405B; margin-bottom: 12px;">Kids Clothes Shop in Pune — Kids City Boutique Wakad</h1>
       <p style="font-size: 1.1rem; color: #4B5563; line-height: 1.7; margin-bottom: 16px;">
-        Children's clothing store in Wakad, Pune. Festive wear, birthday dresses, and cotton sleepwear for boys and girls (ages 0–14) from ₹299.
+        Children's clothing store in Wakad, Pune. Festive wear, birthday dresses, and cotton sleepwear for boys and girls (ages 0–15).
       </p>
       <div style="margin-bottom: 24px;">
         <a href="https://wa.me/${storeConfig.whatsappRaw}?text=Hello%20Kids%20City!%20I%20am%20interested%20in%20your%20collection" style="background: #25D366; color: white; padding: 12px 24px; border-radius: 9999px; font-weight: bold; text-decoration: none; display: inline-block; margin-right: 8px;">Order on WhatsApp: ${storeConfig.phone}</a>
@@ -143,7 +143,7 @@ routes.push({
 routes.push({
   url: '/collections',
   title: 'Kids Clothing Collections in Pune | Kids City, Wakad',
-  description: 'Explore boys and girls clothing catalog in Pune: festival lehengas, kurtas, birthday frocks, cotton night suits & baby sets. Shop from ₹299.',
+  description: 'Explore boys and girls clothing catalog in Pune: festival lehengas, kurtas, birthday frocks, cotton night suits & baby sets.',
   canonical: `${SITE_URL}/collections`,
   image: `${SITE_URL}/images/og-kids-city.jpg`,
   priority: '0.95',
@@ -170,11 +170,11 @@ routes.push({
       <nav style="font-size: 0.85rem; color: #6B7280; margin-bottom: 16px;"><a href="/">Home</a> &gt; <span>Collections</span></nav>
       <h1 style="font-size: 2.2rem; color: #3D405B; margin-bottom: 12px;">Kids Clothing Collections in Pune — Kids City</h1>
       <p style="font-size: 1rem; color: #4B5563; line-height: 1.7; margin-bottom: 24px;">
-        Curated clothing for boys and girls from newborn to 14 years. Festive wear, birthday gowns, everyday cotton sets, and sleepwear.
+        Curated clothing for boys and girls from newborn to 15 years. Festive wear, birthday gowns, everyday cotton sets, and sleepwear.
       </p>
       <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 12px; padding: 16px; margin-bottom: 24px;">
         <p style="color: #92400E; margin: 0; font-size: 0.95rem;">
-          <strong>Catalog Notice:</strong> We are updating our online catalog with verified in-store stock and prices. Message us on WhatsApp (+91 78916 72762) or visit our Wakad store to view over 500+ designs!
+          <strong>Catalog Notice:</strong> We are updating our online catalog with verified in-store stock and prices. Message us on WhatsApp (+91 78916 72762) or visit our Wakad store to view our collection!
         </p>
       </div>
     </article>
@@ -230,7 +230,7 @@ routes.push({
 routes.push({
   url: '/kids-clothing-size-guide',
   title: 'Indian Kids Clothing Size Chart & Guide | Kids City',
-  description: 'Indian kids clothing size chart for ages 0–14 years. Easy measurements for age, height in cm, and chest size. Find the proper fit at Kids City Pune.',
+  description: 'Indian kids clothing size chart for ages 0–15 years. Easy measurements for age, height in cm, and chest size. Find the proper fit at Kids City Pune.',
   canonical: `${SITE_URL}/kids-clothing-size-guide`,
   image: `${SITE_URL}/images/og-kids-city.jpg`,
   priority: '0.85',
@@ -242,7 +242,7 @@ routes.push({
       '@type': 'WebPage',
       name: 'Indian Kids Clothing Size Chart & Fit Guide',
       url: `${SITE_URL}/kids-clothing-size-guide`,
-      description: 'Indian kids clothing size chart for ages 0–14 years.',
+      description: 'Indian kids clothing size chart for ages 0–15 years.',
       breadcrumb: {
         '@type': 'BreadcrumbList',
         itemListElement: [
@@ -255,7 +255,7 @@ routes.push({
   rootHtml: `
     <article style="padding: 24px; max-width: 900px; margin: 0 auto;">
       <nav style="font-size: 0.85rem; color: #6B7280; margin-bottom: 16px;"><a href="/">Home</a> &gt; <span>Size Guide</span></nav>
-      <h1 style="font-size: 2.2rem; color: #3D405B; margin-bottom: 12px;">Indian Kids Clothing Size Chart (Ages 0–14)</h1>
+      <h1 style="font-size: 2.2rem; color: #3D405B; margin-bottom: 12px;">Indian Kids Clothing Size Chart (Ages 0–15)</h1>
       <p style="font-size: 1rem; color: #4B5563; line-height: 1.7; margin-bottom: 24px;">
         Use this reference table to find the proper fit for your child. Height in centimeters is the most accurate sizing metric.
       </p>
@@ -277,6 +277,7 @@ routes.push({
           <tr><td style="padding: 8px; border: 1px solid #E6DFD3;">6–8 Years</td><td style="padding: 8px; border: 1px solid #E6DFD3;">116–128 cm</td><td style="padding: 8px; border: 1px solid #E6DFD3;">24–26"</td><td style="padding: 8px; border: 1px solid #E6DFD3;">22–23"</td></tr>
           <tr><td style="padding: 8px; border: 1px solid #E6DFD3;">8–10 Years</td><td style="padding: 8px; border: 1px solid #E6DFD3;">128–140 cm</td><td style="padding: 8px; border: 1px solid #E6DFD3;">26–28"</td><td style="padding: 8px; border: 1px solid #E6DFD3;">23–25"</td></tr>
           <tr><td style="padding: 8px; border: 1px solid #E6DFD3;">10–14 Years</td><td style="padding: 8px; border: 1px solid #E6DFD3;">140–162 cm</td><td style="padding: 8px; border: 1px solid #E6DFD3;">28–32"</td><td style="padding: 8px; border: 1px solid #E6DFD3;">25–28"</td></tr>
+          <tr><td style="padding: 8px; border: 1px solid #E6DFD3;">14–15 Years</td><td style="padding: 8px; border: 1px solid #E6DFD3;">162–168 cm</td><td style="padding: 8px; border: 1px solid #E6DFD3;">32–34"</td><td style="padding: 8px; border: 1px solid #E6DFD3;">28–30"</td></tr>
         </tbody>
       </table>
       <p style="font-size: 0.95rem; color: #4B5563;">
@@ -373,7 +374,7 @@ routes.push({
         </div>
         <div style="border: 1px solid #E6DFD3; border-radius: 12px; padding: 16px; background: white;">
           <h2 style="font-size: 1.2rem; color: #3D405B; margin-bottom: 8px;"><a href="/blog/kids-clothing-size-chart-india" style="color: inherit; text-decoration: none;">Indian Kids Clothing Size Chart: Age, Height &amp; Chest Guide</a></h2>
-          <p style="color: #6B7280; font-size: 0.9rem;">Comprehensive sizing measurements for children from newborn to 14 years.</p>
+          <p style="color: #6B7280; font-size: 0.9rem;">Comprehensive sizing measurements for children from newborn to 15 years.</p>
         </div>
       </div>
     </article>
@@ -385,13 +386,13 @@ const staticPages = [
   {
     url: '/about',
     title: 'About Us | Kids City — Children Clothing Store Pune',
-    description: 'Learn about Kids City Wakad, established in 2018. Pune neighborhood store for comfortable and affordable kids fashion aged 0–14.',
+    description: 'Learn about Kids City Wakad, established in 2018. Pune neighborhood store for comfortable and affordable kids fashion aged 0–15.',
     priority: '0.75'
   },
   {
     url: '/contact',
     title: 'Contact Kids City Wakad Pune | Phone, Map & Location',
-    description: 'Visit Kids City in Mahalaxmi Complex, Wakad, Pune or message +91 78916 72762 on WhatsApp. Open daily. Delivery available across Pune.',
+    description: 'Visit Kids City in Mahalaxmi Complex, Wakad, Pune or message +91 78916 72762 on WhatsApp. Open daily. Delivery in Wakad and nearby areas.',
     priority: '0.8'
   },
   {

@@ -116,7 +116,7 @@ export default function InquiryDrawer({ isOpen, onClose, bagItems, onRemoveFromB
                     Your Inquiry Bag is Empty
                   </h3>
                   <p className="text-[0.9rem] text-text-mid mb-6 leading-[1.5]">
-                    Browse our premium collections, select sizes, and add them here to inquire about multiple items at once.
+                    Browse our collections, select sizes, and add them here to inquire about multiple items at once.
                   </p>
                   <button className="btn btn-navy" onClick={onClose}>
                     Start Browsing
@@ -140,7 +140,7 @@ export default function InquiryDrawer({ isOpen, onClose, bagItems, onRemoveFromB
                       <input
                         id="checkout-name"
                         type="text"
-                        placeholder="e.g. Rahul Parihar"
+                        placeholder="e.g. Priya Sharma"
                         value={customerName}
                         onChange={(e) => setCustomerName(e.target.value)}
                         className="px-3 py-2.5 border-[1.5px] border-[#e0dbd3] rounded-[8px] text-[0.9rem] font-medium outline-none transition-colors duration-150 focus:border-brand-navy"

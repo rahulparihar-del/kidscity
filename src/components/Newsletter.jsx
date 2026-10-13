@@ -122,7 +122,9 @@ export default function Newsletter() {
 
             <div className="flex flex-wrap max-[480px]:flex-col gap-3">
               <a
-                href="https://www.google.com/maps/dir//Kids+City+-+Best+Kids+Clothes+Shop+In+Wakad+(Pune)+%7C%7C+Best+Festival+Dress+%7C%7C+Traditional+Dress+Collection,+Shop+No+12,+Mahalaxmi+Complex,+Chatrapati+Chowk+Rd,+beside+Annapurna+veg+restaurant,+Kaspate+Wasti,+Wakad,+Pimpri-Chinchwad,+Maharashtra+411057/@18.6040405,73.7830858,15z"
+                href="https://www.google.com/maps/dir//Kids+City+Wakad"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-gold"
               >
                 <Navigation size={16} strokeWidth={2.4} />

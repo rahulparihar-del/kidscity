@@ -6,7 +6,7 @@ const CATS = [
   { icon: PartyPopper, label: 'Festival Wear', sub: 'Lehengas & Kurtas', slug: 'kids-ethnic-wear-pune' },
   { icon: Cake,        label: 'Birthday',      sub: 'Special Gowns', slug: 'birthday-dresses-pune' },
   { icon: Baby,        label: 'Baby 0–2y',     sub: 'Rompers & Co-Ords', slug: 'baby-clothes-pune' },
-  { icon: Snowflake,   label: 'Night Suits',   sub: '100% Soft Cotton', slug: 'kids-night-suits-pune' },
+  { icon: Snowflake,   label: 'Night Suits',   sub: 'Comfortable Cotton', slug: 'kids-night-suits-pune' },
 ]
 
 export default function ShopByCategory({ onViewChange }) {

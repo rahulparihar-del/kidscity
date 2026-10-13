@@ -573,12 +573,12 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
                 {activeTab === 'care' && (
                   <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col gap-4 bg-[#fafaf6]/40 p-5 rounded-2xl border border-border/80">
                     <div>
-                      <h4 className="font-bold text-brand-navy text-[0.95rem] mb-1">🏪 Local Store Pickup (Wakad, Pune)</h4>
-                      <p className="text-[0.88rem] text-text-mid">Block items online for free and pick them up at our store (Shop No 12, Mahalaxmi Complex, Wakad) within 24 hours.</p>
+                      <h4 className="font-bold text-brand-navy text-[0.95rem] mb-1">🏪 In-Store Pickup (Wakad, Pune)</h4>
+                      <p className="text-[0.88rem] text-text-mid">Hold items via WhatsApp and pick them up at our store (Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Road, Wakad).</p>
                     </div>
                     <div className="border-t border-border/60 pt-3">
-                      <h4 className="font-bold text-brand-navy text-[0.95rem] mb-1">🚚 Wakad Home Delivery</h4>
-                      <p className="text-[0.88rem] text-text-mid">Same-day local home delivery is available for addresses in Wakad, Hinjewadi, and Baner. Minimal shipping fees calculated at checkout.</p>
+                      <h4 className="font-bold text-brand-navy text-[0.95rem] mb-1">🚚 Delivery Support</h4>
+                      <p className="text-[0.88rem] text-text-mid">Delivery in Wakad and nearby areas. Message us on WhatsApp with your pincode to confirm.</p>
                     </div>
                   </motion.div>
                 )}
@@ -670,6 +670,7 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
                       { tag: '8-10y', age: '8 - 10 Years', height: '130 - 142 cm', chest: '68 cm' },
                       { tag: '10-12y', age: '10 - 12 Years', height: '142 - 152 cm', chest: '72 cm' },
                       { tag: '12-14y', age: '12 - 14 Years', height: '152 - 164 cm', chest: '76 cm' },
+                      { tag: '14-15y', age: '14 - 15 Years', height: '164 - 170 cm', chest: '80 cm' },
                     ].map((row, idx) => (
                       <tr key={idx}>
                         <td className="px-3.5 py-2.5 border-b border-border text-[0.88rem]">{row.tag}</td>

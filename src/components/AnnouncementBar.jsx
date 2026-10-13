@@ -1,6 +1,6 @@
 import { Star } from 'lucide-react'
 
-const MESSAGE = "🎉 MONSOON SALE — Upto 40% OFF on Night Suits & Festival Wear \u00A0·\u00A0 FREE Delivery in Wakad & Hinjewadi \u00A0·\u00A0 Cash on Delivery Available \u00A0·\u00A0 4.9★ Rated by 500+ Happy Parents \u00A0·\u00A0 New Stock Every Week \u00A0·\u00A0 WhatsApp: 78916 72762 \u00A0·\u00A0"
+const MESSAGE = "✨ Kids City Wakad — Kids Clothing Boutique (Ages 0–15) \u00A0·\u00A0 4.9★ on Google (141 Reviews) \u00A0·\u00A0 Festive & Birthday Wear \u00A0·\u00A0 Since 2018 \u00A0·\u00A0 WhatsApp: +91 78916 72762 \u00A0·\u00A0 Delivery in Wakad & Nearby Areas \u00A0·\u00A0"
 
 export default function AnnouncementBar() {
   return (

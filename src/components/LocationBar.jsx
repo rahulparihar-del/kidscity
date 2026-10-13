@@ -85,7 +85,7 @@ export default function LocationBar({ deliveryPincode, setDeliveryPincode, isWak
               <div className="flex max-md:flex-col max-md:gap-1.5 max-md:text-center items-center gap-2.5">
                 <CheckCircle2 size={16} className="text-brand-green shrink-0" />
                 <span className="font-medium text-brand-navy">
-                  Delivering to <strong className="font-bold text-brand-navy-dark">Wakad, Pune 411057</strong>. Same-day delivery &amp; Store pickup available!
+                  Delivering to <strong className="font-bold text-brand-navy-dark">Wakad, Pune 411057</strong>. Delivery &amp; Store pickup available!
                 </span>
               </div>
               {changeBtn}

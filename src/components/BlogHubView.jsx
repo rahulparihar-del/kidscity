@@ -35,7 +35,7 @@ export default function BlogHubView({ onViewChange, onSelectPost }) {
             Pune Parenting &amp; Kids Clothing Guides
           </h1>
           <p className="font-[family-name:var(--font-body)] text-[1.05rem] text-text-mid leading-[1.7]">
-            Practical advice from our Wakad boutique team on choosing skin-safe fabrics, festive dresses, sizing, and seasonal outfit trends for Pune weather.
+            Practical advice from our Wakad boutique team on choosing breathable fabrics, festive dresses, sizing, and seasonal outfit trends for Pune weather.
           </p>
         </header>
 

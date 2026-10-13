@@ -68,8 +68,8 @@ export default function CallbackSheetView({ onBack }) {
 
   // Handle password submission
   const handleLogin = (e) => {
-    e.preventDefault()
-    if (password === 'Rahul@2001') {
+    const validPasscode = import.meta.env.VITE_ADMIN_PASSCODE || 'KidsCity@2018'
+    if (password === validPasscode) {
       setIsAuthenticated(true)
       sessionStorage.setItem('callback_sheet_auth', 'true')
       setError('')

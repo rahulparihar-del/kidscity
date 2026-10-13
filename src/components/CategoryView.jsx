@@ -88,11 +88,11 @@ export default function CategoryView({ categorySlug, onViewChange, onSelectProdu
                 onClick={(e) => { e.preventDefault(); onViewChange('kids-clothing-size-guide') }}
                 className="bg-white px-3.5 py-1.5 rounded-full border border-border hover:border-brand-terracotta text-brand-terracotta underline"
               >
-                View Kids Size Chart (0-14y)
+                View Kids Size Chart (0-15y)
               </a>
               <span className="bg-white px-3.5 py-1.5 rounded-full border border-border flex items-center gap-1.5">
                 <Truck size={14} className="text-emerald-600" />
-                Same-Day Delivery in Wakad &amp; PCMC
+                Delivery in Wakad &amp; nearby areas
               </span>
             </div>
 
@@ -191,22 +191,22 @@ export default function CategoryView({ categorySlug, onViewChange, onSelectProdu
             <div className="flex items-center gap-3">
               <ShieldCheck className="text-brand-terracotta shrink-0" size={24} />
               <div className="text-[0.85rem]">
-                <strong className="block text-brand-navy">100% Skin-Safe Lining</strong>
-                <span className="text-text-muted">Zero scratching or synthetic irritation</span>
+                <strong className="block text-brand-navy">Comfortable Fabrics</strong>
+                <span className="text-text-muted">Soft linings suitable for children</span>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Truck className="text-brand-terracotta shrink-0" size={24} />
               <div className="text-[0.85rem]">
-                <strong className="block text-brand-navy">Pune Express Delivery</strong>
-                <span className="text-text-muted">Same-day across Wakad &amp; PCMC</span>
+                <strong className="block text-brand-navy">Delivery Support</strong>
+                <span className="text-text-muted">Wakad and nearby Pune areas</span>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <RotateCcw className="text-brand-terracotta shrink-0" size={24} />
               <div className="text-[0.85rem]">
-                <strong className="block text-brand-navy">7-Day Size Exchange</strong>
-                <span className="text-text-muted">Hassle-free size replacement</span>
+                <strong className="block text-brand-navy">In-Store Size Exchange</strong>
+                <span className="text-text-muted">Exchange unworn items with bill</span>
               </div>
             </div>
           </div>
@@ -263,7 +263,7 @@ export default function CategoryView({ categorySlug, onViewChange, onSelectProdu
             Visit Kids City Wakad or Order on WhatsApp
           </h3>
           <p className="text-[0.95rem] text-white/80 max-w-[500px] mx-auto mb-6">
-            Open every day 10:00 AM – 9:30 PM at Mahalaxmi Complex, Chatrapati Chowk Road, Wakad, Pune. Same-day delivery across Pune.
+            Open every day at Mahalaxmi Complex, Chatrapati Chowk Road, Wakad, Pune. Delivery in Wakad and nearby areas. Message us on WhatsApp with your pincode to confirm.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <button

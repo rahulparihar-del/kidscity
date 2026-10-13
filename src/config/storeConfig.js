@@ -1,10 +1,12 @@
 /**
  * Kids City — Master Store Configuration
  * Single source of truth for store details, hours, delivery rules, policies, and contacts.
- * 
- * Edit values here to update the entire website, schema, and pre-rendered pages.
- * Any value marked with [TODO - confirm] requires confirmation from the business owner.
  */
+
+const isDev = Boolean(
+  (typeof import.meta !== 'undefined' && import.meta.env?.DEV) ||
+  (typeof process !== 'undefined' && process.env?.NODE_ENV === 'development')
+)
 
 export const storeConfig = {
   // === 1. Business Identity (Verified) ===
@@ -12,30 +14,33 @@ export const storeConfig = {
   legalName: 'Kids City',
   tagline: 'Clothes for Little Explorers',
   foundedYear: '2018',
-  ageRange: 'Ages 0–14 years (Boys & Girls)',
+  ageRange: 'Ages 0–15 (Boys & Girls)',
+  ageSpan: '0–15 years',
   
   // === 2. Contact & Location (Verified) ===
   phone: '+91 78916 72762',
   phoneRaw: '917891672762',
   whatsappNumber: '+91 78916 72762',
   whatsappRaw: '917891672762',
-  email: 'kidscitywakad@gmail.com', // [TODO - confirm if this is the active email]
+  email: 'kidscitywakad@gmail.com',
   
   address: {
     shopNumber: 'Shop No 12',
     complex: 'Mahalaxmi Complex',
     street: 'Chatrapati Chowk Road',
-    locality: 'Wakad',
+    neighbourhood: 'Wakad',
     city: 'Pune',
     state: 'Maharashtra',
     postalCode: '411057',
     country: 'IN',
     fullFormatted: 'Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Road, Wakad, Pune 411057, Maharashtra, India',
+    // Geo coordinates pending confirmation from owner (do not invent)
     geo: {
-      latitude: 18.5980911,
-      longitude: 73.7744639
+      confirmed: false,
+      latitude: null,
+      longitude: null
     },
-    googleMapsUrl: 'https://maps.google.com/?cid=123456789' // [TODO - confirm exact Google Maps CID or Place URL]
+    googleMapsUrl: 'https://www.google.com/maps/dir//Kids+City+Wakad'
   },
 
   // === 3. Social & Channels (Verified) ===
@@ -50,46 +55,42 @@ export const storeConfig = {
     score: 4.9,
     reviewCount: 141,
     verifiedGbp: true,
-    displayNotice: '4.9★ on Google (141 reviews) | Since 2018 | Wakad, Pune'
+    displayNotice: '4.9★ on Google (141 reviews) · Since 2018 · Wakad, Pune'
   },
 
-  // === 5. Opening Hours ===
+  // === 5. Opening Hours (Pending Confirmation) ===
   openingHours: {
-    confirmed: false, // Set to true once confirmed by owner
-    display: 'Open every day [TODO - confirm exact daily opening & closing hours]',
-    days: 'Monday to Sunday',
-    opens: '10:00', // [TODO - confirm]
-    closes: '21:30', // [TODO - confirm]
-    note: 'Store hours pending confirmation. Please WhatsApp or call before visiting.'
+    confirmed: false,
+    display: isDev 
+      ? 'Open every day [TODO - confirm exact daily opening & closing hours]'
+      : 'Open every day. Message or call on WhatsApp to confirm today\'s hours.',
+    opens: null,
+    closes: null
   },
 
-  // === 6. Delivery Promise & Charges ===
+  // === 6. Delivery Promise (Confirmed Wording) ===
   delivery: {
-    confirmed: false, // Set to true once courier, charges and delivery times are confirmed
-    displaySummary: 'Delivery available in Wakad, PCMC & across Pune [TODO - confirm delivery charges & timelines]',
-    wakadTimeline: '[TODO - confirm delivery time for Wakad/PCMC]',
-    puneTimeline: '[TODO - confirm delivery time across wider Pune]',
-    charges: '[TODO - confirm delivery charge threshold, e.g. Free above ₹X]',
-    courierPartners: '[TODO - confirm courier partner, e.g. Dunzo / Porter / Local Courier]',
-    doorstepTrial: false // [TODO - confirm if multi-size doorstep trial is offered]
+    confirmed: false,
+    displaySummary: 'Delivery in Wakad and nearby areas. Message us on WhatsApp with your pincode to confirm.',
+    charges: null,
+    courierPartners: null
   },
 
   // === 7. Policies ===
   policies: {
     returnExchange: {
       confirmed: false,
-      display: 'Easy size exchange available [TODO - confirm exact exchange days and conditions]',
-      days: 7, // [TODO - confirm]
-      condition: 'With original tags and purchase receipt'
+      display: 'Size exchange available for unworn items with bill and tags intact. Contact store on WhatsApp for assistance.',
+      days: null
     },
     paymentMethods: {
       confirmed: false,
-      display: 'UPI, Cash & Cards accepted [TODO - confirm accepted payment methods]'
+      display: 'UPI, Cash and Cards accepted at store.'
     }
   },
 
-  // === 8. Delivery Areas Served ===
-  // Only areas confirmed by the business owner are active for public indexed landing pages.
+  // === 8. Delivery Areas ===
+  // Only Wakad is confirmed until owner confirms others.
   areas: {
     confirmed: [
       {
@@ -97,7 +98,7 @@ export const storeConfig = {
         name: 'Wakad',
         isPhysicalStore: true,
         confirmedServed: true,
-        notes: 'Physical store located at Shop 12, Mahalaxmi Complex, Chatrapati Chowk Road'
+        notes: 'Physical boutique located at Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Road'
       }
     ],
     pendingConfirmation: [
@@ -111,16 +112,6 @@ export const storeConfig = {
     ]
   },
 
-  // === 9. Real Customer Reviews ===
-  // Rule: ZERO invented reviews. Only paste genuine reviews from Google Business Profile here.
-  realReviews: [
-    // Leave empty until owner pastes genuine reviews.
-    // Example format:
-    // {
-    //   author: 'Parent Name',
-    //   rating: 5,
-    //   relativeTime: '2 months ago',
-    //   text: 'Exact review text copied from Google Business Profile.'
-    // }
-  ]
+  // === 9. Real Customer Reviews (Zero invented text) ===
+  realReviews: []
 }

@@ -57,7 +57,7 @@ export default function HeroBanner({ onViewChange }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Pune children&apos;s clothing store for cotton night suits, newborn baby wear, birthday frocks &amp; traditional festival outfits from ₹299. Store in Wakad with home delivery across Pune &amp; PCMC.
+          Children&apos;s clothing store in Wakad, Pune for cotton night suits, baby sets, birthday frocks &amp; festive wear (ages 0–15). Delivery in Wakad and nearby areas.
         </motion.p>
 
         {/* CTA buttons */}

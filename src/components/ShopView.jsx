@@ -5,10 +5,10 @@ import { PRODUCTS } from '../data/products'
 import { storeConfig } from '../config/storeConfig'
 
 const PRICE_RANGES = [
-  { label: 'All Prices', min: 0, max: 2000 },
-  { label: 'Under ₹600', min: 0, max: 600 },
-  { label: '₹600 - ₹900', min: 600, max: 900 },
-  { label: '₹900+', min: 900, max: 2000 }
+  { label: 'All Prices', min: 0, max: 5000 },
+  { label: 'Budget Friendly', min: 0, max: 600 },
+  { label: 'Mid Range', min: 600, max: 1000 },
+  { label: 'Occasion Wear', min: 1000, max: 5000 }
 ]
 
 function AutoScrollingImage({ img, gallery, alt, className }) {
@@ -129,7 +129,7 @@ export default function ShopView({ products, onSelectProduct }) {
               Catalog Update in Progress
             </h2>
             <p className="font-[family-name:var(--font-body)] text-[0.95rem] text-text-mid leading-[1.7] mb-6">
-              In accordance with our strict factual policy, we only publish items with verified in-store stock, sizes, and pricing. To view our full collection of 500+ designs, visit our Wakad store or message us on WhatsApp for live photo selection.
+              In accordance with our strict factual policy, we only publish items with verified in-store stock, sizes, and pricing. To view our current in-store collection, visit our Wakad store or message us on WhatsApp for live photo selection.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <a

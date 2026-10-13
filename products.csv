@@ -3,23 +3,8 @@
 # 1. Fill in real details for each product you want to publish.
 # 2. Set is_published to true ONLY when price, sizes, stock, and fabric are confirmed.
 # 3. Any row with is_published=false will remain UNPUBLISHED (no public page, noindex, excluded from sitemap and schema).
-# 4. Separate multiple photos with semicolons (;), e.g., /images/festival_wear.webp;/images/birthday_dress.webp
+# 4. The 3 rows below are clearly marked EXAMPLE and unpublished. Replace or add your real inventory.
 name,category,age_size,price_inr,stock_per_size,photo_filenames,fabric,is_published
-Navratri Chaniya Choli Set,Festive Wear,2-4y;4-6y;6-8y;8-10y,TODO_CONFIRM,TODO_CONFIRM,/images/festival_wear.webp,TODO_CONFIRM,false
-Girls Birthday Princess Dress,Birthday Wear,0-2y;2-4y;4-6y;6-8y,TODO_CONFIRM,TODO_CONFIRM,/images/birthday_dress.webp,TODO_CONFIRM,false
-Boys Casual Denim Set,Boys Casual,2-4y;4-6y;6-8y;8-10y,TODO_CONFIRM,TODO_CONFIRM,/images/casual_boys.webp,TODO_CONFIRM,false
-Boys Festive Kurta Pajama,Festive Wear,2-4y;4-6y;6-8y;8-10y;10-12y,TODO_CONFIRM,TODO_CONFIRM,/images/festival_wear.webp,TODO_CONFIRM,false
-Girls Tiered Party Frock,Party Wear,0-2y;2-4y;4-6y;6-8y,TODO_CONFIRM,TODO_CONFIRM,/images/hero_girl.webp,TODO_CONFIRM,false
-Pure Cotton Printed Night Suit Set,Night Suits,2-4y;4-6y;6-8y;8-10y,TODO_CONFIRM,TODO_CONFIRM,/images/nightsuit-hosiery-1-1.webp,TODO_CONFIRM,false
-Pastel Cartoon Sleepwear Co-Ord,Night Suits,2-4y;4-6y;6-8y,TODO_CONFIRM,TODO_CONFIRM,/images/nightsuit-hosiery-2-1.webp,TODO_CONFIRM,false
-Dino Print Kids Hosiery Night Suit,Night Suits,2-4y;4-6y;6-8y,TODO_CONFIRM,TODO_CONFIRM,/images/nightsuit-hosiery-3-1.webp,TODO_CONFIRM,false
-Starry Night Kids Sleepwear Set,Night Suits,2-4y;4-6y;6-8y,TODO_CONFIRM,TODO_CONFIRM,/images/nightsuit-hosiery-4-1.webp,TODO_CONFIRM,false
-Solid Pastel Hosiery Night Suit,Night Suits,0-6m;6-12m;12-18m,TODO_CONFIRM,TODO_CONFIRM,/images/nightsuit-hosiery-5-1.webp,TODO_CONFIRM,false
-Baby Animal Safari Cotton Co-Ord Set,Baby Wear,0-6m;6-12m;12-18m,TODO_CONFIRM,TODO_CONFIRM,/images/baby-animal-coord-model1.webp,TODO_CONFIRM,false
-Blue Teddy Bear Baby Co-Ord Set,Baby Wear,0-6m;6-12m;12-18m,TODO_CONFIRM,TODO_CONFIRM,/images/baby-teddy-coord-model1.webp,TODO_CONFIRM,false
-Balloon Print Baby Cotton Co-Ord Set,Baby Wear,3-6m;6-9m;9-12m,TODO_CONFIRM,TODO_CONFIRM,/images/baby-balloon-coord-1.webp,TODO_CONFIRM,false
-Forest Deer Baby Cotton Co-Ord Set,Baby Wear,3-6m;6-9m;9-12m,TODO_CONFIRM,TODO_CONFIRM,/images/baby-deer-coord-1.webp,TODO_CONFIRM,false
-Dinosaur Print Baby Cotton Co-Ord Set,Baby Wear,3-6m;6-9m;9-12m,TODO_CONFIRM,TODO_CONFIRM,/images/baby-dino-coord-1.webp,TODO_CONFIRM,false
-Sweet Donut Baby Cotton Co-Ord Set,Baby Wear,3-6m;6-9m;9-12m,TODO_CONFIRM,TODO_CONFIRM,/images/baby-donut-coord-1.webp,TODO_CONFIRM,false
-Sunny Cartoon Baby Cotton Co-Ord Set,Baby Wear,3-6m;6-9m;9-12m,TODO_CONFIRM,TODO_CONFIRM,/images/baby-sun-coord-1.webp,TODO_CONFIRM,false
-Train Print Baby Cotton Co-Ord Set,Baby Wear,3-6m;6-9m;9-12m,TODO_CONFIRM,TODO_CONFIRM,/images/baby-train-coord-1.webp,TODO_CONFIRM,false
+[EXAMPLE] Girls Festive Chaniya Choli,Festive Wear,2-4y;4-6y;6-8y,899,2;3;1,/images/festival_wear.webp,Cotton Silk Blend,false
+[EXAMPLE] Boys Party Denim Set,Casual Wear,4-6y;6-8y;8-10y,549,4;2;2,/images/casual_boys.webp,Cotton and Denim,false
+[EXAMPLE] Kids Cotton Night Suit,Night Suits,2-4y;4-6y;6-8y,399,5;5;3,/images/nightsuit-hosiery-1-1.webp,100% Cotton,false

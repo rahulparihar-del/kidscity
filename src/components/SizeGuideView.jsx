@@ -13,6 +13,7 @@ const SIZE_CHART = [
   { age: '8–10 Years', size: '8-10y', heightCm: '128–140 cm', heightIn: '50.5–55"', chestIn: '26–28"', weightKg: '26–33 kg' },
   { age: '10–12 Years', size: '10-12y', heightCm: '140–152 cm', heightIn: '55–60"', chestIn: '28–30"', weightKg: '33–42 kg' },
   { age: '12–14 Years', size: '12-14y', heightCm: '152–162 cm', heightIn: '60–64"', chestIn: '30–32"', weightKg: '42–50 kg' },
+  { age: '14–15 Years', size: '14-15y', heightCm: '162–170 cm', heightIn: '64–67"', chestIn: '32–34"', weightKg: '50–58 kg' },
 ]
 
 export default function SizeGuideView({ onViewChange }) {
@@ -85,7 +86,7 @@ export default function SizeGuideView({ onViewChange }) {
             <h2 className="font-[family-name:var(--font-head)] text-[1.4rem] font-extrabold text-brand-navy">
               Standard Indian Children Size Chart
             </h2>
-            <span className="text-[0.8rem] text-text-muted">Ages 0–14 Years</span>
+            <span className="text-[0.8rem] text-text-muted">Ages 0–15 Years</span>
           </div>
 
           <div className="overflow-x-auto rounded-2xl border border-border shadow-2xs bg-white">
@@ -166,7 +167,7 @@ export default function SizeGuideView({ onViewChange }) {
             <ul className="list-disc pl-5 space-y-1.5 text-[0.88rem] text-blue-950">
               <li><strong>Between sizes?</strong> Always choose one size larger. Children grow rapidly, and slightly loose festive clothing allows easier movement.</li>
               <li><strong>Festival Lehengas:</strong> Feature drawstring skirts with adjustable ties to accommodate waist growth over multiple months.</li>
-              <li><strong>100% Cotton Night Suits:</strong> Cut with relaxed roominess for nighttime tossing and turning.</li>
+              <li><strong>Cotton Night Suits:</strong> Cut with relaxed roominess for nighttime tossing and turning.</li>
             </ul>
           </div>
         </section>

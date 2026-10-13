@@ -2,17 +2,17 @@ import { motion } from 'framer-motion'
 import { MapPin, Star, Heart, Users, Award } from 'lucide-react'
 
 const MILESTONES = [
-  { year: '2018', title: 'Store Founded', desc: "Kids City opened its doors at Mahalaxmi Complex, Wakad, Pune — starting with a small but curated collection of kids wear." },
-  { year: '2020', title: 'Growing Family', desc: "Expanded our collection to 300+ styles, becoming Wakad's go-to destination for festival and traditional kids clothing." },
-  { year: '2022', title: 'Loved by 100+ Families', desc: "Crossed 100 Google reviews with a 4.9★ rating — proof that Pune parents trust Kids City for quality and variety." },
-  { year: '2024', title: '500+ Styles', desc: "Curated over 500 premium styles spanning festival wear, casual, birthday, traditional, and western kids clothing." },
+  { year: '2018', title: 'Store Founded', desc: "Kids City opened its doors at Mahalaxmi Complex, Wakad, Pune — starting with a curated collection of kids wear." },
+  { year: '2020', title: 'Growing Collection', desc: "Expanded our collection, becoming a popular Wakad destination for festival and traditional kids clothing." },
+  { year: '2022', title: 'Loved by Local Parents', desc: "Crossed 100 Google reviews with a 4.9★ rating — reflecting the trust Pune parents place in Kids City." },
+  { year: '2024', title: 'Expanded Range', desc: "Curated collections spanning festive wear, birthday dresses, traditional, night suits and daily wear for ages 0–15." },
 ]
 
 const VALUES = [
   {
     icon: <Star size={22} fill="white" strokeWidth={0} />,
-    title: 'Premium Quality',
-    desc: "Every garment is hand-selected for fabric safety, durability, and comfort — because your child's skin deserves the best.",
+    title: 'Quality Fabrics',
+    desc: "Every garment is hand-selected for comfort, durability, and child-friendly design.",
     gradient: 'linear-gradient(135deg, #FF9F1C, #e8820a)',
   },
   {
@@ -70,7 +70,7 @@ export default function AboutView({ onViewChange }) {
             className="font-[family-name:var(--font-body)] text-[1.05rem] text-text-mid max-w-[560px] mt-3 mx-auto leading-[1.7] relative"
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Premium children's clothing for boys and girls aged 0–14 years. Serving families across Wakad, Pune, and Hinjewadi since 2018.
+            Children's clothing for boys and girls aged 0–15 years. Serving families in Wakad, Pune, and nearby areas since 2018.
           </motion.p>
         </div>
       </div>
@@ -113,10 +113,10 @@ export default function AboutView({ onViewChange }) {
                 Wakad's Premier <span className="serif-accent">Children's Clothing</span> Store — Built with Passion
               </h2>
               {[
-                "Kids City was born in 2018 from a simple belief: every child in Pune deserves to wear clothing that is comfortable, skin-safe, and beautifully styled — without compromise. What started as a small boutique in Mahalaxmi Complex, Wakad has grown into the area's most trusted and loved children's fashion destination.",
-                "Located at <strong>Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Road, Wakad</strong> (beside Annapurna Veg Restaurant), Kids City is easily accessible to families across Hinjewadi, Baner, Balewadi, Pimple Saudagar, and all of Pimpri-Chinchwad.",
-                "Our store carries <strong>500+ carefully curated styles</strong> — from vibrant Navratri lehengas and Diwali kurtas to birthday princess dresses, casual denim sets, and everyday wear. Every garment is hand-selected for fabric safety, durability, and child-friendly design.",
-                "With a <strong>4.9★ Google rating from 135+ Pune families</strong>, Kids City isn't just a shop — it's a trusted partner for every milestone in your child's life, from first birthdays to school functions and festival seasons.",
+                "Kids City was born in 2018 from a simple belief: every child deserves to wear clothing that is comfortable, durable, and beautifully styled. What started as a boutique in Mahalaxmi Complex, Wakad has grown into a trusted neighborhood children's fashion destination.",
+                "Located at <strong>Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Road, Wakad</strong>, Kids City is easily accessible to families across Wakad, Hinjewadi, Baner, Balewadi, Pimple Saudagar, and PCMC.",
+                "Our store carries a curated collection of children's wear — from festive Navratri lehengas and Diwali kurtas to birthday dresses, casual sets, and night suits for boys and girls aged 0–15 years.",
+                "With a <strong>4.9★ Google rating from 141 reviews</strong>, Kids City is a trusted choice for milestones in your child's life, from first birthdays to school events and festival celebrations.",
               ].map((para, i) => (
                 <p key={i} className="font-[family-name:var(--font-body)] text-base text-text-mid leading-[1.75] mb-3.5" dangerouslySetInnerHTML={{ __html: para }} />
               ))}
@@ -125,9 +125,9 @@ export default function AboutView({ onViewChange }) {
               <div className="grid grid-cols-4 max-[600px]:grid-cols-2 gap-3 my-6 p-5 bg-white border border-border rounded-[16px]">
                 {[
                   { num: '4.9', label: 'Google Rating', star: true },
-                  { num: '135+', label: 'Happy Families' },
-                  { num: '500+', label: 'Styles' },
-                  { num: '8yrs', label: 'In Wakad' },
+                  { num: '141', label: 'Google Reviews' },
+                  { num: '0–15', label: 'Age Span' },
+                  { num: 'Since', label: '2018' },
                 ].map(({ num, label, star }) => (
                   <div key={label} className="text-center">
                     <span className="block font-[family-name:var(--font-head)] text-[1.4rem] font-extrabold text-brand-navy-dark leading-[1.1] mb-1">
@@ -249,7 +249,7 @@ export default function AboutView({ onViewChange }) {
               Visit Kids City in <span className="serif-accent">Wakad</span> Today
             </h2>
             <p className="font-[family-name:var(--font-body)] text-base text-white/75 max-w-[500px] mx-auto mb-7 leading-[1.7]">
-              Come see 500+ kids clothing styles for boys and girls aged 0–14 years. Open every day at Mahalaxmi Complex, Wakad, Pune.
+              Explore kids clothing styles for boys and girls aged 0–15 years. Visit our store at Mahalaxmi Complex, Wakad, Pune.
             </p>
             <div className="flex gap-3.5 justify-center flex-wrap">
               <a href="https://www.google.com/maps/dir//Kids+City+Wakad" target="_blank" rel="noopener noreferrer" className="btn btn-terracotta">

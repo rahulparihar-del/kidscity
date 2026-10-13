@@ -7,8 +7,8 @@ const FEATURES = [
         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
       </svg>
     ),
-    title: 'Premium Quality',
-    desc: "Soft, safe, skin-friendly fabrics carefully selected for your child's comfort and style.",
+    title: 'Quality Fabrics',
+    desc: "Soft, breathable fabrics carefully selected for your child's comfort and everyday ease.",
     color: 'linear-gradient(135deg, #f5a623, #e8820a)',
   },
   {
@@ -18,8 +18,8 @@ const FEATURES = [
         <path d="M7 2h10v2H7zm0 18h10v2H7z"/>
       </svg>
     ),
-    title: '500+ Styles',
-    desc: 'An unmatched variety — from traditional kurtas to trendy western wear across all age groups.',
+    title: 'Curated Variety',
+    desc: 'A thoughtful selection — from traditional kurtas to party dresses across ages 0 to 15.',
     color: 'linear-gradient(135deg, #545778, #00A8E8)',
   },
   {
@@ -70,8 +70,8 @@ export default function WhyUs() {
               <span className="text-[0.73rem] font-bold text-text-muted uppercase tracking-[0.5px] mt-1">Google Rating</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-[family-name:var(--font-head)] font-extrabold tracking-[-0.02em] text-[2rem] text-brand-orange leading-none">500+</span>
-              <span className="text-[0.73rem] font-bold text-text-muted uppercase tracking-[0.5px] mt-1">Happy Parents</span>
+              <span className="font-[family-name:var(--font-head)] font-extrabold tracking-[-0.02em] text-[2rem] text-brand-orange leading-none">141</span>
+              <span className="text-[0.73rem] font-bold text-text-muted uppercase tracking-[0.5px] mt-1">Google Reviews</span>
             </div>
             <div className="flex flex-col">
               <span className="font-[family-name:var(--font-head)] font-extrabold tracking-[-0.02em] text-[2rem] text-brand-orange leading-none">#1</span>

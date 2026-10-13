@@ -1,4 +1,5 @@
 import { MapPin, Phone, MessageSquare, Camera, Clock, Navigation, Heart, ArrowRight, Mail, Star, FileSpreadsheet } from 'lucide-react'
+import { storeConfig } from '../config/storeConfig'
 
 const COLLECTIONS = [
   { label: 'Girls Party Wear Pune', view: 'girls-party-wear-pune', path: '/girls-party-wear-pune' },
@@ -6,7 +7,7 @@ const COLLECTIONS = [
   { label: 'Kids Ethnic & Festival Wear', view: 'kids-ethnic-wear-pune', path: '/kids-ethnic-wear-pune' },
   { label: 'Boys Kurta & Sherwani', view: 'boys-ethnic-wear-pune', path: '/boys-ethnic-wear-pune' },
   { label: 'Kids Birthday Dresses', view: 'birthday-dresses-pune', path: '/birthday-dresses-pune' },
-  { label: '100% Cotton Night Suits', view: 'kids-night-suits-pune', path: '/kids-night-suits-pune' },
+  { label: 'Cotton Night Suits', view: 'kids-night-suits-pune', path: '/kids-night-suits-pune' },
   { label: 'Baby Clothes 0–2 Years', view: 'baby-clothes-pune', path: '/baby-clothes-pune' },
   { label: 'Kids Daily Cotton Playwear', view: 'kids-daily-wear-pune', path: '/kids-daily-wear-pune' },
 ]
@@ -31,14 +32,8 @@ const POLICY_LINKS = [
 ]
 
 const SERVICE_AREAS = [
-  { name: 'Wakad', view: 'kids-clothes-wakad', path: '/kids-clothes-wakad' },
-  { name: 'Hinjewadi', view: 'kids-clothes-hinjewadi', path: '/kids-clothes-hinjewadi' },
-  { name: 'Baner', view: 'kids-clothes-baner', path: '/kids-clothes-baner' },
-  { name: 'Balewadi', view: 'kids-clothes-balewadi', path: '/kids-clothes-balewadi' },
-  { name: 'Aundh', view: 'kids-clothes-aundh', path: '/kids-clothes-aundh' },
-  { name: 'Pimple Saudagar', view: 'kids-clothes-pimple-saudagar', path: '/kids-clothes-pimple-saudagar' },
-  { name: 'Ravet', view: 'kids-clothes-ravet', path: '/kids-clothes-ravet' },
-  { name: 'Tathawade', view: 'kids-clothes-tathawade', path: '/kids-clothes-tathawade' },
+  { name: 'Wakad Store', view: 'kids-clothes-wakad', path: '/kids-clothes-wakad' },
+  { name: 'Pune Delivery Hub', view: 'kids-clothes-delivery-pune', path: '/kids-clothes-delivery-pune' },
 ]
 
 // Reusable footer link with hover arrow effect
@@ -85,7 +80,7 @@ export default function Footer({ onViewChange }) {
               </span>
             </h3>
             <p className="text-[0.95rem] text-[#B8B2A6] leading-[1.6]">
-              Explore 500+ premium kids clothing styles — festival wear, birthday dresses, traditional outfits, and everyday casuals for boys &amp; girls aged 0–14 years in Wakad, Pune.
+              Explore curated kids clothing styles — festival wear, birthday dresses, traditional outfits, and everyday casuals for boys &amp; girls aged 0–15 years in Wakad, Pune.
             </p>
           </div>
           <div className="flex gap-4 flex-wrap max-[991px]:w-full">
@@ -130,7 +125,7 @@ export default function Footer({ onViewChange }) {
               />
             </a>
             <p className="text-[0.9rem] text-[#B8B2A6] leading-[1.65] my-4 max-w-[320px]">
-              Wakad's most loved children's clothing store since 2018. We handpick high-quality, skin-safe, comfortable, and stylish outfits for boys &amp; girls aged 0–14 years across Pune and Pimpri-Chinchwad.
+              Wakad's most loved children's clothing store since 2018. We handpick comfortable, durable, and stylish outfits for boys &amp; girls aged 0–15 years across Pune and Pimpri-Chinchwad.
             </p>
 
             {/* Google reviews badge */}
@@ -224,7 +219,7 @@ export default function Footer({ onViewChange }) {
                   itemScope
                   itemType="https://schema.org/PostalAddress"
                 >
-                  <span itemProp="streetAddress">Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Rd, beside Annapurna Veg Restaurant, Wakad</span>,{' '}
+                  <span itemProp="streetAddress">Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Rd, Wakad</span>,{' '}
                   <span itemProp="addressLocality">Pune</span>,{' '}
                   <span itemProp="addressRegion">Maharashtra</span>{' '}
                   <span itemProp="postalCode">411057</span>
@@ -240,7 +235,7 @@ export default function Footer({ onViewChange }) {
               </a>
               <div className="flex gap-3 items-start text-[0.9rem] text-[#B8B2A6] leading-[1.5]">
                 <Clock size={16} className="text-brand-terracotta-light shrink-0 mt-0.5" />
-                <span>Open Daily: 10:00 AM – 9:30 PM</span>
+                <span>Open Daily · Check WhatsApp for hours</span>
               </div>
             </div>
 

@@ -74,7 +74,7 @@ const INFO_CARDS = [
   {
     icon: Clock,
     label: 'Hours',
-    value: 'Mon–Sat: 10am–8pm  •  Sun: 10am–6pm',
+    value: 'Open Daily • Message on WhatsApp to confirm hours',
     color: '#2563eb',
   },
   {
@@ -172,7 +172,7 @@ export default function KidsCityMap() {
           🏪 Kids City Wakad
         </div>
         <div style="font-size: 12px; color: #e85d04; font-weight: 600; margin-bottom: 6px;">
-          Premium Kids Wear Store
+          Kids Clothing Store (Ages 0–15)
         </div>
         <div style="font-size: 12px; color: #555; line-height: 1.5; margin-bottom: 10px;">
           Shop No 12, Mahalaxmi Complex,<br>

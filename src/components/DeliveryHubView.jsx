@@ -110,7 +110,7 @@ export default function DeliveryHubView({ onViewChange }) {
             <div className="bg-white border border-border rounded-2xl p-6 shadow-xs">
               <div className="flex items-center gap-2 text-emerald-700 font-bold text-[0.88rem] mb-2">
                 <Truck size={18} />
-                <span>Courier &amp; Parcel Delivery</span>
+                <span>Home Delivery Service</span>
               </div>
               <h3 className="text-[1.2rem] font-bold text-brand-navy mb-2">
                 Pune &amp; Pimpri-Chinchwad Areas
@@ -119,7 +119,7 @@ export default function DeliveryHubView({ onViewChange }) {
                 We accept delivery inquiries across Pune including Hinjewadi, Baner, Balewadi, Aundh, Pimple Saudagar, Ravet, Tathawade, Kothrud, and other major Pune residential localities.
               </p>
               <p className="text-[0.85rem] text-text-muted mb-4">
-                Timelines and courier dispatch fees depend on order size and destination.
+                Delivery schedules and fees depend on order size and destination. Message us on WhatsApp to confirm.
               </p>
               <button
                 onClick={handleWhatsApp}
@@ -189,7 +189,7 @@ export default function DeliveryHubView({ onViewChange }) {
                 How soon will my order arrive?
               </h3>
               <p className="text-[0.88rem] text-text-mid leading-[1.6]">
-                Orders in nearby areas like Wakad and PCMC can often be dispatched promptly, while courier delivery across Pune typically takes 24 to 48 hours depending on time of order.
+                Delivery in Wakad and nearby areas. Message us on WhatsApp with your pincode to confirm current delivery schedules.
               </p>
             </div>
 

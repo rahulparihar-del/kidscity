@@ -2,35 +2,36 @@ import { useState } from 'react'
 import { MapPin, Phone, Clock, Send, ChevronDown, CheckCircle2, MessageSquare, Navigation, Car } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import KidsCityMap from './KidsCityMap'
+import { storeConfig } from '../config/storeConfig'
 
 const FAQS = [
   {
     q: "Where is Kids City store located in Wakad?",
-    a: "We are located at Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Road, beside Annapurna Veg Restaurant, Kaspate Wasti, Wakad, Pune 411057. Search 'Kids City Wakad' on Google Maps for directions."
+    a: `We are located at ${storeConfig.address.fullFormatted}. Search 'Kids City Wakad' on Google Maps for directions.`
   },
   {
     q: "What are the store hours for Kids City Wakad?",
-    a: "We are open every single day from 10:00 AM to 9:30 PM, including Saturdays, Sundays, and all public holidays and festival seasons."
+    a: storeConfig.openingHours.display
   },
   {
     q: "Do you have birthday dresses for girls in Pune?",
-    a: "Yes! Our Birthday Collection is one of our bestsellers. We carry princess gowns, layered tulle dresses, and party wear for girls aged 0–12 years. WhatsApp us to check current stock."
+    a: "Yes! Our Birthday Collection is one of our bestsellers. We carry princess gowns, layered frocks, and party wear for girls aged 0–15 years. WhatsApp us to check current stock."
   },
   {
     q: "Do you carry traditional kids wear for Navratri and Diwali?",
-    a: "Absolutely! We specialize in festival wear including Navratri lehengas, Diwali kurta-pajama sets, Chaniya Choli, and ethnic dresses for boys and girls aged 0–14 years."
+    a: "Absolutely! We specialize in festival wear including Navratri lehengas, Diwali kurta-pajama sets, Chaniya Choli, and ethnic dresses for boys and girls aged 0–15 years."
   },
   {
     q: "Do you offer sizing exchanges?",
-    a: "Yes! If you purchase a dress and the size doesn't fit, we offer hassle-free size exchanges within 7 days in store. Please keep the tags intact and bring the original bill."
+    a: storeConfig.policies.returnExchange.display
   },
   {
     q: "Can I check stock before visiting the store?",
-    a: "Absolutely! You can WhatsApp us at +91 78916 72762, or add multiple items to your Inquiry Bag and message us. Our staff will check sizing and stock for you within minutes."
+    a: "Absolutely! You can WhatsApp us at +91 78916 72762, or add items to your Inquiry Bag and message us. Our staff will check sizing and availability for you."
   },
   {
     q: "Do you deliver in Pune?",
-    a: "Yes! We offer local home delivery in Wakad, Hinjewadi, and Baner. For other areas in Pune and Pimpri-Chinchwad, we coordinate shipping via local courier services."
+    a: storeConfig.delivery.displaySummary
   },
   {
     q: "Is there parking available near Kids City Wakad?",
@@ -129,7 +130,6 @@ export default function ContactView() {
               <address style={{ fontStyle: 'normal', fontSize: '0.9rem', lineHeight: 1.6, color: 'var(--text-mid)', marginBottom: 12 }}>
                 Shop No 12, Mahalaxmi Complex,<br />
                 Chatrapati Chowk Road,<br />
-                Beside Annapurna Veg Restaurant,<br />
                 Wakad, Pune, MH 411057
               </address>
               <a
@@ -166,8 +166,8 @@ export default function ContactView() {
                 <Clock size={22} color="white" />
               </div>
               <h3 className="font-[family-name:var(--font-head)] text-[1.15rem] font-extrabold text-brand-navy">Store Hours</h3>
-              <p className="text-sm text-text-mid leading-relaxed">Open every single day for you and your family — no appointment needed.</p>
-              <span className="bg-white border border-border text-brand-navy px-4 py-1.5 rounded-[50px] text-[0.88rem] font-bold mt-auto">10:00 AM – 9:30 PM · Daily</span>
+              <p className="text-sm text-text-mid leading-relaxed">Open every day. Please message or call on WhatsApp to confirm today's hours.</p>
+              <span className="bg-white border border-border text-brand-navy px-4 py-1.5 rounded-[50px] text-[0.88rem] font-bold mt-auto">Open Every Day</span>
               <div className="flex items-center gap-1.5 font-[family-name:var(--font-body)] text-[0.8rem] text-text-muted mt-2">
                 <Car size={13} />
                 <span>Parking available at Mahalaxmi Complex</span>
@@ -181,7 +181,7 @@ export default function ContactView() {
               Find <span className="serif-accent">Kids City</span> on the Map — Wakad, Pune
             </h2>
             <p className="font-[family-name:var(--font-body)] text-[0.95rem] text-text-mid text-center max-w-[640px] mx-auto mb-6 leading-[1.65]">
-              Located at Mahalaxmi Complex, Chatrapati Chowk Road, Wakad — beside Annapurna Veg Restaurant. Easily reachable from Hinjewadi, Baner, Balewadi, and Pimple Saudagar.
+              Located at Mahalaxmi Complex, Chatrapati Chowk Road, Wakad. Easily reachable from Hinjewadi, Baner, Balewadi, and Pimple Saudagar.
             </p>
             <KidsCityMap />
           </div>
@@ -274,7 +274,7 @@ export default function ContactView() {
               We Serve Families Across <span className="serif-accent">Pune &amp; Pimpri-Chinchwad</span>
             </h2>
             <p className="font-[family-name:var(--font-body)] text-[0.95rem] text-text-mid max-w-[560px] mx-auto mb-6 leading-[1.65]">
-              Kids City Wakad is conveniently located for families from all these areas. Kids wear delivery also available in Wakad, Hinjewadi, and Baner.
+              Kids City Wakad is conveniently located for families from all these areas. Delivery in Wakad and nearby areas. Message us on WhatsApp with your pincode to confirm.
             </p>
             <div className="flex flex-wrap gap-2.5 justify-center">
               {SERVICE_AREAS.map((area, i) => (
