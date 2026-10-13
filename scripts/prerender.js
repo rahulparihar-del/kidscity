@@ -792,14 +792,21 @@ function renderRouteHtml(base, r) {
     html = html.replace(/<meta\s+name="twitter:image"\s+content=".*?"\s*\/?>/s, `<meta name="twitter:image" content="${r.image}" />`)
   }
 
-  // Inject Schemas before </head>
+  // Inject Schemas before Vite assets / </head>
   if (r.schema && r.schema.length > 0) {
     const schemasHtml = r.schema.map(s => `\n    <script type="application/ld+json">\n${JSON.stringify(s, null, 2)}\n    </script>`).join('')
-    const matchHead = /<!-- ================================================================\s+Structured Data Block 1[\s\S]*?<\/head>/
-    if (matchHead.test(html)) {
-      html = html.replace(matchHead, `<!-- Route Specific Structured Data -->${schemasHtml}\n  </head>`)
+    if (html.includes('<!-- STRUCTURED_DATA_START -->') && html.includes('<!-- STRUCTURED_DATA_END -->')) {
+      html = html.replace(
+        /<!-- STRUCTURED_DATA_START -->[\s\S]*?<!-- STRUCTURED_DATA_END -->/,
+        `<!-- Route Specific Structured Data -->${schemasHtml}\n    <!-- STRUCTURED_DATA_END -->`
+      )
     } else {
-      html = html.replace('</head>', `${schemasHtml}\n  </head>`)
+      const matchHead = /<!-- ================================================================\s+Structured Data Block 1[\s\S]*?<\/script>\s*(?=<script type="module"|<link rel="stylesheet"|<\/head>)/
+      if (matchHead.test(html)) {
+        html = html.replace(matchHead, `<!-- Route Specific Structured Data -->${schemasHtml}\n    `)
+      } else {
+        html = html.replace('</head>', `${schemasHtml}\n  </head>`)
+      }
     }
   }
 
