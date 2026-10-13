@@ -1,30 +1,45 @@
 import { MapPin, Phone, MessageSquare, Camera, Clock, Navigation, Heart, ArrowRight, Mail, Star, FileSpreadsheet } from 'lucide-react'
 
 const COLLECTIONS = [
-  { label: 'Festival Wear — Wakad', view: 'shop' },
-  { label: 'Traditional Kids Wear', view: 'shop' },
-  { label: 'Birthday Dresses Pune', view: 'shop' },
-  { label: 'Casual Kids Wear', view: 'shop' },
-  { label: 'Girls Collection', view: 'shop' },
-  { label: 'Boys Collection', view: 'shop' },
+  { label: 'Girls Party Wear Pune', view: 'girls-party-wear-pune', path: '/girls-party-wear-pune' },
+  { label: 'Boys Party Wear Pune', view: 'boys-party-wear-pune', path: '/boys-party-wear-pune' },
+  { label: 'Kids Ethnic & Festival Wear', view: 'kids-ethnic-wear-pune', path: '/kids-ethnic-wear-pune' },
+  { label: 'Boys Kurta & Sherwani', view: 'boys-ethnic-wear-pune', path: '/boys-ethnic-wear-pune' },
+  { label: 'Kids Birthday Dresses', view: 'birthday-dresses-pune', path: '/birthday-dresses-pune' },
+  { label: '100% Cotton Night Suits', view: 'kids-night-suits-pune', path: '/kids-night-suits-pune' },
+  { label: 'Baby Clothes 0–2 Years', view: 'baby-clothes-pune', path: '/baby-clothes-pune' },
+  { label: 'Kids Daily Cotton Playwear', view: 'kids-daily-wear-pune', path: '/kids-daily-wear-pune' },
 ]
 
 const QUICK_LINKS = [
-  { label: 'Home', view: 'home' },
-  { label: 'Collections', view: 'shop' },
-  { label: 'About Kids City', view: 'about' },
-  { label: 'Contact & Visit', view: 'contact' },
-  { label: 'FAQ', view: 'faq' },
+  { label: 'Home', view: 'home', path: '/' },
+  { label: 'All Collections', view: 'shop', path: '/collections' },
+  { label: 'Delivery Across Pune', view: 'kids-clothes-delivery-pune', path: '/kids-clothes-delivery-pune' },
+  { label: 'Indian Kids Size Guide', view: 'kids-clothing-size-guide', path: '/kids-clothing-size-guide' },
+  { label: 'Customer Reviews (4.9★)', view: 'reviews', path: '/reviews' },
+  { label: 'Fashion & Sizing Blog', view: 'blog', path: '/blog' },
+  { label: 'About Kids City Wakad', view: 'about', path: '/about' },
+  { label: 'Contact & Store Visit', view: 'contact', path: '/contact' },
+  { label: 'FAQ', view: 'faq', path: '/faq' },
 ]
 
 const POLICY_LINKS = [
-  { label: 'Privacy Policy', view: 'privacy-policy' },
-  { label: 'Terms & Conditions', view: 'terms' },
-  { label: 'Shipping Policy', view: 'shipping-policy' },
-  { label: 'Return & Exchange', view: 'return-policy' },
+  { label: 'Privacy Policy', view: 'privacy-policy', path: '/privacy-policy' },
+  { label: 'Terms & Conditions', view: 'terms', path: '/terms' },
+  { label: 'Shipping & Delivery', view: 'shipping-policy', path: '/shipping-policy' },
+  { label: 'Return & Exchange', view: 'return-policy', path: '/return-policy' },
 ]
 
-const SERVICE_AREAS = ['Wakad', 'Hinjewadi', 'Baner', 'Balewadi', 'Pimple Saudagar', 'Ravet', 'Tathawade', 'Pimpri', 'Pune']
+const SERVICE_AREAS = [
+  { name: 'Wakad', view: 'kids-clothes-wakad', path: '/kids-clothes-wakad' },
+  { name: 'Hinjewadi', view: 'kids-clothes-hinjewadi', path: '/kids-clothes-hinjewadi' },
+  { name: 'Baner', view: 'kids-clothes-baner', path: '/kids-clothes-baner' },
+  { name: 'Balewadi', view: 'kids-clothes-balewadi', path: '/kids-clothes-balewadi' },
+  { name: 'Aundh', view: 'kids-clothes-aundh', path: '/kids-clothes-aundh' },
+  { name: 'Pimple Saudagar', view: 'kids-clothes-pimple-saudagar', path: '/kids-clothes-pimple-saudagar' },
+  { name: 'Ravet', view: 'kids-clothes-ravet', path: '/kids-clothes-ravet' },
+  { name: 'Tathawade', view: 'kids-clothes-tathawade', path: '/kids-clothes-tathawade' },
+]
 
 // Reusable footer link with hover arrow effect
 function FootLink({ href, onClick, children }) {
@@ -124,11 +139,11 @@ export default function Footer({ onViewChange }) {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 bg-white/5 border border-white/10 rounded-full px-3.5 py-1.5 mb-5 no-underline transition-colors duration-200 hover:bg-white/[0.09] w-fit"
-              aria-label="Kids City has 4.9 star Google rating from 135 reviews"
+              aria-label="Kids City has 4.9 star Google rating from 141 reviews"
             >
               <Star size={14} fill="#FBBF24" strokeWidth={0} />
               <span className="font-[family-name:var(--font-head)] text-[0.92rem] font-bold text-[#FBBF24]">4.9</span>
-              <span className="font-[family-name:var(--font-body)] text-[0.82rem] text-[#B8B2A6]">· 135+ Google Reviews</span>
+              <span className="font-[family-name:var(--font-body)] text-[0.82rem] text-[#B8B2A6]">· 141+ Google Reviews</span>
             </a>
 
             {/* Socials */}
@@ -160,7 +175,7 @@ export default function Footer({ onViewChange }) {
             <ul className="flex flex-col gap-3">
               {COLLECTIONS.map((c, i) => (
                 <li key={i}>
-                  <FootLink href="/collections" onClick={(e) => handleNavClick(c.view, e)}>
+                  <FootLink href={c.path} onClick={(e) => handleNavClick(c.view, e)}>
                     {c.label}
                   </FootLink>
                 </li>
@@ -176,7 +191,7 @@ export default function Footer({ onViewChange }) {
             <ul className="flex flex-col gap-3 mb-5">
               {QUICK_LINKS.map((l, i) => (
                 <li key={i}>
-                  <FootLink href={`/${l.view}`} onClick={(e) => handleNavClick(l.view, e)}>
+                  <FootLink href={l.path} onClick={(e) => handleNavClick(l.view, e)}>
                     {l.label}
                   </FootLink>
                 </li>
@@ -188,7 +203,7 @@ export default function Footer({ onViewChange }) {
             <ul className="flex flex-col gap-3">
               {POLICY_LINKS.map((l, i) => (
                 <li key={i}>
-                  <FootLink href={`/${l.view}`} onClick={(e) => handleNavClick(l.view, e)}>
+                  <FootLink href={l.path} onClick={(e) => handleNavClick(l.view, e)}>
                     {l.label}
                   </FootLink>
                 </li>
@@ -210,7 +225,7 @@ export default function Footer({ onViewChange }) {
                   itemType="https://schema.org/PostalAddress"
                 >
                   <span itemProp="streetAddress">Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Rd, beside Annapurna Veg Restaurant, Wakad</span>,{' '}
-                  <span itemProp="addressLocality">Pimpri-Chinchwad</span>,{' '}
+                  <span itemProp="addressLocality">Pune</span>,{' '}
                   <span itemProp="addressRegion">Maharashtra</span>{' '}
                   <span itemProp="postalCode">411057</span>
                 </address>
@@ -232,11 +247,22 @@ export default function Footer({ onViewChange }) {
             {/* Service areas */}
             <div className="mt-6 p-4 bg-white/[0.04] rounded-[10px] border border-white/[0.06]">
               <h5 className="font-[family-name:var(--font-head)] text-[0.72rem] font-extrabold tracking-[1.5px] uppercase text-brand-terracotta-light mb-2">
-                Service Areas
+                Pune Delivery Areas
               </h5>
-              <p className="font-[family-name:var(--font-body)] text-[0.82rem] text-[#8E887E] leading-[1.7]">
-                {SERVICE_AREAS.join(' · ')}
-              </p>
+              <div className="flex flex-wrap gap-x-2 gap-y-1 text-[0.82rem]">
+                {SERVICE_AREAS.map((a, i) => (
+                  <span key={a.name}>
+                    <a
+                      href={a.path}
+                      onClick={(e) => handleNavClick(a.view, e)}
+                      className="text-[#B8B2A6] hover:text-white transition-colors"
+                    >
+                      {a.name}
+                    </a>
+                    {i < SERVICE_AREAS.length - 1 && <span className="text-[#8E887E]/60 ml-2">·</span>}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>

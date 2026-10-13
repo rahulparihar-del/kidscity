@@ -10,6 +10,21 @@
       ],
       "destination": "https://kidscity.online/:path*",
       "permanent": true
+    },
+    {
+      "source": "/shop",
+      "destination": "/collections",
+      "permanent": true
+    },
+    {
+      "source": "/delivery-in-pune",
+      "destination": "/kids-clothes-delivery-pune",
+      "permanent": true
+    },
+    {
+      "source": "/size-guide",
+      "destination": "/kids-clothing-size-guide",
+      "permanent": true
     }
   ],
   "rewrites": [

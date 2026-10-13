@@ -1,90 +1,183 @@
-/**
- * useSEO — updates document <title> and meta description dynamically
- * as users navigate between views without a full page reload.
- *
- * Usage:  useSEO({ title, description })
- */
-export function useSEO({ title, description }) {
-  if (typeof document === 'undefined') return
+import { CATEGORIES_DATA, AREAS_DATA, BLOG_POSTS_DATA } from '../data/products'
 
-  // Title
-  if (title) {
-    document.title = title
-  }
+const SITE_URL = 'https://kidscity.online'
+const OG_IMAGE = `${SITE_URL}/images/og-kids-city.jpg`
 
-  // Meta description
-  if (description) {
-    let meta = document.querySelector('meta[name="description"]')
-    if (meta) meta.setAttribute('content', description)
-  }
-}
-
-/** Page-level SEO configs — one per view */
-export const PAGE_SEO = {
+export const CORE_PAGES_SEO = {
   home: {
-    title: 'Kids City | Best Kids Clothes Shop in Wakad, Pune — From ₹399',
-    description:
-      'Wakad\'s best kids wear shop & clothing store. Buy skin-safe baby wear, kids night suits, Navratri lehengas, & birthday dresses from ₹399. 4.9★ rated · COD & easy exchanges in Wakad, Pune.',
+    title: 'Kids City | Best Kids Clothes Shop in Pune — From ₹299',
+    description: 'Kids City is Pune trusted children clothing store. Shop skin-safe cotton night suits, birthday dresses & ethnic wear from ₹299. 4.9★ rated. Pune delivery.',
+    canonical: `${SITE_URL}/`,
   },
   shop: {
-    title: 'Buy Kids Clothes Online India | Night Suits, Baby Wear & Festival Dresses — Kids City',
-    description:
-      'Browse 500+ kids outfits online — cotton night suits from ₹399, Navratri lehengas, birthday frocks, baby rompers & casual sets (0–12 yrs). COD available. Free delivery in Wakad. Fast shipping across India.',
+    title: 'Kids Clothes in Pune | Buy Outfits Online — Kids City',
+    description: 'Browse 500+ kids outfits in Pune: Cotton night suits from ₹299, birthday frocks, baby co-ords & festive kurtas. Fast delivery across Pune & PCMC. COD.',
+    canonical: `${SITE_URL}/collections`,
+  },
+  'kids-clothes-delivery-pune': {
+    title: 'Kids Clothes Delivery in Pune | Same-Day & COD — Kids City',
+    description: 'Kids clothes home delivery across Pune & PCMC. Same-day delivery in Wakad, Hinjewadi & Baner. COD available, easy 7-day exchanges. WhatsApp to order.',
+    canonical: `${SITE_URL}/kids-clothes-delivery-pune`,
+  },
+  'kids-clothing-size-guide': {
+    title: 'Kids Size Guide India | Age, Height & Chest — Kids City',
+    description: 'Find the perfect fit for your child with our Indian kids clothing size chart (0 to 14 years). Easy height and chest guide with WhatsApp sizing support.',
+    canonical: `${SITE_URL}/kids-clothing-size-guide`,
   },
   contact: {
-    title: 'Contact Kids City | Kids Clothes Shop Wakad, Pune — Visit or WhatsApp Us',
-    description:
-      'Contact Kids City, Wakad\'s best children\'s clothing store. Visit us at Mahalaxmi Complex, Chatrapati Chowk Road, Wakad, Pune 411057. Open daily 10 AM\u20139:30 PM. Call or WhatsApp +91 78916 72762. Serving Wakad, Hinjewadi, Baner & all of Pune.',
+    title: 'Contact Kids City | Kids Clothes Store Wakad, Pune',
+    description: 'Contact Kids City in Wakad, Pune. Visit our store at Mahalaxmi Complex or WhatsApp +91 78916 72762. Open daily 10 AM to 9:30 PM. Delivery across Pune.',
+    canonical: `${SITE_URL}/contact`,
   },
   about: {
-    title: 'About Kids City Wakad | Best Kids Clothes Shop in Pune Since 2018',
-    description:
-      'Learn about Kids City — Wakad\'s most trusted children\'s clothing store since 2018. We offer 500+ premium kids outfits for boys & girls aged 0\u201314 years. 4.9\u2605 Google rating. Located at Mahalaxmi Complex, Wakad.',
+    title: 'About Kids City Wakad | Trusted Pune Kids Boutique Since 2018',
+    description: 'Kids City has dressed Pune children since 2018. Rated 4.9★ by 141+ parents for skin-safe fabrics, festive wear & honest service in Wakad, Pune.',
+    canonical: `${SITE_URL}/about`,
   },
   faq: {
-    title: 'FAQ — Kids City Wakad | Kids Clothes Shop Pune Questions Answered',
-    description:
-      'Frequently asked questions about Kids City, Wakad\'s best kids fashion store. Find answers about store location, timings, size exchanges, delivery, birthday dresses, festival wear, and more. Open daily in Wakad, Pune.',
+    title: 'Kids Clothing FAQ | Timings, Delivery & Sizing — Kids City',
+    description: 'Got questions about kids clothes shopping, store timings, size exchanges, or Pune home delivery? Read answers from Kids City Wakad.',
+    canonical: `${SITE_URL}/faq`,
+  },
+  reviews: {
+    title: 'Kids City Customer Reviews | 4.9★ Rating — Wakad, Pune',
+    description: 'Read real verified parent reviews for Kids City Wakad, Pune. 4.9★ Google rating from 141+ Pune families for quality kids wear and customer service.',
+    canonical: `${SITE_URL}/reviews`,
+  },
+  blog: {
+    title: 'Kids Fashion & Parenting Blog Pune | Kids City Guides',
+    description: 'Helpful Pune parenting guides: Diwali outfits, 1st birthday dresses, Indian kids size chart, winter fashion & wedding wear for boys and girls.',
+    canonical: `${SITE_URL}/blog`,
   },
   'privacy-policy': {
     title: 'Privacy Policy | Kids City Wakad, Pune',
-    description:
-      'Read the Privacy Policy of Kids City, Wakad\'s trusted children\'s clothing store. Learn how we protect your information at Shop No 12, Mahalaxmi Complex, Wakad, Pune.',
+    description: 'Kids City privacy policy. How we safeguard customer data when you browse our website or place WhatsApp orders across Pune.',
+    canonical: `${SITE_URL}/privacy-policy`,
   },
-  'terms': {
+  terms: {
     title: 'Terms & Conditions | Kids City Wakad, Pune',
-    description:
-      'Terms and Conditions for shopping at Kids City, Wakad\'s best kids clothes store. Review our purchase, exchange, and website use policies at our Pune store.',
+    description: 'Terms and conditions for shopping at Kids City boutique and placing online or WhatsApp orders across Pune and India.',
+    canonical: `${SITE_URL}/terms`,
   },
   'shipping-policy': {
-    title: 'Shipping & Delivery Policy | Kids City Wakad, Pune',
-    description:
-      'Kids City Wakad delivery policy — local delivery in Wakad, Hinjewadi, and Baner, plus pan-India shipping. Kids clothes delivered across Pune and all of India.',
+    title: 'Delivery Policy Pune | Fast Shipping & COD — Kids City',
+    description: 'Kids City shipping policy. Same-day delivery across Wakad and PCMC, 24-48h delivery across Pune, and pan-India express courier shipping.',
+    canonical: `${SITE_URL}/shipping-policy`,
   },
   'return-policy': {
-    title: 'Return & Exchange Policy | Kids City Wakad, Pune',
-    description:
-      'Kids City Wakad return and exchange policy. Size exchanges within 7 days. Learn how to exchange kids clothing purchased at our store in Wakad, Pune, Maharashtra.',
+    title: 'Return & Exchange Policy | 7-Day Size Exchange — Kids City',
+    description: 'Hassle-free 7-day size exchange policy at Kids City Wakad. Easy exchanges in store or via WhatsApp pickup across Pune.',
+    canonical: `${SITE_URL}/return-policy`,
   },
-  '404': {
-    title: '404 — Page Not Found | Kids City Wakad, Pune',
-    description:
-      'The page you are looking for was not found. Visit Kids City, Wakad\'s best kids clothes shop, to explore 500+ styles for boys and girls aged 0\u201314 years.',
-  },
-  'callback-sheet': {
-    title: 'Kids City Console',
-    description: 'Secure management portal for administrator access only.',
+  404: {
+    title: 'Page Not Found | Kids City Wakad, Pune',
+    description: 'The page you requested could not be found. Explore 500+ premium kids clothes styles at Kids City, Pune loved children fashion store.',
+    canonical: `${SITE_URL}/404`,
   },
 }
 
-/** Product page SEO */
 export function getProductSEO(product) {
-  if (!product) return PAGE_SEO.shop
-  const price = product.price || ''
-  const category = product.category || 'Kids Clothing'
-  const sizesStr = product.sizes ? product.sizes.slice(0, 3).join(', ') : ''
+  if (!product) return CORE_PAGES_SEO.shop
+  const price = product.price ? ` — ${product.price}` : ''
+  const category = product.category || 'Kids Clothes'
+  const name = product.name.slice(0, 42)
   return {
-    title: `Buy ${product.name} Online | ${category} for Kids — Kids City${price ? ' | ' + price : ''}`,
-    description: `Shop ${product.name} at Kids City, Wakad — ${price}. Soft, skin-safe ${category} for children.${sizesStr ? ' Sizes: ' + sizesStr + '.' : ''} COD available. WhatsApp +91 78916 72762 to order or check stock. Free delivery in Wakad, Pune.`,
+    title: `${name} | ${category} Pune${price} — Kids City`,
+    description: `Buy ${product.name} at Kids City, Pune${price}. Skin-safe fabric, age ${product.sizes ? product.sizes.join(', ') : '0-14y'}. COD available. WhatsApp +91 78916 72762.`,
+    canonical: `${SITE_URL}/product/${product.slug || product.id}`,
+    ogImage: product.img ? (product.img.startsWith('http') ? product.img : `${SITE_URL}${product.img}`) : OG_IMAGE,
+  }
+}
+
+export function getSEOForView(viewKey, param = null, extraData = null) {
+  // 1. Core pages
+  if (CORE_PAGES_SEO[viewKey]) {
+    return CORE_PAGES_SEO[viewKey]
+  }
+
+  // 2. Category pages
+  if (viewKey.startsWith('category-') || CATEGORIES_DATA[viewKey] || CATEGORIES_DATA[param]) {
+    const slug = param || (viewKey.startsWith('category-') ? viewKey.replace('category-', '') : viewKey)
+    const cat = CATEGORIES_DATA[slug]
+    if (cat) {
+      return {
+        title: cat.metaTitle,
+        description: cat.metaDescription,
+        canonical: `${SITE_URL}/${cat.slug}`,
+        ogImage: OG_IMAGE,
+      }
+    }
+  }
+
+  // 3. Area pages
+  if (viewKey.startsWith('area-') || AREAS_DATA[viewKey] || AREAS_DATA[param]) {
+    const slug = param || (viewKey.startsWith('area-') ? viewKey.replace('area-', '') : viewKey)
+    const area = AREAS_DATA[slug]
+    if (area) {
+      return {
+        title: area.metaTitle,
+        description: area.metaDescription,
+        canonical: `${SITE_URL}/${area.slug}`,
+        ogImage: OG_IMAGE,
+      }
+    }
+  }
+
+  // 4. Blog post pages
+  if (viewKey === 'blog-post' || BLOG_POSTS_DATA[param]) {
+    const post = BLOG_POSTS_DATA[param]
+    if (post) {
+      return {
+        title: post.metaTitle,
+        description: post.metaDescription,
+        canonical: `${SITE_URL}/blog/${post.slug}`,
+        ogImage: post.featuredImage ? `${SITE_URL}${post.featuredImage}` : OG_IMAGE,
+      }
+    }
+  }
+
+  // 5. Product detail
+  if (viewKey === 'product-detail' && extraData) {
+    return getProductSEO(extraData)
+  }
+
+  return CORE_PAGES_SEO.home
+}
+
+/**
+ * useSEO hook to update document title, description, canonical link, and Open Graph tags
+ */
+export function useSEO({ title, description, canonical, ogImage }) {
+  if (typeof document === 'undefined') return
+
+  if (title) {
+    document.title = title
+    const ogTitle = document.querySelector('meta[property="og:title"]')
+    if (ogTitle) ogTitle.setAttribute('content', title)
+    const twTitle = document.querySelector('meta[name="twitter:title"]')
+    if (twTitle) twTitle.setAttribute('content', title)
+  }
+
+  if (description) {
+    const metaDesc = document.querySelector('meta[name="description"]')
+    if (metaDesc) metaDesc.setAttribute('content', description)
+    const ogDesc = document.querySelector('meta[property="og:description"]')
+    if (ogDesc) ogDesc.setAttribute('content', description)
+    const twDesc = document.querySelector('meta[name="twitter:description"]')
+    if (twDesc) twDesc.setAttribute('content', description)
+  }
+
+  if (canonical) {
+    const canLink = document.querySelector('link[rel="canonical"]')
+    if (canLink) canLink.setAttribute('href', canonical)
+    const ogUrl = document.querySelector('meta[property="og:url"]')
+    if (ogUrl) ogUrl.setAttribute('content', canonical)
+  }
+
+  if (ogImage) {
+    const ogImg = document.querySelector('meta[property="og:image"]')
+    if (ogImg) ogImg.setAttribute('content', ogImage)
+    const twImg = document.querySelector('meta[name="twitter:image"]')
+    if (twImg) twImg.setAttribute('content', ogImage)
   }
 }

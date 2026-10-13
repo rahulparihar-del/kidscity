@@ -125,11 +125,68 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
     setTimeout(() => setAddedAnimation(false), 2000)
   }
 
+  // Inject Product + Offer JSON-LD schema and track product_view event
+  useEffect(() => {
+    const existing = document.getElementById('product-jsonld')
+    if (existing) existing.remove()
+
+    const schemaScript = document.createElement('script')
+    schemaScript.type = 'application/ld+json'
+    schemaScript.id = 'product-jsonld'
+    const schemaData = {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: product.name,
+      image: product.img ? (product.img.startsWith('http') ? product.img : `https://kidscity.online${product.img}`) : undefined,
+      description: product.desc || `${product.name} at Kids City, Wakad, Pune.`,
+      sku: `KC-${product.id}`,
+      brand: {
+        '@type': 'Brand',
+        name: 'Kids City'
+      },
+      offers: {
+        '@type': 'Offer',
+        url: `https://kidscity.online/product/${product.slug || product.id}`,
+        priceCurrency: 'INR',
+        price: product.priceVal || (product.price ? product.price.replace(/[^\d]/g, '') : '299'),
+        priceValidUntil: '2027-12-31',
+        itemCondition: 'https://schema.org/NewCondition',
+        availability: 'https://schema.org/InStock',
+        seller: {
+          '@type': 'ClothingStore',
+          name: 'Kids City'
+        }
+      }
+    }
+    schemaScript.text = JSON.stringify(schemaData)
+    document.head.appendChild(schemaScript)
+
+    // GA4 product view
+    try {
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'product_view', {
+          event_category: 'Ecommerce',
+          product_id: product.id,
+          product_name: product.name,
+          category: product.category,
+          price: product.priceVal || null,
+          currency: 'INR'
+        })
+      }
+    } catch {}
+
+    return () => {
+      const el = document.getElementById('product-jsonld')
+      if (el) el.remove()
+    }
+  }, [product])
+
   // Get WhatsApp order link
   const getWhatsAppOrderLink = (inquiryId) => {
-    const sizeToUse = selectedSize || product.sizes[0]
+    const sizeToUse = selectedSize || (product.sizes && product.sizes[0] ? product.sizes[0] : 'Standard')
     const phone = '917891672762'
-    let text = `Hi Kids City! I want to buy the "${product.name}" in size "${sizeToUse}" (${product.price}) (Inquiry ID: #${inquiryId}). Is it available in store?`
+    const productUrl = `https://kidscity.online/product/${product.slug || product.id}`
+    let text = `Hi Kids City! I want to order "${product.name}" in size "${sizeToUse}" (${product.price}) from your website: ${productUrl}. Is it available for delivery in Pune?`
     
     if (product.img && product.img.startsWith('/')) {
       const fullImgUrl = window.location.origin + product.img

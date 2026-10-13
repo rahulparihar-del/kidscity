@@ -1,96 +1,634 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-
-  <!-- Homepage -->
   <url>
     <loc>https://kidscity.online/</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://kidscity.online/images/hero_girl.webp</image:loc>
-      <image:title>Kids City — Best Kids Clothes Shop in Wakad, Pune</image:title>
-      <image:caption>Kids wear Wakad Pune — new arrivals at Kids City, children's clothing store for boys and girls aged 0–14 years</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://kidscity.online/images/festival_wear.webp</image:loc>
-      <image:title>Kids Festival Wear Wakad — Navratri Lehenga and Diwali Kurta at Kids City</image:title>
-      <image:caption>Kids festival wear Wakad Pune — Navratri lehenga and Diwali kurta outfits for boys and girls at Kids City</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://kidscity.online/images/birthday_dress.webp</image:loc>
-      <image:title>Birthday Dress for Kids Pune — Princess Party Wear at Kids City Wakad</image:title>
-      <image:caption>Birthday dress for kids Pune — princess party wear for girls at Kids City, best kids boutique in Wakad</image:caption>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids City | Best Kids Clothes Shop in Pune — From ₹299]]></image:title>
     </image:image>
   </url>
-
-  <!-- Collections / Shop -->
   <url>
     <loc>https://kidscity.online/collections</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
     <image:image>
-      <image:loc>https://kidscity.online/images/casual_boys.webp</image:loc>
-      <image:title>Boys Casual Wear Wakad — Kids Clothing Collections at Kids City</image:title>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Clothing Collections in Pune | Kids City, Wakad]]></image:title>
     </image:image>
   </url>
-
-  <!-- Contact -->
   <url>
-    <loc>https://kidscity.online/contact</loc>
-    <lastmod>2026-07-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://kidscity.online/kids-clothes-delivery-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Clothes Home Delivery in Pune & PCMC | Kids City]]></image:title>
+    </image:image>
   </url>
-
-  <!-- About -->
+  <url>
+    <loc>https://kidscity.online/kids-clothing-size-guide</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Indian Kids Clothing Size Chart & Guide | Kids City]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/reviews</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Customer Reviews & Ratings (4.9★) | Kids City Wakad Pune]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/blog</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Fashion & Parenting Blog Pune | Kids City]]></image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://kidscity.online/about</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[About Us | Kids City — Children Clothing Store Pune]]></image:title>
+    </image:image>
   </url>
-
-  <!-- FAQ -->
+  <url>
+    <loc>https://kidscity.online/contact</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Contact Kids City Wakad Pune | Phone, Map & Hours]]></image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://kidscity.online/faq</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Frequently Asked Questions | Kids City Wakad Pune]]></image:title>
+    </image:image>
   </url>
-
-  <!-- Privacy Policy -->
   <url>
     <loc>https://kidscity.online/privacy-policy</loc>
-    <lastmod>2026-07-10</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.4</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Privacy Policy | Kids City Wakad Pune]]></image:title>
+    </image:image>
   </url>
-
-  <!-- Terms & Conditions -->
   <url>
     <loc>https://kidscity.online/terms</loc>
-    <lastmod>2026-07-10</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.4</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Terms & Conditions | Kids City Wakad Pune]]></image:title>
+    </image:image>
   </url>
-
-  <!-- Shipping Policy -->
   <url>
     <loc>https://kidscity.online/shipping-policy</loc>
-    <lastmod>2026-07-10</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.4</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Shipping & Delivery Policy | Kids City Pune]]></image:title>
+    </image:image>
   </url>
-
-  <!-- Return Policy -->
   <url>
     <loc>https://kidscity.online/return-policy</loc>
-    <lastmod>2026-07-10</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.4</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Return & Exchange Policy | Kids City Wakad Pune]]></image:title>
+    </image:image>
   </url>
-
+  <url>
+    <loc>https://kidscity.online/girls-party-wear-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Girls Party Wear in Pune | Kids City, Wakad]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/boys-party-wear-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Boys Party Wear in Pune | Kids City, Wakad]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/kids-ethnic-wear-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Ethnic Wear in Pune | Kids City, Wakad]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/boys-ethnic-wear-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Boys Ethnic Wear in Pune | Kids City, Wakad]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/birthday-dresses-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Birthday Dresses in Pune | Kids City, Wakad]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/kids-night-suits-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Night Suits in Pune | Kids City, Wakad]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/baby-clothes-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Baby Clothes Shop in Pune | Kids City, Wakad]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/kids-daily-wear-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Daily Wear in Pune | Kids City, Wakad]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/kids-accessories-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Accessories in Pune | Kids City, Wakad]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/kids-clothes-wakad</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Clothes in Wakad, Pune | Kids City Store]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/kids-clothes-hinjewadi</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Clothes Hinjewadi, Pune | Fast Delivery | Kids City]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/kids-clothes-baner</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Clothes in Baner, Pune | Kids City Wakad]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/kids-clothes-balewadi</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Clothes in Balewadi, Pune | Kids City Wakad]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/kids-clothes-aundh</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Clothes in Aundh, Pune | Premium Kids City]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/kids-clothes-pimple-saudagar</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Clothes Pimple Saudagar | Kids City Wakad]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/kids-clothes-ravet</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Clothes in Ravet, PCMC Pune | Kids City Wakad]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/kids-clothes-tathawade</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/og-kids-city.jpg</image:loc>
+      <image:title><![CDATA[Kids Clothes in Tathawade, Pune | Kids City Wakad]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/navratri-lehenga-set-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/festival_wear.webp</image:loc>
+      <image:title><![CDATA[Navratri Lehenga Set]]></image:title>
+      <image:caption><![CDATA[Traditional high-quality Chaniya Choli with heavy mirror work and vibrant threads, perfect for Garba nights and festive celebrations in Pune. Features a soft inner lining for maximum skin comfort while dancing.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/birthday-princess-dress-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/birthday_dress.webp</image:loc>
+      <image:title><![CDATA[Birthday Princess Dress]]></image:title>
+      <image:caption><![CDATA[Layered tulle gown with soft satin lining and butterfly embellishments. Perfect 1st birthday or celebration party dress for girls in Pune.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/boys-casual-denim-set-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/casual_boys.webp</image:loc>
+      <image:title><![CDATA[Boys Casual Denim Set]]></image:title>
+      <image:caption><![CDATA[Breathable combed cotton t-shirt paired with stretchable denim shorts. Durable stitching engineered for active playtime in Pune weather.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/diwali-traditional-kurta-pajama-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/festival_wear.webp</image:loc>
+      <image:title><![CDATA[Diwali Traditional Kurta]]></image:title>
+      <image:caption><![CDATA[Ethnic Banarasi silk-blend kurta with gold collar embroidery and comfortable elasticated pajama for boys festive wear in Pune.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/girls-fancy-peach-frock-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/hero_girl.webp</image:loc>
+      <image:title><![CDATA[Girls Fancy Peach Frock]]></image:title>
+      <image:caption><![CDATA[Tiered designer frock in soft peach with delicate lace detailing and breathable voile lining for summer parties and celebrations.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/boys-ethnic-sherwani-set-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/casual_boys.webp</image:loc>
+      <image:title><![CDATA[Boys Ethnic Sherwani]]></image:title>
+      <image:caption><![CDATA[Jacquard sherwani set styled with royal brocade work and matching churidar pajama. Ideal for Pune family weddings and grand celebrations.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/floral-cotton-summer-dress-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/hero_girl.webp</image:loc>
+      <image:title><![CDATA[Floral Cotton Summer Dress]]></image:title>
+      <image:caption><![CDATA[Lightweight flowy summer dress in organic cotton botanical print. Hypoallergenic, breathable and gentle on sensitive child skin.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/boys-polo-tshirt-cargo-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/casual_boys.webp</image:loc>
+      <image:title><![CDATA[Boys Polo T-Shirt & Cargo]]></image:title>
+      <image:caption><![CDATA[Pique cotton polo shirt paired with multi-pocket cotton twill cargo pants. Smart-casual versatility for school events and family outings.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/organic-cotton-baby-rompers-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/birthday_dress.webp</image:loc>
+      <image:title><![CDATA[Organic Cotton Baby Rompers]]></image:title>
+      <image:caption><![CDATA[Chemical-free organic cotton sleep-n-play baby romper set with secure snaps for quick diaper changes. Ultra-soft for Pune newborn gifting.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/royal-velvet-kids-sherwani-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/casual_boys.webp</image:loc>
+      <image:title><![CDATA[Royal Velvet Kids Sherwani]]></image:title>
+      <image:caption><![CDATA[Deep navy velvet sherwani jacket with intricate zardozi hand embroidery and designer silk dhoti pants for wedding season in Pune.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/vibrant-starry-party-gown-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/birthday_dress.webp</image:loc>
+      <image:title><![CDATA[Vibrant Starry Party Gown]]></image:title>
+      <image:caption><![CDATA[Sequined tulle ball gown embellished with shimmering gold star constellations and satin ribbon belt with matching hair accessory.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/cosy-sherpa-fleece-hoody-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/casual_boys.webp</image:loc>
+      <image:title><![CDATA[Cosy Sherpa Fleece Hoody]]></image:title>
+      <image:caption><![CDATA[High-loft sherpa fleece jacket with soft cotton jersey lining and playful bear ears. Warm and lightweight for Pune winter evenings.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/hosiery-cotton-night-suit-cartoon-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/nightsuit-hosiery-1-1.webp</image:loc>
+      <image:title><![CDATA[Hosiery Cotton Night Suit - Cartoon Print]]></image:title>
+      <image:caption><![CDATA[100% pure combed hosiery cotton night suit in colorful cartoon prints. Breathable, hypoallergenic, and machine-washable for daily sleep comfort.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/hosiery-night-suit-animal-friends-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/nightsuit-hosiery-2-1.webp</image:loc>
+      <image:title><![CDATA[Hosiery Night Suit - Animal Friends Print]]></image:title>
+      <image:caption><![CDATA[Super soft hosiery cotton sleepwear featuring playful animal prints. Soft elastic waistband prevents skin marks during all-night sleep.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/premium-night-suit-stripes-checks-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/nightsuit-hosiery-3-1.webp</image:loc>
+      <image:title><![CDATA[Kids Premium Night Suit - Stripes & Checks]]></image:title>
+      <image:caption><![CDATA[Classic stripe and checkered sleepwear tailored from combed hosiery cotton. Neat finish, colorfast dyes, and full-sleeve bedtime coziness.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/soft-cotton-night-suit-floral-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/nightsuit-hosiery-4-1.webp</image:loc>
+      <image:title><![CDATA[Kids Soft Cotton Night Suit - Floral Print]]></image:title>
+      <image:caption><![CDATA[Pastel floral print night suit in gentle hosiery cotton designed specifically for girls bedtime comfort and sensitive skin.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/solid-color-kids-night-suit-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/nightsuit-hosiery-5-1.webp</image:loc>
+      <image:title><![CDATA[Premium Kids Night Suit - Solid Colors]]></image:title>
+      <image:caption><![CDATA[Minimalist solid pastel sleepwear set crafted from heavyweight combed cotton. Premium collar piping and durable elastic band.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/baby-animal-safari-coord-set-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/baby-animal-coord-model1.webp</image:loc>
+      <image:title><![CDATA[Animal Safari Print Cotton Co-Ord Set]]></image:title>
+      <image:caption><![CDATA[Matching button-up short sleeve shirt and shorts set with safari animal illustrations (giraffes, lions, elephants) in pure combed cotton.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/blue-teddy-bear-baby-coord-set-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/baby-teddy-coord-model1.webp</image:loc>
+      <image:title><![CDATA[Blue Teddy Bear Cotton Co-Ord Set]]></image:title>
+      <image:caption><![CDATA[Playful blue teddy bear motif on ultra-soft pure cotton fabric. Comfort-fit elastic waist shorts for effortless diaper changes and daytime play.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/balloon-print-baby-coord-set-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/baby-balloon-coord-1.webp</image:loc>
+      <image:title><![CDATA[Balloon Print Baby Cotton Co-Ord Set]]></image:title>
+      <image:caption><![CDATA[Lightweight unisex baby t-shirt and shorts set in cheery balloon print. Hypoallergenic combed cotton suitable for Pune daily home and travel wear.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/forest-deer-baby-coord-set-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/baby-deer-coord-1.webp</image:loc>
+      <image:title><![CDATA[Forest Deer Baby Cotton Co-Ord Set]]></image:title>
+      <image:caption><![CDATA[Cute woodland deer print on breathable natural combed cotton. Non-pinching elastic waistband ensures unrestricted baby mobility.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/dinosaur-print-baby-coord-set-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/baby-dino-coord-1.webp</image:loc>
+      <image:title><![CDATA[Dinosaur Print Baby Cotton Co-Ord Set]]></image:title>
+      <image:caption><![CDATA[Adorable mini dino characters on 100% combed cotton jersey. Fade-resistant pigment print stays soft wash after wash.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/sweet-donut-baby-coord-set-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/baby-donut-coord-1.webp</image:loc>
+      <image:title><![CDATA[Sweet Donut Baby Cotton Co-Ord Set]]></image:title>
+      <image:caption><![CDATA[Playful donut print baby t-shirt and shorts set made with hypoallergenic combed cotton for sensitive toddler skin.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/sunny-print-baby-coord-set-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/baby-sun-coord-1.webp</image:loc>
+      <image:title><![CDATA[Sunny Cartoon Baby Cotton Co-Ord Set]]></image:title>
+      <image:caption><![CDATA[Sunny yellow smiley print co-ord set in breathable cotton knit. Cheerful summer playwear for boys and girls.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/product/train-print-baby-coord-set-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/baby-train-coord-1.webp</image:loc>
+      <image:title><![CDATA[Train Print Baby Cotton Co-Ord Set]]></image:title>
+      <image:caption><![CDATA[Fun locomotive train graphic set in skin-friendly cotton knit. Reinforced neck ribbing and elastic waist for active crawling.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/blog/best-diwali-dresses-kids-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/festival_wear.webp</image:loc>
+      <image:title><![CDATA[Best Diwali Dresses for Kids in Pune: Boys & Girls Festive Wear Guide (2026)]]></image:title>
+      <image:caption><![CDATA[Diwali 2026 falls in early November. Discover top Diwali outfit trends for boys and girls in Pune, price ranges, fabric tips for Pune weather, and where to buy.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/blog/choose-1st-birthday-dress-baby-girl-boy</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/birthday_dress.webp</image:loc>
+      <image:title><![CDATA[How to Choose the Perfect 1st Birthday Dress for Baby Girl or Boy in Pune]]></image:title>
+      <image:caption><![CDATA[Your babys first birthday is a milestone. Learn how to pick an outfit that looks stunning in photos while keeping your baby happy and rash-free all party long.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/blog/kids-clothing-size-chart-india</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/hero_girl.webp</image:loc>
+      <image:title><![CDATA[Indian Kids Clothing Size Chart: Age, Height & Chest Guide for Parents]]></image:title>
+      <image:caption><![CDATA[Stop second-guessing kids clothing sizes online! Here is our comprehensive Indian sizing guide with age, height, chest, and fit recommendations.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/blog/kids-christmas-new-year-outfit-ideas</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/casual_boys.webp</image:loc>
+      <image:title><![CDATA[Kids Christmas and New Year Party Outfits in Pune: Winter Trends 2026]]></image:title>
+      <image:caption><![CDATA[Get your little ones ready for winter parties, Christmas pageants, and New Year celebrations with cozy yet glamorous outfits suited for Pune crisp winter.]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kidscity.online/blog/kids-wedding-season-outfits-pune</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kidscity.online/images/festival_wear.webp</image:loc>
+      <image:title><![CDATA[Kids Wedding-Season Outfit Ideas: Sherwanis, Lehengas & Gowns for Pune Celebrations]]></image:title>
+      <image:caption><![CDATA[From sangeet nights to grand receptions, discover how to dress your boys and girls in regal ethnic wear that looks magnificent without feeling heavy.]]></image:caption>
+    </image:image>
+  </url>
 </urlset>

@@ -79,7 +79,19 @@ function ProductCard({ product, onSelectProduct, isWakad }) {
   const handleInquire = (e) => {
     e.stopPropagation()
     const phone = '917891672762'
-    const text = `Hi Kids City! I saw "${product.name}" on your website. Is it available in store?`
+    const productUrl = `https://kidscity.online/product/${product.slug || product.id}`
+    const text = `Hi Kids City! I want to order "${product.name}" (${product.price}) from your website: ${productUrl}. Is it available for delivery in Pune?`
+    try {
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'whatsapp_click', {
+          event_category: 'Conversion',
+          event_label: 'ProductCard WhatsApp Order',
+          product_name: product.name,
+          product_id: product.id,
+          price: product.priceVal || null,
+        })
+      }
+    } catch {}
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank')
   }
 
@@ -129,19 +141,18 @@ function ProductCard({ product, onSelectProduct, isWakad }) {
           {product.name}
         </h3>
         <StarRating rating={product.rating} />
-        <div className="flex items-center justify-between mt-auto pt-2.5">
-          <span className="font-[family-name:var(--font-head)] font-black tracking-[-0.02em] text-[1.3rem] max-[560px]:text-[1.05rem] text-brand-terracotta">
+        <div className="flex items-center justify-between mt-auto pt-2.5 gap-2">
+          <span className="font-[family-name:var(--font-head)] font-black tracking-[-0.02em] text-[1.25rem] max-[560px]:text-[1.05rem] text-brand-terracotta shrink-0">
             {product.price}
           </span>
-          {isWakad && (
-            <button
-              onClick={handleInquire}
-              className="inline-flex items-center justify-center px-4 py-2 max-[560px]:px-3 max-[560px]:py-1.5 rounded-full bg-brand-navy text-white font-[family-name:var(--font-kids)] text-[0.78rem] max-[560px]:text-[0.72rem] font-bold transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] min-h-[34px] max-[560px]:min-h-[30px] shadow-[0_4px_10px_rgba(61,64,91,0.1)] hover:bg-brand-terracotta hover:-translate-y-0.5 hover:shadow-[0_6px_15px_rgba(224,122,95,0.2)]"
-              aria-label={`Inquire about ${product.name}`}
-            >
-              Inquire
-            </button>
-          )}
+          <button
+            onClick={handleInquire}
+            className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 max-[560px]:px-2.5 max-[560px]:py-2 rounded-full bg-[#25D366] text-white font-[family-name:var(--font-body)] text-[0.78rem] max-[560px]:text-[0.72rem] font-bold transition-all duration-300 min-h-[40px] max-[560px]:min-h-[38px] shadow-[0_4px_10px_rgba(37,211,102,0.2)] hover:bg-[#1ebe5b] hover:-translate-y-0.5 hover:shadow-[0_6px_15px_rgba(37,211,102,0.35)] shrink-0"
+            aria-label={`Order ${product.name} on WhatsApp`}
+          >
+            <span>Order</span>
+            <span className="max-[400px]:hidden">on WhatsApp</span>
+          </button>
         </div>
       </div>
     </motion.div>

@@ -5,16 +5,23 @@ import { motion, AnimatePresence } from 'framer-motion'
 const NAV_LINKS = [
   { label: 'Home', view: 'home' },
   { label: 'Collections', view: 'shop' },
-  { label: 'About Us', view: 'about' },
-  { label: 'Contact & FAQ', view: 'contact' },
+  { label: 'Pune Delivery', view: 'kids-clothes-delivery-pune' },
+  { label: 'Size Guide', view: 'kids-clothing-size-guide' },
+  { label: 'Blog', view: 'blog' },
+  { label: 'About', view: 'about' },
+  { label: 'Contact', view: 'contact' },
 ]
 
 const DRAWER_LINKS = [
   { label: 'Home', view: 'home' },
   { label: 'Collections', view: 'shop' },
+  { label: 'Pune Delivery Areas', view: 'kids-clothes-delivery-pune' },
+  { label: 'Indian Kids Size Guide', view: 'kids-clothing-size-guide' },
+  { label: 'Fashion & Sizing Blog', view: 'blog' },
+  { label: 'Customer Reviews (4.9★)', view: 'reviews' },
   { label: 'About Us', view: 'about' },
   { label: 'FAQ', view: 'faq' },
-  { label: 'Contact & FAQ', view: 'contact' },
+  { label: 'Contact & Store Visit', view: 'contact' },
 ]
 
 function WaIcon({ className }) {
@@ -105,20 +112,18 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag,
               +91 78916 72762
             </a>
 
-            {isWakad && (
-              <button
-                className="relative w-[38px] h-[38px] rounded-full border-[1.5px] border-border cursor-pointer flex items-center justify-center text-brand-navy bg-transparent transition-all duration-[220ms] hover:border-brand-terracotta hover:bg-[rgba(224,122,95,0.06)] hover:text-brand-terracotta hover:scale-[1.06]"
-                onClick={onOpenBag}
-                aria-label="Open inquiry bag"
-              >
-                <ShoppingBag size={17} />
-                {bagCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-brand-terracotta text-white text-[0.62rem] font-black w-[17px] h-[17px] rounded-full flex items-center justify-center border-2 border-white">
-                    {bagCount}
-                  </span>
-                )}
-              </button>
-            )}
+            <button
+              className="relative w-[38px] h-[38px] rounded-full border-[1.5px] border-border cursor-pointer flex items-center justify-center text-brand-navy bg-transparent transition-all duration-[220ms] hover:border-brand-terracotta hover:bg-[rgba(224,122,95,0.06)] hover:text-brand-terracotta hover:scale-[1.06]"
+              onClick={onOpenBag}
+              aria-label="Open inquiry bag"
+            >
+              <ShoppingBag size={17} />
+              {bagCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-brand-terracotta text-white text-[0.62rem] font-black w-[17px] h-[17px] rounded-full flex items-center justify-center border-2 border-white">
+                  {bagCount}
+                </span>
+              )}
+            </button>
 
             <a
               href="https://wa.me/917891672762?text=Hi%20Kids%20City!%20I%20saw%20your%20website%20and%20want%20to%20inquire%20about%20your%20clothes."
@@ -133,20 +138,18 @@ export default function Navbar({ currentView, onViewChange, bagCount, onOpenBag,
 
           {/* Mobile: bag + hamburger */}
           <div className="hidden max-[991px]:flex items-center gap-2">
-            {isWakad && (
-              <button
-                className="relative w-[38px] h-[38px] rounded-full border-[1.5px] border-border cursor-pointer flex items-center justify-center text-brand-navy bg-transparent transition-all duration-[220ms] hover:border-brand-terracotta hover:text-brand-terracotta"
-                onClick={onOpenBag}
-                aria-label="Open inquiry bag"
-              >
-                <ShoppingBag size={17} />
-                {bagCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-brand-terracotta text-white text-[0.62rem] font-black w-[17px] h-[17px] rounded-full flex items-center justify-center border-2 border-white">
-                    {bagCount}
-                  </span>
-                )}
-              </button>
-            )}
+            <button
+              className="relative w-[38px] h-[38px] rounded-full border-[1.5px] border-border cursor-pointer flex items-center justify-center text-brand-navy bg-transparent transition-all duration-[220ms] hover:border-brand-terracotta hover:text-brand-terracotta"
+              onClick={onOpenBag}
+              aria-label="Open inquiry bag"
+            >
+              <ShoppingBag size={17} />
+              {bagCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-brand-terracotta text-white text-[0.62rem] font-black w-[17px] h-[17px] rounded-full flex items-center justify-center border-2 border-white">
+                  {bagCount}
+                </span>
+              )}
+            </button>
 
             {/* Hamburger */}
             <button

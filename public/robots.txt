@@ -1,14 +1,12 @@
 # Kids City — kidscity.online
-# robots.txt — updated 2026-07-10
+# robots.txt — updated 2026-10-13
 
-# ── All Crawlers ──────────────────────────────────────────────────────────────
 User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/
 Disallow: /callback-sheet
 
-# ── Google ────────────────────────────────────────────────────────────────────
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
@@ -16,12 +14,10 @@ Crawl-delay: 1
 User-agent: Googlebot-Image
 Allow: /images/
 
-# ── Bing ──────────────────────────────────────────────────────────────────────
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 2
 
-# ── AI / LLM Crawlers ─────────────────────────────────────────────────────────
 User-agent: GPTBot
 Allow: /
 
@@ -31,27 +27,10 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Gemini
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-# ── Other Search Engines ──────────────────────────────────────────────────────
 User-agent: Applebot
 Allow: /
 
 User-agent: DuckDuckBot
 Allow: /
 
-User-agent: Slurp
-Allow: /
-
-# ── Sitemap ───────────────────────────────────────────────────────────────────
 Sitemap: https://kidscity.online/sitemap.xml

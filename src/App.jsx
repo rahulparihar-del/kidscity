@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { PAGE_SEO, getProductSEO } from './hooks/useSEO'
+import { getSEOForView, useSEO } from './hooks/useSEO'
+import { PRODUCTS, CATEGORIES_DATA, AREAS_DATA, BLOG_POSTS_DATA, slugify } from './data/products'
+
+// Critical components loaded eagerly for instant homepage paint
 import Navbar from './components/Navbar'
 import HeroBanner from './components/HeroBanner'
 import TrustBar from './components/TrustBar'
@@ -12,76 +15,140 @@ import Testimonials from './components/Testimonials'
 import Newsletter from './components/Newsletter'
 import Footer from './components/Footer'
 import WhatsAppFAB from './components/WhatsAppFAB'
-
-// Modular routing views
-import ShopView, { PRODUCTS } from './components/ShopView'
-import ProductDetail from './components/ProductDetail'
-import ContactView from './components/ContactView'
-import AboutView from './components/AboutView'
-import FAQView from './components/FAQView'
-import PolicyView from './components/PolicyView'
-import NotFoundView from './components/NotFoundView'
+import StickyBottomBar from './components/StickyBottomBar'
 import InquiryDrawer from './components/InquiryDrawer'
-import CallbackSheetView from './components/CallbackSheetView'
+
+// Lazy-loaded routes for optimal bundle code-splitting and sub-second mobile loads
+const ShopView = lazy(() => import('./components/ShopView'))
+const ProductDetail = lazy(() => import('./components/ProductDetail'))
+const ContactView = lazy(() => import('./components/ContactView'))
+const AboutView = lazy(() => import('./components/AboutView'))
+const FAQView = lazy(() => import('./components/FAQView'))
+const PolicyView = lazy(() => import('./components/PolicyView'))
+const NotFoundView = lazy(() => import('./components/NotFoundView'))
+const CallbackSheetView = lazy(() => import('./components/CallbackSheetView'))
+const CategoryView = lazy(() => import('./components/CategoryView'))
+const AreaView = lazy(() => import('./components/AreaView'))
+const DeliveryHubView = lazy(() => import('./components/DeliveryHubView'))
+const SizeGuideView = lazy(() => import('./components/SizeGuideView'))
+const BlogHubView = lazy(() => import('./components/BlogHubView'))
+const BlogPostView = lazy(() => import('./components/BlogPostView'))
+const ReviewsView = lazy(() => import('./components/ReviewsView'))
 
 // Supabase client
 import { supabase } from './supabaseClient'
 
+// Loading spinner fallback for Suspense
+function ViewFallback() {
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center pt-24 pb-20">
+      <div className="flex flex-col items-center gap-3">
+        <div className="w-10 h-10 border-3 border-brand-navy/20 border-t-brand-terracotta rounded-full animate-spin" />
+        <span className="text-[0.85rem] font-bold text-brand-navy tracking-wide">Loading Kids City...</span>
+      </div>
+    </div>
+  )
+}
+
 // ── URL path ↔ view mapping ──────────────────────────────────────────────────
 const PATH_TO_VIEW = {
-  '/':                'home',
-  '/collections':     'shop',
-  '/shop':            'shop',
-  '/contact':         'contact',
-  '/about':           'about',
-  '/faq':             'faq',
-  '/privacy-policy':  'privacy-policy',
-  '/terms':           'terms',
-  '/shipping-policy': 'shipping-policy',
-  '/return-policy':   'return-policy',
-  '/callback-sheet':  'callback-sheet',
-  '/404':             '404',
+  '/':                          'home',
+  '/collections':               'shop',
+  '/shop':                      'shop',
+  '/kids-clothes-delivery-pune': 'kids-clothes-delivery-pune',
+  '/delivery-in-pune':          'kids-clothes-delivery-pune',
+  '/kids-clothing-size-guide':  'kids-clothing-size-guide',
+  '/size-guide':                'kids-clothing-size-guide',
+  '/reviews':                   'reviews',
+  '/customer-reviews':          'reviews',
+  '/blog':                      'blog',
+  '/contact':                   'contact',
+  '/about':                     'about',
+  '/faq':                       'faq',
+  '/privacy-policy':            'privacy-policy',
+  '/terms':                     'terms',
+  '/shipping-policy':           'shipping-policy',
+  '/return-policy':             'return-policy',
+  '/callback-sheet':            'callback-sheet',
+  '/404':                       '404',
 }
 
 const VIEW_TO_PATH = {
-  home:              '/',
-  shop:              '/collections',
-  contact:           '/contact',
-  about:             '/about',
-  faq:               '/faq',
-  'privacy-policy':  '/privacy-policy',
-  'terms':           '/terms',
-  'shipping-policy': '/shipping-policy',
-  'return-policy':   '/return-policy',
-  'callback-sheet':  '/callback-sheet',
-  '404':             '/404',
+  home:                         '/',
+  shop:                         '/collections',
+  'kids-clothes-delivery-pune':  '/kids-clothes-delivery-pune',
+  'kids-clothing-size-guide':   '/kids-clothing-size-guide',
+  reviews:                      '/reviews',
+  blog:                         '/blog',
+  contact:                      '/contact',
+  about:                        '/about',
+  faq:                          '/faq',
+  'privacy-policy':             '/privacy-policy',
+  terms:                        '/terms',
+  'shipping-policy':            '/shipping-policy',
+  'return-policy':              '/return-policy',
+  'callback-sheet':             '/callback-sheet',
+  '404':                        '/404',
 }
 
 const POLICY_VIEWS = ['privacy-policy', 'terms', 'shipping-policy', 'return-policy']
 
-function resolveViewFromPath(pathname) {
-  return PATH_TO_VIEW[pathname] || '404'
+function resolveRouteFromPath(pathname, productsList = PRODUCTS) {
+  const clean = pathname.replace(/\/+$/, '') || '/'
+
+  // 1. Direct core views
+  if (PATH_TO_VIEW[clean]) {
+    return { view: PATH_TO_VIEW[clean], param: null, product: null }
+  }
+
+  // 2. Product detail route: /product/:slug
+  if (clean.startsWith('/product/')) {
+    const slug = clean.replace('/product/', '')
+    const product = productsList.find((p) => p.slug === slug || p.id.toString() === slug)
+    return { view: 'product-detail', param: slug, product: product || null }
+  }
+
+  // 3. Blog article route: /blog/:slug
+  if (clean.startsWith('/blog/')) {
+    const slug = clean.replace('/blog/', '')
+    if (BLOG_POSTS_DATA[slug]) {
+      return { view: 'blog-post', param: slug, product: null }
+    }
+  }
+
+  // 4. Category routes
+  const cleanSlug = clean.replace(/^\//, '')
+  if (CATEGORIES_DATA[cleanSlug]) {
+    return { view: 'category', param: cleanSlug, product: null }
+  }
+
+  // 5. Area routes
+  if (AREAS_DATA[cleanSlug]) {
+    return { view: 'area', param: cleanSlug, product: null }
+  }
+
+  return { view: '404', param: null, product: null }
 }
 
 export default function App() {
   const [currentView, setCurrentView] = useState(() => {
-    // On first load, resolve from the URL path
-    return resolveViewFromPath(window.location.pathname)
+    return resolveRouteFromPath(window.location.pathname, PRODUCTS).view
   })
-  const [selectedProduct, setSelectedProduct] = useState(null)
+  const [currentParam, setCurrentParam] = useState(() => {
+    return resolveRouteFromPath(window.location.pathname, PRODUCTS).param
+  })
+  const [selectedProduct, setSelectedProduct] = useState(() => {
+    return resolveRouteFromPath(window.location.pathname, PRODUCTS).product
+  })
+
   const [inquiryBag, setInquiryBag] = useState([])
   const [isBagOpen, setIsBagOpen] = useState(false)
-  const [dbProducts, setDbProducts] = useState([])
-  const [appLoading, setAppLoading] = useState(false)
-  const [viewLoading, setViewLoading] = useState(false)
-
+  const [dbProducts, setDbProducts] = useState(PRODUCTS)
   const [deliveryPincode, setDeliveryPincode] = useState('')
-  const isWakad = deliveryPincode === '411057'
 
-  // Load products on mount with real-time listeners and database seeding
+  // Load products from Supabase on mount
   useEffect(() => {
     const loadProducts = async () => {
-      const startTime = Date.now()
       try {
         const { data, error } = await supabase
           .from('products')
@@ -91,249 +158,134 @@ export default function App() {
         if (error) throw error
 
         if (data && data.length > 0) {
-          const transformed = data.map(p => ({
+          const transformed = data.map((p) => ({
             ...p,
+            slug: p.slug || slugify(p.name),
             priceVal: p.price_val,
             tagColor: p.tag_color,
-            desc: p.description
+            desc: p.description,
           }))
           setDbProducts(transformed)
-        } else {
-          // Seeding database with initial products if table has 0 items
-          console.log("Products table is empty. Seeding initial e-commerce products...")
-          
-          const seedData = PRODUCTS.map(p => ({
-            name: p.name,
-            category: p.category,
-            price_val: p.priceVal,
-            price: p.price,
-            tag: p.tag || null,
-            tag_color: p.tagColor || null,
-            img: p.img,
-            rating: p.rating,
-            reviews: p.reviews,
-            sizes: p.sizes,
-            description: p.desc,
-            specs: p.specs,
-            gallery: p.gallery,
-            discount: 0
-          }))
-
-          const { error: seedError } = await supabase
-            .from('products')
-            .insert(seedData)
-
-          if (seedError) {
-            console.error("Failed to seed products:", seedError.message)
-          } else {
-            console.log("Seeding complete. Fetching updated catalog...")
-            const { data: reloaded } = await supabase
-              .from('products')
-              .select('*')
-              .order('id', { ascending: false })
-            
-            if (reloaded) {
-              const transformed = reloaded.map(p => ({
-                ...p,
-                priceVal: p.price_val,
-                tagColor: p.tag_color,
-                desc: p.description
-              }))
-              setDbProducts(transformed)
-            }
-          }
         }
       } catch (err) {
-        console.error("Failed to read products from Supabase:", err.message)
-      } finally {
-        const elapsed = Date.now() - startTime
-        const remaining = Math.max(900 - elapsed, 0)
-        setTimeout(() => {
-          setAppLoading(false)
-        }, remaining)
+        console.debug('Loaded static fallback catalog for Kids City:', err.message)
       }
     }
 
     loadProducts()
-
-    // Setup Supabase Real-time listener
-    const channel = supabase
-      .channel('products-realtime-changes')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'products' }, (payload) => {
-        console.log("Real-time product change detected:", payload)
-        loadProducts() // Reload products dynamically
-      })
-      .subscribe()
-
-    return () => {
-      supabase.removeChannel(channel)
-    }
   }, [])
 
-  // Parse URL query parameter for product deep-linking on load and handle history navigation
+  // Handle URL history routing & popstate
   useEffect(() => {
-    if (dbProducts.length === 0) return
-
     const handleUrlRoute = () => {
       const path = window.location.pathname
       const params = new URLSearchParams(window.location.search)
-      const productId = params.get('product')
+      const queryProductId = params.get('product')
 
-      if (productId) {
-        const match = dbProducts.find(p => p.id.toString() === productId)
+      const activeList = dbProducts.length > 0 ? dbProducts : PRODUCTS
+
+      if (queryProductId) {
+        const match = activeList.find(
+          (p) => p.id.toString() === queryProductId || p.slug === queryProductId
+        )
         if (match) {
           setSelectedProduct(match)
           setCurrentView('product-detail')
+          setCurrentParam(match.slug || match.id)
           return
         }
       }
 
-      // Route from path
-      const view = resolveViewFromPath(path)
-      setCurrentView(view)
+      const resolved = resolveRouteFromPath(path, activeList)
+      setCurrentView(resolved.view)
+      setCurrentParam(resolved.param)
+      if (resolved.product) {
+        setSelectedProduct(resolved.product)
+      }
     }
 
-    // Run on initial load/reload of dbProducts
     handleUrlRoute()
-
-    // Handle browser back/forward buttons
     window.addEventListener('popstate', handleUrlRoute)
     return () => window.removeEventListener('popstate', handleUrlRoute)
   }, [dbProducts])
 
-  // ── Dynamic SEO: update <title> + meta description on every view change ──
+  // Dynamic SEO on route change
   useEffect(() => {
-    const seo =
-      currentView === 'product-detail' && selectedProduct
-        ? getProductSEO(selectedProduct)
-        : PAGE_SEO[currentView] || PAGE_SEO.home
+    const seo = getSEOForView(currentView, currentParam, selectedProduct)
+    useSEO(seo)
+  }, [currentView, currentParam, selectedProduct])
 
-    document.title = seo.title
-
-    const metaDesc = document.querySelector('meta[name="description"]')
-    if (metaDesc) metaDesc.setAttribute('content', seo.description)
-
-    // Update OG title + description too
-    const ogTitle = document.querySelector('meta[property="og:title"]')
-    const ogDesc  = document.querySelector('meta[property="og:description"]')
-    if (ogTitle) ogTitle.setAttribute('content', seo.title)
-    if (ogDesc)  ogDesc.setAttribute('content', seo.description)
-
-    // Update canonical URL
-    let canonical = document.querySelector('link[rel="canonical"]')
-    if (canonical) {
-      const path = VIEW_TO_PATH[currentView] || '/'
-      const canonicalUrl = `https://kidscity.online${path}`
-      canonical.setAttribute('href', canonicalUrl)
-      // Update OG URL
-      const ogUrl = document.querySelector('meta[property="og:url"]')
-      if (ogUrl) ogUrl.setAttribute('content', canonicalUrl)
-    }
-  }, [currentView, selectedProduct])
-
-  // Track page image loading on view change to prevent flashing of un-loaded content
-  useEffect(() => {
-    // We don't need to show it on mount since appLoading covers the initial load
-    if (appLoading) return
-
-    setViewLoading(true)
-
-    // Give React a small frame to render the new view's DOM elements
-    const timer = setTimeout(() => {
-      const images = Array.from(document.querySelectorAll('img')).filter(
-        img => !img.classList.contains('app-loader-logo')
-      )
-
-      if (images.length === 0) {
-        setViewLoading(false)
-        return
-      }
-
-      let loadedCount = 0
-      const totalImages = images.length
-
-      const handleImageLoad = () => {
-        loadedCount++
-        if (loadedCount >= totalImages) {
-          setViewLoading(false)
-        }
-      }
-
-      images.forEach(img => {
-        if (img.complete) {
-          handleImageLoad()
-        } else {
-          img.addEventListener('load', handleImageLoad)
-          img.addEventListener('error', handleImageLoad) // count errors too so loader doesn't get stuck
-        }
-      })
-
-      // Safety timeout: hide loader after 1 second max even if some images are slow
-      const safetyTimeout = setTimeout(() => {
-        setViewLoading(false)
-      }, 1000)
-
-      return () => {
-        clearTimeout(safetyTimeout)
-        images.forEach(img => {
-          img.removeEventListener('load', handleImageLoad)
-          img.removeEventListener('error', handleImageLoad)
-        })
-      }
-    }, 60) // delay to let DOM render
-
-    return () => clearTimeout(timer)
-  }, [currentView, appLoading])
-
-  // Handle adding items to inquiry bag
+  // Bag handlers
   const handleAddToBag = (item) => {
-    const updated = [...inquiryBag, item]
-    setInquiryBag(updated)
+    setInquiryBag([...inquiryBag, item])
     setIsBagOpen(true)
   }
 
-  // Handle removing items from inquiry bag
   const handleRemoveFromBag = (indexToRemove) => {
-    const updated = inquiryBag.filter((_, idx) => idx !== indexToRemove)
-    setInquiryBag(updated)
+    setInquiryBag(inquiryBag.filter((_, idx) => idx !== indexToRemove))
   }
 
-  // ── View change handler — also updates URL ──────────────────────────────────
-  const handleViewChange = (view) => {
-    setCurrentView(view)
-    const path = VIEW_TO_PATH[view] || '/'
-    // Don't update URL for admin or product-detail (product-detail uses query param)
-    if (view !== 'product-detail') {
-      window.history.pushState({ view }, '', path)
+  // Unified view navigation handler
+  const handleViewChange = (view, param = null) => {
+    // 1. Category view
+    if (CATEGORIES_DATA[view]) {
+      setCurrentView('category')
+      setCurrentParam(view)
+      window.history.pushState({ view: 'category', param: view }, '', `/${view}`)
+    }
+    // 2. Area view
+    else if (AREAS_DATA[view]) {
+      setCurrentView('area')
+      setCurrentParam(view)
+      window.history.pushState({ view: 'area', param: view }, '', `/${view}`)
+    }
+    // 3. Blog article view
+    else if (view === 'blog-post' && param) {
+      setCurrentView('blog-post')
+      setCurrentParam(param)
+      window.history.pushState({ view: 'blog-post', param }, '', `/blog/${param}`)
+    }
+    // 4. Core views
+    else {
+      setCurrentView(view)
+      setCurrentParam(param)
+      const path = VIEW_TO_PATH[view] || `/${view}`
+      window.history.pushState({ view, param }, '', path)
     }
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  // Router handler to update views and handle details navigation
+  // Product selection handler
   const handleSelectProduct = (product) => {
     setSelectedProduct(product)
     setCurrentView('product-detail')
-    // Update URL query parameter without reloading
-    const newUrl = `${window.location.pathname}?product=${product.id}`
-    window.history.pushState({ productId: product.id }, '', newUrl)
+    setCurrentParam(product.slug || product.id)
+    const newPath = `/product/${product.slug || product.id}`
+    window.history.pushState({ view: 'product-detail', param: product.slug || product.id }, '', newPath)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  // Blog post selection handler
+  const handleSelectPost = (postSlug) => {
+    setCurrentView('blog-post')
+    setCurrentParam(postSlug)
+    window.history.pushState({ view: 'blog-post', param: postSlug }, '', `/blog/${postSlug}`)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
     <>
-      {/* Skip to content for accessibility */}
-      <a href="#main-content" className="skip-nav">Skip to main content</a>
-
-
+      <a href="#main-content" className="skip-nav">
+        Skip to main content
+      </a>
 
       <Navbar
         currentView={currentView}
         onViewChange={handleViewChange}
         bagCount={inquiryBag.length}
         onOpenBag={() => setIsBagOpen(true)}
-        isWakad={isWakad}
         deliveryPincode={deliveryPincode}
       />
-
 
       <InquiryDrawer
         isOpen={isBagOpen}
@@ -345,6 +297,7 @@ export default function App() {
 
       <main id="main-content">
         <AnimatePresence mode="wait">
+          {/* 1. Home View */}
           {currentView === 'home' && (
             <motion.div
               key="home"
@@ -356,12 +309,11 @@ export default function App() {
               <HeroBanner onViewChange={handleViewChange} />
               <TrustBar />
               <CategoryGrid onViewChange={handleViewChange} />
-              <ShopByCategory />
+              <ShopByCategory onViewChange={handleViewChange} />
               <FeaturedProducts
                 products={dbProducts}
                 onSelectProduct={handleSelectProduct}
                 onViewChange={handleViewChange}
-                isWakad={isWakad}
               />
               <WhyUs />
               <Testimonials />
@@ -369,123 +321,261 @@ export default function App() {
             </motion.div>
           )}
 
+          {/* 2. Collections / Shop View */}
           {currentView === 'shop' && (
-            <motion.div
-              key="shop"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ShopView
-                products={dbProducts}
-                onSelectProduct={handleSelectProduct}
-              />
-            </motion.div>
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key="shop"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ShopView
+                  products={dbProducts}
+                  onSelectProduct={handleSelectProduct}
+                />
+              </motion.div>
+            </Suspense>
           )}
 
+          {/* 3. Product Detail View */}
           {currentView === 'product-detail' && selectedProduct && (
-            <motion.div
-              key={`detail-${selectedProduct.id}`}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ProductDetail
-                product={selectedProduct}
-                onBack={() => {
-                  handleViewChange('shop')
-                  window.history.pushState({}, '', '/collections')
-                }}
-                onAddToBag={handleAddToBag}
-                onSelectProduct={handleSelectProduct}
-                allProducts={dbProducts}
-                isWakad={isWakad}
-                deliveryPincode={deliveryPincode}
-                setDeliveryPincode={setDeliveryPincode}
-              />
-            </motion.div>
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key={`detail-${selectedProduct.id}`}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ProductDetail
+                  product={selectedProduct}
+                  onBack={() => handleViewChange('shop')}
+                  onAddToBag={handleAddToBag}
+                  onSelectProduct={handleSelectProduct}
+                  allProducts={dbProducts}
+                  deliveryPincode={deliveryPincode}
+                  setDeliveryPincode={setDeliveryPincode}
+                />
+              </motion.div>
+            </Suspense>
           )}
 
+          {/* 4. Dedicated Category View */}
+          {currentView === 'category' && (
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key={`category-${currentParam}`}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <CategoryView
+                  categorySlug={currentParam}
+                  onViewChange={handleViewChange}
+                  onSelectProduct={handleSelectProduct}
+                />
+              </motion.div>
+            </Suspense>
+          )}
+
+          {/* 5. Dedicated Local Area View */}
+          {currentView === 'area' && (
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key={`area-${currentParam}`}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AreaView
+                  areaSlug={currentParam}
+                  onViewChange={handleViewChange}
+                  onSelectProduct={handleSelectProduct}
+                />
+              </motion.div>
+            </Suspense>
+          )}
+
+          {/* 6. Delivery Across Pune Hub View */}
+          {currentView === 'kids-clothes-delivery-pune' && (
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key="delivery-hub"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <DeliveryHubView onViewChange={handleViewChange} />
+              </motion.div>
+            </Suspense>
+          )}
+
+          {/* 7. Indian Kids Size Guide View */}
+          {currentView === 'kids-clothing-size-guide' && (
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key="size-guide"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <SizeGuideView onViewChange={handleViewChange} />
+              </motion.div>
+            </Suspense>
+          )}
+
+          {/* 8. Customer Reviews View */}
+          {currentView === 'reviews' && (
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key="reviews"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ReviewsView onViewChange={handleViewChange} />
+              </motion.div>
+            </Suspense>
+          )}
+
+          {/* 9. Blog Hub View */}
+          {currentView === 'blog' && (
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key="blog"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <BlogHubView
+                  onViewChange={handleViewChange}
+                  onSelectPost={handleSelectPost}
+                />
+              </motion.div>
+            </Suspense>
+          )}
+
+          {/* 10. Blog Article View */}
+          {currentView === 'blog-post' && (
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key={`post-${currentParam}`}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <BlogPostView
+                  postSlug={currentParam}
+                  onViewChange={handleViewChange}
+                />
+              </motion.div>
+            </Suspense>
+          )}
+
+          {/* 11. Contact View */}
           {currentView === 'contact' && (
-            <motion.div
-              key="contact"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ContactView />
-            </motion.div>
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key="contact"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ContactView />
+              </motion.div>
+            </Suspense>
           )}
 
+          {/* 12. About View */}
           {currentView === 'about' && (
-            <motion.div
-              key="about"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
-            >
-              <AboutView onViewChange={handleViewChange} />
-            </motion.div>
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key="about"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AboutView onViewChange={handleViewChange} />
+              </motion.div>
+            </Suspense>
           )}
 
+          {/* 13. FAQ View */}
           {currentView === 'faq' && (
-            <motion.div
-              key="faq"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
-            >
-              <FAQView onViewChange={handleViewChange} />
-            </motion.div>
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key="faq"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <FAQView onViewChange={handleViewChange} />
+              </motion.div>
+            </Suspense>
           )}
 
+          {/* 14. Policy Views */}
           {POLICY_VIEWS.includes(currentView) && (
-            <motion.div
-              key={currentView}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
-            >
-              <PolicyView policyKey={currentView} onViewChange={handleViewChange} />
-            </motion.div>
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key={currentView}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <PolicyView policyKey={currentView} onViewChange={handleViewChange} />
+              </motion.div>
+            </Suspense>
           )}
 
+          {/* 15. 404 View */}
           {currentView === '404' && (
-            <motion.div
-              key="404"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
-            >
-              <NotFoundView onViewChange={handleViewChange} />
-            </motion.div>
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key="404"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <NotFoundView onViewChange={handleViewChange} />
+              </motion.div>
+            </Suspense>
           )}
 
+          {/* 16. Callback Sheet Console View */}
           {currentView === 'callback-sheet' && (
-            <motion.div
-              key="callback-sheet"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
-            >
-              <CallbackSheetView onBack={() => handleViewChange('home')} />
-            </motion.div>
+            <Suspense fallback={<ViewFallback />}>
+              <motion.div
+                key="callback-sheet"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <CallbackSheetView onBack={() => handleViewChange('home')} />
+              </motion.div>
+            </Suspense>
           )}
-
-
         </AnimatePresence>
       </main>
 
       <Footer onViewChange={handleViewChange} />
       <WhatsAppFAB />
+      <StickyBottomBar currentProduct={selectedProduct} />
     </>
   )
 }

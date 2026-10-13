@@ -823,9 +823,32 @@ export default function ShopView({ products, onSelectProduct }) {
                             </div>
                             <span className="text-[0.75rem] text-text-muted font-medium">({p.reviews})</span>
                           </div>
-                          <div className="flex justify-between items-center mt-auto border-t border-border pt-3.5">
+                          <div className="flex justify-between items-center mt-auto border-t border-border pt-3.5 gap-2">
                             <span className="text-[1.15rem] font-extrabold text-brand-terracotta">{p.price}</span>
-                            <span className="text-[0.72rem] font-bold text-text-muted bg-white border border-border px-2.5 py-1 rounded-[6px]">{p.sizes.join(', ')}</span>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                const phone = '917891672762'
+                                const productUrl = `https://kidscity.online/product/${p.slug || p.id}`
+                                const text = `Hi Kids City! I want to order "${p.name}" (${p.price}): ${productUrl}. Is it available for delivery in Pune?`
+                                try {
+                                  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+                                    window.gtag('event', 'whatsapp_click', {
+                                      event_category: 'Conversion',
+                                      event_label: 'ShopView WhatsApp Order',
+                                      product_name: p.name,
+                                      product_id: p.id,
+                                      price: p.priceVal || null,
+                                    })
+                                  }
+                                } catch {}
+                                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank')
+                              }}
+                              className="px-3 py-1.5 rounded-full bg-[#25D366] text-white text-[0.75rem] font-bold flex items-center gap-1 hover:bg-[#1ebe5b] transition-colors"
+                              aria-label={`Order ${p.name} on WhatsApp`}
+                            >
+                              WhatsApp
+                            </button>
                           </div>
                         </div>
                       </motion.div>
