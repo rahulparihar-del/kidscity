@@ -5,33 +5,33 @@ const OG_IMAGE = `${SITE_URL}/images/og-kids-city.jpg`
 
 export const CORE_PAGES_SEO = {
   home: {
-    title: 'Kids City | Best Kids Clothes Shop in Pune — From ₹299',
-    description: 'Kids City is Pune trusted children clothing store. Shop skin-safe cotton night suits, birthday dresses & ethnic wear from ₹299. 4.9★ rated. Pune delivery.',
+    title: 'Kids City | Kids Clothes Shop in Wakad, Pune — From ₹299',
+    description: 'Kids City is Pune trusted children clothing boutique in Wakad. Shop festive lehengas, kurtas, birthday frocks & cotton night suits. 4.9★ on Google. Pune delivery.',
     canonical: `${SITE_URL}/`,
   },
   shop: {
-    title: 'Kids Clothes in Pune | Buy Outfits Online — Kids City',
-    description: 'Browse 500+ kids outfits in Pune: Cotton night suits from ₹299, birthday frocks, baby co-ords & festive kurtas. Fast delivery across Pune & PCMC. COD.',
+    title: 'Kids Clothing Collections in Pune | Kids City, Wakad',
+    description: 'Browse kids outfits in Pune: Cotton night suits from ₹299, birthday frocks & festive kurtas from Kids City Wakad. WhatsApp ordering & Pune delivery.',
     canonical: `${SITE_URL}/collections`,
   },
   'kids-clothes-delivery-pune': {
-    title: 'Kids Clothes Delivery in Pune | Same-Day & COD — Kids City',
-    description: 'Kids clothes home delivery across Pune & PCMC. Same-day delivery in Wakad, Hinjewadi & Baner. COD available, easy 7-day exchanges. WhatsApp to order.',
+    title: 'Kids Clothes Home Delivery in Pune & PCMC | Kids City',
+    description: 'Doorstep kids clothing delivery across Pune & PCMC from Kids City Wakad. Delivery areas, dispatch details & WhatsApp ordering.',
     canonical: `${SITE_URL}/kids-clothes-delivery-pune`,
   },
   'kids-clothing-size-guide': {
     title: 'Kids Size Guide India | Age, Height & Chest — Kids City',
-    description: 'Find the perfect fit for your child with our Indian kids clothing size chart (0 to 14 years). Easy height and chest guide with WhatsApp sizing support.',
+    description: 'Find the proper fit for your child with our Indian kids clothing size chart (0 to 14 years). Easy height and chest guide with WhatsApp sizing support.',
     canonical: `${SITE_URL}/kids-clothing-size-guide`,
   },
   contact: {
     title: 'Contact Kids City | Kids Clothes Store Wakad, Pune',
-    description: 'Contact Kids City in Wakad, Pune. Visit our store at Mahalaxmi Complex or WhatsApp +91 78916 72762. Open daily 10 AM to 9:30 PM. Delivery across Pune.',
+    description: 'Contact Kids City in Wakad, Pune. Visit our store at Mahalaxmi Complex or WhatsApp +91 78916 72762. Open daily. Delivery across Pune upon inquiry.',
     canonical: `${SITE_URL}/contact`,
   },
   about: {
     title: 'About Kids City Wakad | Trusted Pune Kids Boutique Since 2018',
-    description: 'Kids City has dressed Pune children since 2018. Rated 4.9★ by 141+ parents for skin-safe fabrics, festive wear & honest service in Wakad, Pune.',
+    description: 'Kids City has dressed Pune children since 2018. Rated 4.9★ by 141+ parents on Google for festive wear, birthday dresses & friendly service in Wakad, Pune.',
     canonical: `${SITE_URL}/about`,
   },
   faq: {

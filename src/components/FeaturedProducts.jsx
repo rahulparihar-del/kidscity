@@ -179,35 +179,53 @@ export default function FeaturedProducts({ products, onSelectProduct, onViewChan
             Our Best <span className="font-[family-name:var(--font-serif)] italic font-semibold text-brand-terracotta">Collections</span>
           </h2>
           <p className="font-[family-name:var(--font-body)] text-[1.05rem] max-md:text-[0.96rem] max-[560px]:text-[0.88rem] text-text-mid max-w-[520px] mx-auto mt-3.5 max-[560px]:mt-2.5 leading-[1.65] max-[560px]:leading-[1.5] font-medium">
-            Soft, skin-safe night suits from ₹399, festive lehengas, birthday dresses & more. Loved by 500+ Pune parents!
+            Festive lehengas, birthday dresses &amp; cotton night suits. 4.9★ on Google (141 reviews) · Wakad, Pune.
           </p>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2.5 max-[560px]:gap-1.5 flex-wrap justify-center mb-10 max-[560px]:mb-7 relative z-[2]" role="tablist">
-          {TABS.map(tab => (
-            <button
-              key={tab}
-              role="tab"
-              aria-selected={activeTab === tab}
-              onClick={() => setActiveTab(tab)}
-              className={`font-[family-name:var(--font-kids)] px-5 max-[560px]:px-[15px] py-2 max-[560px]:py-[7px] rounded-full text-[0.84rem] max-[560px]:text-[0.78rem] font-bold border-[1.5px] cursor-pointer min-h-[38px] max-[560px]:min-h-[34px] transition-all duration-150 shadow-[0_2px_8px_rgba(61,64,91,0.02)] ${
-                activeTab === tab
-                  ? 'bg-brand-terracotta text-white border-brand-terracotta shadow-[0_4px_12px_rgba(224,122,95,0.18)]'
-                  : 'bg-white text-text-mid border-border hover:border-brand-terracotta hover:text-brand-navy'
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
+        {filtered.length > 0 && (
+          <div className="flex gap-2.5 max-[560px]:gap-1.5 flex-wrap justify-center mb-10 max-[560px]:mb-7 relative z-[2]" role="tablist">
+            {TABS.map(tab => (
+              <button
+                key={tab}
+                role="tab"
+                aria-selected={activeTab === tab}
+                onClick={() => setActiveTab(tab)}
+                className={`font-[family-name:var(--font-kids)] px-5 max-[560px]:px-[15px] py-2 max-[560px]:py-[7px] rounded-full text-[0.84rem] max-[560px]:text-[0.78rem] font-bold border-[1.5px] cursor-pointer min-h-[38px] max-[560px]:min-h-[34px] transition-all duration-150 shadow-[0_2px_8px_rgba(61,64,91,0.02)] ${
+                  activeTab === tab
+                    ? 'bg-brand-terracotta text-white border-brand-terracotta shadow-[0_4px_12px_rgba(224,122,95,0.18)]'
+                    : 'bg-white text-text-mid border-border hover:border-brand-terracotta hover:text-brand-navy'
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+        )}
 
-        {/* Grid */}
-        <div className="grid grid-cols-3 max-[991px]:grid-cols-2 gap-7 max-[991px]:gap-5 max-[560px]:gap-3.5 max-[380px]:grid-cols-1 max-[380px]:max-w-[300px] max-[380px]:mx-auto mb-14 max-[560px]:mb-9 relative z-[2]">
-          {filtered.map(p => (
-            <ProductCard key={p.id} product={p} onSelectProduct={onSelectProduct} isWakad={isWakad} />
-          ))}
-        </div>
+        {/* Grid or Empty Notice */}
+        {filtered.length > 0 ? (
+          <div className="grid grid-cols-3 max-[991px]:grid-cols-2 gap-7 max-[991px]:gap-5 max-[560px]:gap-3.5 max-[380px]:grid-cols-1 max-[380px]:max-w-[300px] max-[380px]:mx-auto mb-14 max-[560px]:mb-9 relative z-[2]">
+            {filtered.map(p => (
+              <ProductCard key={p.id} product={p} onSelectProduct={onSelectProduct} isWakad={isWakad} />
+            ))}
+          </div>
+        ) : (
+          <div className="bg-[#FAF8F5] border border-border rounded-2xl p-8 text-center max-w-[640px] mx-auto mb-12 relative z-[2]">
+            <p className="font-[family-name:var(--font-body)] text-[0.95rem] text-text-mid mb-4">
+              Online catalog updating with verified in-store stock &amp; pricing. WhatsApp us to check current designs.
+            </p>
+            <a
+              href="https://wa.me/917891672762?text=Hi%20Kids%20City!%20Can%20you%20share%20your%20current%20featured%20collection%20photos%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[#25D366] text-white px-5 py-2.5 rounded-full font-bold text-[0.85rem]"
+            >
+              WhatsApp Us (+91 78916 72762)
+            </a>
+          </div>
+        )}
 
         {/* CTA block */}
         <div className="text-center px-8 max-[560px]:px-5 py-11 max-[560px]:py-[30px] bg-white border-[1.5px] border-border rounded-[28px] max-[560px]:rounded-[20px] flex flex-col items-center gap-[22px] max-[560px]:gap-4 relative z-[2] shadow-[0_4px_12px_rgba(61,64,91,0.05)]">

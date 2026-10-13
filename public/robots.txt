@@ -18,19 +18,4 @@ User-agent: Bingbot
 Allow: /
 Crawl-delay: 2
 
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
 Sitemap: https://kidscity.online/sitemap.xml

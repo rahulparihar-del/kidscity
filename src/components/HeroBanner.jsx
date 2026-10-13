@@ -34,7 +34,7 @@ export default function HeroBanner({ onViewChange }) {
           transition={{ duration: 0.4 }}
         >
           <span className="text-brand-terracotta text-[0.9rem]">★</span>
-          4.9 on Google (141 reviews) · Since 2018 · Delivery in Pune
+          4.9 on Google (141 reviews) · Since 2018 · Wakad, Pune
         </motion.div>
 
         {/* H1 */}
@@ -51,13 +51,13 @@ export default function HeroBanner({ onViewChange }) {
 
         {/* Subtitle */}
         <motion.p
-          className="font-[family-name:var(--font-body)] text-[#4b5563] leading-[1.55] mb-3.5 font-normal text-center max-w-[520px]"
+          className="font-[family-name:var(--font-body)] text-[#4b5563] leading-[1.55] mb-3.5 font-normal text-center max-w-[540px]"
           style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)' }}
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Pune trusted children store for skin-safe cotton night suits, newborn baby wear, birthday frocks &amp; traditional festival outfits from ₹299.
+          Pune children&apos;s clothing store for cotton night suits, newborn baby wear, birthday frocks &amp; traditional festival outfits from ₹299. Store in Wakad with home delivery across Pune &amp; PCMC.
         </motion.p>
 
         {/* CTA buttons */}

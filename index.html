@@ -104,79 +104,57 @@
     <meta name="twitter:image:alt" content="Kids City Pune — Children Clothing Store" />
 
     <!-- ================================================================
-         Structured Data Block 1: LocalBusiness + ClothingStore + Organization
+         Structured Data Block 1: ClothingStore (LocalBusiness)
          ================================================================ -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": ["Organization", "LocalBusiness", "ClothingStore"],
-            "@id": "%VITE_SITE_URL%/#organization",
-            "name": "Kids City",
-            "url": "%VITE_SITE_URL%/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "%VITE_SITE_URL%/images/logo_full.webp",
-              "width": 512,
-              "height": 200
-            },
-            "image": [
-              "%VITE_SITE_URL%/images/og-kids-city.jpg",
-              "%VITE_SITE_URL%/images/founder-kids-city-wakad.jpg",
-              "%VITE_SITE_URL%/images/festival_wear.webp",
-              "%VITE_SITE_URL%/images/birthday_dress.webp"
-            ],
-            "description": "Kids City is a premier children clothing store in Pune established in 2018. We specialize in skin-safe cotton night suits, festival wear including Navratri lehengas and Diwali kurtas, birthday party dresses, and everyday casual outfits for boys and girls aged 0 to 14 years. Store in Wakad with home delivery across Pune.",
-            "telephone": "+91-78916-72762",
-            "email": "kidscitywakad@gmail.com",
-            "priceRange": "₹₹",
-            "currenciesAccepted": "INR",
-            "paymentAccepted": "Cash, UPI, Debit Card, Credit Card",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Rd, beside Annapurna Veg Restaurant, Kaspate Wasti, Wakad",
-              "addressLocality": "Wakad, Pune",
-              "addressRegion": "Maharashtra",
-              "postalCode": "411057",
-              "addressCountry": "IN"
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": 18.5980911,
-              "longitude": 73.7744639
-            },
-            "hasMap": "https://www.google.com/maps/dir//Kids+City+Wakad",
-            "openingHoursSpecification": [
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-                "opens": "10:00",
-                "closes": "21:30"
-              }
-            ],
-            "areaServed": [
-              {"@type": "City", "name": "Pune"},
-              {"@type": "City", "name": "Pimpri-Chinchwad"},
-              {"@type": "AdministrativeArea", "name": "Wakad"},
-              {"@type": "AdministrativeArea", "name": "Hinjewadi"},
-              {"@type": "AdministrativeArea", "name": "Baner"},
-              {"@type": "AdministrativeArea", "name": "Balewadi"},
-              {"@type": "AdministrativeArea", "name": "Pimple Saudagar"},
-              {"@type": "AdministrativeArea", "name": "Aundh"},
-              {"@type": "AdministrativeArea", "name": "Ravet"},
-              {"@type": "AdministrativeArea", "name": "Tathawade"},
-              {"@type": "AdministrativeArea", "name": "Kothrud"},
-              {"@type": "AdministrativeArea", "name": "Pashan"}
-            ],
-            "sameAs": [
-              "https://instagram.com/kidscity____",
-              "https://www.google.com/maps/dir//Kids+City+Wakad"
-            ],
-            "foundingDate": "2018",
-            "slogan": "Clothes for Little Explorers"
-          }
-        ]
+        "@type": "ClothingStore",
+        "@id": "%VITE_SITE_URL%/#store",
+        "name": "Kids City",
+        "url": "%VITE_SITE_URL%/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "%VITE_SITE_URL%/images/logo_full.webp",
+          "width": 512,
+          "height": 200
+        },
+        "image": [
+          "%VITE_SITE_URL%/images/og-kids-city.jpg",
+          "%VITE_SITE_URL%/images/founder-kids-city-wakad.jpg",
+          "%VITE_SITE_URL%/images/festival_wear.webp",
+          "%VITE_SITE_URL%/images/birthday_dress.webp"
+        ],
+        "description": "Kids City is a children clothing store in Wakad, Pune established in 2018. We specialize in festive wear including Navratri lehengas and Diwali kurtas, birthday party dresses, cotton night suits, and everyday outfits for boys and girls aged 0 to 14 years. Boutique in Wakad with home delivery across Pune.",
+        "telephone": "+91-78916-72762",
+        "email": "kidscitywakad@gmail.com",
+        "priceRange": "₹₹",
+        "currenciesAccepted": "INR",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Shop No 12, Mahalaxmi Complex, Chatrapati Chowk Road",
+          "addressLocality": "Wakad, Pune",
+          "addressRegion": "Maharashtra",
+          "postalCode": "411057",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 18.5980911,
+          "longitude": 73.7744639
+        },
+        "hasMap": "https://www.google.com/maps/dir//Kids+City+Wakad",
+        "areaServed": [
+          {"@type": "City", "name": "Pune"},
+          {"@type": "City", "name": "Pimpri-Chinchwad"},
+          {"@type": "AdministrativeArea", "name": "Wakad"}
+        ],
+        "sameAs": [
+          "https://instagram.com/kidscity____",
+          "https://www.google.com/maps/dir//Kids+City+Wakad"
+        ],
+        "foundingDate": "2018",
+        "slogan": "Clothes for Little Explorers"
       }
     </script>
 
