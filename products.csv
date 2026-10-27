@@ -4,7 +4,8 @@
 # 2. Set is_published to true ONLY when price, sizes, stock, and fabric are confirmed.
 # 3. Any row with is_published=false will remain UNPUBLISHED (no public page, noindex, excluded from sitemap and schema).
 # 4. The 3 rows below are clearly marked EXAMPLE and unpublished. Replace or add your real inventory.
-name,category,age_size,price_inr,stock_per_size,photo_filenames,fabric,is_published
-[EXAMPLE] Girls Festive Chaniya Choli,Festive Wear,2-4y;4-6y;6-8y,899,2;3;1,/images/festival_wear.webp,Cotton Silk Blend,false
-[EXAMPLE] Boys Party Denim Set,Casual Wear,4-6y;6-8y;8-10y,549,4;2;2,/images/casual_boys.webp,Cotton and Denim,false
-[EXAMPLE] Kids Cotton Night Suit,Night Suits,2-4y;4-6y;6-8y,399,5;5;3,/images/nightsuit-hosiery-1-1.webp,100% Cotton,false
+name,category,age_size,price_inr,stock_per_size,photo_filenames,fabric,is_published,description
+Kids Dinosaur Printed 100% Cotton T-Shirt (1–5 Years),Casual Wear,1-2Y;2-3Y;3-4Y;4-5Y,299,5;5;5;5,/images/kids-dino-cotton-tshirt-black-1.jpg;/images/kids-dino-cotton-tshirt-black-2.jpg;/images/kids-dino-cotton-tshirt-black-3.jpg,100% Pure Cotton,true,"Cute 'Dino Lover' dinosaur printed graphic t-shirt for kids aged 1 to 5 years (1-2Y, 2-3Y, 3-4Y, 4-5Y). Made from 100% pure soft breathable cotton jersey in jet black. Features cute green dinosaurs, stars, rocket and planet motifs with comfortable round neck and short sleeves. Perfect daily wear and summer t-shirt for boys and girls in Wakad, Pune."
+[EXAMPLE] Girls Festive Chaniya Choli,Festive Wear,2-4y;4-6y;6-8y,899,2;3;1,/images/festival_wear.webp,Cotton Silk Blend,false,"Girls festive lehenga choli for festivals."
+[EXAMPLE] Boys Party Denim Set,Casual Wear,4-6y;6-8y;8-10y,549,4;2;2,/images/casual_boys.webp,Cotton and Denim,false,"Boys party denim coordinate set."
+[EXAMPLE] Kids Cotton Night Suit,Night Suits,2-4y;4-6y;6-8y,399,5;5;3,/images/nightsuit-hosiery-1-1.webp,100% Cotton,false,"Kids night suit sleepwear set."

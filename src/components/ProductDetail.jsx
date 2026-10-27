@@ -559,7 +559,7 @@ export default function ProductDetail({ product, onBack, onAddToBag, onSelectPro
                     <p className="whitespace-pre-wrap text-[0.92rem] text-text-mid leading-relaxed">{product.desc}</p>
                     <table className="w-full border-collapse mt-4 bg-white rounded-xl overflow-hidden border border-border">
                       <tbody>
-                        {Object.entries(product.specs).map(([key, val]) => (
+                        {Object.entries(product.specs || {}).map(([key, val]) => (
                           <tr key={key} className="border-b border-border last:border-0 hover:bg-[#fafaf6]/40 transition-colors">
                             <td className="bg-[#fafaf6] font-bold text-brand-navy w-[35%] text-[0.82rem] uppercase tracking-wider px-5 py-3.5 text-left border-r border-border">{key}</td>
                             <td className="px-5 py-3.5 text-[0.9rem] text-text-mid font-medium">{val}</td>

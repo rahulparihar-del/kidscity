@@ -165,7 +165,7 @@ export default function FeaturedProducts({ products, onSelectProduct, onViewChan
   const displayProducts = (products && products.length > 0 ? products : []).slice(0, 6)
   const filtered = activeTab === 'All'
     ? displayProducts
-    : displayProducts.filter(p => p.category === activeTab)
+    : displayProducts.filter(p => p.category === activeTab || (activeTab === 'Casual' && p.category === 'Casual Wear'))
 
   return (
     <section id="featured" className="py-[100px] max-md:py-20 max-[560px]:py-[60px] bg-white relative overflow-hidden">
